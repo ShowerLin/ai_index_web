@@ -1,5 +1,6 @@
 node_modules/
 dist/
+tmp/
 .vinext/
 .vite/
 .wrangler/
@@ -10,4 +11,3 @@ __pycache__/
 .env.*
 !.env.example
 *.log
-

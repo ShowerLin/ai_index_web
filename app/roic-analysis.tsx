@@ -17,7 +17,7 @@ export default function RoicAnalysis() {
   const leaseSensitivity = calculateRoic(company, true);
 
   return <section className="section roic-section" id="roic">
-    <div className="section-head"><div><div className="eyebrow">RETURN ON INVESTED CAPITAL · EXPERIMENTAL</div><h2>Is profit keeping pace with the capital base?</h2></div><div className="select-wrap"><label htmlFor="roic-company">Company</label><select id="roic-company" value={selected} onChange={event => setSelected(event.target.value)}>{companies.map(item => <option value={item.ticker} key={item.ticker}>{item.name}</option>)}</select></div></div>
+    <div className="section-head"><div><div className="eyebrow">RETURN ON INVESTED CAPITAL · SUPPLEMENTARY ANALYSIS</div><h2>Is profit keeping pace with the capital base?</h2></div><div className="select-wrap"><label htmlFor="roic-company">Company</label><select id="roic-company" value={selected} onChange={event => setSelected(event.target.value)}>{companies.map(item => <option value={item.ticker} key={item.ticker}>{item.name}</option>)}</select></div></div>
     <p className="roic-context">Consolidated company measure · latest available quarterly fundamentals · USD billions · <a className="source-chip" href="#source-S8">S8</a></p>
     <SectionSummary about="Compares trailing NOPAT with the capital committed to each hyperscaler's consolidated business." current="All five companies generate positive total ROIC, but their preferred eight-quarter incremental ROIC is lower than total ROIC." conclusion="Returns on the broader capital base remain positive, while the weaker incremental measure keeps the page's payback conclusion unresolved."/>
     {core.status === "ready" ? <>
@@ -45,7 +45,7 @@ export default function RoicAnalysis() {
       <article><b>Incremental return</b><p>Change in TTM Bloomberg NOPAT divided by change in average invested capital. Eight quarters is the preferred horizon; four quarters remains diagnostic. Results are withheld for non-positive capital changes or increases below 5% of the earlier capital base.</p></article>
       <article><b>Lease sensitivity</b><p>Operating and finance lease liabilities are added once when debt treatment is confirmed. The sensitivity is approximate because implied lease interest is not added back to NOPAT.</p></article>
     </div>
-    <div className="roic-boundary"><b>Interpretation boundary</b><p>Consolidated ROIC includes mature businesses and non-AI investment. A decline can reflect spending ahead of earnings or weaker profitability. Without a cost-of-capital estimate, it cannot establish value creation or destruction. It does not enter either atmosphere score.</p></div>
+    <div className="roic-boundary"><b>Scope and interpretation</b><p>Consolidated ROIC includes mature businesses and non-AI investment. A decline may reflect investment preceding earnings realization or weaker profitability. Without a cost-of-capital estimate, the measure cannot establish value creation or destruction. It is excluded from both atmosphere scores.</p></div>
     <p className="sustainability-source" id="source-S8"><b>S8 · Indexlist.xlsx — Hyperscaler Core Data Value.</b> Cached Bloomberg quarterly NOPAT, equity, debt, cash and lease fields for all five companies. Core results use equity + debt − cash and short-term investments. Long-term investments are not available in this sheet. Snapshot hash: <code>{roicSnapshot.sha256.slice(0, 12)}…</code></p>
   </section>;
 }

@@ -44,7 +44,7 @@ export default function FrontierLabs() {
 
   return <section className="section labs-section" id="labs">
     <div className="section-head labs-head">
-      <div><div className="eyebrow">03B · FRONTIER LAB MONETIZATION · RESEARCH SIDECAR</div><h2>Lab revenue adds evidence of paid demand.</h2></div>
+      <div><div className="eyebrow">03B · FRONTIER LAB MONETIZATION · SUPPLEMENTARY ANALYSIS</div><h2>Reported lab revenue provides evidence of paid demand.</h2></div>
       <div className="labs-switch" role="group" aria-label="Select frontier model lab">
         {(["Both", "OpenAI", "Anthropic"] as const).map(option => <button key={option} type="button" aria-pressed={view===option} className={view===option?"selected":""} onClick={()=>setView(option)}>{option}</button>)}
       </div>
@@ -67,7 +67,7 @@ export default function FrontierLabs() {
         <div className="chart-callout"><b>Directionally comparable, not accounting-equivalent:</b> “Greater than” values are plotted at their reported floor, and Anthropic’s $19–20B range uses its midpoint. ARR definitions have not been reconciled to recognized revenue. <a className="source-chip" href="#source-S10">S10</a></div>
       </div>
       <aside className="labs-readthrough">
-        <span className="detail-kicker">WHAT THE DATA SUPPORTS</span>
+        <span className="detail-kicker">ANALYTICAL ASSESSMENT</span>
         <div><b>Scale</b><p>Both labs report large revenue run rates. Different observation dates and definitions limit a direct ranking.</p></div>
         <div><b>Acceleration</b><p>Recognized quarterly revenue is the cleaner comparison: OpenAI grew 17.5% sequentially, while Anthropic’s preliminary Q2 floor implies growth above 143%.</p></div>
         <div><b>Link to infrastructure</b><p>Lab revenue supports the demand case. Margins, cash burn and compute commitments determine how much value remains with the labs and how much flows to infrastructure providers.</p></div>
@@ -75,8 +75,8 @@ export default function FrontierLabs() {
     </div>
 
     <details className="labs-method">
-      <summary>Definitions and limitations</summary>
-      <div><p><b>ARR / run rate:</b> a point-in-time annualization that may include usage, subscriptions or contracted business; it is not treated as GAAP revenue.</p><p><b>Margins:</b> OpenAI’s compute margin and Anthropic’s estimated gross margin are excluded from the headline comparison because their cost definitions differ.</p><p><b>What would strengthen the link:</b> quarterly revenue, cash burn, cloud commitments and contracted compute demand would make the comparison with hyperscaler CapEx more informative.</p></div>
+      <summary>Definitions, comparability and limitations</summary>
+      <div><p><b>ARR / run rate:</b> a point-in-time annualization that may include usage, subscriptions or contracted business; it is not treated as GAAP revenue.</p><p><b>Margins:</b> OpenAI’s compute margin and Anthropic’s estimated gross margin are excluded from the headline comparison because their cost definitions differ.</p><p><b>Required evidence:</b> quarterly revenue, cash burn, cloud commitments and contracted compute demand would improve the comparison with hyperscaler CapEx.</p></div>
     </details>
   </section>;
 }
