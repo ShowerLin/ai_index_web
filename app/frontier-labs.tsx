@@ -44,7 +44,7 @@ export default function FrontierLabs() {
 
   return <section className="section labs-section" id="labs">
     <div className="section-head labs-head">
-      <div><div className="eyebrow">03B · FRONTIER LAB MONETIZATION · SUPPLEMENTARY ANALYSIS</div><h2>Reported lab revenue provides evidence of paid demand.</h2></div>
+      <div><div className="eyebrow">PAID DEMAND · FRONTIER LAB MONETIZATION</div><h2>Reported lab revenue provides evidence of paid demand.</h2></div>
       <div className="labs-switch" role="group" aria-label="Select frontier model lab">
         {(["Both", "OpenAI", "Anthropic"] as const).map(option => <button key={option} type="button" aria-pressed={view===option} className={view===option?"selected":""} onClick={()=>setView(option)}>{option}</button>)}
       </div>

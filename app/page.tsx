@@ -512,7 +512,7 @@ export default function Home(){
   return <main id="top">
     <header className="topbar">
       <a className="brand" href="#top"><span className="brand-mark">AIA</span><span>AI Investment<br/>Atmosphere</span></a>
-      <nav aria-label="Primary"><a href="#guide">Executive summary</a><a href="#chain">AI value chain</a><a href="#pulse">Momentum</a><a href="#capex">Capital spending</a><a href="#labs">Monetization</a><a href="#sustainability">Cash funding</a><a href="#roic">Returns</a><a href="#fundamentals">Financial quality</a></nav>
+      <nav aria-label="Primary"><a href="#guide">Executive summary</a><a href="#chain">AI value chain</a><a href="#pulse">Momentum</a><a href="#capex">Capital spending</a><a href="#sustainability">Cash funding</a><a href="#labs">Paid demand</a><a href="#roic">Returns</a><a href="#fundamentals">Financial quality</a></nav>
       <div className="asof"><span className="live-dot"/>Data through · 16 Sep 2026</div>
     </header>
 
@@ -529,33 +529,6 @@ export default function Home(){
       </div>
     </section>
 
-    <section className="overlay-bridge" aria-label="Satellite overlay bridge">
-      <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
-      <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
-      <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 25 issuers</small></article>
-      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · September is partial</small></article>
-      <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
-    </section>
-
-    <section className="heatmap-overview" aria-labelledby="heatmap-title">
-      <div className="heatmap-head"><div><div className="eyebrow">CURRENT STATUS · QUARTER-OVER-QUARTER</div><h2 id="heatmap-title">Spending accelerated across four of five hyperscalers.</h2><p>Quarter-end change in underlying source levels; pillar cells show the simple average across included series.</p></div><div className="heat-legend" aria-label="Heatmap legend"><span><i className="heat-down-2"/>Contracting</span><span><i className="heat-up-1"/>Moderate</span><span><i className="heat-up-3"/>Strong</span></div></div>
-      <SectionSummary about="Compares quarter-over-quarter momentum across adoption, demand, investment, imports and hyperscaler capital spending; the China CapEx row remains a separate market view." current="Hyperscaler CapEx rose 25.3% in 2026Q2, with four of five U.S. companies increasing spending. Investment indicators were softer, with three of five underlying signals positive." conclusion="The buildout remains broad, but uneven investment indicators reinforce the need to test whether usage, cash generation and incremental returns are catching up."/>
-      <div className="heat-table-wrap"><table className="heat-table"><thead><tr><th>Pillar</th><th>2025Q3</th><th>2025Q4</th><th>2026Q1</th><th>2026Q2</th></tr></thead><tbody>{heatmap.map(row=><tr key={row.pillar} className={heatmapPillar===row.pillar?"selected":""}><th><button type="button" onClick={()=>setHeatmapPillar(row.pillar)} aria-pressed={heatmapPillar===row.pillar}>{row.pillar}<small>View constituents</small></button><Source id={row.source}/></th>{row.cells.map(cell=><td key={cell.q} className={heatClass(cell.v)}><button type="button" onClick={()=>setHeatmapPillar(row.pillar)} aria-label={`${row.pillar}, ${cell.q}: ${cell.v===null?"unavailable":`${cell.v>0?"plus ":""}${cell.v.toFixed(1)} percent`}`} aria-pressed={heatmapPillar===row.pillar}>{cell.v===null?<strong>n/a</strong>:<strong>{cell.v>0?"+":""}{cell.v.toFixed(1)}%</strong>}<span>{cell.v===null?"incomplete quarter":`${cell.b} signals positive`}</span></button></td>)}</tr>)}</tbody></table></div>
-      <div className="heatmap-drilldown" aria-live="polite">
-        <div className="heatmap-drilldown-head"><div><span>SELECTED PILLAR · CONSTITUENTS</span><h3>{heatmapPillar}</h3></div><p>Latest source observations; change basis is shown for each row.</p></div>
-        <div className="heatmap-detail-wrap"><table><thead><tr><th>Constituent</th><th>Ticker</th><th>Latest</th><th>Change</th><th>Data basis</th></tr></thead><tbody>{heatmapDetails.map(item=><tr key={item.ticker}><td><b>{item.name}</b></td><td><code>{item.ticker}</code></td><td>{item.latest}</td><td className={item.change===null?"muted":item.change>=0?"positive":"negative"}>{item.change===null?"n/a":`${item.change>0?"+":""}${item.change.toFixed(1)}% ${item.basis}`}</td><td>{item.status}</td></tr>)}</tbody></table></div>
-      </div>
-      <div className="current-pulse"><div><span>Latest complete CapEx quarter</span><strong>2026Q2 constituent QoQ</strong></div>{latestCapexPulse.map(c=><div key={c.ticker} className={c.v>=0?"pulse-up":"pulse-down"}><span>{c.ticker}</span><b>{c.v>0?"+":""}{c.v.toFixed(1)}%</b></div>)}</div>
-      <div className="heatmap-note"><b>Investment implication:</b> Quarterly CapEx rose 25.3% in 2026Q2, with four of five companies increasing spending. The breadth of the expansion raises the importance of the subsequent cash-coverage and ROIC analysis.</div>
-    </section>
-
-    <section className="snapshot" aria-label="Headline indicators">
-      <article><span>Official macro pulse</span><strong>69.3</strong><small>June · last complete comparable month</small></article>
-      <article><span>Latest signal mix</span><strong>Mixed</strong><small>adoption and imports firm; orders uneven</small></article>
-      <article><span>Quarterly CapEx</span><strong>$188.3B</strong><small className="up">+79.3% YoY</small></article>
-      <article><span>Fundamental screen</span><strong>49.6</strong><small>median · 32 issuers</small></article>
-    </section>
-
     <section className="reader-guide" id="guide" aria-labelledby="guide-title">
       <div className="guide-intro">
         <div className="eyebrow">EXECUTIVE SUMMARY · INVESTMENT CONCLUSION</div>
@@ -567,11 +540,38 @@ export default function Home(){
       <ol className="guide-path" aria-label="Suggested reading path">
         <li><a href="#pulse"><span>01</span><div><b>Is activity expanding?</b><small>The pulse summarizes momentum and breadth.</small></div></a></li>
         <li><a href="#capex"><span>02</span><div><b>How much is being built?</b><small>Compare hyperscaler spending and its compute proxy.</small></div></a></li>
-        <li><a href="#labs"><span>03</span><div><b>Is paid demand appearing?</b><small>Read model traffic and lab revenue as demand evidence.</small></div></a></li>
-        <li><a href="#sustainability"><span>04</span><div><b>Can companies fund it?</b><small>Track cash absorption and cash left after investment.</small></div></a></li>
+        <li><a href="#sustainability"><span>03</span><div><b>Can companies fund it?</b><small>Track cash absorption and cash left after investment.</small></div></a></li>
+        <li><a href="#labs"><span>04</span><div><b>Is paid demand appearing?</b><small>Read model traffic and lab revenue as demand evidence.</small></div></a></li>
         <li><a href="#roic"><span>05</span><div><b>Are profits keeping pace?</b><small>Compare total and incremental corporate returns.</small></div></a></li>
       </ol>
       <p className="guide-orientation"><a href="#chain">The AI value-chain map defines the industry structure.</a> The <a href="#fundamentals">fundamental and financing analysis</a> then compares resilience across companies.</p>
+    </section>
+
+    <section className="snapshot" aria-label="Headline indicators">
+      <article><span>Official macro pulse</span><strong>69.3</strong><small>June · last complete comparable month</small></article>
+      <article><span>Latest signal mix</span><strong>Mixed</strong><small>adoption and imports firm; orders uneven</small></article>
+      <article><span>Quarterly CapEx</span><strong>$188.3B</strong><small className="up">+79.3% YoY</small></article>
+      <article><span>Fundamental screen</span><strong>49.6</strong><small>median · 32 issuers</small></article>
+    </section>
+
+    <section className="overlay-bridge" aria-label="Satellite overlay bridge">
+      <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
+      <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
+      <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 25 issuers</small></article>
+      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · September is partial</small></article>
+      <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
+    </section>
+
+    <section className="heatmap-overview" aria-labelledby="heatmap-title">
+      <div className="heatmap-head"><div><div className="eyebrow">QUARTERLY MOMENTUM HEATMAP</div><h2 id="heatmap-title">Demand and CapEx lead; investment indicators remain uneven.</h2><p>Quarter-over-quarter change across adoption, demand, investment, imports and hyperscaler CapEx. Each cell shows the pillar average and positive-signal breadth.</p></div><div className="heat-legend" aria-label="Heatmap legend"><span><i className="heat-down-2"/>Contracting</span><span><i className="heat-up-1"/>Moderate</span><span><i className="heat-up-3"/>Strong</span></div></div>
+      <SectionSummary about="Compares quarter-over-quarter momentum across adoption, demand, investment, imports and hyperscaler capital spending; the China CapEx row remains a separate market view." current="Hyperscaler CapEx rose 25.3% in 2026Q2, with four of five U.S. companies increasing spending. Investment indicators were softer, with three of five underlying signals positive." conclusion="The buildout remains broad, but uneven investment indicators reinforce the need to test whether usage, cash generation and incremental returns are catching up."/>
+      <div className="heat-table-wrap"><table className="heat-table"><thead><tr><th>Pillar</th><th>2025Q3</th><th>2025Q4</th><th>2026Q1</th><th>2026Q2</th></tr></thead><tbody>{heatmap.map(row=><tr key={row.pillar} className={heatmapPillar===row.pillar?"selected":""}><th><button type="button" onClick={()=>setHeatmapPillar(row.pillar)} aria-pressed={heatmapPillar===row.pillar}>{row.pillar}<small>View constituents</small></button><Source id={row.source}/></th>{row.cells.map(cell=><td key={cell.q} className={heatClass(cell.v)}><button type="button" onClick={()=>setHeatmapPillar(row.pillar)} aria-label={`${row.pillar}, ${cell.q}: ${cell.v===null?"unavailable":`${cell.v>0?"plus ":""}${cell.v.toFixed(1)} percent`}`} aria-pressed={heatmapPillar===row.pillar}>{cell.v===null?<strong>n/a</strong>:<strong>{cell.v>0?"+":""}{cell.v.toFixed(1)}%</strong>}<span>{cell.v===null?"incomplete quarter":`${cell.b} signals positive`}</span></button></td>)}</tr>)}</tbody></table></div>
+      <div className="heatmap-drilldown" aria-live="polite">
+        <div className="heatmap-drilldown-head"><div><span>SELECTED PILLAR · CONSTITUENTS</span><h3>{heatmapPillar}</h3></div><p>Latest source observations; change basis is shown for each row.</p></div>
+        <div className="heatmap-detail-wrap"><table><thead><tr><th>Constituent</th><th>Ticker</th><th>Latest</th><th>Change</th><th>Data basis</th></tr></thead><tbody>{heatmapDetails.map(item=><tr key={item.ticker}><td><b>{item.name}</b></td><td><code>{item.ticker}</code></td><td>{item.latest}</td><td className={item.change===null?"muted":item.change>=0?"positive":"negative"}>{item.change===null?"n/a":`${item.change>0?"+":""}${item.change.toFixed(1)}% ${item.basis}`}</td><td>{item.status}</td></tr>)}</tbody></table></div>
+      </div>
+      <div className="current-pulse"><div><span>Latest complete CapEx quarter</span><strong>2026Q2 constituent QoQ</strong></div>{latestCapexPulse.map(c=><div key={c.ticker} className={c.v>=0?"pulse-up":"pulse-down"}><span>{c.ticker}</span><b>{c.v>0?"+":""}{c.v.toFixed(1)}%</b></div>)}</div>
+      <div className="heatmap-note"><b>Investment implication:</b> Quarterly CapEx rose 25.3% in 2026Q2, with four of five companies increasing spending. The breadth of the expansion raises the importance of the subsequent cash-coverage and ROIC analysis.</div>
     </section>
 
     <section className="section chain-section" id="chain">
@@ -699,9 +699,9 @@ export default function Home(){
       {capexCountry==="United States"?<><div className="constituent-grid">{constituents.map(c=><button key={c.company} onClick={()=>setCompany(c.company as Company)} className={company===c.company?"constituent selected":"constituent"}><div><span>{c.ticker}</span><small>{c.company}</small></div><strong>${c.value.toFixed(1)}B</strong><div className="share-track"><i style={{width:`${c.share}%`}}/></div><footer><span>{c.share}% share</span><b>+{c.yoy.toFixed(1)}% YoY</b></footer></button>)}</div><div className="signal-table-wrap"><table><thead><tr><th>Constituent</th><th>2026Q2 total</th><th>Compute proxy</th><th>Share</th><th>YoY total</th><th>Compute-proxy basis</th><th>Evidence</th></tr></thead><tbody>{constituents.map(c=><tr key={c.ticker}><td><b>{c.ticker}</b><span className="company-label">{c.company}</span></td><td>${c.value.toFixed(1)}B</td><td>${c.proxy.toFixed(1)}B</td><td>{c.share.toFixed(1)}%</td><td className="positive">+{c.yoy.toFixed(1)}%</td><td>{c.basis}</td><td><span className={`quality ${c.quality.startsWith("Inferred")?"inferred":c.quality.startsWith("Estimated")?"estimated":""}`}>{c.quality}</span></td></tr>)}</tbody></table></div></>:<><div className="china-snapshot"><article><span>Tencent · 2026Q2 operating CapEx</span><strong>RMB 52.8B</strong><small className="up">+69.2% QoQ · +176.4% YoY</small></article><article><span>Alibaba · 2026Q2 CapEx</span><strong>RMB 67.7B</strong><small className="up">+121.2% QoQ · +74.9% YoY</small></article><article><span>Baidu · 2026Q2 cash CapEx</span><strong>RMB 11.4B</strong><small className="up">+87.5% QoQ · +200.0% YoY</small></article></div><div className="china-readthrough"><div><span>Observed trend</span><p>All three issuers increased CapEx sequentially in 2026Q1 and again in 2026Q2. Alibaba recorded the highest Q2 level, while Baidu showed the fastest YoY growth from a smaller base.</p></div><div><span>Analytical limitation</span><p>The full RMB amounts cannot be classified as AI CapEx. AI-share fields in the source workbook are inferred, and the accounting bases are not fully harmonized.</p></div><div><span>Treatment in analysis</span><p>The three companies form a separate China breadth and momentum series. Their levels are not aggregated because currencies, accounting definitions and estimated AI shares are not directly comparable.</p></div></div></>}
     </section>
 
+    <InvestmentSustainability/>
     <FrontierLabs/>
     <DemandToReturns/>
-    <InvestmentSustainability/>
     <RoicAnalysis/>
 
     <section className="section fundamentals-section" id="fundamentals">
