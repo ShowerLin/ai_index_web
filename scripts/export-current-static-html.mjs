@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,7 +12,12 @@ const response = await fetch(sourceUrl, { headers: { accept: "text/html" } });
 if (!response.ok) throw new Error(`Page request failed with HTTP ${response.status}`);
 
 let html = await response.text();
-const css = await readFile(resolve(projectRoot, "app", "globals.css"), "utf8");
+const assetDirectory = resolve(projectRoot, "dist", "client", "assets");
+const cssAssets = (await readdir(assetDirectory)).filter((name) => name.endsWith(".css"));
+if (cssAssets.length !== 1) {
+  throw new Error(`Expected one compiled CSS asset, found ${cssAssets.length}`);
+}
+const css = await readFile(resolve(assetDirectory, cssAssets[0]), "utf8");
 const favicon = await readFile(resolve(projectRoot, "public", "favicon.svg"), "utf8");
 const csv = await readFile(resolve(projectRoot, "public", "ai-industry-chain-price-template.csv"), "utf8");
 
