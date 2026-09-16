@@ -471,10 +471,10 @@ export default function Home(){
     </section>
 
     <section className="overlay-bridge" aria-label="Satellite overlay bridge">
-      <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Five pillars · unchanged</small></article>
+      <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
       <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
       <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 12 issuers</small></article>
-      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · YoY unavailable</small></article>
+      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · September is partial</small></article>
       <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
     </section>
 
@@ -491,8 +491,8 @@ export default function Home(){
     </section>
 
     <section className="snapshot" aria-label="Headline indicators">
-      <article><span>Monthly macro pulse</span><strong>69.3</strong><small className="down">−5.5 pts vs. May</small></article>
-      <article><span>Positive breadth</span><strong>10 / 11</strong><small>included monthly signals</small></article>
+      <article><span>Official macro pulse</span><strong>69.3</strong><small>June · last complete comparable month</small></article>
+      <article><span>Latest signal mix</span><strong>Mixed</strong><small>adoption and imports firm; orders uneven</small></article>
       <article><span>Quarterly CapEx</span><strong>$188.3B</strong><small className="up">+79.3% YoY</small></article>
       <article><span>Fundamental screen</span><strong>49.6</strong><small>median · 32 issuers</small></article>
     </section>
@@ -500,10 +500,10 @@ export default function Home(){
     <section className="reader-guide" id="guide" aria-labelledby="guide-title">
       <div className="guide-intro">
         <div className="eyebrow">EXECUTIVE SUMMARY · INVESTMENT CONCLUSION</div>
-        <h2 id="guide-title">The buildout is strong. The payback is still developing.</h2>
-        <p>The 69.3 core score says AI investment activity is running above its own history. It is a momentum reading, not a forecast of shareholder returns. The financial evidence adds the tension: quarterly hyperscaler CapEx reached $188.3B, while cash investment absorbed 77.3% of operating cash flow across Microsoft, Alphabet, Amazon and Meta.</p>
-        <p>Demand is visible in public model traffic and frontier-lab revenue, but those measures cannot be assigned cleanly to a hyperscaler or a dollar of investment. Across all five hyperscalers, incremental ROIC is below total company ROIC. The central question is therefore whether revenue and profit can catch up before the cash cushion narrows further.</p>
-        <div className="guide-conclusion"><b>Investment conclusion</b><span>Expansion remains broad and funding remains available, while evidence of adequate incremental returns is incomplete.</span></div>
+        <h2 id="guide-title">Demand remains firm. Markets are becoming less willing to reward spending alone.</h2>
+        <p>The official 69.3 core score still describes the last complete comparable month, not a September nowcast. Newer data show strong adoption, DRAM exports and equipment imports, while communications and IT orders have softened. Quarterly hyperscaler CapEx remains at a record $188.3B and absorbs 77.3% of operating cash flow across Microsoft, Alphabet, Amazon and Meta.</p>
+        <p>Credit stress has eased, but equity pricing has rotated against the strongest fundamental cohort: the top financial-quality quartile returned −11.3% over the latest month versus −4.6% for the bottom quartile. Together with falling token prices and incremental ROIC below total ROIC for all five hyperscalers, the evidence suggests the debate is moving from capacity growth toward monetization and capital productivity.</p>
+        <div className="guide-conclusion"><b>Investment conclusion</b><span>The buildout remains funded, but the next leg of performance increasingly requires profit conversion and improving incremental ROIC—not another increase in CapEx alone.</span></div>
       </div>
       <ol className="guide-path" aria-label="Suggested reading path">
         <li><a href="#pulse"><span>01</span><div><b>Is activity expanding?</b><small>The pulse summarizes momentum and breadth.</small></div></a></li>
@@ -680,7 +680,7 @@ export default function Home(){
           <div className="credit-panel-head"><div><b>Issuer CDS movement</b><span>Latest spread and matched 1M / 3M changes</span></div><div className="credit-legend"><span><i className="tightening-dot"/>Tightening</span><span><i className="widening-dot"/>Widening</span></div></div>
           <div className="credit-table-wrap"><table><thead><tr><th>Issuer</th><th>AI-industry role</th><th>Latest 5Y CDS</th><th>1M change</th><th>3M change</th><th>1M direction</th></tr></thead><tbody>{cdsIssuers.map(c=><tr key={c.ticker}><td><b>{c.ticker}</b><span>{c.issuer}</span></td><td><span className="role-chip">{c.role}</span></td><td>{c.latest.toFixed(1)} bp</td><td className={c.oneMonth<=0?"positive":"negative"}>{c.oneMonth>0?"+":""}{c.oneMonth.toFixed(1)} bp</td><td className={c.threeMonth<=0?"positive":"negative"}>{c.threeMonth>0?"+":""}{c.threeMonth.toFixed(1)} bp</td><td><span className={c.oneMonth<=0?"credit-status tightening":"credit-status widening"}>{c.oneMonth<=0?"Tightening":"Widening"}</span></td></tr>)}</tbody></table></div>
         </div>
-        <aside className="credit-readthrough"><div><span className="detail-kicker">CREDIT ASSESSMENT</span><h3>Recent tightening has only partly reversed the widening.</h3><p>The 12-issuer basket tightened by 1.4 bp over one month, while the three-month change remains 12.8 bp wider. Oracle and Dell drove much of the recent tightening; Intel, Oracle and Dell remain the largest three-month wideners.</p></div><div className="credit-method"><b>Methodology</b><p>The indicator gives equal weight to one-month and three-month spread changes. A positive score indicates improving credit conditions. Results are reported when at least eight issuers have comparable data.</p></div></aside>
+        <aside className="credit-readthrough"><div><span className="detail-kicker">CREDIT ASSESSMENT</span><h3>Funding stress has stabilized, but has not fully normalized.</h3><p>The 12-issuer basket tightened by 0.2 bp over one month and is 5.0 bp wider over three months, down materially from the prior 12.8 bp widening. Dell tightened over both periods; Intel and Oracle remain the largest three-month wideners.</p></div><div className="credit-method"><b>Methodology</b><p>The indicator gives equal weight to one-month and three-month spread changes. A positive score indicates improving credit conditions. Results are reported when at least eight issuers have comparable data.</p></div></aside>
       </div>
     </section>
 
@@ -693,17 +693,17 @@ export default function Home(){
         <article><span>Rolling 12M issues</span><strong>{bondSnapshot.issues12m}</strong><small>transaction count</small></article>
         <article><span>Rolling 12M YoY</span><strong>n/a</strong><small className="down">Dec 2025 is unavailable</small></article>
       </div>
-      <div className="financing-layout"><div className="chart-panel"><div className="chart-meta"><div><b>Monthly issuance activity</b><span>USD billions · bars show amount; hover for issue count</span></div></div><BondChart/><div className="chart-callout"><b>Financing conditions:</b> the series measures market access and financing appetite. It is neither issuer-specific debt attribution nor a component of the 0–100 atmosphere score.</div></div><aside className="financing-note"><span className="detail-kicker">DATA QUALIFICATION</span><h3>One missing month prevents a clean YoY comparison.</h3><p>The latest continuous 12-month window is valid, but August 2025 is absent. Pending restoration of that observation, the report presents levels and month-on-month change without a rolling-12-month YoY rate.</p><div><b>Required evidence</b><p>Restoring the missing month would permit a test of whether issuance contributes information beyond CDS and equity-price momentum.</p></div></aside></div>
+      <div className="financing-layout"><div className="chart-panel"><div className="chart-meta"><div><b>Monthly issuance activity</b><span>USD billions · September is month-to-date; hover for issue count</span></div></div><BondChart/><div className="chart-callout"><b>Financing conditions:</b> the $5.7B September bar covers only the first 16 days and should not be compared with a full month. The series measures market access, not issuer-specific debt attribution or the return earned on new capital.</div></div><aside className="financing-note"><span className="detail-kicker">DATA QUALIFICATION</span><h3>Partial September and missing December limit comparisons.</h3><p>September is incomplete and December 2025 is absent. The report therefore presents observed issuance levels through August plus September month-to-date, without treating either the gap or the partial month as zero.</p><div><b>Required evidence</b><p>Restoring December 2025 and completing September would permit consistent rolling-window and month-on-month comparisons.</p></div></aside></div>
     </section>
 
     <section className="section methodology" id="methodology">
       <div className="method-title"><div className="eyebrow">07 · METHODOLOGY & DATA DISCLOSURES</div><h2>Signal construction and analytical scope.</h2><p>The core index measures investment momentum. The supplementary overlay adds financial quality and credit conditions. Cash coverage, lab revenue and ROIC provide separate evidence on sustainability and returns.</p></div>
-      <SectionSummary about="Defines the core score, supplementary adjustments, source definitions and missing-data rules." current="The core index remains 69.3; the supplementary financial and credit adjustment lowers the reading to 67.8." conclusion="Separating momentum, financial resilience and returns prevents a strong signal in one dimension from being interpreted as evidence that the full investment cycle is profitable."/>
+      <SectionSummary about="Defines the core score, supplementary adjustments, source definitions and missing-data rules." current={`The core index remains 69.3 for the last complete comparable month; improved credit conditions lift the supplementary view to ${formatIndex(satelliteOverlay.adjusted)}.`} conclusion="Separating momentum, financial resilience and returns prevents a strong signal in one dimension from being interpreted as evidence that the full investment cycle is profitable."/>
       <div className="method-steps">
         <article><span>01</span><h3>Normalize momentum</h3><p>Each included series is converted to YoY change, then standardized against its own available history. This avoids adding incomparable source-native units.</p></article>
         <article><span>02</span><h3>Score each pillar</h3><p>Signal score = 50 + 15 × z-score, capped at 0–100. Series are equally weighted within each pillar.</p></article>
         <article><span>03</span><h3>Build the atmosphere</h3><p>Adoption, Demand, Investment, Imports and Hyperscaler CapEx receive equal 20% pillar weights. A score above 50 indicates above-history momentum.</p></article>
-        <article><span>04</span><h3>Add satellites separately</h3><p>The adjusted score adds bounded fundamental and credit deltas to the core. Bond issuance stays at zero weight until the missing comparison month and historical normalization are resolved. Token pricing remains context because comparable YoY history is insufficient.</p></article>
+        <article><span>04</span><h3>Add satellites separately</h3><p>The adjusted score adds bounded fundamental and credit deltas to the core. Bond issuance stays at zero weight until December 2025 is restored, September is complete and historical normalization is resolved. Token pricing remains context because comparable YoY history is insufficient.</p></article>
       </div>
       <div className="overlay-methodology">
         <div><span>SUPPLEMENTARY ADJUSTMENT FORMULA</span><h3>Adjusted = Core + Fundamental Δ + Credit Δ</h3><p><code>Fundamental Δ = 10% × (median Fundamental Composite − 50)</code></p><p><code>Credit score = clamp(50 + 2.5 × CDS Change Signal, 0, 100)</code></p><p><code>Credit Δ = 10% × (Credit score − 50)</code></p></div>
