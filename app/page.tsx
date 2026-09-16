@@ -65,18 +65,18 @@ const pillars: Record<Pillar, { score:number; change:string; breadth:string; ton
 };
 
 const series = [
-  {pillar:"Adoption",name:"AI use — last 2 weeks",ticker:"BTOS0700",value:"20.6",yoy:121.5,status:"Included"},
-  {pillar:"Adoption",name:"Expected AI use — next 6 weeks",ticker:"BTOS2400",value:"23.7",yoy:102.6,status:"Included"},
-  {pillar:"Demand",name:"South Korea DRAM exports",ticker:"KOTCDRAM",value:"218.46",yoy:384.9,status:"Included"},
-  {pillar:"Demand",name:"LLM token price",ticker:"SDLLMTK",value:"1.7095",yoy:null,status:"Context only"},
-  {pillar:"Investment",name:"Communication equipment orders",ticker:"DGNOCOEQ",value:"5,699",yoy:39.2,status:"Included"},
-  {pillar:"Investment",name:"Information technology orders",ticker:"DGNOITIN",value:"27,414",yoy:-3.8,status:"Included"},
-  {pillar:"Investment",name:"Power equipment orders",ticker:"DGNOTGOP",value:"5,457",yoy:18.6,status:"Included"},
-  {pillar:"Investment",name:"Data-center construction",ticker:"CNSTPRDA",value:"59,307",yoy:26.6,status:"Included"},
-  {pillar:"Investment",name:"High-tech industry activity",ticker:"IPNEHITC",value:"191.72",yoy:11.0,status:"Included"},
-  {pillar:"Imports",name:"Telecom equipment imports",ticker:"USIMTELE",value:"13.862",yoy:48.7,status:"Included"},
-  {pillar:"Imports",name:"Semiconductor imports",ticker:"USIMSEMI",value:"11.894",yoy:84.6,status:"Included"},
-  {pillar:"Imports",name:"Computer imports",ticker:"USIMCOMP",value:"19.410",yoy:83.3,status:"Included"},
+  {pillar:"Adoption",name:"AI use — last 2 weeks",ticker:"BTOS0700",value:"21.8",yoy:120.2,status:"Included · latest"},
+  {pillar:"Adoption",name:"Expected AI use — next 6 weeks",ticker:"BTOS2400",value:"25.9",yoy:85.0,status:"Included · latest"},
+  {pillar:"Demand",name:"South Korea DRAM exports",ticker:"KOTCDRAM",value:"235.70",yoy:362.2,status:"Included · Aug"},
+  {pillar:"Demand",name:"LLM token price",ticker:"SDLLMTK",value:"0.9543",yoy:null,status:"Context only · latest"},
+  {pillar:"Investment",name:"Communication equipment orders",ticker:"DGNOCOEQ",value:"4,568",yoy:-6.8,status:"Included · Jul carry"},
+  {pillar:"Investment",name:"Information technology orders",ticker:"DGNOITIN",value:"28,308",yoy:-5.8,status:"Included · Jul carry"},
+  {pillar:"Investment",name:"Power equipment orders",ticker:"DGNOTGOP",value:"5,386",yoy:17.4,status:"Included · Jul carry"},
+  {pillar:"Investment",name:"Data-center construction",ticker:"CNSTPRDA",value:"75,166",yoy:48.3,status:"Included · Jul carry"},
+  {pillar:"Investment",name:"High-tech industry activity",ticker:"IPNEHITC",value:"199.62",yoy:14.6,status:"Included · Jul carry"},
+  {pillar:"Imports",name:"Telecom equipment imports",ticker:"USIMTELE",value:"15.328",yoy:66.9,status:"Included · Jul carry"},
+  {pillar:"Imports",name:"Semiconductor imports",ticker:"USIMSEMI",value:"13.048",yoy:131.4,status:"Included · Jul carry"},
+  {pillar:"Imports",name:"Computer imports",ticker:"USIMCOMP",value:"26.792",yoy:140.8,status:"Included · Jul carry"},
 ] as const;
 
 const constituents = [
@@ -110,12 +110,12 @@ const chinaCapexHistory = [
 ] as const;
 
 const cdsSnapshot = {
-  asOf:"20 Aug 2026", oneMonth:-1.3678791543, threeMonth:12.8308326307, composite:-5.7314767382, coverage:12,
+  asOf:"16 Sep 2026", oneMonth:-0.2265720304, threeMonth:4.9852294116, composite:-2.3793286906, coverage:12,
 } as const;
 
 const fundamentalSnapshot = {
   asOf:"30 Jun 2026", q2Coverage:26, q1Fallback:6, median:49.6381538462,
-  topQuartile1m:7.8056213847, bottomQuartile1m:0.8348929830, correlation1m:0.101277056,
+  topQuartile1m:-11.3202337450, bottomQuartile1m:-4.6032705742, correlation1m:-0.3068002452,
 } as const;
 
 const fundamentalLeaders = [
@@ -127,7 +127,7 @@ const fundamentalLeaders = [
 ] as const;
 
 const bondSnapshot = {
-  asOf:"Aug 2026", latest:33.48879, mom:1.8586669513, rolling12m:412.6841715, issues12m:207,
+  asOf:"16 Sep 2026", latest:5.739625, mom:-82.972, rolling12m:400.6744695, issues12m:174,
 } as const;
 
 const clampScore=(value:number)=>Math.max(0,Math.min(100,value));
@@ -152,25 +152,25 @@ const satelliteOverlay = {
 } as const;
 
 const bondHistory = [
-  {month:"Sep 25",amount:32.40052,issues:18},{month:"Oct 25",amount:18.33008,issues:10},{month:"Nov 25",amount:71.74767,issues:28},
-  {month:"Dec 25",amount:3.21050,issues:1},{month:"Jan 26",amount:4.50000,issues:4},{month:"Feb 26",amount:53.15640,issues:21},
-  {month:"Mar 26",amount:62.2155515,issues:32},{month:"Apr 26",amount:12.670217,issues:12},{month:"May 26",amount:49.95546,issues:31},
-  {month:"Jun 26",amount:38.13128,issues:14},{month:"Jul 26",amount:32.877703,issues:12},{month:"Aug 26",amount:33.48879,issues:24},
+  {month:"Sep 25",amount:24.0,issues:11},{month:"Oct 25",amount:15.456555,issues:7},{month:"Nov 25",amount:70.00165,issues:26},
+  {month:"Jan 26",amount:4.5,issues:4},{month:"Feb 26",amount:52.5064,issues:20},{month:"Mar 26",amount:82.5655515,issues:32},
+  {month:"Apr 26",amount:1.0,issues:1},{month:"May 26",amount:49.03846,issues:29},{month:"Jun 26",amount:35.0198,issues:12},
+  {month:"Jul 26",amount:32.877703,issues:12},{month:"Aug 26",amount:33.70835,issues:20},{month:"Sep 26*",amount:5.739625,issues:4},
 ] as const;
 
 const cdsIssuers = [
-  {issuer:"NVIDIA",ticker:"NVDA",role:"Compute & Systems",latest:23.6,oneMonth:1.0,threeMonth:0.7},
-  {issuer:"Oracle",ticker:"ORCL",role:"Cloud Platforms",latest:178.1,oneMonth:-17.3,threeMonth:41.8},
-  {issuer:"Broadcom",ticker:"AVGO",role:"Compute & Systems",latest:54.0,oneMonth:3.8,threeMonth:14.4},
-  {issuer:"Iron Mountain",ticker:"IRM",role:"Data Centers",latest:103.1,oneMonth:1.9,threeMonth:18.2},
-  {issuer:"Equinix",ticker:"EQIX",role:"Data Centers",latest:35.1,oneMonth:0.6,threeMonth:-9.6},
-  {issuer:"Meta Platforms",ticker:"META",role:"Cloud Platforms",latest:49.8,oneMonth:6.8,threeMonth:13.0},
-  {issuer:"Amazon",ticker:"AMZN",role:"Cloud Platforms",latest:44.8,oneMonth:1.2,threeMonth:1.1},
-  {issuer:"Alphabet",ticker:"GOOGL",role:"Cloud Platforms",latest:38.8,oneMonth:-0.4,threeMonth:1.9},
-  {issuer:"Dell",ticker:"DELL",role:"Compute & Systems",latest:318.5,oneMonth:-23.9,threeMonth:23.1},
-  {issuer:"Intel",ticker:"INTC",role:"Compute & Systems",latest:151.3,oneMonth:6.2,threeMonth:44.0},
-  {issuer:"Microsoft",ticker:"MSFT",role:"Cloud Platforms",latest:23.6,oneMonth:1.0,threeMonth:0.7},
-  {issuer:"American Electric Power",ticker:"AEP",role:"Power & Utilities",latest:41.7,oneMonth:2.6,threeMonth:4.7},
+  {issuer:"NVIDIA",ticker:"NVDA",role:"Compute & Systems",latest:25.0,oneMonth:1.7,threeMonth:2.0},
+  {issuer:"Oracle",ticker:"ORCL",role:"Cloud Platforms",latest:173.6,oneMonth:-4.0,threeMonth:19.1},
+  {issuer:"Broadcom",ticker:"AVGO",role:"Compute & Systems",latest:52.6,oneMonth:1.1,threeMonth:5.7},
+  {issuer:"Iron Mountain",ticker:"IRM",role:"Data Centers",latest:102.6,oneMonth:2.7,threeMonth:9.7},
+  {issuer:"Equinix",ticker:"EQIX",role:"Data Centers",latest:41.5,oneMonth:6.9,threeMonth:-7.0},
+  {issuer:"Meta Platforms",ticker:"META",role:"Cloud Platforms",latest:47.3,oneMonth:-0.2,threeMonth:8.3},
+  {issuer:"Amazon",ticker:"AMZN",role:"Cloud Platforms",latest:45.1,oneMonth:-0.1,threeMonth:0.4},
+  {issuer:"Alphabet",ticker:"GOOGL",role:"Cloud Platforms",latest:39.1,oneMonth:0.1,threeMonth:0.0},
+  {issuer:"Dell",ticker:"DELL",role:"Compute & Systems",latest:309.4,oneMonth:-15.2,threeMonth:-11.4},
+  {issuer:"Intel",ticker:"INTC",role:"Compute & Systems",latest:148.7,oneMonth:1.3,threeMonth:25.8},
+  {issuer:"Microsoft",ticker:"MSFT",role:"Cloud Platforms",latest:25.0,oneMonth:1.7,threeMonth:2.0},
+  {issuer:"American Electric Power",ticker:"AEP",role:"Power & Utilities",latest:43.8,oneMonth:1.2,threeMonth:5.3},
 ] as const;
 
 const aiRoles: readonly {role:AiRole;label:string;description:string}[] = [
@@ -255,7 +255,7 @@ function ChinaCapexChart({company}:{company:ChinaCompany}) {
 function BondChart(){
   const w=960,h=300,l=48,r=18,t=22,b=46,max=Math.max(...bondHistory.map(d=>d.amount))*1.14;
   const slot=(w-l-r)/bondHistory.length, y=(v:number)=>t+(max-v)*(h-t-b)/max;
-  return <svg className="line-chart bond-chart" viewBox={`0 0 ${w} ${h}`} role="img" aria-label="Monthly AI-related bond issuance, September 2025 to August 2026">
+  return <svg className="line-chart bond-chart" viewBox={`0 0 ${w} ${h}`} role="img" aria-label="Monthly AI-related bond issuance, September 2025 to partial September 2026">
     <title>{"Monthly AI-related bond issuance in US dollars billions"}</title>
     {[0,20,40,60].map(v=><g key={v}><line x1={l} x2={w-r} y1={y(v)} y2={y(v)} className="grid-line"/><text x={l-9} y={y(v)+4} textAnchor="end">${v}B</text></g>)}
     {bondHistory.map((d,i)=>{const x=l+i*slot+slot*.15,width=slot*.7,height=h-b-y(d.amount);return <g key={d.month}><rect x={x} y={y(d.amount)} width={width} height={height} className={i===bondHistory.length-1?"bond-bar latest":"bond-bar"}><title>{`${d.month}: $${d.amount.toFixed(1)}B · ${d.issues} issues`}</title></rect><text x={x+width/2} y={h-17} textAnchor="middle">{d.month}</text></g>;})}
@@ -454,7 +454,7 @@ export default function Home(){
     <header className="topbar">
       <a className="brand" href="#top"><span className="brand-mark">AIA</span><span>AI Investment<br/>Atmosphere</span></a>
       <nav aria-label="Primary"><a href="#guide">Executive summary</a><a href="#chain">AI value chain</a><a href="#pulse">Momentum</a><a href="#capex">Capital spending</a><a href="#labs">Monetization</a><a href="#sustainability">Cash funding</a><a href="#roic">Returns</a><a href="#fundamentals">Financial quality</a></nav>
-      <div className="asof"><span className="live-dot"/>Data through · 10 Sep 2026</div>
+      <div className="asof"><span className="live-dot"/>Data through · 16 Sep 2026</div>
     </header>
 
     <section className="hero">
@@ -463,7 +463,7 @@ export default function Home(){
         <h1>AI buildout is still expanding.<br/><em>Can profits catch up?</em></h1>
         <p>Spending is accelerating, but it is leaving less operating cash behind. Follow the evidence from AI usage and lab revenue to investment, cash coverage and corporate returns.</p>
         <div className="atmosphere-switch" aria-label="Atmosphere score view">{([{"id":"core","label":"Core","score":satelliteOverlay.core},{"id":"adjusted","label":"Satellite-adjusted","score":satelliteOverlay.adjusted}] as const).map(view=><button key={view.id} className={atmosphereView===view.id?"selected":""} onClick={()=>setAtmosphereView(view.id)} aria-pressed={atmosphereView===view.id} disabled={view.id==="adjusted"&&!satelliteOverlay.ready}><span>{view.label}</span><b>{formatIndex(view.score)}</b></button>)}</div>
-        <div className="hero-foot">Macro and fundamentals through latest available 2026Q2 / Q1 reporting periods <Source id="S1"/><Source id="S5"/> · CDS through 20 Aug 2026 <Source id="S4"/></div>
+        <div className="hero-foot">Market data through 16 Sep 2026; fundamentals through latest available 2026Q2 / Q1 reporting periods <Source id="S1"/><Source id="S5"/> · CDS through 16 Sep 2026 <Source id="S4"/></div>
       </div>
       <div className="gauge" aria-label={`${atmosphereView==="core"?"Core":"Satellite-adjusted"} AI investment atmosphere score ${formatIndex(selectedAtmosphereScore)}${selectedAtmosphereScore===null?"":" out of 100"}`} style={{"--score":`${selectedAtmosphereScore??0}%`} as React.CSSProperties}>
         <div><span>{atmosphereView==="core"?"CORE":"ADJUSTED"}</span><strong>{formatIndex(selectedAtmosphereScore)}</strong><small>{selectedAtmosphereScore===null?"WITHHELD":"EXPANSIONARY"}</small></div>
@@ -617,8 +617,8 @@ export default function Home(){
 
     <section className="section" id="pulse">
       <div className="section-head"><div><div className="eyebrow">02 · ATMOSPHERE PULSE</div><h2>Momentum remains above neutral.</h2></div><p>Within-series YoY momentum · 50 = own-history neutral</p></div>
-      <SectionSummary about="Combines adoption, demand, investment, imports and hyperscaler CapEx into a momentum view." current="The monthly pulse is 69.3 and 10 of 11 included signals are positive, although the score eased 5.5 points from May." conclusion="This is the clearest evidence that the expansion continues. It measures pace and breadth, while later sections test monetization and payback."/>
-      <div className="chart-panel"><div className="chart-meta"><div><b>Monthly macro pulse</b><span>Composite of Adoption, Demand, Investment and Imports</span></div><div className="legend"><i/>Expansionary threshold</div></div><LineChart data={atmosphereHistory} neutral={50}/><div className="chart-callout"><b>Expansion continues at a slower pace.</b> The pulse eased from 74.8 in May to 69.3 in June, while staying above its historical neutral level. <Source id="S1"/></div></div>
+      <SectionSummary about="Combines adoption, demand, investment, imports and hyperscaler CapEx into a momentum view." current="The official pulse remains 69.3 for the last complete comparable month. Newer observations show firm adoption and imports, but several July macro readings are carried forward into September." conclusion="The expansion remains visible, but the mixed-frequency nowcast is not a valid replacement for the complete-month index. Later sections test monetization and payback."/>
+      <div className="chart-panel"><div className="chart-meta"><div><b>Monthly macro pulse</b><span>Composite through the last complete comparable month</span></div><div className="legend"><i/>Expansionary threshold</div></div><LineChart data={atmosphereHistory} neutral={50}/><div className="chart-callout"><b>Official score held at June.</b> The workbook now contains observations through 16 September, but several series are prior-value fills and Q3 hyperscaler CapEx is not yet available; the page therefore does not manufacture a mixed-frequency September score. <Source id="S1"/></div></div>
 
       <div className="pillar-layout">
         <div className="pillar-grid" role="list" aria-label="Atmosphere pillars">{(Object.keys(pillars) as Pillar[]).map(name=><button key={name} className={`pillar-card ${pillar===name?"selected":""}`} onClick={()=>setPillar(name)} aria-pressed={pillar===name}>
@@ -647,11 +647,11 @@ export default function Home(){
 
     <section className="section fundamentals-section" id="fundamentals">
       <div className="section-head"><div><div className="eyebrow">04 · FINANCIAL RESILIENCE · SATELLITE</div><h2>Which companies can sustain the spending?</h2></div><p>Latest reported period · point-in-time screen · as of {fundamentalSnapshot.asOf} <Source id="S5"/></p></div>
-      <SectionSummary about="Compares growth, margins, cash conversion, leverage and interest coverage across 32 listed companies." current="The median score is 49.6. Its correlation with one-month returns is only 0.10, so the screen describes resilience rather than near-term price direction." conclusion="Financially stronger suppliers and platforms have more room to absorb volatility as the buildout continues, but resilience alone does not establish attractive returns."/>
+      <SectionSummary about="Compares growth, margins, cash conversion, leverage and interest coverage across 32 listed companies." current="The median score remains 49.6, but its correlation with one-month returns fell to −0.31. The strongest fundamental quartile underperformed the weakest quartile over the latest month." conclusion="The reversal looks more like an expectations and positioning reset than a collapse in reported fundamentals. Resilience remains useful for selection, but it is not a timing signal."/>
       <div className="fundamental-snapshot">
         <article><span>Universe</span><strong>32</strong><small>{fundamentalSnapshot.q2Coverage} in 2026Q2 · {fundamentalSnapshot.q1Fallback} Q1 fallback</small></article>
         <article><span>Median composite</span><strong>{fundamentalSnapshot.median.toFixed(1)}</strong><small>0–100 cross-sectional score</small></article>
-        <article><span>Top quartile 1M return</span><strong className="positive">+{fundamentalSnapshot.topQuartile1m.toFixed(1)}%</strong><small>vs. +{fundamentalSnapshot.bottomQuartile1m.toFixed(1)}% bottom quartile</small></article>
+        <article><span>Top quartile 1M return</span><strong className={fundamentalSnapshot.topQuartile1m>=0?"positive":"negative"}>{fundamentalSnapshot.topQuartile1m>0?"+":""}{fundamentalSnapshot.topQuartile1m.toFixed(1)}%</strong><small>vs. {fundamentalSnapshot.bottomQuartile1m>0?"+":""}{fundamentalSnapshot.bottomQuartile1m.toFixed(1)}% bottom quartile</small></article>
         <article><span>Score / 1M correlation</span><strong>{fundamentalSnapshot.correlation1m.toFixed(2)}</strong><small>weak · quality screen, not timing model</small></article>
       </div>
       <div className="fundamental-layout">
@@ -661,11 +661,11 @@ export default function Home(){
     </section>
 
     <section className="section credit-section" id="credit">
-      <div className="section-head"><div><div className="eyebrow">05 · CREDIT CONDITIONS · SATELLITE</div><h2>Near-term relief, medium-term caution.</h2></div><p>USD senior 5Y CDS · basis-point change · as of {cdsSnapshot.asOf} <Source id="S4"/></p></div>
-      <SectionSummary about="Uses credit-default-swap spreads to track how bond markets price financing risk for AI-related issuers." current="The 12-issuer basket tightened 1.4 basis points over one month but remains 12.8 basis points wider over three months." conclusion="Recent funding pressure has eased without fully reversing. That supports continued investment, while the wider three-month signal argues for caution."/>
+      <div className="section-head"><div><div className="eyebrow">05 · CREDIT CONDITIONS · SATELLITE</div><h2>Near-term stable, medium-term caution easing.</h2></div><p>USD senior 5Y CDS · basis-point change · as of {cdsSnapshot.asOf} <Source id="S4"/></p></div>
+      <SectionSummary about="Uses credit-default-swap spreads to track how bond markets price financing risk for AI-related issuers." current="The 12-issuer basket was nearly flat over one month (−0.2bp) and 5.0bp wider over three months, a substantial improvement from the prior 12.8bp three-month widening." conclusion="Credit markets no longer point to an accelerating funding shock, but the medium-term signal has not fully normalized. Oracle and Intel remain the main pockets of caution."/>
       <div className="credit-snapshot">
-        <article><span>Equal-weight 1M change</span><strong className="positive">{cdsSnapshot.oneMonth.toFixed(1)} bp</strong><small>Tightening · improving</small></article>
-        <article><span>Equal-weight 3M change</span><strong className="negative">+{cdsSnapshot.threeMonth.toFixed(1)} bp</strong><small>Widening · deteriorating</small></article>
+        <article><span>Equal-weight 1M change</span><strong className={cdsSnapshot.oneMonth<=0?"positive":"negative"}>{cdsSnapshot.oneMonth>0?"+":""}{cdsSnapshot.oneMonth.toFixed(1)} bp</strong><small>{cdsSnapshot.oneMonth<=0?"Tightening · improving":"Widening · deteriorating"}</small></article>
+        <article><span>Equal-weight 3M change</span><strong className={cdsSnapshot.threeMonth<=0?"positive":"negative"}>{cdsSnapshot.threeMonth>0?"+":""}{cdsSnapshot.threeMonth.toFixed(1)} bp</strong><small>{cdsSnapshot.threeMonth<=0?"Tightening · improving":"Widening · deteriorating"}</small></article>
         <article><span>Composite credit signal</span><strong className="negative">{cdsSnapshot.composite.toFixed(1)}</strong><small>Higher is better · bp-equivalent</small></article>
         <article><span>Coverage</span><strong>{cdsSnapshot.coverage} / 12</strong><small>READY · complete 1M and 3M observations</small></article>
       </div>
@@ -686,12 +686,12 @@ export default function Home(){
 
     <section className="section financing-section" id="financing">
       <div className="section-head"><div><div className="eyebrow">06 · BOND ISSUANCE · SATELLITE</div><h2>Debt issuance provides another source of funding.</h2></div><p>Aggregate AI-related bond issuance · as of {bondSnapshot.asOf} <Source id="S6"/></p></div>
-      <SectionSummary about="Tracks access to debt capital as companies finance infrastructure beyond internally generated cash." current="Issuance totaled $412.7B over the latest 12 months, including $33.5B in August. A missing August 2025 observation prevents a clean year-over-year comparison." conclusion="Open primary markets help the buildout continue as cash absorption rises, but greater financing capacity does not answer whether the investment earns an adequate return."/>
+      <SectionSummary about="Tracks access to debt capital as companies finance infrastructure beyond internally generated cash." current="Reported issuance totaled $400.7B from September 2025 through August 2026, including $33.7B in August. September adds $5.7B through the 16th, but the partial month should not be read as a slowdown." conclusion="Open primary markets help the buildout continue as cash absorption rises, but greater financing capacity does not answer whether the investment earns an adequate return."/>
       <div className="financing-snapshot">
-        <article><span>Latest month</span><strong>${bondSnapshot.latest.toFixed(1)}B</strong><small className="up">+{bondSnapshot.mom.toFixed(1)}% MoM</small></article>
-        <article><span>Rolling 12M issuance</span><strong>${bondSnapshot.rolling12m.toFixed(1)}B</strong><small>Sep 2025 – Aug 2026</small></article>
+        <article><span>September month-to-date</span><strong>${bondSnapshot.latest.toFixed(1)}B</strong><small>Partial month through 16 Sep · not comparable to full August</small></article>
+        <article><span>Reported Sep–Aug issuance</span><strong>${bondSnapshot.rolling12m.toFixed(1)}B</strong><small>Full months through Aug 2026 · Dec unavailable</small></article>
         <article><span>Rolling 12M issues</span><strong>{bondSnapshot.issues12m}</strong><small>transaction count</small></article>
-        <article><span>Rolling 12M YoY</span><strong>n/a</strong><small className="down">Aug 2025 is unavailable</small></article>
+        <article><span>Rolling 12M YoY</span><strong>n/a</strong><small className="down">Dec 2025 is unavailable</small></article>
       </div>
       <div className="financing-layout"><div className="chart-panel"><div className="chart-meta"><div><b>Monthly issuance activity</b><span>USD billions · bars show amount; hover for issue count</span></div></div><BondChart/><div className="chart-callout"><b>Financing conditions:</b> the series measures market access and financing appetite. It is neither issuer-specific debt attribution nor a component of the 0–100 atmosphere score.</div></div><aside className="financing-note"><span className="detail-kicker">DATA QUALIFICATION</span><h3>One missing month prevents a clean YoY comparison.</h3><p>The latest continuous 12-month window is valid, but August 2025 is absent. Pending restoration of that observation, the report presents levels and month-on-month change without a rolling-12-month YoY rate.</p><div><b>Required evidence</b><p>Restoring the missing month would permit a test of whether issuance contributes information beyond CDS and equity-price momentum.</p></div></aside></div>
     </section>
@@ -710,11 +710,11 @@ export default function Home(){
         <div className="overlay-method-grid"><article><span>Core</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Five-pillar index result</small></article><article><span>Fundamental Δ</span><strong>{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Bounded to ±5 points by construction</small></article><article><span>Credit Δ</span><strong>{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Bounded to ±5 points by construction</small></article><article><span>Adjusted</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Clamped to 0–100":"Coverage threshold not met"}</small></article></div>
         <footer><b>Missing-data rule:</b> weights are not renormalized and missing values are not treated as observed zeros. The adjusted score is withheld when financial or CDS coverage falls below the stated threshold. Bond issuance currently carries zero weight by methodology, rather than an assumption of neutral issuance activity.</footer>
       </div>
-      <div className="limitations"><h3>Limits that matter for interpretation</h3><ul><li>Preserve Bloomberg units, seasonal-adjustment flags, release dates and point-in-time vintages.</li><li>Replace PREV-filled observations with explicit freshness and stale-value controls.</li><li>Backfill August 2025 bond issuance before publishing rolling-12-month YoY.</li><li>Add sector-neutral and size-neutral tests to the financial screen; cap extreme CapEx ranks only after sensitivity analysis.</li><li>Run alternative pillar weights, outlier controls and benchmark-relative backtests before integrating satellites.</li><li>Separate actual and forecast atmosphere indices before adding forward quarters.</li><li>For a global aggregate, approve FX conversion, CapEx-definition normalization, constituent weights and missing-proxy rules.</li></ul></div>
-      <div className="sources"><article id="source-S1"><span>S1</span><div><b>Indexlist.xlsx — Index Price Value</b><p>Bloomberg monthly PX_LAST snapshot. Latest cached observations extend into August 2026; the macro composite uses the latest complete comparable month.</p></div></article><article id="source-S2"><span>S2</span><div><b>Consolidated U.S. hyperscaler CapEx workbook</b><p>Microsoft, Alphabet, Meta, Amazon and Oracle through calendar 2026Q2; company-specific accounting bases, actual/estimate status and proxy confidence preserved.</p></div></article><article id="source-S3"><span>S3</span><div><b>China cloud CapEx source collection</b><p>Tencent operating CapEx, Alibaba quarterly CapEx and Baidu cash CapEx through 2026Q2. RMB is primary; approximate values, inferred AI shares and issuer-specific definitions remain labeled.</p></div></article><article id="source-S4"><span>S4</span><div><b>Indexlist.xlsx — AI 5yrCDS Value</b><p>Bloomberg-implied USD senior 5Y CDS for 12 AI and infrastructure issuers through 20 Aug 2026. Changes use matched observations on or before one and three calendar months earlier.</p></div></article><article id="source-S5"><span>S5</span><div><b>Indexlist.xlsx — Supply Chain Financial Value</b><p>Latest reported financial metrics for 32 issuers: 26 at 2026Q2 and six at 2026Q1 fallback. Missing interim reports are labeled and receive no freshness penalty.</p></div></article><article id="source-S6"><span>S6</span><div><b>Indexlist.xlsx — Bond Issuance Value</b><p>Monthly aggregate amount and issue count through August 2026. The missing August 2025 observation prevents a comparable rolling-12-month YoY calculation.</p></div></article></div>
+      <div className="limitations"><h3>Limits that matter for interpretation</h3><ul><li>Preserve Bloomberg units, seasonal-adjustment flags, release dates and point-in-time vintages.</li><li>Replace PREV-filled observations with explicit freshness and stale-value controls.</li><li>Backfill December 2025 bond issuance before publishing rolling-12-month YoY.</li><li>Add sector-neutral and size-neutral tests to the financial screen; cap extreme CapEx ranks only after sensitivity analysis.</li><li>Run alternative pillar weights, outlier controls and benchmark-relative backtests before integrating satellites.</li><li>Separate actual and forecast atmosphere indices before adding forward quarters.</li><li>For a global aggregate, approve FX conversion, CapEx-definition normalization, constituent weights and missing-proxy rules.</li></ul></div>
+      <div className="sources"><article id="source-S1"><span>S1</span><div><b>Indexlist.xlsx — Index Price Value</b><p>Bloomberg monthly PX_LAST snapshot through 16 Sep 2026. Several macro fields are prior-value fills from July or August; the official composite therefore remains at the latest complete comparable month.</p></div></article><article id="source-S2"><span>S2</span><div><b>Consolidated U.S. hyperscaler CapEx workbook</b><p>Microsoft, Alphabet, Meta, Amazon and Oracle through calendar 2026Q2; company-specific accounting bases, actual/estimate status and proxy confidence preserved.</p></div></article><article id="source-S3"><span>S3</span><div><b>China cloud CapEx source collection</b><p>Tencent operating CapEx, Alibaba quarterly CapEx and Baidu cash CapEx through 2026Q2. RMB is primary; approximate values, inferred AI shares and issuer-specific definitions remain labeled.</p></div></article><article id="source-S4"><span>S4</span><div><b>Indexlist.xlsx — AI 5yrCDS Value</b><p>Bloomberg-implied USD senior 5Y CDS for 12 AI and infrastructure issuers through 16 Sep 2026. Changes use matched observations on or before one and three calendar months earlier.</p></div></article><article id="source-S5"><span>S5</span><div><b>Indexlist.xlsx — Supply Chain Financial Value</b><p>Latest reported financial metrics for 32 issuers: 26 at 2026Q2 and six at 2026Q1 fallback. Missing interim reports are labeled and receive no freshness penalty.</p></div></article><article id="source-S6"><span>S6</span><div><b>Indexlist.xlsx — Bond Issuance Value</b><p>Monthly aggregate amount and issue count through 16 Sep 2026. September is explicitly treated as partial; the rolling 12-month total uses full months through August.</p></div></article></div>
     </section>
 
-    <div className="sources sources-addendum"><article id="source-S9"><span>S9</span><div><b>Indexlist.xlsx — OpenRouter Demand</b><p>OpenRouter daily top-50 model token usage for the trailing 30 days through 10 Sep 2026, plus the long-tail bucket. Token-price context comes from S1. OpenRouter measures routed adoption, not model quality, provider-direct traffic or revenue. <a href="https://openrouter.ai/docs/api/api-reference/datasets/get-rankings-daily">Dataset methodology</a></p></div></article><article id="source-S10"><span>S10</span><div><b>Indexlist.xlsx — OpenAI and Anthropic</b><p>Media-reported and investor-disclosed operating observations through September 2026. The analysis separates recognized revenue from ARR, preserves floors and approximate values, and excludes incomparable margin definitions from the headline comparison.</p></div></article></div>
+    <div className="sources sources-addendum"><article id="source-S9"><span>S9</span><div><b>OpenRouter demand snapshot — not refreshed in this workbook</b><p>The retained snapshot covers daily top-50 model token usage for the trailing 30 days through 10 Sep 2026, plus the long-tail bucket. The updated workbook no longer contains the OpenRouter sheet, so this module is deliberately held at its prior vintage. OpenRouter measures routed adoption, not model quality, provider-direct traffic or revenue. <a href="https://openrouter.ai/docs/api/api-reference/datasets/get-rankings-daily">Dataset methodology</a></p></div></article><article id="source-S10"><span>S10</span><div><b>Indexlist.xlsx — OpenAI and Anthropic</b><p>Media-reported and investor-disclosed operating observations through September 2026. The analysis separates recognized revenue from ARR, preserves floors and approximate values, and excludes incomparable margin definitions from the headline comparison.</p></div></article></div>
     <footer className="site-footer"><div className="brand"><span className="brand-mark">AIA</span><span>AI Investment<br/>Atmosphere</span></div><p>U.S. and China views use separate accounting definitions and currencies.</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }

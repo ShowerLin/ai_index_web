@@ -2,7 +2,7 @@
 export const roicSnapshot = {
   "source": "Indexlist.xlsx",
   "sheet": "Hyperscaler Core Data Value",
-  "sha256": "7bcb82c93af01c0fe8dd65123c1b5b9fbfff05755f8d012e5f36402aff99110e",
+  "sha256": "107ef5c7dceee0c26f4041d320e6c15be3dd9fb70fc9d4fcad2764748ad83b34",
   "unit": "USD billions",
   "basis": "Cached Bloomberg BQ data; direct Bloomberg NOPAT and simplified core invested capital.",
   "companies": [
