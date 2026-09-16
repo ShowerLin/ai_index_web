@@ -173,6 +173,22 @@ const cdsIssuers = [
   {issuer:"American Electric Power",ticker:"AEP",role:"Power & Utilities",latest:43.8,oneMonth:1.2,threeMonth:5.3},
 ] as const;
 
+const cdsRoleQuarterly = [
+  {quarter:"2025Q4",Hyperscalers:25.6,Accelerators:62.1,"Data centers":78.5,Systems:245.5,Power:38.0},
+  {quarter:"2026Q1",Hyperscalers:40.2,Accelerators:54.1,"Data centers":64.2,Systems:257.5,Power:35.3},
+  {quarter:"2026Q2",Hyperscalers:39.5,Accelerators:48.3,"Data centers":64.9,Systems:334.8,Power:37.5},
+  {quarter:"2026Q3*",Hyperscalers:45.1,Accelerators:52.6,"Data centers":72.1,Systems:309.4,Power:43.8},
+] as const;
+
+const hyperscalerDebtCapital = [
+  {quarter:"2025Q4",value:28.1},{quarter:"2026Q1",value:26.3},{quarter:"2026Q2",value:30.1},
+] as const;
+
+const roleLeverageSnapshot = [
+  {role:"Hyperscalers",value:1.0,coverage:"5 / 5"},{role:"Accelerators",value:0.5,coverage:"2 / 3"},
+  {role:"Data centers",value:21.1,coverage:"2 / 2"},{role:"Systems",value:4.2,coverage:"1 / 1"},{role:"Power",value:null,coverage:"0 / 1"},
+] as const;
+
 const aiRoles: readonly {role:AiRole;label:string;description:string}[] = [
   {role:"Cloud Platforms",label:"Hyperscale cloud",description:"AI model hosting, applications and enterprise cloud capacity"},
   {role:"Compute & Systems",label:"Compute & systems",description:"Accelerators, semiconductors, servers and enterprise hardware"},
@@ -260,6 +276,32 @@ function BondChart(){
     {[0,20,40,60].map(v=><g key={v}><line x1={l} x2={w-r} y1={y(v)} y2={y(v)} className="grid-line"/><text x={l-9} y={y(v)+4} textAnchor="end">${v}B</text></g>)}
     {bondHistory.map((d,i)=>{const x=l+i*slot+slot*.15,width=slot*.7,height=h-b-y(d.amount);return <g key={d.month}><rect x={x} y={y(d.amount)} width={width} height={height} className={i===bondHistory.length-1?"bond-bar latest":"bond-bar"}><title>{`${d.month}: $${d.amount.toFixed(1)}B · ${d.issues} issues`}</title></rect><text x={x+width/2} y={h-17} textAnchor="middle">{d.month}</text></g>;})}
   </svg>;
+}
+
+function CdsRoleDebtChart(){
+  const w=960,h=510,l=72,r=34,top=34,upperBottom=278,lowerTop=350,lowerBottom=462;
+  const roles=["Hyperscalers","Accelerators","Data centers","Systems","Power"] as const;
+  const colors:Record<(typeof roles)[number],string>={Hyperscalers:"#1d7f80",Accelerators:"#d88952","Data centers":"#7f6ea8",Systems:"#b45d50",Power:"#719a45"};
+  const x=(i:number)=>l+i*(w-l-r)/(cdsRoleQuarterly.length-1);
+  const cdsIndex=(role:(typeof roles)[number],value:number)=>value/cdsRoleQuarterly[0][role]*100;
+  const yCds=(v:number)=>top+(185-v)*(upperBottom-top)/125;
+  const yDebt=(v:number)=>lowerTop+(34-v)*(lowerBottom-lowerTop)/12;
+  return <div className="cds-role-figure">
+    <div className="cds-role-legend">{roles.map(role=><span key={role}><i style={{background:colors[role]}}/>{role}</span>)}</div>
+    <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-labelledby="cds-role-title cds-role-desc">
+      <title id="cds-role-title">Indexed quarter-end median CDS by AI supply-chain role and hyperscaler debt-to-capital ratio</title>
+      <desc id="cds-role-desc">The upper subplot indexes each role's median five-year CDS spread to 100 in 2025 Q4 so changes can be compared despite different spread levels. The lower subplot shows median debt to total capital for five hyperscalers through 2026 Q2.</desc>
+      {[60,100,140,180].map(v=><g key={`c${v}`}><line x1={l} x2={w-r} y1={yCds(v)} y2={yCds(v)} className="grid-line"/><text x={l-12} y={yCds(v)+4} textAnchor="end">{v}</text></g>)}
+      <text x={l} y="17" className="subplot-label">MEDIAN 5Y CDS INDEX · 2025Q4 = 100</text>
+      {roles.map(role=><g key={role}><path d={cdsRoleQuarterly.map((row,i)=>`${i?"L":"M"}${x(i)},${yCds(cdsIndex(role,row[role]))}`).join(" ")} fill="none" stroke={colors[role]} strokeWidth="3"/>{cdsRoleQuarterly.map((row,i)=><circle key={row.quarter} cx={x(i)} cy={yCds(cdsIndex(role,row[role]))} r="4.5" fill={colors[role]}><title>{`${role} · ${row.quarter}: ${row[role].toFixed(1)} bp · index ${cdsIndex(role,row[role]).toFixed(0)}`}</title></circle>)}</g>)}
+      {[24,28,32,34].map(v=><g key={`d${v}`}><line x1={l} x2={w-r} y1={yDebt(v)} y2={yDebt(v)} className="grid-line"/><text x={l-12} y={yDebt(v)+4} textAnchor="end">{v}%</text></g>)}
+      <text x={l} y={lowerTop-18} className="subplot-label">HYPERSCALER MEDIAN DEBT / (DEBT + EQUITY)</text>
+      <path d={hyperscalerDebtCapital.map((row,i)=>`${i?"L":"M"}${x(i)},${yDebt(row.value)}`).join(" ")} fill="none" stroke={colors.Hyperscalers} strokeWidth="3.5"/>
+      {hyperscalerDebtCapital.map((row,i)=><circle key={row.quarter} cx={x(i)} cy={yDebt(row.value)} r="5" fill={colors.Hyperscalers}><title>{`${row.quarter}: ${row.value.toFixed(1)}%`}</title></circle>)}
+      <line x1={x(2)} x2={x(3)} y1={yDebt(30.1)} y2={yDebt(30.1)} className="pending-line"/><text x={x(3)} y={yDebt(30.1)-10} textAnchor="middle" className="pending-label">Q3 balance sheet pending</text>
+      {cdsRoleQuarterly.map((row,i)=><text key={row.quarter} x={x(i)} y={h-16} textAnchor="middle">{row.quarter}</text>)}
+    </svg>
+  </div>;
 }
 
 function parseCsvLine(line:string){
@@ -668,6 +710,12 @@ export default function Home(){
         <article><span>Equal-weight 3M change</span><strong className={cdsSnapshot.threeMonth<=0?"positive":"negative"}>{cdsSnapshot.threeMonth>0?"+":""}{cdsSnapshot.threeMonth.toFixed(1)} bp</strong><small>{cdsSnapshot.threeMonth<=0?"Tightening · improving":"Widening · deteriorating"}</small></article>
         <article><span>Composite credit signal</span><strong className="negative">{cdsSnapshot.composite.toFixed(1)}</strong><small>Higher is better · bp-equivalent</small></article>
         <article><span>Coverage</span><strong>{cdsSnapshot.coverage} / 12</strong><small>READY · complete 1M and 3M observations</small></article>
+      </div>
+      <div className="cds-debt-panel">
+        <div className="credit-panel-head"><div><b>CDS and leverage by supply-chain role</b><span>Quarter-end role medians · Q3 CDS through 16 Sep · debt data through Q2</span></div><span className="quality">MATCHED DIRECTION, NOT CAUSALITY</span></div>
+        <CdsRoleDebtChart/>
+        <div className="role-leverage-strip">{roleLeverageSnapshot.map(row=><article key={row.role}><span>{row.role}</span><strong>{row.value===null?"n/a":`${row.value.toFixed(1)}×`}</strong><small>Latest median net debt / EBITDA · {row.coverage}</small></article>)}</div>
+        <div className="cds-debt-readthrough"><div><b>What the matched history shows</b><p>Hyperscaler median debt-to-capital rose from 26.3% in 2026Q1 to 30.1% in Q2, while median CDS moved from 40.2bp to 39.5bp and then widened to 45.1bp in partial Q3. The timing is directionally consistent with greater balance-sheet use, but the spread move arrived after the latest reported debt observation.</p></div><div><b>What remains unproven</b><p>Data-center issuers carry the highest latest net debt/EBITDA and their CDS widened in Q3, but the workbook does not contain quarterly leverage history for that role. Rates, issuer mix, equity volatility and event risk can also move CDS. The chart supports a monitoring hypothesis, not a causal conclusion.</p></div></div>
       </div>
       <div className="role-overview" aria-label="CDS issuers grouped by AI-industry role">{cdsRoleOverview.map(group=><article key={group.role}>
         <div className="role-top"><span>{group.label}</span><b>{group.members.length}</b></div>
