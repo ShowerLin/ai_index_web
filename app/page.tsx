@@ -22,7 +22,7 @@ type Pillar = "Adoption" | "Demand" | "Investment" | "Imports" | "Hyperscaler Ca
 type Company = "Aggregate" | "Microsoft" | "Alphabet" | "Meta" | "Amazon" | "Oracle";
 type CapexCountry = "United States" | "China";
 type ChinaCompany = "All companies" | "Tencent" | "Alibaba" | "Baidu";
-type AiRole = "Cloud Platforms" | "Compute & Systems" | "Data Centers" | "Power & Utilities";
+type AiRole = "Hyperscalers" | "Accelerators & logic" | "Semiconductor equipment" | "Memory & storage" | "Systems & networking" | "Data centers" | "Power";
 type ChainView = "map" | "cards" | "companies";
 type AtmosphereView = "core" | "adjusted";
 
@@ -110,7 +110,7 @@ const chinaCapexHistory = [
 ] as const;
 
 const cdsSnapshot = {
-  asOf:"16 Sep 2026", oneMonth:-0.2265720304, threeMonth:4.9852294116, composite:-2.3793286906, coverage:12,
+  asOf:"16 Sep 2026", oneMonth:1.9252, threeMonth:8.2692, composite:-5.0972, coverage:25,
 } as const;
 
 const fundamentalSnapshot = {
@@ -159,25 +159,38 @@ const bondHistory = [
 ] as const;
 
 const cdsIssuers = [
-  {issuer:"NVIDIA",ticker:"NVDA",role:"Compute & Systems",latest:25.0,oneMonth:1.7,threeMonth:2.0},
-  {issuer:"Oracle",ticker:"ORCL",role:"Cloud Platforms",latest:173.6,oneMonth:-4.0,threeMonth:19.1},
-  {issuer:"Broadcom",ticker:"AVGO",role:"Compute & Systems",latest:52.6,oneMonth:1.1,threeMonth:5.7},
-  {issuer:"Iron Mountain",ticker:"IRM",role:"Data Centers",latest:102.6,oneMonth:2.7,threeMonth:9.7},
-  {issuer:"Equinix",ticker:"EQIX",role:"Data Centers",latest:41.5,oneMonth:6.9,threeMonth:-7.0},
-  {issuer:"Meta Platforms",ticker:"META",role:"Cloud Platforms",latest:47.3,oneMonth:-0.2,threeMonth:8.3},
-  {issuer:"Amazon",ticker:"AMZN",role:"Cloud Platforms",latest:45.1,oneMonth:-0.1,threeMonth:0.4},
-  {issuer:"Alphabet",ticker:"GOOGL",role:"Cloud Platforms",latest:39.1,oneMonth:0.1,threeMonth:0.0},
-  {issuer:"Dell",ticker:"DELL",role:"Compute & Systems",latest:309.4,oneMonth:-15.2,threeMonth:-11.4},
-  {issuer:"Intel",ticker:"INTC",role:"Compute & Systems",latest:148.7,oneMonth:1.3,threeMonth:25.8},
-  {issuer:"Microsoft",ticker:"MSFT",role:"Cloud Platforms",latest:25.0,oneMonth:1.7,threeMonth:2.0},
-  {issuer:"American Electric Power",ticker:"AEP",role:"Power & Utilities",latest:43.8,oneMonth:1.2,threeMonth:5.3},
+  {issuer:"Microsoft",ticker:"MSFT",role:"Hyperscalers",latest:25.0,oneMonth:1.7,threeMonth:2.0},
+  {issuer:"Amazon",ticker:"AMZN",role:"Hyperscalers",latest:45.1,oneMonth:-0.1,threeMonth:0.4},
+  {issuer:"Alphabet",ticker:"GOOGL",role:"Hyperscalers",latest:39.1,oneMonth:0.1,threeMonth:0.0},
+  {issuer:"Meta Platforms",ticker:"META",role:"Hyperscalers",latest:47.3,oneMonth:-0.2,threeMonth:8.3},
+  {issuer:"Oracle",ticker:"ORCL",role:"Hyperscalers",latest:173.6,oneMonth:-4.0,threeMonth:19.1},
+  {issuer:"NVIDIA",ticker:"NVDA",role:"Accelerators & logic",latest:25.0,oneMonth:1.7,threeMonth:2.0},
+  {issuer:"AMD",ticker:"AMD",role:"Accelerators & logic",latest:60.7,oneMonth:2.2,threeMonth:11.4},
+  {issuer:"Broadcom",ticker:"AVGO",role:"Accelerators & logic",latest:52.6,oneMonth:1.1,threeMonth:5.7},
+  {issuer:"Intel",ticker:"INTC",role:"Accelerators & logic",latest:148.7,oneMonth:1.3,threeMonth:25.8},
+  {issuer:"Texas Instruments",ticker:"TXN",role:"Accelerators & logic",latest:47.1,oneMonth:4.0,threeMonth:18.3},
+  {issuer:"TSMC",ticker:"TSM",role:"Accelerators & logic",latest:23.8,oneMonth:-2.7,threeMonth:-4.7},
+  {issuer:"ASML",ticker:"ASML",role:"Semiconductor equipment",latest:23.2,oneMonth:-0.3,threeMonth:-4.4},
+  {issuer:"Applied Materials",ticker:"AMAT",role:"Semiconductor equipment",latest:80.0,oneMonth:8.5,threeMonth:36.1},
+  {issuer:"Samsung Electronics",ticker:"005930",role:"Memory & storage",latest:35.8,oneMonth:-3.7,threeMonth:-6.8},
+  {issuer:"SK Hynix",ticker:"000660",role:"Memory & storage",latest:38.6,oneMonth:-4.1,threeMonth:-6.7},
+  {issuer:"Micron",ticker:"MU",role:"Memory & storage",latest:82.4,oneMonth:2.9,threeMonth:10.2},
+  {issuer:"Western Digital",ticker:"WDC",role:"Memory & storage",latest:101.7,oneMonth:9.2,threeMonth:30.5},
+  {issuer:"Seagate",ticker:"STX",role:"Memory & storage",latest:94.6,oneMonth:10.9,threeMonth:29.6},
+  {issuer:"Dell",ticker:"DELL",role:"Systems & networking",latest:127.2,oneMonth:6.1,threeMonth:20.3},
+  {issuer:"Cisco",ticker:"CSCO",role:"Systems & networking",latest:31.6,oneMonth:2.0,threeMonth:8.6},
+  {issuer:"TE Connectivity",ticker:"TEL",role:"Systems & networking",latest:45.9,oneMonth:0.1,threeMonth:-1.1},
+  {issuer:"Equinix",ticker:"EQIX",role:"Data centers",latest:41.5,oneMonth:6.9,threeMonth:-7.0},
+  {issuer:"Iron Mountain",ticker:"IRM",role:"Data centers",latest:102.6,oneMonth:2.7,threeMonth:9.7},
+  {issuer:"Eaton",ticker:"ETN",role:"Power",latest:58.0,oneMonth:3.6,threeMonth:3.5},
+  {issuer:"Vistra",ticker:"VST",role:"Power",latest:86.9,oneMonth:-1.8,threeMonth:-4.0},
 ] as const;
 
 const cdsRoleQuarterly = [
-  {quarter:"2025Q4",Hyperscalers:25.6,Accelerators:62.1,"Data centers":78.5,Systems:245.5,Power:38.0},
-  {quarter:"2026Q1",Hyperscalers:40.2,Accelerators:54.1,"Data centers":64.2,Systems:257.5,Power:35.3},
-  {quarter:"2026Q2",Hyperscalers:39.5,Accelerators:48.3,"Data centers":64.9,Systems:334.8,Power:37.5},
-  {quarter:"2026Q3*",Hyperscalers:45.1,Accelerators:52.6,"Data centers":72.1,Systems:309.4,Power:43.8},
+  {quarter:"2025Q4",Hyperscalers:25.6,"Accelerators & logic":52.2,"Semiconductor equipment":31.8,"Memory & storage":78.7,"Systems & networking":39.5,"Data centers":78.5,Power:81.5},
+  {quarter:"2026Q1",Hyperscalers:40.2,"Accelerators & logic":51.1,"Semiconductor equipment":36.1,"Memory & storage":77.8,"Systems & networking":48.6,"Data centers":64.2,Power:69.7},
+  {quarter:"2026Q2",Hyperscalers:39.5,"Accelerators & logic":42.9,"Semiconductor equipment":37.3,"Memory & storage":64.2,"Systems & networking":48.2,"Data centers":64.9,Power:72.3},
+  {quarter:"2026Q3*",Hyperscalers:45.1,"Accelerators & logic":49.8,"Semiconductor equipment":51.6,"Memory & storage":82.4,"Systems & networking":45.9,"Data centers":72.1,Power:72.4},
 ] as const;
 
 const hyperscalerDebtCapital = [
@@ -185,15 +198,19 @@ const hyperscalerDebtCapital = [
 ] as const;
 
 const roleLeverageSnapshot = [
-  {role:"Hyperscalers",value:1.0,coverage:"5 / 5"},{role:"Accelerators",value:0.5,coverage:"2 / 3"},
-  {role:"Data centers",value:21.1,coverage:"2 / 2"},{role:"Systems",value:4.2,coverage:"1 / 1"},{role:"Power",value:null,coverage:"0 / 1"},
+  {role:"Hyperscalers",value:1.0,coverage:"5 / 5"},{role:"Accelerators & logic",value:-1.9,coverage:"3 / 6"},
+  {role:"Semiconductor equipment",value:-1.0,coverage:"2 / 2"},{role:"Memory & storage",value:-0.2,coverage:"3 / 5"},
+  {role:"Systems & networking",value:2.9,coverage:"2 / 3"},{role:"Data centers",value:21.1,coverage:"2 / 2"},{role:"Power",value:9.5,coverage:"2 / 2"},
 ] as const;
 
 const aiRoles: readonly {role:AiRole;label:string;description:string}[] = [
-  {role:"Cloud Platforms",label:"Hyperscale cloud",description:"AI model hosting, applications and enterprise cloud capacity"},
-  {role:"Compute & Systems",label:"Compute & systems",description:"Accelerators, semiconductors, servers and enterprise hardware"},
-  {role:"Data Centers",label:"Data-center infrastructure",description:"Colocation, interconnection and physical digital infrastructure"},
-  {role:"Power & Utilities",label:"Power & utilities",description:"Electricity supply and grid capacity supporting AI loads"},
+  {role:"Hyperscalers",label:"Hyperscalers",description:"Cloud platforms, model hosting and enterprise compute capacity"},
+  {role:"Accelerators & logic",label:"Accelerators & logic",description:"AI accelerators, custom silicon, foundry and diversified logic"},
+  {role:"Semiconductor equipment",label:"Semiconductor equipment",description:"Lithography and wafer-fabrication equipment"},
+  {role:"Memory & storage",label:"Memory & storage",description:"Memory, NAND and enterprise storage capacity"},
+  {role:"Systems & networking",label:"Systems & networking",description:"Servers, networking and connectivity hardware"},
+  {role:"Data centers",label:"Data centers",description:"Colocation, interconnection and physical digital infrastructure"},
+  {role:"Power",label:"Power",description:"Electrical equipment and generation supporting AI loads"},
 ];
 
 const cdsRoleOverview = aiRoles.map(meta=>{
@@ -280,8 +297,8 @@ function BondChart(){
 
 function CdsRoleDebtChart(){
   const w=960,h=510,l=72,r=34,top=34,upperBottom=278,lowerTop=350,lowerBottom=462;
-  const roles=["Hyperscalers","Accelerators","Data centers","Systems","Power"] as const;
-  const colors:Record<(typeof roles)[number],string>={Hyperscalers:"#1d7f80",Accelerators:"#d88952","Data centers":"#7f6ea8",Systems:"#b45d50",Power:"#719a45"};
+  const roles=["Hyperscalers","Accelerators & logic","Semiconductor equipment","Memory & storage","Systems & networking","Data centers","Power"] as const;
+  const colors:Record<(typeof roles)[number],string>={Hyperscalers:"#1d7f80","Accelerators & logic":"#d88952","Semiconductor equipment":"#b49a3a","Memory & storage":"#7f6ea8","Systems & networking":"#b45d50","Data centers":"#4f79a7",Power:"#719a45"};
   const x=(i:number)=>l+i*(w-l-r)/(cdsRoleQuarterly.length-1);
   const cdsIndex=(role:(typeof roles)[number],value:number)=>value/cdsRoleQuarterly[0][role]*100;
   const yCds=(v:number)=>top+(185-v)*(upperBottom-top)/125;
@@ -515,7 +532,7 @@ export default function Home(){
     <section className="overlay-bridge" aria-label="Satellite overlay bridge">
       <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
       <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
-      <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 12 issuers</small></article>
+      <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 25 issuers</small></article>
       <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · September is partial</small></article>
       <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
     </section>
@@ -703,8 +720,8 @@ export default function Home(){
     </section>
 
     <section className="section credit-section" id="credit">
-      <div className="section-head"><div><div className="eyebrow">05 · CREDIT CONDITIONS · SATELLITE</div><h2>Near-term stable, medium-term caution easing.</h2></div><p>USD senior 5Y CDS · basis-point change · as of {cdsSnapshot.asOf} <Source id="S4"/></p></div>
-      <SectionSummary about="Uses credit-default-swap spreads to track how bond markets price financing risk for AI-related issuers." current="The 12-issuer basket was nearly flat over one month (−0.2bp) and 5.0bp wider over three months, a substantial improvement from the prior 12.8bp three-month widening." conclusion="Credit markets no longer point to an accelerating funding shock, but the medium-term signal has not fully normalized. Oracle and Intel remain the main pockets of caution."/>
+      <div className="section-head"><div><div className="eyebrow">05 · CREDIT CONDITIONS · SATELLITE</div><h2>Broader coverage reveals renewed credit caution.</h2></div><p>USD senior 5Y CDS · basis-point change · as of {cdsSnapshot.asOf} <Source id="S4"/></p></div>
+      <SectionSummary about="Uses credit-default-swap spreads to track how bond markets price financing risk across the AI supply chain." current="The expanded 25-issuer basket widened 1.9bp over one month and 8.3bp over three months. Semiconductor equipment, memory and systems contain the largest issuer-level deteriorations." conclusion="The wider universe weakens the earlier conclusion that funding stress had stabilized. Credit pressure is not uniform, but it now extends beyond hyperscalers into capital-intensive suppliers."/>
       <div className="credit-snapshot">
         <article><span>Equal-weight 1M change</span><strong className={cdsSnapshot.oneMonth<=0?"positive":"negative"}>{cdsSnapshot.oneMonth>0?"+":""}{cdsSnapshot.oneMonth.toFixed(1)} bp</strong><small>{cdsSnapshot.oneMonth<=0?"Tightening · improving":"Widening · deteriorating"}</small></article>
         <article><span>Equal-weight 3M change</span><strong className={cdsSnapshot.threeMonth<=0?"positive":"negative"}>{cdsSnapshot.threeMonth>0?"+":""}{cdsSnapshot.threeMonth.toFixed(1)} bp</strong><small>{cdsSnapshot.threeMonth<=0?"Tightening · improving":"Widening · deteriorating"}</small></article>
@@ -712,10 +729,10 @@ export default function Home(){
         <article><span>Coverage</span><strong>{cdsSnapshot.coverage} / 12</strong><small>READY · complete 1M and 3M observations</small></article>
       </div>
       <div className="cds-debt-panel">
-        <div className="credit-panel-head"><div><b>CDS and leverage by supply-chain role</b><span>Quarter-end role medians · Q3 CDS through 16 Sep · debt data through Q2</span></div><span className="quality">MATCHED DIRECTION, NOT CAUSALITY</span></div>
+        <div className="credit-panel-head"><div><b>CDS and leverage by supply-chain role</b><span>25 issuers · quarter-end role medians · Q3 CDS through 16 Sep · debt data through Q2</span></div><span className="quality">MATCHED DIRECTION, NOT CAUSALITY</span></div>
         <CdsRoleDebtChart/>
         <div className="role-leverage-strip">{roleLeverageSnapshot.map(row=><article key={row.role}><span>{row.role}</span><strong>{row.value===null?"n/a":`${row.value.toFixed(1)}×`}</strong><small>Latest median net debt / EBITDA · {row.coverage}</small></article>)}</div>
-        <div className="cds-debt-readthrough"><div><b>What the matched history shows</b><p>Hyperscaler median debt-to-capital rose from 26.3% in 2026Q1 to 30.1% in Q2, while median CDS moved from 40.2bp to 39.5bp and then widened to 45.1bp in partial Q3. The timing is directionally consistent with greater balance-sheet use, but the spread move arrived after the latest reported debt observation.</p></div><div><b>What remains unproven</b><p>Data-center issuers carry the highest latest net debt/EBITDA and their CDS widened in Q3, but the workbook does not contain quarterly leverage history for that role. Rates, issuer mix, equity volatility and event risk can also move CDS. The chart supports a monitoring hypothesis, not a causal conclusion.</p></div></div>
+        <div className="cds-debt-readthrough"><div><b>What the matched history shows</b><p>Hyperscaler median debt-to-capital rose from 26.3% in 2026Q1 to 30.1% in Q2, while median CDS moved from 40.2bp to 39.5bp and then widened to 45.1bp in partial Q3. Semiconductor-equipment CDS also rose sharply in Q3, led by Applied Materials, without high current net leverage.</p></div><div><b>What remains unproven</b><p>Data-center issuers carry the highest latest net debt/EBITDA and their CDS widened in Q3, but the workbook does not contain quarterly leverage history for non-hyperscaler roles. Rates, issuer mix, equity volatility and event risk can also move CDS. The chart supports a monitoring hypothesis, not a causal conclusion.</p></div></div>
       </div>
       <div className="role-overview" aria-label="CDS issuers grouped by AI-industry role">{cdsRoleOverview.map(group=><article key={group.role}>
         <div className="role-top"><span>{group.label}</span><b>{group.members.length}</b></div>
@@ -728,7 +745,7 @@ export default function Home(){
           <div className="credit-panel-head"><div><b>Issuer CDS movement</b><span>Latest spread and matched 1M / 3M changes</span></div><div className="credit-legend"><span><i className="tightening-dot"/>Tightening</span><span><i className="widening-dot"/>Widening</span></div></div>
           <div className="credit-table-wrap"><table><thead><tr><th>Issuer</th><th>AI-industry role</th><th>Latest 5Y CDS</th><th>1M change</th><th>3M change</th><th>1M direction</th></tr></thead><tbody>{cdsIssuers.map(c=><tr key={c.ticker}><td><b>{c.ticker}</b><span>{c.issuer}</span></td><td><span className="role-chip">{c.role}</span></td><td>{c.latest.toFixed(1)} bp</td><td className={c.oneMonth<=0?"positive":"negative"}>{c.oneMonth>0?"+":""}{c.oneMonth.toFixed(1)} bp</td><td className={c.threeMonth<=0?"positive":"negative"}>{c.threeMonth>0?"+":""}{c.threeMonth.toFixed(1)} bp</td><td><span className={c.oneMonth<=0?"credit-status tightening":"credit-status widening"}>{c.oneMonth<=0?"Tightening":"Widening"}</span></td></tr>)}</tbody></table></div>
         </div>
-        <aside className="credit-readthrough"><div><span className="detail-kicker">CREDIT ASSESSMENT</span><h3>Funding stress has stabilized, but has not fully normalized.</h3><p>The 12-issuer basket tightened by 0.2 bp over one month and is 5.0 bp wider over three months, down materially from the prior 12.8 bp widening. Dell tightened over both periods; Intel and Oracle remain the largest three-month wideners.</p></div><div className="credit-method"><b>Methodology</b><p>The indicator gives equal weight to one-month and three-month spread changes. A positive score indicates improving credit conditions. Results are reported when at least eight issuers have comparable data.</p></div></aside>
+        <aside className="credit-readthrough"><div><span className="detail-kicker">CREDIT ASSESSMENT</span><h3>Credit caution is broadening beyond hyperscalers.</h3><p>The 25-issuer basket widened 1.9bp over one month and 8.3bp over three months. Applied Materials, Western Digital, Seagate and Intel are the largest three-month wideners; TSMC, ASML, Samsung and SK Hynix tightened.</p></div><div className="credit-method"><b>Methodology</b><p>The indicator gives equal weight to one-month and three-month spread changes. A positive score indicates improving credit conditions. Results are reported when at least eight issuers have comparable data.</p></div></aside>
       </div>
     </section>
 
@@ -759,7 +776,7 @@ export default function Home(){
         <footer><b>Missing-data rule:</b> weights are not renormalized and missing values are not treated as observed zeros. The adjusted score is withheld when financial or CDS coverage falls below the stated threshold. Bond issuance currently carries zero weight by methodology, rather than an assumption of neutral issuance activity.</footer>
       </div>
       <div className="limitations"><h3>Limits that matter for interpretation</h3><ul><li>Preserve Bloomberg units, seasonal-adjustment flags, release dates and point-in-time vintages.</li><li>Replace PREV-filled observations with explicit freshness and stale-value controls.</li><li>Backfill December 2025 bond issuance before publishing rolling-12-month YoY.</li><li>Add sector-neutral and size-neutral tests to the financial screen; cap extreme CapEx ranks only after sensitivity analysis.</li><li>Run alternative pillar weights, outlier controls and benchmark-relative backtests before integrating satellites.</li><li>Separate actual and forecast atmosphere indices before adding forward quarters.</li><li>For a global aggregate, approve FX conversion, CapEx-definition normalization, constituent weights and missing-proxy rules.</li></ul></div>
-      <div className="sources"><article id="source-S1"><span>S1</span><div><b>Indexlist.xlsx — Index Price Value</b><p>Bloomberg monthly PX_LAST snapshot through 16 Sep 2026. Several macro fields are prior-value fills from July or August; the official composite therefore remains at the latest complete comparable month.</p></div></article><article id="source-S2"><span>S2</span><div><b>Consolidated U.S. hyperscaler CapEx workbook</b><p>Microsoft, Alphabet, Meta, Amazon and Oracle through calendar 2026Q2; company-specific accounting bases, actual/estimate status and proxy confidence preserved.</p></div></article><article id="source-S3"><span>S3</span><div><b>China cloud CapEx source collection</b><p>Tencent operating CapEx, Alibaba quarterly CapEx and Baidu cash CapEx through 2026Q2. RMB is primary; approximate values, inferred AI shares and issuer-specific definitions remain labeled.</p></div></article><article id="source-S4"><span>S4</span><div><b>Indexlist.xlsx — AI 5yrCDS Value</b><p>Bloomberg-implied USD senior 5Y CDS for 12 AI and infrastructure issuers through 16 Sep 2026. Changes use matched observations on or before one and three calendar months earlier.</p></div></article><article id="source-S5"><span>S5</span><div><b>Indexlist.xlsx — Supply Chain Financial Value</b><p>Latest reported financial metrics for 32 issuers: 26 at 2026Q2 and six at 2026Q1 fallback. Missing interim reports are labeled and receive no freshness penalty.</p></div></article><article id="source-S6"><span>S6</span><div><b>Indexlist.xlsx — Bond Issuance Value</b><p>Monthly aggregate amount and issue count through 16 Sep 2026. September is explicitly treated as partial; the rolling 12-month total uses full months through August.</p></div></article></div>
+      <div className="sources"><article id="source-S1"><span>S1</span><div><b>Indexlist.xlsx — Index Price Value</b><p>Bloomberg monthly PX_LAST snapshot through 16 Sep 2026. Several macro fields are prior-value fills from July or August; the official composite therefore remains at the latest complete comparable month.</p></div></article><article id="source-S2"><span>S2</span><div><b>Consolidated U.S. hyperscaler CapEx workbook</b><p>Microsoft, Alphabet, Meta, Amazon and Oracle through calendar 2026Q2; company-specific accounting bases, actual/estimate status and proxy confidence preserved.</p></div></article><article id="source-S3"><span>S3</span><div><b>China cloud CapEx source collection</b><p>Tencent operating CapEx, Alibaba quarterly CapEx and Baidu cash CapEx through 2026Q2. RMB is primary; approximate values, inferred AI shares and issuer-specific definitions remain labeled.</p></div></article><article id="source-S4"><span>S4</span><div><b>Indexlist.xlsx — AI 5yrCDS Value</b><p>Bloomberg-implied 5Y CDS for 25 AI and infrastructure issuers across seven supply-chain roles through 16 Sep 2026. Changes use matched observations on or before one and three calendar months earlier.</p></div></article><article id="source-S5"><span>S5</span><div><b>Indexlist.xlsx — Supply Chain Financial Value</b><p>Latest reported financial metrics for 32 issuers: 26 at 2026Q2 and six at 2026Q1 fallback. Missing interim reports are labeled and receive no freshness penalty.</p></div></article><article id="source-S6"><span>S6</span><div><b>Indexlist.xlsx — Bond Issuance Value</b><p>Monthly aggregate amount and issue count through 16 Sep 2026. September is explicitly treated as partial; the rolling 12-month total uses full months through August.</p></div></article></div>
     </section>
 
     <div className="sources sources-addendum"><article id="source-S9"><span>S9</span><div><b>OpenRouter demand snapshot — not refreshed in this workbook</b><p>The retained snapshot covers daily top-50 model token usage for the trailing 30 days through 10 Sep 2026, plus the long-tail bucket. The updated workbook no longer contains the OpenRouter sheet, so this module is deliberately held at its prior vintage. OpenRouter measures routed adoption, not model quality, provider-direct traffic or revenue. <a href="https://openrouter.ai/docs/api/api-reference/datasets/get-rankings-daily">Dataset methodology</a></p></div></article><article id="source-S10"><span>S10</span><div><b>Indexlist.xlsx — OpenAI and Anthropic</b><p>Media-reported and investor-disclosed operating observations through September 2026. The analysis separates recognized revenue from ARR, preserves floors and approximate values, and excludes incomparable margin definitions from the headline comparison.</p></div></article></div>
