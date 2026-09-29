@@ -1,0 +1,49 @@
+.task-lab-legend {
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.task-hardware {
+  display: grid;
+  grid-template-columns: minmax(260px, .45fr) minmax(520px, 1.55fr);
+  gap: 22px;
+  margin-top: 22px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.task-hardware > div > span {
+  color: var(--teal);
+  font: 750 9px ui-monospace, monospace;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.task-hardware h3 {
+  margin: 8px 0;
+  font: 400 25px Georgia, serif;
+}
+
+.task-hardware p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.task-hardware .task-table th,
+.task-hardware .task-table td {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.task-hardware .task-table th { color: var(--muted); }
+
+@media (max-width: 980px) {
+  .task-hardware { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .task-hardware { padding: 16px; }
+}

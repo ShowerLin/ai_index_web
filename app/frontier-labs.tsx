@@ -2,39 +2,32 @@
 
 import { useState } from "react";
 import SectionSummary from "./section-summary";
+import { frontierLabsSnapshot as snapshot } from "./frontier-labs-snapshot";
 
 type LabView = "Both" | "OpenAI" | "Anthropic";
 type LabName = Exclude<LabView, "Both">;
-
-const periods = ["Dec-24", "Jun-25", "Oct-25", "Dec-25", "Feb-26", "Mar-26", "Jul-26", "Aug-26"] as const;
-const arrSeries: Record<LabName, readonly (number | null)[]> = {
-  OpenAI: [null, null, null, 20, 21.4, 25, null, 40],
-  Anthropic: [1, 3, 7, 9, 14, 19.5, 65, null],
-};
-
-const labMetrics = {
-  OpenAI: { latest: ">$40B", period: "Jul–Aug 2026", q1: "$5.70B", q2: "$6.70B", growth: "+17.5%", tone: "Measured acceleration" },
-  Anthropic: { latest: ">$65B", period: "Jul 2026", q1: "$4.73B", q2: ">$11.50B", growth: ">+143%", tone: "Preliminary step-up" },
-} as const;
 
 function FrontierArrChart({ view }: { view: LabView }) {
   const shown = view === "Both" ? (["OpenAI", "Anthropic"] as const) : ([view] as const);
   const colors: Record<LabName, string> = { OpenAI: "#1d7f80", Anthropic: "#d88952" };
   const w = 960, h = 330, l = 58, r = 18, t = 24, b = 48, max = 70;
-  const x = (i: number) => l + i * (w - l - r) / (periods.length - 1);
+  const start = new Date("2024-12-01T00:00:00Z").valueOf();
+  const end = new Date("2026-08-31T00:00:00Z").valueOf();
+  const x = (date: string) => l + (new Date(`${date}T00:00:00Z`).valueOf() - start) * (w - l - r) / (end - start);
   const y = (v: number) => t + (max - v) * (h - t - b) / max;
+  const ticks = [{date:"2024-12-31",label:"Dec-24"},{date:"2025-06-30",label:"Jun-25"},{date:"2025-12-31",label:"Dec-25"},{date:"2026-03-31",label:"Mar-26"},{date:"2026-08-13",label:"Aug-26"}] as const;
 
   return <svg className="line-chart labs-chart" viewBox={`0 0 ${w} ${h}`} role="img" aria-label="Reported annualized revenue run rate for OpenAI and Anthropic">
     <title>Reported annualized revenue run rate in US dollars billions; floors and approximate values retained</title>
     {[0, 20, 40, 60].map(v => <g key={v}><line x1={l} x2={w-r} y1={y(v)} y2={y(v)} className="grid-line"/><text x={l-10} y={y(v)+4} textAnchor="end">${v}B</text></g>)}
     {shown.map(lab => {
-      const observations = arrSeries[lab].map((value, index) => ({ value, index })).filter((item): item is {value:number;index:number} => item.value !== null);
+      const observations = snapshot.labs[lab].series;
       return <g key={lab}>
-        <polyline points={observations.map(item => `${x(item.index)},${y(item.value)}`).join(" ")} fill="none" stroke={colors[lab]} strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"/>
-        {observations.map((item, observationIndex) => <circle key={`${lab}-${item.index}`} cx={x(item.index)} cy={y(item.value)} r={observationIndex===observations.length-1?6:4} fill={colors[lab]} stroke="#f7f3ea" strokeWidth="2"><title>{`${lab} ${periods[item.index]}: ${item.value}B reported run rate`}</title></circle>)}
+        <polyline points={observations.map(item => `${x(item.date)},${y(item.value)}`).join(" ")} fill="none" stroke={colors[lab]} strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"/>
+        {observations.map((item, observationIndex) => <circle key={`${lab}-${item.date}-${item.value}`} cx={x(item.date)} cy={y(item.value)} r={observationIndex===observations.length-1?6:4} fill={colors[lab]} stroke="#f7f3ea" strokeWidth="2"><title>{`${lab} ${item.label}: $${item.value}B ${item.type.toLowerCase()} · ${item.confidence}`}</title></circle>)}
       </g>;
     })}
-    {periods.map((period, index) => <text key={period} x={x(index)} y={h-16} textAnchor="middle">{period}</text>)}
+    {ticks.map(tick => <text key={tick.date} x={x(tick.date)} y={h-16} textAnchor="middle">{tick.label}</text>)}
   </svg>;
 }
 
@@ -50,13 +43,13 @@ export default function FrontierLabs() {
       </div>
     </div>
 
-    <SectionSummary about="Collects reported revenue and annualized run-rate observations for OpenAI and Anthropic as evidence of paid model demand." current="Both labs report large and rapidly growing revenue run rates, but dates, definitions and disclosure quality differ." conclusion="The data strengthens the demand side of the story. Margins, cash burn and compute commitments are still needed to connect that demand to infrastructure returns."/>
+    <SectionSummary about="Collects full-company recognized revenue, ARR and annualized run-rate reports for OpenAI and Anthropic as evidence of paid model demand." current="The latest reports put OpenAI above a $40B run rate in August 2026 and Anthropic at $65B by the end of July." conclusion="Both grew rapidly from end-2025, but the point-in-time run rates remain media-reported estimates rather than audited revenue."/>
 
     <div className="labs-kpis">
       {shownLabs.map(lab => <article key={lab} className={`lab-card ${lab.toLowerCase()}`}>
-        <header><span>{lab}</span><small>{labMetrics[lab].tone}</small></header>
-        <div className="lab-arr"><span>Latest reported ARR / run rate</span><strong>{labMetrics[lab].latest}</strong><small>{labMetrics[lab].period}</small></div>
-        <div className="lab-quarter-grid"><div><span>Q1 2026 revenue</span><b>{labMetrics[lab].q1}</b></div><div><span>Q2 2026 revenue</span><b>{labMetrics[lab].q2}</b></div><div><span>Sequential growth</span><b>{labMetrics[lab].growth}</b></div></div>
+        <header><span>{lab}</span><small>{snapshot.labs[lab].latestConfidence} confidence</small></header>
+        <div className="lab-arr"><span>Latest reported ARR / run rate</span><strong>{snapshot.labs[lab].latest}</strong><small>{snapshot.labs[lab].latestDate}</small></div>
+        <div className="lab-quarter-grid"><div><span>FY2025 revenue</span><b>{snapshot.labs[lab].fy2025Revenue}</b></div><div><span>End-2025 run rate</span><b>{snapshot.labs[lab].end2025RunRate}</b></div><div><span>Growth since end-2025</span><b>+{snapshot.labs[lab].growthFromEnd2025.toFixed(1)}%</b></div></div>
       </article>)}
     </div>
 
@@ -64,19 +57,19 @@ export default function FrontierLabs() {
       <div className="chart-panel labs-chart-panel">
         <div className="chart-meta"><div><b>Reported ARR / revenue run rate</b><span>USD billions annualized · reported floors and approximate points</span></div><div className="labs-legend">{shownLabs.map(lab=><span key={lab}><i className={lab.toLowerCase()}/>{lab}</span>)}</div></div>
         <FrontierArrChart view={view}/>
-        <div className="chart-callout"><b>Directionally comparable, not accounting-equivalent:</b> “Greater than” values are plotted at their reported floor, and Anthropic’s $19–20B range uses its midpoint. ARR definitions have not been reconciled to recognized revenue. <a className="source-chip" href="#source-S10">S10</a></div>
+        <div className="chart-callout"><b>Directionally comparable, not accounting-equivalent:</b> The series includes full-company ARR and annualized run-rate reports. OpenAI’s latest “more than $40B” observation is plotted at its reported floor. Recognized FY2025 revenue is shown separately in the cards. <a className="source-chip" href="#source-S10">S10</a></div>
       </div>
       <aside className="labs-readthrough">
         <span className="detail-kicker">ANALYTICAL ASSESSMENT</span>
-        <div><b>Scale</b><p>Both labs report large revenue run rates. Different observation dates and definitions limit a direct ranking.</p></div>
-        <div><b>Acceleration</b><p>Recognized quarterly revenue is the cleaner comparison: OpenAI grew 17.5% sequentially, while Anthropic’s preliminary Q2 floor implies growth above 143%.</p></div>
+        <div><b>Scale</b><p>Anthropic’s reported $65B July run rate is above OpenAI’s reported August floor of $40B. Different dates and reporting definitions still limit a direct ranking.</p></div>
+        <div><b>Acceleration</b><p>From end-2025, OpenAI’s reported run rate increased 86.9%, while Anthropic’s increased 622.2%. FY2025 recognized revenue was $13B and $4.5B, respectively.</p></div>
         <div><b>Link to infrastructure</b><p>Lab revenue supports the demand case. Margins, cash burn and compute commitments determine how much value remains with the labs and how much flows to infrastructure providers.</p></div>
       </aside>
     </div>
 
     <details className="labs-method">
       <summary>Definitions, comparability and limitations</summary>
-      <div><p><b>ARR / run rate:</b> a point-in-time annualization that may include usage, subscriptions or contracted business; it is not treated as GAAP revenue.</p><p><b>Margins:</b> OpenAI’s compute margin and Anthropic’s estimated gross margin are excluded from the headline comparison because their cost definitions differ.</p><p><b>Required evidence:</b> quarterly revenue, cash burn, cloud commitments and contracted compute demand would improve the comparison with hyperscaler CapEx.</p></div>
+      <div><p><b>ARR / run rate:</b> a point-in-time annualization that may include usage, subscriptions or contracted business; it is not treated as recognized revenue.</p><p><b>Scope:</b> the chart excludes product/division records such as OpenAI API or Claude Code revenue and excludes period-interpolation observations.</p><p><b>Required evidence:</b> audited quarterly revenue, margins, cash burn and contracted compute demand would improve the comparison with hyperscaler CapEx.</p></div>
     </details>
   </section>;
 }

@@ -5,6 +5,12 @@
   "type": "module",
   "engines": { "node": ">=22.13.0" },
   "scripts": {
+    "data:infrastructure": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-infrastructure-snapshot.py",
+    "data:frontier-labs": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-frontier-labs-snapshot.py",
+    "data:task-economics": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-task-economics-snapshot.py",
+    "data:useful-task": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-useful-task-snapshot.py",
+    "data:epoch-pricing": "python3 scripts/download-epoch-model-pricing.py",
+    "data:swebench": "python3 scripts/download-swebench-results.py",
     "dev": "node ./node_modules/vinext/dist/cli.js dev --port 8000",
     "build": "node ./node_modules/vinext/dist/cli.js build",
     "start": "node ./node_modules/vinext/dist/cli.js start --port 8000",
