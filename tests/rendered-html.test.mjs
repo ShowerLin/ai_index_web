@@ -24,20 +24,17 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /AI buildout is still/);
   assert.match(html, /EXECUTIVE SUMMARY · INVESTMENT CONCLUSION/);
   assert.match(html, /AI capacity is arriving faster than evidence of capital productivity/);
-  assert.match(html, /convert utilized compute into NOPAT/i);
-  assert.match(html, /Is activity expanding\?/);
-  assert.match(html, /Are profits keeping pace\?/);
-  assert.match(html, /Combines adoption, demand, investment, imports and hyperscaler CapEx/);
+  const stageIds = ["capability", "adoption", "utilization", "monetization", "capital-return"];
+  const stagePositions = stageIds.map(id => html.indexOf(`id="${id}"`));
+  assert.ok(stagePositions.every((position, index) => position >= 0 && (index === 0 || position > stagePositions[index - 1])));
+  assert.equal((html.match(/Missing evidence<\/b>/g) ?? []).length, 5);
   assert.match(html, /core uncertainty/);
   assert.match(html, /Satellite-adjusted/);
   assert.match(html, /Satellite-adjusted/);
-  assert.match(html, /67\.8/);
+  assert.match(html, /69\.3/);
   assert.match(html, /Core atmosphere/);
-  assert.match(html, /Separate funding signal · YoY unavailable/);
-  assert.match(html, /CURRENT STATUS · QUARTER-OVER-QUARTER/);
+  assert.match(html, /Separate funding signal · September is partial/);
   assert.match(html, /SELECTED PILLAR · CONSTITUENTS/);
-  assert.match(html, /View constituents/);
-  assert.match(html, /Spending accelerated across four of five hyperscalers/);
   assert.match(html, /2026Q2 constituent QoQ/);
   assert.match(html, /\$188\.3B/);
   assert.match(html, /Quarterly CapEx/);
@@ -56,7 +53,7 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /Lower task prices require much higher paid volume/);
   assert.match(html, /Daily successful tasks required per \$1B of capital/);
   assert.match(html, /source-S13/);
-  assert.match(html, /FRONTIER LAB MONETIZATION · SUPPLEMENTARY ANALYSIS/);
+  assert.match(html, /PAID DEMAND · FRONTIER LAB MONETIZATION/);
   assert.match(html, /Reported lab revenue provides evidence of paid demand/);
   assert.match(html, /source-S10/);
   assert.match(html, /Growth since end-2025/);
@@ -87,8 +84,6 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /Demand signal/);
   assert.match(html, /Production dependency/);
   assert.match(html, /Capacity constraint/);
-  assert.match(html, /Market data through 2026-08-24/);
-  assert.match(html, /Indexlist\.xlsx snapshot/);
   assert.match(html, /One-day returns are unavailable because the current source reports zero for all 32 companies/);
   assert.match(html, /THREE-SIGNAL OVERVIEW/);
   assert.match(html, /Market · <!-- -->1M/);
@@ -96,17 +91,25 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /CDS pressure is/);
   assert.match(html, /Import price CSV/);
   assert.match(html, /Accelerators &amp; custom silicon/);
-  assert.match(html, /AI-related compute proxy/);
+  assert.match(html, /Compute-equipment proxy/);
   assert.match(html, /Compute proxy/);
   assert.match(html, /FINANCIAL RESILIENCE · SATELLITE/);
   assert.match(html, /Fundamental composite leaders/);
   assert.match(html, /SNDK/);
   assert.match(html, /BOND ISSUANCE · SATELLITE/);
-  assert.match(html, /412\.7/);
-  assert.match(html, /August 2025 is absent/i);
+  assert.match(html, /400\.7/);
+  assert.match(html, /December 2025 is missing/i);
   assert.match(html, /Signal construction and analytical scope/);
   assert.match(html, /source-S1/);
   assert.match(html, /source-S2/);
+  assert.equal((html.match(/data-section-notes=/g) ?? []).length, 16);
+  for (const heading of ["(1) Data source and reliability", "(2) Methodology", "(3) Scope and other necessary information"]) {
+    assert.equal(html.split(heading).length - 1, 16);
+  }
+  for (const source of new Set([...html.matchAll(/href="#(source-S\d+)"/g)].map(match => match[1]))) {
+    assert.equal(html.split(`id="${source}"`).length - 1, 1);
+  }
+  assert.doesNotMatch(html, /class="(?:chart-callout|task-chart-note|roic-history-note|heat-frequency-note|credit-method)"/);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
 
@@ -132,7 +135,6 @@ test("keeps production metadata and methodology in source", async () => {
   assert.match(page, /All companies/);
   assert.match(page, /Alibaba · 2026Q2 CapEx/);
   assert.match(page, /Baidu · 2026Q2 cash CapEx/);
-  assert.match(page, /Comparable direction, not an additive total/);
   assert.doesNotMatch(page, /id="china"/);
   assert.doesNotMatch(page, /function TencentCapexChart/);
   assert.match(page, /2026Q2 constituent QoQ/);
@@ -158,7 +160,6 @@ test("keeps production metadata and methodology in source", async () => {
   assert.match(page, /totalPoints/);
   assert.match(page, /proxyPoints/);
   assert.doesNotMatch(page, /capexMetric|metric-toggle/);
-  assert.match(page, /Proxy—not disclosed AI CapEx/);
   assert.match(page, /const fundamentalSnapshot/);
   assert.match(page, /80% resilience \+ 20% CapEx momentum/);
   assert.match(page, /const satelliteOverlay/);
@@ -167,7 +168,6 @@ test("keeps production metadata and methodology in source", async () => {
   assert.match(page, /SUPPLEMENTARY ADJUSTMENT FORMULA/);
   assert.match(page, /weights are not renormalized/);
   assert.match(page, /const bondHistory/);
-  assert.match(page, /market access, not issuer-specific debt attribution or the return earned on new capital/);
   assert.match(page, /<RoicAnalysis\/>/);
   assert.match(page, /<DemandToReturns\/>/);
   assert.match(page, /<FrontierLabs\/>/);

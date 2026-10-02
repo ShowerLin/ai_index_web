@@ -1,5 +1,7 @@
 "use client";
 
+import SectionNotes from "./section-notes";
+
 import { useState } from "react";
 import { infrastructureSnapshot as snapshot } from "./infrastructure-snapshot";
 import SectionSummary from "./section-summary";
@@ -7,7 +9,7 @@ import SectionSummary from "./section-summary";
 type View = "deployment" | "compute" | "conversion" | "usage";
 
 const companyColors: Record<string, string> = {
-  Microsoft: "#57a9bd",
+  Microsoft: "#0f4c81",
   Alphabet: "#d5aa43",
   Meta: "#927bb8",
   Amazon: "#df7658",
@@ -95,31 +97,31 @@ export default function InfrastructureDeployment() {
   const latestCompute = snapshot.computeHistory.at(-1)!;
   return <section className="section infrastructure-section" id="infrastructure">
     <div className="section-head"><div><div className="eyebrow">PHYSICAL INFRASTRUCTURE · SUPPLEMENTARY ANALYSIS</div><h2>How quickly is spending becoming compute capacity?</h2></div><p>Facilities through {snapshot.metadata.dataCenterAsOf} · chips through {snapshot.metadata.chipAsOf} <a className="source-chip" href="#source-S11">S11</a></p></div>
-    <SectionSummary about="Connects hyperscaler capital expenditure to energized data-center capacity and estimated installed compute." current={`${snapshot.metadata.coveredOwners} covered hyperscalers have ${latestDeployment.itMw.toLocaleString()} MW of modeled operational IT capacity and ${latestCompute.h100e.toFixed(1)} million estimated H100 equivalents.`} conclusion="Physical deployment is accelerating, but modeled ownership and facility estimates are not measures of workload utilization or realized returns."/>
+    <SectionSummary current={`${snapshot.metadata.coveredOwners} covered hyperscalers have ${latestDeployment.itMw.toLocaleString()} MW of modeled operational IT capacity and ${latestCompute.h100e.toFixed(1)} million estimated H100 equivalents.`} conclusion="The expanding capacity base raises the revenue and workload volume needed to earn an adequate return."/>
     <div className="infra-tabs" role="tablist" aria-label="Physical buildout views">
       {([['deployment','Physical deployment'],['compute','Installed compute'],['conversion','CapEx conversion'],['usage','Capacity use']] as const).map(([id,label]) => <button key={id} role="tab" aria-selected={view===id} className={view===id?"selected":""} onClick={()=>setView(id)}>{label}</button>)}
     </div>
 
     {view === "deployment" && <div role="tabpanel" className="infra-panel">
       <div className="infra-kpis"><article><span>Operational IT capacity</span><strong>{(latestDeployment.itMw/1000).toFixed(2)} GW</strong><small>Five covered hyperscalers · latest milestone snapshot</small></article><article><span>Latest period addition</span><strong>+{(latestDeployment.additionMw!/1000).toFixed(2)} GW</strong><small>{latestDeployment.quarter} change · *partial quarter through 28 Sep</small></article><article><span>Current modeled project cost</span><strong>${snapshot.deploymentByOwner.reduce((sum,row)=>sum+row.capital,0).toFixed(1)}B</strong><small>2025 USD · current facility estimates</small></article></div>
-      <div className="infra-layout"><div className="infra-chart"><div className="infra-chart-head"><div><b>Operational capacity</b><span>IT MW · bars show quarterly additions</span></div><span><i className="line-key"/>Capacity <i className="bar-key"/>Additions</span></div><DeploymentChart/></div><aside className="infra-ranking"><span>OWNER SNAPSHOT</span><h3>Alphabet has the largest covered footprint.</h3><OwnerBars metric="deployment"/><p>Facility records represent identified projects, not each company’s complete global fleet.</p></aside></div>
+      <div className="infra-layout"><div className="infra-chart"><div className="infra-chart-head"><div><b>Operational capacity</b><span>IT MW · bars show quarterly additions</span></div><span><i className="line-key"/>Capacity <i className="bar-key"/>Additions</span></div><DeploymentChart/></div><aside className="infra-ranking"><span>OWNER SNAPSHOT</span><h3>Alphabet has the largest covered footprint.</h3><OwnerBars metric="deployment"/></aside></div>
     </div>}
 
     {view === "compute" && <div role="tabpanel" className="infra-panel">
-      <div className="infra-kpis"><article><span>Estimated installed compute</span><strong>{latestCompute.h100e.toFixed(2)}M</strong><small>H100 equivalents · median estimate</small></article><article><span>Estimate range</span><strong>{latestCompute.low.toFixed(1)}–{latestCompute.high.toFixed(1)}M</strong><small>Sum of owner-level 5th–95th percentile estimates</small></article><article><span>Chip thermal load</span><strong>{(latestCompute.chipMw/1000).toFixed(2)} GW</strong><small>Total accelerator TDP, not measured electricity consumption</small></article></div>
-      <div className="infra-layout"><div className="infra-chart"><div className="infra-chart-head"><div><b>Installed compute stock</b><span>Millions of H100 equivalents · shaded estimate range</span></div></div><ComputeChart/></div><aside className="infra-ranking"><span>OWNER SNAPSHOT</span><h3>Estimated compute remains concentrated.</h3><OwnerBars metric="compute"/><p>The 2026Q1 decline reflects source estimate revisions and fleet-mix changes; it should not be read as observed chip disposals.</p></aside></div>
+      <div className="infra-kpis"><article><span>Estimated installed compute</span><strong>{latestCompute.h100e.toFixed(2)}M</strong><small>H100 equivalents · median estimate</small></article><article><span>Estimate range</span><strong>{latestCompute.low.toFixed(1)}–{latestCompute.high.toFixed(1)}M</strong><small>Sum of owner-level 5th–95th percentile estimates</small></article><article><span>Chip thermal load</span><strong>{(latestCompute.chipMw/1000).toFixed(2)} GW</strong><small>Accelerator thermal design power</small></article></div>
+      <div className="infra-layout"><div className="infra-chart"><div className="infra-chart-head"><div><b>Installed compute stock</b><span>Millions of H100 equivalents · shaded estimate range</span></div></div><ComputeChart/></div><aside className="infra-ranking"><span>OWNER SNAPSHOT</span><h3>Estimated compute remains concentrated.</h3><OwnerBars metric="compute"/></aside></div>
     </div>}
 
     {view === "conversion" && <div role="tabpanel" className="infra-panel">
-      <div className="infra-conversion-intro"><div><span>TRAILING FOUR QUARTERS TO 2026Q1</span><h3>CapEx conversion varies widely by company and denominator.</h3></div><p>Compute-equipment CapEx is compared with the year-over-year change in estimated owned H100e and operational IT MW. These ratios are directional because spending, delivery and commissioning occur at different times.</p></div>
+      <div className="infra-conversion-intro"><div><span>TRAILING FOUR QUARTERS TO 2026Q1</span><h3>CapEx conversion varies widely by company and denominator.</h3></div><p>Different spending-to-capacity ratios highlight the importance of delivery and commissioning lags when assessing capital productivity.</p></div>
       <ConversionTable/>
-      <div className="infra-method"><b>Interpretation boundary</b><p>Owned chips and facility deployments are overlapping modeled views, so they are reconciled rather than added. “CapEx per H100e” is not a chip purchase price, and “CapEx per MW” is not a construction quote. Oracle is withheld because four comparable compute-proxy quarters are unavailable.</p></div>
     </div>}
 
     {view === "usage" && <div role="tabpanel" className="infra-panel">
-      <div className="infra-conversion-intro"><div><span>CAPACITY-TO-WORKLOAD BRIDGE</span><h3>A single frontier training run absorbs only a small share of annual lab compute.</h3></div><p>Epoch estimates {snapshot.usageBridge.coveredLabH100e.toFixed(2)} million H100 equivalents used by {snapshot.usageBridge.coveredLabCount} covered frontier labs at year-end {snapshot.usageBridge.year}. This connects owned capacity to training demand without treating ownership as utilization.</p></div>
+      <div className="infra-conversion-intro"><div><span>CAPACITY-TO-WORKLOAD BRIDGE</span><h3>A single frontier training run absorbs only a small share of annual lab compute.</h3></div><p>Epoch estimates {snapshot.usageBridge.coveredLabH100e.toFixed(2)} million H100 equivalents used by {snapshot.usageBridge.coveredLabCount} covered frontier labs at year-end {snapshot.usageBridge.year}. Inference and other recurring workloads therefore matter most to fleet economics.</p></div>
       <div className="infra-usage-grid">{snapshot.usageBridge.trainingExamples.map(row=><article key={row.model}><span>{row.lab}</span><h3>{row.model}</h3><strong>{row.fleetYearSharePct.toFixed(2)}%</strong><p>of one year of estimated lab capacity for one training run at 30% effective utilization</p><small>{Math.round(row.trainingH100eYears).toLocaleString()} H100e-years / {Math.round(row.labH100e).toLocaleString()} H100e fleet</small></article>)}</div>
-      <div className="infra-method"><b>Investment interpretation</b><p>Training runs alone do not explain the installed fleet. Inference, experiments, fine-tuning, concurrent development and cloud customers must absorb most capacity. The economically useful next metric is revenue or tokens per utilized H100e-hour. Ownership-to-CapEx correlation is not an independent test because Epoch uses CapEx evidence when allocating some chip estimates.</p></div>
+      <div className="infra-method"><b>Investment interpretation</b><p>Training runs alone do not explain the installed fleet. Inference, experiments, fine-tuning, concurrent development and cloud customers must absorb most capacity. The economically useful next metric is revenue or tokens per utilized H100e-hour.</p></div>
     </div>}
+    <SectionNotes section="infrastructure" />
   </section>;
 }

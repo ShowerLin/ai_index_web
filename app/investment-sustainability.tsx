@@ -1,9 +1,10 @@
 "use client";
 
+import SectionNotes from "./section-notes";
+
 import { useState } from "react";
 import { sustainabilitySnapshot } from "./sustainability-snapshot";
 import { rollingCash } from "./sustainability-metrics";
-import SectionSummary from "./section-summary";
 
 const companies = sustainabilitySnapshot.companies.map(c => ({ ...c, history: rollingCash(c.quarters) }));
 const matched = companies.filter(c => c.ticker !== "ORCL");
@@ -27,8 +28,7 @@ export default function InvestmentSustainability() {
   return <section className="section sustainability-section" id="sustainability">
     <div className="section-head"><div><div className="eyebrow">INVESTMENT SUSTAINABILITY · CASH FLOW</div><h2>Investment is absorbing more operating cash.</h2></div><div className="select-wrap"><label htmlFor="sustainability-company">Company</label><select id="sustainability-company" value={selected} onChange={e => setSelected(e.target.value)}><option value="Aggregate">Four-company aggregate</option>{companies.map(c => <option key={c.ticker} value={c.ticker}>{c.name}</option>)}</select></div></div>
     <p className="sustainability-context">{view.name} · TTM ending {latest.period} · USD billions · latest available data <a className="source-chip" href="#source-S7">S7</a></p>
-    <SectionSummary about="Tests how much operating cash remains after funding cash capital expenditure." current="For the four-company aggregate, cash investment absorbs 77.3% of operating cash flow, up from 59.1%, and cash remaining after investment fell by $52.3B." conclusion="The companies can still fund the aggregate investment from operations, but the smaller cash cushion increases the importance of timely monetization."/>
-    <div className="sustainability-thesis"><b>{deltaFcf < 0 ? "Cash left after investment is shrinking." : "Cash left after investment is increasing."}</b><p>Operating cash flow grew {percent(latest.cfoGrowth)} and cash capex grew {percent(latest.capexGrowth)} versus the preceding 12 months. Cash remaining after investment {deltaFcf < 0 ? "fell" : "rose"} by {money(Math.abs(deltaFcf))}. {latest.fcf < 0 ? "Investment exceeded operating cash generation over this period." : "Operating cash generation still covered cash investment over this period."}</p></div>
+    <div className="sustainability-thesis"><b>{deltaFcf < 0 ? "Cash left after investment is shrinking." : "Cash left after investment is increasing."}</b><p>Operating cash flow grew {percent(latest.cfoGrowth)} and cash capex grew {percent(latest.capexGrowth)} versus the preceding 12 months. Cash remaining after investment {deltaFcf < 0 ? "fell" : "rose"} by {money(Math.abs(deltaFcf))}. {latest.fcf < 0 ? "Investment exceeded operating cash generation over this period." : "Operating cash generation still covered cash investment, but the remaining cushion has narrowed."}</p></div>
     <div className="sustainability-kpis">
       <article><span>Investment absorption</span><strong>{percent(latest.absorption)}</strong><small>Previously {percent(latest.previousAbsorption)}<br/>TTM cash capex / operating cash flow</small></article>
       <article><span>Incremental cash coverage</span><strong>{percent(latest.incrementalCoverage)}</strong><small>Change in TTM operating cash flow / change in TTM cash capex</small></article>
@@ -41,8 +41,9 @@ export default function InvestmentSustainability() {
       const r = c.history.at(-1);
       return <tr key={c.ticker}><td><b>{c.name}</b><span className="company-label">{r?.period ?? "Unavailable"}{c.ticker === "ORCL" ? " · calendarized" : ""}</span></td>{r ? <><td>{percent(r.cfoGrowth)}</td><td>{percent(r.capexGrowth)}</td><td>{percent(r.previousAbsorption)} → {percent(r.absorption)}</td><td>{percent(r.incrementalCoverage)}</td><td className={r.fcf < 0 ? "negative" : ""}>{money(r.fcf)}</td></> : <td colSpan={5}>Insufficient consecutive quarterly data</td>}</tr>;
     })}</tbody></table></div>
-    <div className="sustainability-notes"><div><b>Analytical interpretation</b><p>Above 100% absorption, cash capex exceeds operating cash flow. Below 100% incremental coverage, additional operating cash does not fully cover additional spending. Cash reserves and financing remain separate sources of funding. <a href="#financing">Compare financing conditions →</a></p></div><div><b>Scope and periods</b><p>The aggregate includes Microsoft, Alphabet, Amazon and Meta only, with complete matching quarters. Oracle is shown separately: June 2026 is missing and its BQ series appears calendarized. Missing observations are never zero-filled.</p></div><div><b>Return measurement</b><p>Company-wide cash measures are funding indicators rather than AI-specific ROIC or project payback. Cash capex excludes noncash financed-asset additions and differs from the buildout panel’s total-capex definitions. Cloud revenue and segment profit remain the key evidence for determining whether spending is translating into earnings.</p></div></div>
-    <p className="sustainability-source" id="source-S7"><b>S7 · Indexlist.xlsx — Hyperscaler Core Data Value.</b> Cached Bloomberg cash flow and cash capex; four companies through June 2026, Oracle through March 2026. Source periods and definitions differ from the total-capex panel.</p>
-    <details className="sustainability-method"><summary>Definitions and source checks</summary><p>Each TTM uses four consecutive quarters; comparisons use the preceding four. Capex outflows are converted to positive spending. Ratios with nonpositive cash-flow denominators are unavailable; incremental coverage is unavailable when incremental capex is zero or negative. The aggregate uses sums of dollars, not averages of company ratios.</p><p>Source: {sustainabilitySnapshot.source}, “{sustainabilitySnapshot.sheet}”; cash flow and cash capex columns E:F, P:Q, AA:AB, AL:AM and AW:AX. Cached Bloomberg values, not a live feed. Publication dates and actual/estimate labels are not supplied, so this panel is not a point-in-time backtest. It does not enter either atmosphere score.</p><p>Lease liabilities are balances, not financed-asset additions. Debt and finance-lease overlap must be reconciled before extending lease-inclusive return comparisons.</p></details>
+
+
+
+    <SectionNotes section="sustainability" methodology={<><p>TTM sums use four consecutive quarters and compare with the preceding four. Cash CapEx outflows become positive spending. Absorption = CapEx / operating cash flow; incremental coverage = change in cash flow / change in CapEx. Aggregate dollar sums, not company ratios; withhold nonpositive denominators.</p><details><summary>Source cell checks</summary><p>{sustainabilitySnapshot.source}, “{sustainabilitySnapshot.sheet}”; cash flow and cash CapEx columns E:F, P:Q, AA:AB, AL:AM and AW:AX.</p></details></>}/>
   </section>;
 }

@@ -26,7 +26,8 @@ test("infrastructure build script documents source mappings and does not claim u
   ]);
   assert.match(script, /"Google": "Alphabet"/);
   assert.match(script, /latest milestone on or before each quarter end/i);
-  assert.match(component, /not measures of workload utilization/i);
-  assert.match(component, /overlapping modeled views/i);
+  const notes = await readFile(new URL("../app/section-notes.tsx", import.meta.url), "utf8");
+  assert.match(notes, /not a measure of paid workload utilization/i);
+  assert.match(notes, /Owned-chip and facility views overlap/i);
   assert.match(component, /PHYSICAL INFRASTRUCTURE · SUPPLEMENTARY ANALYSIS/);
 });

@@ -16,7 +16,9 @@ test("frontier lab snapshot separates run rate from recognized revenue", () => {
 
 test("frontier labs page documents scope exclusions", async () => {
   const component = await readFile(new URL("../app/frontier-labs.tsx", import.meta.url), "utf8");
-  assert.match(component, /excludes product\/division records/i);
-  assert.match(component, /Recognized FY2025 revenue is shown separately/i);
+  const notes = await readFile(new URL("../app/section-notes.tsx", import.meta.url), "utf8");
+  assert.match(component, /SectionNotes section="labs"/);
+  assert.match(notes, /excludes product\/division records/i);
+  assert.match(notes, /FY2025 recognized revenue appears separately/i);
   assert.doesNotMatch(component, /Q1 2026 revenue|Q2 2026 revenue/);
 });

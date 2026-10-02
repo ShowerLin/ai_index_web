@@ -32,7 +32,8 @@ test("buyer-side useful-task economics remain available separately", async () =>
   assert.ok(epochPoint.costPerUsefulTask > 68 && epochPoint.costPerUsefulTask < 69);
   const component = await readFile(new URL("../app/useful-task-economics.tsx", import.meta.url), "utf8");
   assert.match(component, /Cost per successful task and observed model range/i);
-  assert.match(component, /derived buyer-side price-performance measure/i);
+  const notes = await readFile(new URL("../app/section-notes.tsx", import.meta.url), "utf8");
+  assert.match(notes, /derived buyer-side price-performance measure/i);
   assert.match(component, /Daily successful tasks required per \$1B of capital/i);
   assert.match(component, /Public success proxies/i);
   const deepSwePoint = usefulTaskSnapshot.observations.find(row => row.model === "GPT-5.6 Sol");
@@ -53,7 +54,8 @@ test("training-economics presentation separates estimates from total development
   const component = await readFile(new URL("../app/task-economics.tsx", import.meta.url), "utf8");
   assert.match(component, /constant 2023 USD/i);
   assert.match(component, /Estimated frontier-model training compute cost/i);
-  assert.match(component, /shaded area is the annual interquartile range/i);
+  const notes = await readFile(new URL("../app/section-notes.tsx", import.meta.url), "utf8");
+  assert.match(notes, /shading shows the interquartile range/i);
   assert.match(component, /neither total model-development cost nor customer API price/i);
   assert.match(component, /Revenue required to cover one training run/i);
   assert.match(component, /Selected accelerator price-performance/i);

@@ -75,3 +75,33 @@ pnpm run data:swebench
 ```
 
 The output is stored under `swe_bench` in the OneDrive research-data folder. Leaderboard rows describe model-agent systems and should not be treated as model-only pass rates.
+
+
+### Five-stage reading framework
+
+The dashboard follows **Capability → Adoption → Utilization → Monetization → Capital Return**. Each stage states the available evidence, missing evidence and the conversion hypothesis to test. Navigation and the executive-summary reading path follow the same order. The original momentum heatmap remains above the five stages, with a direct Heatmap navigation link.
+
+- Capability: benchmark-based successful-task economics; comparable capability history remains a gap.
+- Adoption: current and expected business AI use, followed by supporting macro momentum.
+- Utilization: spending and physical capacity; installed compute and training examples do not establish paid utilization.
+- Monetization: lab revenue/run rates and the supporting traffic-price-return comparison; populations are not matched.
+- Capital Return: consolidated/incremental ROIC, cash funding and illustrative training-cost recovery.
+
+The industry map, financial quality and credit indicators provide supporting context. This reorganization does not add data or turn existing assumptions into observed utilization or AI-specific returns.
+
+
+The momentum heatmap uses monthly columns from July 2025 through June 2026. Adoption, Demand, Investment and Imports show equal-weight constituent MoM changes from the saved Index Price Value inspection. U.S. and China CapEx retain QoQ changes, repeated unchanged in all three months of each quarter. This historical alignment does not imply the quarter was known at its start. The official atmosphere score is unchanged.
+
+Regenerate macro heatmap data with `python scripts/build-monthly-heatmap.py --input PATH/Indexlist.xlsx.inspect.ndjson`.
+
+
+The core index chart and its monthly score row sit with the pillar heatmap. Selecting a pillar reveals historical constituent growth on the same calendar, including each U.S./China company's quarterly CapEx held across the quarter. Core pillar detail immediately follows the heatmap. China and newer traffic, revenue, task-cost and physical-capacity evidence are supplemental and do not change core weights. Normalized YoY core scores are distinguished from raw MoM/QoQ heatmap changes.
+
+
+The monthly heatmap and selected historical chart share a row on desktop. Heatmap cells are color-only with accessible labels and hover values. Selecting a pillar charts its growth composite with constituent min–max shading; detailed historical values are collapsed below. The official core index uses its normalized score history and has no inferred band, because normalized historical constituent scores are unavailable. Layout stacks on smaller screens.
+
+The official core-index line remains visible for every category selection on a fixed 0–100 left axis. Selected pillar growth and constituent range use the separately labeled right axis.
+
+Each of the 16 analytical sections ends with the same numbered footnote format: (1) Data source and reliability, (2) Methodology, (3) Scope and other necessary information. The shared notes component keeps source links, evidence qualifications, assumptions and limitations together; detailed accounting calculations remain available within the relevant methodology notes.
+
+The editorial layout leads each analytical section with observations and investment implications. Repeated introductions and chart-level disclosure blocks are removed; source qualifications, calculation rules and scope limits are consolidated in numbered footnotes. Chart units, dates, estimates, partial periods and scenario labels remain visible to support accurate reading. The final reference section groups its source register, formulas and remaining limitations within the same footnote structure.
