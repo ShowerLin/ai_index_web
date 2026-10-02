@@ -11,7 +11,7 @@ type LabName = Exclude<LabView, "Both">;
 
 function FrontierArrChart({ view }: { view: LabView }) {
   const shown = view === "Both" ? (["OpenAI", "Anthropic"] as const) : ([view] as const);
-  const colors: Record<LabName, string> = { OpenAI: "#0f4c81", Anthropic: "#376c9f" };
+  const colors: Record<LabName, string> = { OpenAI: "#1d7f80", Anthropic: "#d88952" };
   const w = 960, h = 330, l = 58, r = 18, t = 24, b = 48, max = 70;
   const start = new Date("2024-12-01T00:00:00Z").valueOf();
   const end = new Date("2026-08-31T00:00:00Z").valueOf();
@@ -26,7 +26,7 @@ function FrontierArrChart({ view }: { view: LabView }) {
       const observations = snapshot.labs[lab].series;
       return <g key={lab}>
         <polyline points={observations.map(item => `${x(item.date)},${y(item.value)}`).join(" ")} fill="none" stroke={colors[lab]} strokeWidth="4" strokeLinejoin="round" strokeLinecap="round"/>
-        {observations.map((item, observationIndex) => <circle key={`${lab}-${item.date}-${item.value}`} cx={x(item.date)} cy={y(item.value)} r={observationIndex===observations.length-1?6:4} fill={colors[lab]} stroke="#ffffff" strokeWidth="2"><title>{`${lab} ${item.label}: $${item.value}B ${item.type.toLowerCase()} · ${item.confidence}`}</title></circle>)}
+        {observations.map((item, observationIndex) => <circle key={`${lab}-${item.date}-${item.value}`} cx={x(item.date)} cy={y(item.value)} r={observationIndex===observations.length-1?6:4} fill={colors[lab]} stroke="#fbfaf5" strokeWidth="2"><title>{`${lab} ${item.label}: $${item.value}B ${item.type.toLowerCase()} · ${item.confidence}`}</title></circle>)}
       </g>;
     })}
     {ticks.map(tick => <text key={tick.date} x={x(tick.date)} y={h-16} textAnchor="middle">{tick.label}</text>)}

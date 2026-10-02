@@ -236,7 +236,7 @@ const cdsRoleOverview = aiRoles.map(meta=>{
   return {...meta,members,oneMonth:members.reduce((sum,c)=>sum+c.oneMonth,0)/members.length,threeMonth:members.reduce((sum,c)=>sum+c.threeMonth,0)/members.length};
 });
 
-const companyColors: Record<Exclude<Company,"Aggregate">,string> = {Microsoft:"#0f4c81",Alphabet:"#4a83b5",Meta:"#747cae",Amazon:"#2381aa",Oracle:"#779bbb"};
+const companyColors: Record<Exclude<Company,"Aggregate">,string> = {Microsoft:"#1d7f80",Alphabet:"#4a83b5",Meta:"#747cae",Amazon:"#2381aa",Oracle:"#779bbb"};
 
 function Source({id}:{id:"S1"|"S2"|"S3"|"S4"|"S5"|"S6"}) { return <a className="source-chip" href={`#source-${id}`}>{id}</a>; }
 
@@ -275,8 +275,8 @@ function CapexChart({company}:{company:Company}) {
   const x=(i:number)=>l+i*(w-l-r)/(totalValues.length-1), y=(v:number)=>t+(max-v)*(h-t-b)/max;
   const totalPoints=total.map(d=>`${x(d.i)},${y(d.v)}`).join(" ");
   const proxyPoints=proxy.map(d=>`${x(d.i)},${y(d.v)}`).join(" ");
-  const totalColor=company==="Aggregate"?"#0f4c81":companyColors[company];
-  const proxyColor="#376c9f";
+  const totalColor=company==="Aggregate"?"#1d7f80":companyColors[company];
+  const proxyColor="#d88952";
   return <svg className="line-chart" viewBox={`0 0 ${w} ${h}`} role="img" aria-label={`${company} quarterly total capital expenditure and AI-related compute proxy`}>
     <title>{`${company} quarterly total capital expenditure and AI-related compute equipment proxy in US dollars billions`}</title>
     {[0,.25,.5,.75,1].map(p=>max*p).map(v=><g key={v}><line x1={l} x2={w-r} y1={y(v)} y2={y(v)} className="grid-line"/><text x={l-10} y={y(v)+4} textAnchor="end">${v.toFixed(0)}B</text></g>)}
@@ -290,7 +290,7 @@ function CapexChart({company}:{company:Company}) {
 
 function ChinaCapexChart({company}:{company:ChinaCompany}) {
   const companies = company==="All companies" ? ["Tencent","Alibaba","Baidu"] as const : [company] as const;
-  const colors = {Tencent:"#b65045",Alibaba:"#376c9f",Baidu:"#0f4c81"} as const;
+  const colors = {Tencent:"#b65045",Alibaba:"#d88952",Baidu:"#1d7f80"} as const;
   const maxValue=Math.max(...chinaCapexHistory.flatMap(d=>companies.map(item=>d[item])));
   const w=960,h=330,l=58,r=18,t=22,b=44,max=Math.ceil(maxValue/15)*15;
   const x=(i:number)=>l+i*(w-l-r)/(chinaCapexHistory.length-1), y=(v:number)=>t+(max-v)*(h-t-b)/max;
@@ -318,7 +318,7 @@ function BondChart(){
 function CdsRoleDebtChart(){
   const w=960,h=510,l=72,r=34,top=34,upperBottom=278,lowerTop=350,lowerBottom=462;
   const roles=["Hyperscalers","Accelerators & logic","Semiconductor equipment","Memory & storage","Systems & networking","Data centers","Power"] as const;
-  const colors:Record<(typeof roles)[number],string>={Hyperscalers:"#0f4c81","Accelerators & logic":"#376c9f","Semiconductor equipment":"#b49a3a","Memory & storage":"#7f6ea8","Systems & networking":"#b45d50","Data centers":"#4f79a7",Power:"#719a45"};
+  const colors:Record<(typeof roles)[number],string>={Hyperscalers:"#1d7f80","Accelerators & logic":"#d88952","Semiconductor equipment":"#b49a3a","Memory & storage":"#7f6ea8","Systems & networking":"#b45d50","Data centers":"#4f79a7",Power:"#719a45"};
   const x=(i:number)=>l+i*(w-l-r)/(cdsRoleQuarterly.length-1);
   const cdsIndex=(role:(typeof roles)[number],value:number)=>value/cdsRoleQuarterly[0][role]*100;
   const yCds=(v:number)=>top+(185-v)*(upperBottom-top)/125;

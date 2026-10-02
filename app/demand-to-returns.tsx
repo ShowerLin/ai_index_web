@@ -24,9 +24,9 @@ const trend = [
 ] as const;
 
 const trendSeries = [
-  { key: "tokensPerDay", label: "OpenRouter tokens / day", color: "#5ba2d0", format: (value: number) => `${value.toFixed(3)}T` },
-  { key: "capex", label: "Quarterly cash CapEx", color: "#376c9f", format: (value: number) => `$${value.toFixed(1)}B` },
-  { key: "roic", label: "TTM consolidated ROIC", color: "#e4effb", format: (value: number) => `${value.toFixed(1)}%` },
+  { key: "tokensPerDay", label: "OpenRouter tokens / day", color: "#4eb7b4", format: (value: number) => `${value.toFixed(3)}T` },
+  { key: "capex", label: "Quarterly cash CapEx", color: "#d88952", format: (value: number) => `$${value.toFixed(1)}B` },
+  { key: "roic", label: "TTM consolidated ROIC", color: "#cfe3dd", format: (value: number) => `${value.toFixed(1)}%` },
 ] as const;
 
 function DemandReturnTrend(){

@@ -9,7 +9,7 @@ import SectionSummary from "./section-summary";
 type View = "deployment" | "compute" | "conversion" | "usage";
 
 const companyColors: Record<string, string> = {
-  Microsoft: "#0f4c81",
+  Microsoft: "#1d7f80",
   Alphabet: "#d5aa43",
   Meta: "#927bb8",
   Amazon: "#df7658",
