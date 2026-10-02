@@ -95,3 +95,40 @@
 
 /* Screen palette inspired by PANTONE 19-4052 Classic Blue. */
 .brand-mark{background:var(--teal);color:#fff}.topbar{background:rgba(255,255,255,.94)}.hero{background:#fff}.gauge:before{background:#fff}.source-chip:hover{color:#fff}.view-switch button.selected,.metric-switch button.selected,.labs-switch button.selected{background:var(--teal);color:#fff}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+
+/* Signal colors are separate from blue chart-series and interface colors. */
+:root {
+  --positive: #176b45; --positive-soft: #e7f3eb;
+  --negative: #b42332; --negative-soft: #fce9ec;
+  --risk: #a44912; --risk-soft: #fff0e3;
+  --caution: #806000; --caution-soft: #fff6d8;
+  --neutral: #526782; --neutral-soft: #edf2f7;
+  --red: var(--negative);
+}
+.up,.positive,.pulse-up b,.signal-good { color:var(--positive)!important; }
+.down,.negative,.pulse-down b,.signal-bad { color:var(--negative)!important; }
+.signal-neutral { color:var(--caution); }
+.signal-na { color:var(--neutral); }
+.heat-up-3 { background:var(--positive); color:#fff; }
+.heat-up-2 { background:#92c9a9; color:#123e29; }
+.heat-up-1 { background:var(--positive-soft); color:var(--positive); }
+.heat-zero,.heat-na { background:var(--neutral-soft); color:var(--neutral); }
+.heat-down-watch { background:var(--caution-soft); color:var(--caution); }
+.heat-down-1 { background:var(--risk-soft); color:var(--risk); }
+.heat-down-2 { background:var(--negative); color:#fff; }
+.status.included,.quality,.credit-status.tightening { background:var(--positive-soft); color:var(--positive); }
+.status.context,.quality.estimated { background:var(--caution-soft); color:var(--caution); }
+.credit-status.widening { background:var(--negative-soft); color:var(--negative); }
+.roic-status.ready { color:var(--positive); border-color:var(--positive); }
+.roic-status.gated { color:var(--risk); border-color:var(--risk); }
+.roic-gate { border-left-color:var(--risk); }
+.roic-gate>span { color:var(--risk); }
+.map-legend .constraint,.detail-connections .constraint { background:var(--negative); }
+.map-edge.constraint,.map-arrow.constraint { --edge-color:var(--negative); }
+.map-node.selected .signal-good,.map-node.selected .positive,.map-node.selected .up { color:#a9dfb9!important; }
+.map-node.selected .signal-bad,.map-node.selected .negative,.map-node.selected .down { color:#ffb4bd!important; }
+.map-node.selected .signal-neutral { color:#ffe08a; }
+.map-node.selected .signal-na { color:#c3d5e9; }
+.heat-legend { flex-wrap:wrap; justify-content:flex-end; }
+@media(max-width:720px) { .heat-legend { justify-content:flex-start; } }

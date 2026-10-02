@@ -244,7 +244,9 @@ function heatClass(v:number|null){
   if(v===null)return "heat-na";
   if(v>=30)return "heat-up-3";
   if(v>=10)return "heat-up-2";
-  if(v>=0)return "heat-up-1";
+  if(v>0)return "heat-up-1";
+  if(v===0)return "heat-zero";
+  if(v>-3)return "heat-down-watch";
   if(v>-10)return "heat-down-1";
   return "heat-down-2";
 }
@@ -594,7 +596,7 @@ export default function Home(){
     </section>
 
     <section className="heatmap-overview" id="heatmap" aria-labelledby="heatmap-title">
-      <div className="heatmap-head"><div><div className="eyebrow">MONTHLY MOMENTUM HEATMAP</div><h2 id="heatmap-title">Demand and CapEx lead; investment indicators remain uneven.</h2><p>July 2025–June 2026 · MoM macro momentum / QoQ CapEx</p></div><div className="heat-legend" aria-label="Heatmap legend"><span><i className="heat-down-2"/>Contracting</span><span><i className="heat-up-1"/>Moderate</span><span><i className="heat-up-3"/>Strong</span></div></div>
+      <div className="heatmap-head"><div><div className="eyebrow">MONTHLY MOMENTUM HEATMAP</div><h2 id="heatmap-title">Demand and CapEx lead; investment indicators remain uneven.</h2><p>July 2025–June 2026 · MoM macro momentum / QoQ CapEx</p></div><div className="heat-legend" aria-label="Heatmap legend"><span><i className="heat-up-3"/>Positive</span><span><i className="heat-down-watch"/>Mild decline</span><span><i className="heat-down-1"/>Decline</span><span><i className="heat-down-2"/>Sharp decline</span></div></div>
       <SectionSummary current="Hyperscaler CapEx rose 25.3% in 2026Q2, with four of five U.S. companies increasing spending. Investment indicators were softer, with three of five underlying signals positive." conclusion="The buildout remains broad, but uneven investment indicators reinforce the need to test whether usage, cash generation and incremental returns are catching up."/>
       <div className="core-heatmap-workbench">
       <div className="compact-heatmap-panel">
@@ -603,7 +605,7 @@ export default function Home(){
 
         <thead><tr><th rowSpan={2}>Pillar / change basis</th>{heatmap[0].cells.map(cell=><th key={cell.q} colSpan={3}>{cell.q}</th>)}</tr>
           <tr>{monthlyHeatmapSnapshot.months.map((month,index)=><th key={month} className={index%3===0?"quarter-start":""}>{new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US",{month:"short",timeZone:"UTC"})}</th>)}</tr></thead>
-        <tbody><tr className={`core-score-row ${compositeSelection==="Official core index"?"selected":""}`}><th><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"}>Official core index<small>Score · 50 = neutral</small></button></th>{monthlyHeatmapSnapshot.months.map((month,index)=>{const score=atmosphereHistory.find(([date])=>date===month)?.[1]??null;return <td key={month} className={`${score===null?"heat-na":score>=65?"heat-up-3":score>=50?"heat-up-1":"heat-down-1"} ${index%3===0?"quarter-start":""}`}><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"} aria-label={`Official core index, ${month}: ${score??"unavailable"}`} title={`${month} · official core score ${score??"unavailable"}`}/></td>})}</tr>{monthlyHeatmap.map(row=><tr key={row.pillar} className={compositeSelection===row.pillar?"selected":""}>
+        <tbody><tr className={`core-score-row ${compositeSelection==="Official core index"?"selected":""}`}><th><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"}>Official core index<small>Score · 50 = neutral</small></button></th>{monthlyHeatmapSnapshot.months.map((month,index)=>{const score=atmosphereHistory.find(([date])=>date===month)?.[1]??null;return <td key={month} className={`${score===null?"heat-na":score>=65?"heat-up-3":score>50?"heat-up-1":score===50?"heat-zero":score>=35?"heat-down-watch":"heat-down-2"} ${index%3===0?"quarter-start":""}`}><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"} aria-label={`Official core index, ${month}: ${score??"unavailable"}`} title={`${month} · official core score ${score??"unavailable"}`}/></td>})}</tr>{monthlyHeatmap.map(row=><tr key={row.pillar} className={compositeSelection===row.pillar?"selected":""}>
           <th><button type="button" onClick={()=>selectHeatmapPillar(row.pillar)} aria-pressed={compositeSelection===row.pillar}>{row.pillar}<small>{row.pillar==="China · 3-company CapEx"?"Supplementary · QoQ held":row.quarterly?"Core 20% · QoQ held":"Core 20% · MoM"}</small></button><Source id={row.source}/></th>
           {row.monthlyCells.map((cell,index)=><td key={cell.month} className={`${heatClass(cell.value)} ${index%3===0?"quarter-start":""}`}><button type="button" onClick={()=>selectHeatmapPillar(row.pillar)} aria-label={`${row.pillar}, ${cell.month}: ${cell.value===null?"unavailable":`${cell.value>0?"plus ":""}${cell.value.toFixed(1)} percent`}, ${row.quarterly?`${cell.quarter} quarter-over-quarter value held within quarter`:"month-over-month"}`} aria-pressed={compositeSelection===row.pillar} title={`${cell.month} · ${row.quarterly?`${cell.quarter} QoQ held; not monthly growth`:"MoM change"} · ${cell.value===null?"unavailable":`${cell.value.toFixed(1)}%`}`}></button></td>)}
         </tr>)}</tbody>

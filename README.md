@@ -105,3 +105,7 @@ The official core-index line remains visible for every category selection on a f
 Each of the 16 analytical sections ends with the same numbered footnote format: (1) Data source and reliability, (2) Methodology, (3) Scope and other necessary information. The shared notes component keeps source links, evidence qualifications, assumptions and limitations together; detailed accounting calculations remain available within the relevant methodology notes.
 
 The editorial layout leads each analytical section with observations and investment implications. Repeated introductions and chart-level disclosure blocks are removed; source qualifications, calculation rules and scope limits are consolidated in numbered footnotes. Chart units, dates, estimates, partial periods and scenario labels remain visible to support accurate reading. The final reference section groups its source register, formulas and remaining limitations within the same footnote structure.
+
+### Color semantics
+
+Blue and white define the interface and ordinary chart series. Positive signals use green; negative momentum uses yellow for mild declines above −3%, orange for declines above −10%, and red for declines of −10% or worse. Exact zero and missing observations are neutral, with missing values still labeled unavailable. Core scores use their existing 50-neutral scale rather than growth thresholds. Categorical series colors do not imply investment direction. Signed values, accessible labels and legends supplement color.
