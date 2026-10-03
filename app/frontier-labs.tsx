@@ -1,4 +1,6 @@
 "use client";
+import EvidenceCard from "./evidence-card";
+import ChartLegend from "./chart-legend";
 
 import SectionNotes from "./section-notes";
 
@@ -33,11 +35,12 @@ function FrontierArrChart({ view }: { view: LabView }) {
   </svg>;
 }
 
-export default function FrontierLabs() {
+export default function FrontierLabs({compact=false}:{compact?:boolean}={}) {
   const [view, setView] = useState<LabView>("Both");
   const shownLabs = view === "Both" ? (["OpenAI", "Anthropic"] as const) : ([view] as const);
 
-  return <section className="section labs-section" id="labs">
+  if(compact) return <><EvidenceCard id="labs" title="Frontier-lab revenue run rates" unit="USD billions annualized · OpenAI / Anthropic" source="S10" legend={<ChartLegend items={[{label:"OpenAI",color:"#1d7f80"},{label:"Anthropic",color:"#d88952"}]}/>} note="Reported floors and approximate observations; annualized run rates differ from recognized revenue."><FrontierArrChart view="Both"/></EvidenceCard><details className="evidence-data"><summary>Lab observations and revenue definitions</summary><FrontierLabs/></details></>;
+  return <section className="section labs-section" id="labs-detail">
     <div className="section-head labs-head">
       <div><div className="eyebrow">PAID DEMAND · FRONTIER LAB MONETIZATION</div><h2>Reported lab revenue provides evidence of paid demand.</h2></div>
       <div className="labs-switch" role="group" aria-label="Select frontier model lab">

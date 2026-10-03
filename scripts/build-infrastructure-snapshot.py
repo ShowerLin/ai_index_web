@@ -37,7 +37,7 @@ def main() -> None:
     parser.add_argument(
         "--data-root",
         type=Path,
-        default=Path("/Users/linyu/Library/CloudStorage/OneDrive-Personal/AI_INDEX"),
+        default=Path("/Users/linyu/Library/CloudStorage/OneDrive-Personal/AI_Index"),
     )
     parser.add_argument("--as-of", default="2026-09-28")
     parser.add_argument(
@@ -48,11 +48,12 @@ def main() -> None:
     args = parser.parse_args()
     cutoff = pd.Timestamp(args.as_of)
 
-    chip_path = args.data_root / "ai_chip_owners" / "cumulative_by_designer.csv"
-    center_path = args.data_root / "data_centers" / "data_centers.csv"
-    timeline_path = args.data_root / "data_centers" / "data_center_timelines.csv"
+    epoch_root = args.data_root / "epoch_ai"
+    chip_path = epoch_root / "ai_chip_owners" / "cumulative_by_designer.csv"
+    center_path = epoch_root / "data_centers" / "data_centers.csv"
+    timeline_path = epoch_root / "data_centers" / "data_center_timelines.csv"
     capex_path = args.data_root / "outputs" / "ai_index_source" / "ai_index_source_workbook.xlsx"
-    chip_users_path = args.data_root / "ai_chip_users" / "year_end_by_lab.csv"
+    chip_users_path = epoch_root / "ai_chip_users" / "year_end_by_lab.csv"
     models_path = args.data_root / "epoch_ai" / "ml_models" / "frontier_ai_models.csv"
 
     chips = pd.read_csv(chip_path)
@@ -126,6 +127,7 @@ def main() -> None:
             {
                 "quarter": quarter_label(quarter_end) + ("*" if quarter_end == cutoff and not quarter_end.is_quarter_end else ""),
                 "itMw": rounded(it_mw, 1),
+                "owners": {company: rounded(covered.loc[covered["company"] == company, "IT power (MW)"].fillna(0).sum(), 1) for company in COMPANY_ORDER},
                 "additionMw": None if previous_it_mw is None else rounded(it_mw - previous_it_mw, 1),
                 "allCoveredMw": rounded(all_it_mw, 1),
                 "h100e": rounded(h100e / 1_000_000, 3),

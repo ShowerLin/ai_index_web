@@ -1,4 +1,8 @@
 "use client";
+import {capacityYields} from "./capacity-yields-snapshot";
+import EvidenceCard from "./evidence-card";
+import ChartLegend from "./chart-legend";
+import OwnerTimeSeries from "./owner-time-series";
 
 import SectionNotes from "./section-notes";
 
@@ -17,27 +21,8 @@ const companyColors: Record<string, string> = {
 };
 
 function DeploymentChart() {
-  const data = snapshot.deploymentHistory;
-  const w = 960, h = 330, l = 58, r = 20, t = 24, b = 48;
-  const max = Math.ceil(Math.max(...data.map(d => d.itMw)) / 2000) * 2000;
-  const maxAddition = Math.max(...data.map(d => d.additionMw ?? 0));
-  const x = (i: number) => l + i * (w - l - r) / (data.length - 1);
-  const y = (v: number) => t + (max - v) * (h - t - b) / max;
-  const barWidth = Math.min(35, (w - l - r) / data.length * .48);
-  const line = data.map((d, i) => `${i ? "L" : "M"}${x(i)},${y(d.itMw)}`).join(" ");
-  return <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-labelledby="deployment-title deployment-desc">
-    <title id="deployment-title">Operational IT power and quarterly additions at the five covered hyperscalers</title>
-    <desc id="deployment-desc">Operational IT power rises from 127 megawatts in early 2023 to more than eight gigawatts in 2026. Bars show quarterly additions.</desc>
-    {[0, 2000, 4000, 6000, 8000].filter(v => v <= max).map(v => <g key={v}><line x1={l} x2={w-r} y1={y(v)} y2={y(v)} className="infra-grid"/><text x={l-10} y={y(v)+4} textAnchor="end">{v === 0 ? "0" : `${v/1000}GW`}</text></g>)}
-    {data.map((d, i) => {
-      const addition = d.additionMw ?? 0;
-      const height = addition / maxAddition * 82;
-      return <rect key={`bar-${d.quarter}`} x={x(i)-barWidth/2} y={h-b-height} width={barWidth} height={height} className="infra-addition"><title>{`${d.quarter}: ${addition.toLocaleString()} MW added`}</title></rect>;
-    })}
-    <path d={`${line} L${x(data.length-1)},${h-b} L${x(0)},${h-b} Z`} className="infra-area"/>
-    <path d={line} className="infra-line"/>
-    {data.map((d, i) => <g key={d.quarter}><circle cx={x(i)} cy={y(d.itMw)} r={i === data.length-1 ? 6 : 3.5} className="infra-point"><title>{`${d.quarter}: ${d.itMw.toLocaleString()} operational IT MW`}</title></circle>{(i%2===0 || i===data.length-1) && <text x={x(i)} y={h-16} textAnchor="middle">{d.quarter.replace("20", "")}</text>}</g>)}
-  </svg>;
+  return <OwnerTimeSeries title="Operational IT capacity by hyperscaler" unit="MW"
+    data={snapshot.deploymentHistory.map(d=>({period:d.quarter,total:d.itMw,owners:d.owners}))}/>;
 }
 
 function ComputeChart() {
@@ -77,7 +62,16 @@ function OwnerBars({metric}:{metric:"deployment"|"compute"}) {
   })}</div>;
 }
 
-function ConversionTable() {
+function CapacityYieldChart({compute=false}:{compute?:boolean}) {
+ const key=compute?"computeYield":"capacityYield",values=capacityYields.map(r=>r[key]).filter((v):v is number=>v!==null),low=Math.min(0,...values),high=Math.max(1,...values),x=(i:number)=>90+i*710/(capacityYields.length-1),y=(v:number)=>35+(high-v)*210/(high-low);
+ return <><svg viewBox="0 0 900 320" role="img" aria-label={compute?"Quarterly net H100 equivalent additions per million dollars of compute CapEx":"Quarterly net operational IT MW additions per billion dollars of compute CapEx"}>
+ {[0,.5,1].map((t,i)=>{const v=low+(high-low)*t;return <g key={i}><line x1="70" x2="825" y1={y(v)} y2={y(v)} stroke="#d6d7ce"/><text x="60" y={y(v)+4} textAnchor="end">{v.toFixed(1)}</text></g>;})}
+ {capacityYields.map((r,i)=>{const v=r[key];return <g key={r.quarter}>{v!==null&&<rect x={x(i)-26} y={Math.min(y(v),y(0))} width="52" height={Math.abs(y(v)-y(0))} fill={compute&&r.flag?"#b45c70":"#237d67"}><title>{`${r.quarter}: ${v.toFixed(2)}; compute CapEx $${r.capex.toFixed(2)}B${compute&&r.flag?"; negative net stock change—estimate revision or retirement may affect interpretation":""}`}</title></rect>}{v!==null&&<text x={x(i)} y={v>=0?y(v)-10:y(v)+18} textAnchor="middle">{v.toFixed(1)}{compute&&r.flag?"*":""}</text>}<text x={x(i)} y="290" textAnchor="middle">{r.quarter}{compute&&r.flag?"*":""}</text></g>;})}
+ </svg></>;
+}
+
+function ConversionTable({compact=false}:{compact?:boolean}={}) {
+  if(compact)return <div className="infra-yield-table"><table><thead><tr><th>Company</th><th>Compute CapEx ($B)</th><th>H100e / $1M</th><th>IT MW / $1B</th></tr></thead><tbody>{snapshot.conversion.map(r=><tr key={r.company}><td>{r.company}</td><td>{r.computeCapex?.toFixed(1)??"n/a"}</td><td>{r.computeCapex!==null&&r.computeCapex>0?(r.h100eAdded/r.computeCapex*1000).toFixed(1):"n/a"}</td><td>{r.computeCapex!==null&&r.computeCapex>0?(r.itMwAdded/r.computeCapex).toFixed(1):"n/a"}</td></tr>)}</tbody></table></div>;
   return <div className="infra-table"><table>
     <thead><tr><th>Company</th><th>Compute CapEx</th><th>H100e added</th><th>IT MW added</th><th>CapEx / 1M H100e</th><th>CapEx / MW</th></tr></thead>
     <tbody>{snapshot.conversion.map(row => <tr key={row.company}>
@@ -91,11 +85,23 @@ function ConversionTable() {
   </table></div>;
 }
 
-export default function InfrastructureDeployment() {
+export default function InfrastructureDeployment({compact=false}:{compact?:boolean}={}) {
   const [view,setView] = useState<View>("deployment");
   const latestDeployment = snapshot.deploymentHistory.at(-1)!;
   const latestCompute = snapshot.computeHistory.at(-1)!;
-  return <section className="section infrastructure-section" id="infrastructure">
+  if(compact) return <><>
+    <div className="compute-conversion-row">
+    <EvidenceCard id="infrastructure" title="Operational capacity" unit="IT MW · company bars and total line" source="S11" note="Modeled facilities only; missing owner capacity is not global zero. Latest quarter is partial."><DeploymentChart/></EvidenceCard>
+    <EvidenceCard title="Operational capacity by owner" unit="IT MW · latest modeled facility snapshot" source="S11" note="Owner coverage is incomplete; these are modeled facilities rather than realized utilization."><OwnerBars metric="deployment"/></EvidenceCard>
+    <EvidenceCard title="Operational capacity per CapEx" unit="Net IT MW added per $1B compute CapEx · quarterly" source="S11" note="Matched Microsoft, Alphabet, Meta and Amazon. Same-quarter net operational MW additions divided by compute-equipment CapEx; commissioning lags affect the ratio. This is not facility construction cost per MW."><CapacityYieldChart/></EvidenceCard>
+    </div>
+    <div className="compute-conversion-row">
+    <EvidenceCard title="Estimated owned compute" unit="Millions of H100 equivalents" source="S11" legend={<ChartLegend items={[{label:"Median estimate",color:"#d88952"},{label:"Summed 5th–95th percentile bounds",color:"#d5aa4340",shape:"band"}]}/>} note="Epoch AI chip-owner estimates. 2026Q1 is incomplete and omits AMD and Amazon custom-chip rows present in 2025Q4; totals are not fully comparable. Shading sums estimate bounds, not an aggregate confidence interval. Ownership does not establish operational deployment or utilization."><ComputeChart/></EvidenceCard>
+    <EvidenceCard title="Compute by owner" unit="H100 equivalents · 2026Q1" source="S11" note="Modeled ownership, including compute rented by other organizations."><OwnerBars metric="compute"/></EvidenceCard>
+    <EvidenceCard title="Compute power per CapEx" unit="Net H100 equivalents added per $1M compute CapEx · quarterly" source="S11" note="Matched four-company cohort. Same-quarter net owned-compute additions, not gross deliveries or utilization. 2026Q1 yield withheld: source coverage is incomplete and omits chip designers included in 2025Q4. Chip estimates partly use CapEx evidence."><CapacityYieldChart compute/></EvidenceCard>
+    </div>
+  </><details className="evidence-data"><summary>Facility records, ownership and conversion assumptions</summary><ConversionTable/><InfrastructureDeployment/></details></>;
+  return <section className="section infrastructure-section" id="infrastructure-detail">
     <div className="section-head"><div><div className="eyebrow">PHYSICAL INFRASTRUCTURE · SUPPLEMENTARY ANALYSIS</div><h2>How quickly is spending becoming compute capacity?</h2></div><p>Facilities through {snapshot.metadata.dataCenterAsOf} · chips through {snapshot.metadata.chipAsOf} <a className="source-chip" href="#source-S11">S11</a></p></div>
     <SectionSummary current={`${snapshot.metadata.coveredOwners} covered hyperscalers have ${latestDeployment.itMw.toLocaleString()} MW of modeled operational IT capacity and ${latestCompute.h100e.toFixed(1)} million estimated H100 equivalents.`} conclusion="The expanding capacity base raises the revenue and workload volume needed to earn an adequate return."/>
     <div className="infra-tabs" role="tablist" aria-label="Physical buildout views">
@@ -104,7 +110,7 @@ export default function InfrastructureDeployment() {
 
     {view === "deployment" && <div role="tabpanel" className="infra-panel">
       <div className="infra-kpis"><article><span>Operational IT capacity</span><strong>{(latestDeployment.itMw/1000).toFixed(2)} GW</strong><small>Five covered hyperscalers · latest milestone snapshot</small></article><article><span>Latest period addition</span><strong>+{(latestDeployment.additionMw!/1000).toFixed(2)} GW</strong><small>{latestDeployment.quarter} change · *partial quarter through 28 Sep</small></article><article><span>Current modeled project cost</span><strong>${snapshot.deploymentByOwner.reduce((sum,row)=>sum+row.capital,0).toFixed(1)}B</strong><small>2025 USD · current facility estimates</small></article></div>
-      <div className="infra-layout"><div className="infra-chart"><div className="infra-chart-head"><div><b>Operational capacity</b><span>IT MW · bars show quarterly additions</span></div><span><i className="line-key"/>Capacity <i className="bar-key"/>Additions</span></div><DeploymentChart/></div><aside className="infra-ranking"><span>OWNER SNAPSHOT</span><h3>Alphabet has the largest covered footprint.</h3><OwnerBars metric="deployment"/></aside></div>
+      <div className="infra-layout"><div className="infra-chart"><div className="infra-chart-head"><div><b>Operational capacity</b><span>IT MW · stacked capacity by owner</span></div><span><i className="line-key"/>Total <i className="bar-key"/>Owners</span></div><DeploymentChart/></div><aside className="infra-ranking"><span>OWNER SNAPSHOT</span><h3>Alphabet has the largest covered footprint.</h3><OwnerBars metric="deployment"/></aside></div>
     </div>}
 
     {view === "compute" && <div role="tabpanel" className="infra-panel">

@@ -1,4 +1,5 @@
 "use client";
+import EvidenceCard from "./evidence-card";
 
 import SectionNotes from "./section-notes";
 
@@ -12,13 +13,17 @@ const percent = (value: number | null) => value === null ? "n/a" : `${(value * 1
 const points = (value: number | null) => value === null ? "n/a" : `${value >= 0 ? "+" : "−"}${Math.abs(value * 100).toFixed(1)} pp`;
 const money = (value: number) => `$${value.toFixed(1)}B`;
 
-export default function RoicAnalysis() {
+export default function RoicAnalysis({compact=false}:{compact?:boolean}={}) {
   const [selected, setSelected] = useState("MSFT");
   const company = companies.find(item => item.ticker === selected)!;
   const core = calculateRoic(company);
   const leaseSensitivity = calculateRoic(company, true);
 
-  return <section className="section roic-section" id="roic">
+  if(compact) return <><EvidenceCard id="roic" title="Hyperscaler capital returns" unit="Latest complete TTM · company comparison" source="S8" note="Consolidated and eight-quarter incremental ROIC; this is not AI-specific project ROIC." table><div className="roic-readiness"><table><caption>Hyperscaler return comparison</caption><thead><tr><th>Company</th><th>TTM end</th><th>ROIC</th><th>Change</th><th>8Q incremental ROIC</th></tr></thead><tbody>{companies.map(item => {
+      const result = calculateRoic(item);
+      return <tr key={item.ticker}><td><b>{item.ticker}</b><span>{item.name}</span></td>{result.status === "ready" ? <><td>{result.latest.period}</td><td>{percent(result.latest.roic)}</td><td className={result.roicChange !== null && result.roicChange < 0 ? "negative" : "positive"}>{points(result.roicChange)}</td><td>{percent(result.incrementalRoic8q)}</td></> : <td colSpan={4}>{result.reason}</td>}</tr>;
+    })}</tbody></table></div></EvidenceCard><details className="evidence-data"><summary>Company ROIC calculations and capital definitions</summary><RoicAnalysis/></details></>;
+  return <section className="section roic-section" id="roic-detail">
     <div className="section-head"><div><div className="eyebrow">RETURN ON INVESTED CAPITAL · SUPPLEMENTARY ANALYSIS</div><h2>Is profit keeping pace with the capital base?</h2></div><div className="select-wrap"><label htmlFor="roic-company">Company</label><select id="roic-company" value={selected} onChange={event => setSelected(event.target.value)}>{companies.map(item => <option value={item.ticker} key={item.ticker}>{item.name}</option>)}</select></div></div>
     <p className="roic-context">Consolidated company measure · latest available quarterly fundamentals · USD billions · <a className="source-chip" href="#source-S8">S8</a></p>
     <SectionSummary current="All five companies generate positive total ROIC, but their preferred eight-quarter incremental ROIC is lower than total ROIC." conclusion="Weaker incremental returns point to slower earnings realization relative to capital deployment."/>

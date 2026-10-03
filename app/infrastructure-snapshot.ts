@@ -12,6 +12,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2023Q1",
       "itMw": 127.0,
+      "owners": {
+        "Microsoft": 48.0,
+        "Alphabet": 79.0,
+        "Meta": 0.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": null,
       "allCoveredMw": 127.0,
       "h100e": 0.029
@@ -19,6 +26,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2023Q2",
       "itMw": 214.0,
+      "owners": {
+        "Microsoft": 135.0,
+        "Alphabet": 79.0,
+        "Meta": 0.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": 87.0,
       "allCoveredMw": 214.0,
       "h100e": 0.091
@@ -26,6 +40,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2023Q3",
       "itMw": 340.0,
+      "owners": {
+        "Microsoft": 135.0,
+        "Alphabet": 160.0,
+        "Meta": 45.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": 126.0,
       "allCoveredMw": 340.0,
       "h100e": 0.157
@@ -33,6 +54,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2023Q4",
       "itMw": 340.0,
+      "owners": {
+        "Microsoft": 135.0,
+        "Alphabet": 160.0,
+        "Meta": 45.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": 0.0,
       "allCoveredMw": 340.0,
       "h100e": 0.157
@@ -40,6 +68,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2024Q1",
       "itMw": 408.0,
+      "owners": {
+        "Microsoft": 135.0,
+        "Alphabet": 228.0,
+        "Meta": 45.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": 68.0,
       "allCoveredMw": 473.0,
       "h100e": 0.192
@@ -47,6 +82,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2024Q2",
       "itMw": 753.0,
+      "owners": {
+        "Microsoft": 182.0,
+        "Alphabet": 526.0,
+        "Meta": 45.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": 345.0,
       "allCoveredMw": 874.0,
       "h100e": 0.375
@@ -54,6 +96,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2024Q3",
       "itMw": 1060.0,
+      "owners": {
+        "Microsoft": 201.0,
+        "Alphabet": 814.0,
+        "Meta": 45.0,
+        "Amazon": 0.0,
+        "Oracle": 0.0
+      },
       "additionMw": 307.0,
       "allCoveredMw": 1320.0,
       "h100e": 0.532
@@ -61,6 +110,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2024Q4",
       "itMw": 1466.0,
+      "owners": {
+        "Microsoft": 201.0,
+        "Alphabet": 972.0,
+        "Meta": 180.0,
+        "Amazon": 113.0,
+        "Oracle": 0.0
+      },
       "additionMw": 406.0,
       "allCoveredMw": 1901.0,
       "h100e": 0.815
@@ -68,6 +124,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2025Q1",
       "itMw": 1744.0,
+      "owners": {
+        "Microsoft": 337.0,
+        "Alphabet": 1114.0,
+        "Meta": 180.0,
+        "Amazon": 113.0,
+        "Oracle": 0.0
+      },
       "additionMw": 278.0,
       "allCoveredMw": 2574.3,
       "h100e": 1.084
@@ -75,6 +138,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2025Q2",
       "itMw": 2783.0,
+      "owners": {
+        "Microsoft": 337.0,
+        "Alphabet": 1438.0,
+        "Meta": 180.0,
+        "Amazon": 795.0,
+        "Oracle": 33.0
+      },
       "additionMw": 1039.0,
       "allCoveredMw": 3705.4,
       "h100e": 2.005
@@ -82,6 +152,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2025Q3",
       "itMw": 3311.0,
+      "owners": {
+        "Microsoft": 458.0,
+        "Alphabet": 1693.0,
+        "Meta": 180.0,
+        "Amazon": 842.0,
+        "Oracle": 138.0
+      },
       "additionMw": 528.0,
       "allCoveredMw": 4426.3,
       "h100e": 2.657
@@ -89,6 +166,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2025Q4",
       "itMw": 4621.0,
+      "owners": {
+        "Microsoft": 807.0,
+        "Alphabet": 1959.0,
+        "Meta": 541.0,
+        "Amazon": 1070.0,
+        "Oracle": 244.0
+      },
       "additionMw": 1310.0,
       "allCoveredMw": 6531.3,
       "h100e": 4.166
@@ -96,6 +180,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2026Q1",
       "itMw": 5520.0,
+      "owners": {
+        "Microsoft": 835.0,
+        "Alphabet": 1959.0,
+        "Meta": 998.0,
+        "Amazon": 1484.0,
+        "Oracle": 244.0
+      },
       "additionMw": 899.0,
       "allCoveredMw": 8109.1,
       "h100e": 5.085
@@ -103,6 +194,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2026Q2",
       "itMw": 8219.0,
+      "owners": {
+        "Microsoft": 1519.0,
+        "Alphabet": 2553.0,
+        "Meta": 1942.0,
+        "Amazon": 1712.0,
+        "Oracle": 493.0
+      },
       "additionMw": 2699.0,
       "allCoveredMw": 12068.3,
       "h100e": 8.31
@@ -110,6 +208,13 @@ export const infrastructureSnapshot = {
     {
       "quarter": "2026Q3*",
       "itMw": 9177.0,
+      "owners": {
+        "Microsoft": 1519.0,
+        "Alphabet": 3179.0,
+        "Meta": 2243.0,
+        "Amazon": 1743.0,
+        "Oracle": 493.0
+      },
       "additionMw": 958.0,
       "allCoveredMw": 13500.2,
       "h100e": 9.827

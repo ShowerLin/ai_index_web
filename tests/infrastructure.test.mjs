@@ -31,3 +31,11 @@ test("infrastructure build script documents source mappings and does not claim u
   assert.match(notes, /Owned-chip and facility views overlap/i);
   assert.match(component, /PHYSICAL INFRASTRUCTURE · SUPPLEMENTARY ANALYSIS/);
 });
+
+ test("quarterly owner capacity reconciles to aggregate", () => {
+  for (const row of snapshot.deploymentHistory) {
+    assert.equal(Object.keys(row.owners).length, 5);
+    assert.ok(Object.values(row.owners).every(v => v >= 0));
+    assert.ok(Math.abs(Object.values(row.owners).reduce((a,b)=>a+b,0)-row.itMw)<0.3);
+  }
+});

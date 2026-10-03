@@ -6,13 +6,13 @@ const notes: Record<string, Note> = {
   heatmap: {
     sources: ["S1", "S2", "S3"],
     source: "Saved Bloomberg monthly workbook observations and U.S./China CapEx collections. Macro inputs may contain prior-value fills; CapEx accounting definitions vary. These are cached observations rather than a live feed.",
-    methodology: "Core index: normalize each signal’s YoY momentum against its own history, score 50 + 15 × z-score within 0–100, and weight five pillars equally at 20%. Heatmap: average constituent MoM changes; retain quarterly CapEx QoQ changes unchanged across three months. The selected chart’s shading spans constituent minima and maxima.",
-    other: "The core line uses a fixed 0–100 left axis; selected growth uses the right axis. The range is not a confidence interval. Core history ends in June 2026. Monthly growth does not sum to the normalized core score. Normalized historical pillar scores are unavailable, so the core line has no inferred range. Traffic, lab revenue, task cost and installed capacity provide supplementary context outside the core score. Historical quarterly alignment does not imply the data was published at the quarter’s start. China is supplementary.",
+    methodology: "Methodology v2: adoption levels; TTM YoY growth for exports, orders and imports; 12M-average YoY growth for construction and high-tech production; trailing-four-quarter YoY growth for company CapEx. Normalize against each transformed series’ fixed history through June 2026 using sample standard deviation, and clip 50 + 15 × z to 0–100. Equal weights within five 20% pillars. Heatmap and attribution use these same scores.",
+    other: "The core line uses a fixed 0–100 left axis; selected growth uses the right axis. The range is not a confidence interval. Revised core history runs from November 2024 through June 2026; earlier periods lack full trailing windows. The baseline is retrospective, not a real-time backtest. Quarterly scores are held within quarter. Nominal price effects remain. Traffic, lab revenue, task cost and installed capacity provide supplementary context outside the core score. Historical quarterly alignment does not imply the data was published at the quarter’s start. China is supplementary.",
   },
   pulse: {
     sources: ["S1", "S2"],
     source: "Bloomberg macro workbook and consolidated U.S. hyperscaler CapEx. Later observations mix source periods and may contain carried values; the official score remains at the last complete comparable month.",
-    methodology: "Series receive equal weights within pillars; Adoption, Demand, Investment, Imports and Hyperscaler CapEx each receive 20%. Signal scores normalize YoY momentum and are capped at 0–100; 50 is neutral.",
+    methodology: "Series receive equal weights within pillars; Adoption, Demand, Investment, Imports and Hyperscaler CapEx each receive 20%. Signal scores use the methodology-v2 constituent treatments and are capped at 0–100; 50 is each signal’s historical norm.",
     other: "Latest pillar cards are diagnostic snapshots, not the June score decomposition. They must not be averaged to reconstruct the held official index. Token prices remain context rather than a core input.",
   },
   adoption: {
@@ -71,13 +71,13 @@ const notes: Record<string, Note> = {
     other: "The screen measures reported financial quality rather than AI-specific profitability. Sector, size, outliers and expectations can affect comparisons. Historical association with stock returns is not validation of predictive timing.",
   },
   credit: {
-    sources: ["S4"], source: "Bloomberg-implied USD senior 5Y CDS for 25 issuers across seven supply-chain roles through 16 September 2026. Quotes and comparable issuer coverage limit representativeness.",
-    methodology: "Measure spread changes at matched observations on or before one and three calendar months earlier; weight those changes equally. Report the signal when at least eight issuers have comparable data. Wider spreads indicate greater financing pressure.",
+    sources: ["S4"], source: "Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily benchmark observations through 22 September 2026. Latest issuer ratings are dated 30 September 2026. Quotes and comparable issuer coverage limit representativeness.",
+    methodology: "Daily relative change = change in the equal-weight fixed issuer basket minus change in the general IG benchmark since 31 December 2025. Thirty-day issuer comparisons use matched dates. Latest rating groups are retrospective, not historical ratings. Displayed overall, sector and rating charts use median spread lines with observed minimum–maximum bands and the general IG benchmark. Overall and sector baskets include covered below-IG issuers.",
     other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage history is available only for hyperscalers. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. Issuer and role coverage are shown; the credit adjustment is separate from the five-pillar core index.",
   },
   financing: {
-    sources: ["S6"], source: "Bloomberg workbook AI-related bond issuance amount and count through 16 September 2026. December 2025 is missing; September is partial. The observed total is not a complete rolling-year sample.",
-    methodology: "Show monthly issuance in USD billions and issue counts. Present observed full months through August separately from September month-to-date. Do not zero-fill the missing month or publish unsupported rolling-year YoY growth.",
+    sources: ["S6"], source: "Bloomberg workbook issuer-month bond issuance amount and count through September 2026. December 2025 is missing. Latest-month completeness is not certified. The observed total is not a complete rolling-year sample.",
+    methodology: "Sum issuer-month records into analytical supply-chain sectors and reconcile them to observed monthly totals. USD-equivalent amounts follow the workbook convention. Do not zero-fill the missing month or publish unsupported rolling-year YoY growth.",
     other: "Issuance measures access to funding, not issuer-specific AI use of proceeds or returns. A partial month cannot be compared directly with a full month. Bond issuance retains zero weight in the supplementary adjustment until coverage and normalization are resolved.",
   },
   methodology: {
@@ -93,10 +93,11 @@ export default function SectionNotes({ section, source, methodology, other }: {
   const note = notes[section];
   if (!note) throw new Error(`Missing section notes: ${section}`);
   return <footer className="section-notes" aria-label={`${section} notes`} data-section-notes={section}>
-    <ol>
+    <p className="panel-source">Source: {note.sources.length ? note.sources.map(id=><a key={id} className="source-chip" href={`#source-${id}`}>{id}</a>) : "Source register"}</p>
+    <details><summary>Sources, methodology and scope</summary><ol>
       <li id={note.anchor}><h4>(1) Data source and reliability</h4><div>{source ?? <p>{note.source}</p>}{note.sources.length > 0 && <p className="section-note-sources">{note.sources.map(id=><a key={id} className="source-chip" href={`#source-${id}`}>{id}</a>)}</p>}</div></li>
       <li><h4>(2) Methodology</h4><div>{methodology ?? <p>{note.methodology}</p>}</div></li>
       <li><h4>(3) Scope and other necessary information</h4><div>{other ?? <p>{note.other}</p>}</div></li>
-    </ol>
+    </ol></details>
   </footer>;
 }
