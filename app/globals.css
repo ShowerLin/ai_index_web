@@ -326,3 +326,6 @@
 .infra-yield-table th,.infra-yield-table td{padding:12px 6px;white-space:normal}
 @media(max-width:1050px){.compute-conversion-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:750px){.compute-conversion-row{grid-template-columns:minmax(0,1fr)}}
+.composite-history-chart.composite-history-chart svg{width:100%;max-height:none}.composite-latest{text-align:right;display:flex;flex-direction:column;gap:5px}.composite-latest strong{font:400 36px Georgia,serif}.composite-latest small{font-size:11px;color:var(--muted)}.composite-events{font-size:11px;line-height:1.7;margin:12px 0;color:var(--muted)}.composite-events summary{cursor:pointer;color:var(--teal)}.composite-events a{text-decoration:underline}.composite-events ul{padding-left:18px}.composite-events li{margin:8px 0}@media(max-width:1100px){.composite-history-chart.composite-history-chart svg{max-height:none}}@media(max-width:720px){.composite-history-chart svg{min-width:700px}.composite-history-chart{overflow-x:auto}.composite-chart-heading{min-width:0}.composite-latest strong{font-size:28px}}
+
+.composite-history-chart svg .event-number{fill:#fff;font:bold 9px ui-monospace,monospace}.composite-history-chart svg .event-name{fill:var(--ink);font:600 10px system-ui,sans-serif}.composite-history-chart svg .event-date{font:9px ui-monospace,monospace;fill:var(--muted)}

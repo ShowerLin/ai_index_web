@@ -10,7 +10,7 @@ import pandas as pd
 
 
 DATA_ROOT = Path("/Users/linyu/Library/CloudStorage/OneDrive-Personal/AI_INDEX")
-SOURCE = DATA_ROOT / "ai_companies" / "ai_companies_revenue_reports.csv"
+SOURCE = DATA_ROOT / "epoch_ai" / "ai_companies" / "ai_companies_revenue_reports.csv"
 OUTPUT = Path(__file__).resolve().parents[1] / "app" / "frontier-labs-snapshot.ts"
 LABS = ["OpenAI", "Anthropic"]
 
@@ -39,9 +39,11 @@ def main() -> None:
         fy_2025 = rows[(rows["Date"] == pd.Timestamp("2025-12-31")) & (rows["Period type"] == "Year")].iloc[-1]
         latest_value = float(latest["Annualized revenue (USD)"])
         end_value = float(end_2025["Annualized revenue (USD)"])
-        floor = lab == "OpenAI"
+        floor = lab == "OpenAI" and latest["Date"] < pd.Timestamp("2026-09-29")
+        approximate = "approximate" in str(latest["Graph note"]).lower()
         payload["labs"][lab] = {
-            "latest": money_label(latest_value, floor),
+            "latest": ("~" if approximate else "") + money_label(latest_value, floor),
+            "latestSource": latest["Source 1"],
             "latestValue": latest_value / 1_000_000_000,
             "latestDate": latest["Date"].strftime("%d %b %Y"),
             "latestType": latest["Annualized revenue type"],
@@ -56,6 +58,7 @@ def main() -> None:
                     "value": round(float(row["Annualized revenue (USD)"]) / 1_000_000_000, 3),
                     "type": row["Annualized revenue type"],
                     "confidence": row["Confidence"],
+                    "note": str(row["Graph note"]) if pd.notna(row["Graph note"]) else "",
                 }
                 for _, row in annualized.iterrows()
             ],

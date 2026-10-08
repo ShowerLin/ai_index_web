@@ -1,0 +1,11 @@
+﻿company_id,company_name,primary_role,description,layout_side,layout_y,entity_type,roles,ticker
+nv,NVIDIA,hardware,Accelerators / systems,supplier,120,company,hardware,NVDA
+amazon,Amazon / AWS,cloud,Hyperscale cloud / custom chips,supplier,330,company,cloud,AMZN
+ms,Microsoft / Azure,cloud,Hyperscale cloud / applications,supplier,540,company,cloud,MSFT
+amd,AMD,hardware,Accelerators / processors,supplier,750,company,hardware,AMD
+oai,OpenAI,lab,Frontier models / applications,customer,80,company,lab,
+anth,Anthropic,lab,Frontier models / applications,customer,260,company,lab,
+cw,CoreWeave,cloud,Specialist GPU cloud,customer,440,company,cloud,CRWV
+aggregate,AI-cloud customers,cloud,Aggregate · may include CoreWeave,customer,620,aggregate_group,cloud,
+sbe,SB Energy / OpenAI,project,Project developer / tenant,customer,800,composite_group,project,
+meta,Meta,platform,Applications / owned infrastructure,customer,980,company,platform,META

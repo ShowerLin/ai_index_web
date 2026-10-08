@@ -1,0 +1,391 @@
+{
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "datasetId",
+    "informationCutoff",
+    "updatedAt",
+    "currency",
+    "amountUnit",
+    "nodes",
+    "flows",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "datasetId": {
+      "const": "ai-circular-financing-network"
+    },
+    "informationCutoff": {
+      "type": "string",
+      "format": "date"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "currency": {
+      "const": "USD"
+    },
+    "amountUnit": {
+      "const": "billion"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "role",
+          "label",
+          "x",
+          "y",
+          "entityType",
+          "roles",
+          "ticker"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "hardware",
+              "cloud",
+              "lab",
+              "project",
+              "platform"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "x": {
+            "enum": [
+              50,
+              850
+            ]
+          },
+          "y": {
+            "type": "number"
+          },
+          "entityType": {
+            "enum": [
+              "company",
+              "aggregate_group",
+              "composite_group"
+            ]
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "hardware",
+                "cloud",
+                "lab",
+                "project",
+                "platform"
+              ]
+            }
+          },
+          "ticker": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "loopId",
+          "from",
+          "to",
+          "kind",
+          "label",
+          "amount",
+          "status",
+          "time",
+          "newsBrief",
+          "sourceIds",
+          "reconciliation"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "loopId": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "paid",
+              "commitment",
+              "purchase",
+              "guarantee",
+              "incentive"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "object",
+            "required": [
+              "value",
+              "currency",
+              "unit",
+              "bound"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "currency": {
+                "const": "USD"
+              },
+              "unit": {
+                "const": "billion"
+              },
+              "bound": {
+                "enum": [
+                  "exact",
+                  "upper_bound",
+                  "lower_bound",
+                  "unknown"
+                ]
+              }
+            }
+          },
+          "status": {
+            "enum": [
+              "completed",
+              "conditional",
+              "conditional_equity_incentive",
+              "procurement_relationship",
+              "contracted",
+              "announced_payment_unverified",
+              "cancelled",
+              "superseded"
+            ]
+          },
+          "time": {
+            "type": "object",
+            "required": [
+              "label",
+              "asOf",
+              "announcedAt",
+              "effectiveAt",
+              "periodStart",
+              "periodEnd",
+              "durationYears",
+              "basis",
+              "durationBasis"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "asOf": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "announcedAt": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "effectiveAt": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "periodStart": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "periodEnd": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "durationYears": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "exclusiveMinimum": 0
+              },
+              "basis": {
+                "type": "string"
+              },
+              "durationBasis": {
+                "enum": [
+                  "typical",
+                  "maximum",
+                  "contract_term",
+                  null
+                ]
+              }
+            }
+          },
+          "newsBrief": {
+            "type": "string"
+          },
+          "sourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reconciliation": {
+            "type": "object",
+            "required": [
+              "status",
+              "supersedes",
+              "overlapGroup",
+              "overlapStatus",
+              "notes"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "enum": [
+                  "baseline",
+                  "proposed",
+                  "verified",
+                  "disputed",
+                  "superseded"
+                ]
+              },
+              "supersedes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "overlapGroup": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "overlapStatus": {
+                "enum": [
+                  "unresolved",
+                  "not_assessed",
+                  "disjoint",
+                  "included_in_aggregate"
+                ]
+              },
+              "notes": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "url",
+          "publisher",
+          "title",
+          "publishedAt",
+          "reviewedThrough",
+          "sourceType",
+          "archivedFullText"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "reviewedThrough": {
+            "type": "string",
+            "format": "date"
+          },
+          "sourceType": {
+            "enum": [
+              "regulatory_filing",
+              "company_announcement",
+              "news_report"
+            ]
+          },
+          "archivedFullText": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-index:circular-financing:1.0.0",
+  "title": "AI circular financing exchange format"
+}

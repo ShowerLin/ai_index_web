@@ -4,7 +4,7 @@ import SectionNotes from "./section-notes";
 import SectionSummary from "./section-summary";
 
 const stages = [
-  { id: "demand", label: "01 · Demand", value: "450.9T", metric: "30-day OpenRouter tokens", signal: "Traffic is spread across models", detail: "The largest model accounts for 11.3% of this OpenRouter sample, spreading demand across competing providers." },
+  { id: "demand", label: "01 · Demand", value: "615.3T", metric: "30-day tokens · 7 Sep–6 Oct", signal: "Traffic is spread across models", detail: "The largest model accounts for 12.6% of this OpenRouter sample, spreading demand across competing providers." },
   { id: "price", label: "02 · Price", value: "−44%", metric: "LLM token-price index · Jun to 16 Sep", signal: "Lower prices raise the monetization hurdle", detail: "The index fell from 1.7095 in June to 0.9543. Lower prices can stimulate usage, but revenue grows only if paid volume and product mix offset the decline in realized prices." },
   { id: "utilization", label: "03 · Capacity", value: "77.3%", metric: "Cash CapEx / operating cash flow", signal: "The buildout is absorbing more cash", detail: "Four-company cash CapEx reached $510.7B TTM while hardware, memory and data-center activity remained expansionary." },
   { id: "returns", label: "04 · Returns", value: "5 / 5", metric: "Incremental ROIC below total ROIC", signal: "Incremental returns trail overall returns", detail: "Profit growth per additional dollar of capital trails overall ROIC in all five companies. Earnings realization needs to catch up with the growing capital base." },
@@ -69,8 +69,8 @@ function DemandReturnTrend({compact=false}:{compact?:boolean}={}){
 export default function DemandToReturns({compact=false}:{compact?:boolean}={}){
   if(compact) return <><DemandReturnTrend compact/><details className="evidence-data"><summary>Cross-pillar interpretation and coverage</summary><DemandToReturns/></details></>;
   return <section className="section conversion-section" id="conversion-detail">
-    <div className="section-head conversion-head"><div><div className="eyebrow">DEMAND-TO-RETURNS CONVERSION</div><h2>Demand is visible. Value capture is the unresolved question.</h2></div><p>Retained OpenRouter snapshot through 10 Sep 2026 · financials through latest available TTM <a className="source-chip" href="#source-S9">S9</a></p></div>
-    <SectionSummary current="The retained OpenRouter snapshot shows substantial routed traffic; the refreshed token-price index has fallen 44% since June, while incremental ROIC remains below total ROIC for all five hyperscalers." conclusion="Realized revenue and profit per workload remain the core uncertainty in the capital-recovery thesis."/>
+    <div className="section-head conversion-head"><div><div className="eyebrow">DEMAND-TO-RETURNS CONVERSION</div><h2>Demand is visible. Value capture is the unresolved question.</h2></div><p>OpenRouter daily API through 6 Oct 2026 · financials through latest available TTM <a className="source-chip" href="#source-S9">S9</a></p></div>
+    <SectionSummary current="The refreshed OpenRouter history shows routed traffic rising through Q3; the refreshed token-price index has fallen 44% since June, while incremental ROIC remains below total ROIC for all five hyperscalers." conclusion="Realized revenue and profit per workload remain the core uncertainty in the capital-recovery thesis."/>
     <div className="conversion-flow" aria-label="AI demand to return conversion framework">{stages.map((stage,index)=><article key={stage.id} className={`conversion-stage ${stage.id}`}><span>{stage.label}</span><strong>{stage.value}</strong><small>{stage.metric}</small><h3>{stage.signal}</h3><p>{stage.detail}</p>{index<stages.length-1&&<i aria-hidden="true">→</i>}</article>)}</div>
     <DemandReturnTrend/>
     <div className="conversion-detail">

@@ -1,0 +1,987 @@
+{
+  "schemaVersion": "1.0.0",
+  "datasetId": "ai-circular-financing-network",
+  "informationCutoff": "2026-10-05",
+  "updatedAt": "2026-10-06",
+  "currency": "USD",
+  "amountUnit": "billion",
+  "nodes": [
+    {
+      "id": "nv",
+      "name": "NVIDIA",
+      "role": "hardware",
+      "label": "Accelerators / systems",
+      "x": 50,
+      "y": 120,
+      "entityType": "company",
+      "roles": [
+        "hardware"
+      ],
+      "ticker": "NVDA"
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon / AWS",
+      "role": "cloud",
+      "label": "Hyperscale cloud / custom chips",
+      "x": 50,
+      "y": 330,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": "AMZN"
+    },
+    {
+      "id": "ms",
+      "name": "Microsoft / Azure",
+      "role": "cloud",
+      "label": "Hyperscale cloud / applications",
+      "x": 50,
+      "y": 540,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": "MSFT"
+    },
+    {
+      "id": "amd",
+      "name": "AMD",
+      "role": "hardware",
+      "label": "Accelerators / processors",
+      "x": 50,
+      "y": 750,
+      "entityType": "company",
+      "roles": [
+        "hardware"
+      ],
+      "ticker": "AMD"
+    },
+    {
+      "id": "oai",
+      "name": "OpenAI",
+      "role": "lab",
+      "label": "Frontier models / applications",
+      "x": 850,
+      "y": 80,
+      "entityType": "company",
+      "roles": [
+        "lab"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "anth",
+      "name": "Anthropic",
+      "role": "lab",
+      "label": "Frontier models / applications",
+      "x": 850,
+      "y": 260,
+      "entityType": "company",
+      "roles": [
+        "lab"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "cw",
+      "name": "CoreWeave",
+      "role": "cloud",
+      "label": "Specialist GPU cloud",
+      "x": 850,
+      "y": 440,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": "CRWV"
+    },
+    {
+      "id": "aggregate",
+      "name": "AI-cloud customers",
+      "role": "cloud",
+      "label": "Aggregate \u00b7 may include CoreWeave",
+      "x": 850,
+      "y": 620,
+      "entityType": "aggregate_group",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "sbe",
+      "name": "SB Energy / OpenAI",
+      "role": "project",
+      "label": "Project developer / tenant",
+      "x": 850,
+      "y": 800,
+      "entityType": "composite_group",
+      "roles": [
+        "project"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "role": "platform",
+      "label": "Applications / owned infrastructure",
+      "x": 850,
+      "y": 980,
+      "entityType": "company",
+      "roles": [
+        "platform"
+      ],
+      "ticker": "META"
+    }
+  ],
+  "flows": [
+    {
+      "id": "amazon-openai-paid-amazon-oai",
+      "loopId": "amazon-openai",
+      "from": "amazon",
+      "to": "oai",
+      "kind": "paid",
+      "label": "$50B equity investment paid",
+      "amount": {
+        "value": 50,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "Q1\u2013after June 2026 \u00b7 disclosed 30 Jul",
+        "asOf": "2026-07-30",
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "cumulative_paid",
+        "durationBasis": null
+      },
+      "newsBrief": "All installments completed by the Q2 filing; final payment day is unspecified.",
+      "sourceIds": [
+        "source-3a0573943336"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amazon-anthropic-paid-amazon-anth",
+      "loopId": "amazon-anthropic",
+      "from": "amazon",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$18B cumulative investment paid",
+      "amount": {
+        "value": 18,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "Paid through 30 Jun 2026",
+        "asOf": "2026-06-30",
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "cumulative_paid",
+        "durationBasis": null
+      },
+      "newsBrief": "$18B paid cumulatively; remaining $15B is conditional and is excluded from the paid-only model.",
+      "sourceIds": [
+        "source-3a0573943336"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amazon-anthropic-commitment-amazon-anth",
+      "loopId": "amazon-anthropic",
+      "from": "amazon",
+      "to": "anth",
+      "kind": "commitment",
+      "label": "$15B remaining contingent facility",
+      "amount": {
+        "value": 15,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "announced_payment_unverified",
+      "time": {
+        "label": "As of 30 Jun 2026",
+        "asOf": "2026-06-30",
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "remaining_facility",
+        "durationBasis": null
+      },
+      "newsBrief": "Draws depend on delivery milestones; excluded from completed funding.",
+      "sourceIds": [
+        "source-3a0573943336"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-coreweave-paid-nv-cw",
+      "loopId": "nvidia-coreweave",
+      "from": "nv",
+      "to": "cw",
+      "kind": "paid",
+      "label": "$2B equity investment closed",
+      "amount": {
+        "value": 2,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "23 Jan 2026",
+        "asOf": null,
+        "announcedAt": null,
+        "effectiveAt": "2026-01-23",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "individual_transaction",
+        "durationBasis": null
+      },
+      "newsBrief": "Cash investment in CoreWeave Class A shares.",
+      "sourceIds": [
+        "source-cad47cec98b7"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-coreweave-guarantee-nv-cw",
+      "loopId": "nvidia-coreweave",
+      "from": "nv",
+      "to": "cw",
+      "kind": "guarantee",
+      "label": "$6.3B initial capacity backstop",
+      "amount": {
+        "value": 6.3,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "9 Sep 2025 \u2192 13 Apr 2032",
+        "asOf": null,
+        "announcedAt": null,
+        "effectiveAt": "2025-09-09",
+        "periodStart": null,
+        "periodEnd": "2032-04-13",
+        "durationYears": null,
+        "basis": "conditional_order",
+        "durationBasis": null
+      },
+      "newsBrief": "NVIDIA may purchase residual unsold compute; availability, delivery and termination conditions apply. This is cloud service demand, not a second GPU order.",
+      "sourceIds": [
+        "source-99dad0fb27bf"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": "nvidia-capacity-backstops",
+        "overlapStatus": "unresolved",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-openai-commitment-nv-oai",
+      "loopId": "nvidia-openai",
+      "from": "nv",
+      "to": "oai",
+      "kind": "commitment",
+      "label": "$30B round participation",
+      "amount": {
+        "value": 30,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "announced_payment_unverified",
+      "time": {
+        "label": "27 Feb / 31 Mar 2026",
+        "asOf": null,
+        "announcedAt": "2026-02-27",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "round_participation",
+        "durationBasis": null
+      },
+      "newsBrief": "OpenAI closed a round of committed capital; NVIDIA-specific cash payment timing is unverified. The older September 2025 $100B letter of intent is not added.",
+      "sourceIds": [
+        "source-baca61f09ad0"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-anthropic-commitment-nv-anth",
+      "loopId": "nvidia-anthropic",
+      "from": "nv",
+      "to": "anth",
+      "kind": "commitment",
+      "label": "Up to $10B NVIDIA investment",
+      "amount": {
+        "value": 10,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "announced_payment_unverified",
+      "time": {
+        "label": "18 Nov 2025 \u00b7 payment unverified",
+        "asOf": null,
+        "announcedAt": "2025-11-18",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "announced_investment",
+        "durationBasis": null
+      },
+      "newsBrief": "Microsoft separately announced up to $5B. Both are investment commitments, not verified cash in this dataset.",
+      "sourceIds": [
+        "source-a79282823a85"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "microsoft-openai-paid-ms-oai",
+      "loopId": "microsoft-openai",
+      "from": "ms",
+      "to": "oai",
+      "kind": "paid",
+      "label": "$11.9B cumulative funding paid",
+      "amount": {
+        "value": 11.9,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "As of 30 Jun 2026",
+        "asOf": "2026-06-30",
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "cumulative_paid",
+        "durationBasis": null
+      },
+      "newsBrief": "Funded portion of a cumulative $13B commitment; this is not a new annual investment.",
+      "sourceIds": [
+        "source-f6fe718fc495"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "microsoft-openai-commitment-ms-oai",
+      "loopId": "microsoft-openai",
+      "from": "ms",
+      "to": "oai",
+      "kind": "commitment",
+      "label": "$1.1B remaining funding commitment",
+      "amount": {
+        "value": 1.1,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "announced_payment_unverified",
+      "time": {
+        "label": "As of 30 Jun 2026",
+        "asOf": "2026-06-30",
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "remaining_commitment",
+        "durationBasis": null
+      },
+      "newsBrief": "$13B total less $11.9B funded. Azure contract duration is undisclosed, so no annual funding-to-purchases schedule is inferred.",
+      "sourceIds": [
+        "source-f6fe718fc495"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-backstops-guarantee-nv-aggregate",
+      "loopId": "nvidia-backstops",
+      "from": "nv",
+      "to": "aggregate",
+      "kind": "guarantee",
+      "label": "$36B residual-capacity obligations",
+      "amount": {
+        "value": 36,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "As of 26 Jul 2026 \u00b7 typically 6 years",
+        "asOf": "2026-07-26",
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": 6,
+        "basis": "aggregate_conditional_obligations",
+        "durationBasis": "typical"
+      },
+      "newsBrief": "Conditional compute purchases. Scheduled $6B FY2028, $8B FY2029, $7B FY2030, $6B FY2031, $9B thereafter; use by others or NVIDIA can reduce residual amounts.",
+      "sourceIds": [
+        "source-abcad3141371"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": "nvidia-capacity-backstops",
+        "overlapStatus": "unresolved",
+        "notes": "Do not add this aggregate to CoreWeave capacity support without reconciling overlap."
+      }
+    },
+    {
+      "id": "nvidia-sbe-guarantee-nv-sbe",
+      "loopId": "nvidia-sbe",
+      "from": "nv",
+      "to": "sbe",
+      "kind": "guarantee",
+      "label": "Up to $105B contingent tenant guarantee",
+      "amount": {
+        "value": 105,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "17 Aug 2026 \u00b7 starts ~2028 / FY2029",
+        "asOf": null,
+        "announcedAt": "2026-08-17",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": 20,
+        "basis": "maximum_guarantee_notional",
+        "durationBasis": "maximum"
+      },
+      "newsBrief": "Initial 4.25GW project; up to 20-year term, conditional readiness and tenant defaults, with OpenAI indemnity. Maximum notional is not expected loss. Separate planned $1.5B equity is not treated as paid.",
+      "sourceIds": [
+        "source-b2aa3a1dbcfc"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "unresolved",
+        "notes": null
+      }
+    },
+    {
+      "id": "amd-openai-incentive-amd-oai",
+      "loopId": "amd-openai",
+      "from": "amd",
+      "to": "oai",
+      "kind": "incentive",
+      "label": "Up to 160M warrant shares \u00b7 $0.01 exercise",
+      "amount": {
+        "value": null,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "unknown"
+      },
+      "status": "conditional_equity_incentive",
+      "time": {
+        "label": "5 / 6 Oct 2025",
+        "asOf": null,
+        "announcedAt": "2025-10-06",
+        "effectiveAt": "2025-10-05",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "purchase_linked_warrants",
+        "durationBasis": null
+      },
+      "newsBrief": "Equity incentive contingent on purchases and share-price milestones; not cash financing. Exercise price is not fair value.",
+      "sourceIds": [
+        "source-77c8a6ee438a"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amd-meta-incentive-amd-meta",
+      "loopId": "amd-meta",
+      "from": "amd",
+      "to": "meta",
+      "kind": "incentive",
+      "label": "Up to 160M warrant shares \u00b7 $0.01 exercise",
+      "amount": {
+        "value": null,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "unknown"
+      },
+      "status": "conditional_equity_incentive",
+      "time": {
+        "label": "23 / 24 Feb 2026",
+        "asOf": null,
+        "announcedAt": "2026-02-24",
+        "effectiveAt": "2026-02-23",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "purchase_linked_warrants",
+        "durationBasis": null
+      },
+      "newsBrief": "Equity incentive contingent on purchases and share-price milestones; not cash financing. Exercise price is not fair value.",
+      "sourceIds": [
+        "source-d40971f297a2"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amazon-openai-purchase-oai-amazon",
+      "loopId": "amazon-openai",
+      "from": "oai",
+      "to": "amazon",
+      "kind": "purchase",
+      "label": "$100B incremental AWS contract \u00b7 8 years",
+      "amount": {
+        "value": 100,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "27 Feb 2026 \u00b7 future consumption",
+        "asOf": null,
+        "announcedAt": "2026-02-27",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": 8,
+        "basis": "multi_year_contract",
+        "durationBasis": "contract_term"
+      },
+      "newsBrief": "Additional to an earlier $38B contract. Spending schedule and financing attribution are undisclosed.",
+      "sourceIds": [
+        "source-ceb209c17301"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amazon-anthropic-purchase-anth-amazon",
+      "loopId": "amazon-anthropic",
+      "from": "anth",
+      "to": "amazon",
+      "kind": "purchase",
+      "label": ">$100B incremental AWS contract \u00b7 10 years",
+      "amount": {
+        "value": 100,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "lower_bound"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "20 Apr 2026 \u00b7 delivery milestones apply",
+        "asOf": null,
+        "announcedAt": "2026-04-20",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": 10,
+        "basis": "multi_year_contract",
+        "durationBasis": "contract_term"
+      },
+      "newsBrief": "Existing commitments are excluded from this incremental amount.",
+      "sourceIds": [
+        "source-53ae5204e445"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "microsoft-openai-purchase-oai-ms",
+      "loopId": "microsoft-openai",
+      "from": "oai",
+      "to": "ms",
+      "kind": "purchase",
+      "label": "$250B incremental Azure contract",
+      "amount": {
+        "value": 250,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "28 Oct 2025 \u00b7 duration undisclosed",
+        "asOf": null,
+        "announcedAt": "2025-10-28",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "April 2026 amendment permits other clouds. OpenAI-to-Microsoft revenue share continues through 2030 with an undisclosed cap.",
+      "sourceIds": [
+        "source-dc3bf82fb729"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-anthropic-purchase-anth-ms",
+      "loopId": "nvidia-anthropic",
+      "from": "anth",
+      "to": "ms",
+      "kind": "purchase",
+      "label": "$30B Azure compute commitment",
+      "amount": {
+        "value": 30,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "18 Nov 2025 \u00b7 term undisclosed",
+        "asOf": null,
+        "announcedAt": "2025-11-18",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "Plus infrastructure of up to 1GW; do not treat 1GW as an additional cash amount.",
+      "sourceIds": [
+        "source-a79282823a85"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-coreweave-purchase-cw-nv",
+      "loopId": "nvidia-coreweave",
+      "from": "cw",
+      "to": "nv",
+      "kind": "purchase",
+      "label": "NVIDIA hardware purchases \u00b7 $ undisclosed",
+      "amount": {
+        "value": null,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "unknown"
+      },
+      "status": "procurement_relationship",
+      "time": {
+        "label": "AI factory buildout through 2030",
+        "asOf": null,
+        "announcedAt": null,
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "unreconciled",
+        "durationBasis": null
+      },
+      "newsBrief": "The portion purchased with this equity cannot be traced from public disclosures.",
+      "sourceIds": [
+        "source-326825e3c5cf"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nvidia-anthropic-commitment-ms-anth",
+      "loopId": "nvidia-anthropic",
+      "from": "ms",
+      "to": "anth",
+      "kind": "commitment",
+      "label": "Up to $5B Microsoft investment",
+      "amount": {
+        "value": 5,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "announced_payment_unverified",
+      "time": {
+        "label": "18 Nov 2025 \u00b7 payment unverified",
+        "asOf": null,
+        "announcedAt": "2025-11-18",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "announced_investment",
+        "durationBasis": null
+      },
+      "newsBrief": "Announced alongside NVIDIA\u2019s investment; Microsoft-specific payment timing is unverified.",
+      "sourceIds": [
+        "source-a79282823a85"
+      ],
+      "reconciliation": {
+        "status": "baseline",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "source-3a0573943336",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+      "publisher": "www.sec.gov",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-cad47cec98b7",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000044/crwv-20260123.htm",
+      "publisher": "www.sec.gov",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-99dad0fb27bf",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962825000047/crwv-20250909.htm",
+      "publisher": "www.sec.gov",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-baca61f09ad0",
+      "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
+      "publisher": "openai.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-a79282823a85",
+      "url": "https://blogs.microsoft.com/blog/2025/11/18/microsoft-nvidia-and-anthropic-announce-strategic-partnerships/",
+      "publisher": "blogs.microsoft.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-f6fe718fc495",
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+      "publisher": "www.sec.gov",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-abcad3141371",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+      "publisher": "www.sec.gov",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-b2aa3a1dbcfc",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm",
+      "publisher": "www.sec.gov",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-77c8a6ee438a",
+      "url": "https://ir.amd.com/financial-information/sec-filings/content/0001193125-25-230895/d28189d8k.htm",
+      "publisher": "ir.amd.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-d40971f297a2",
+      "url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000045/amd-20260223.htm",
+      "publisher": "ir.amd.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-ceb209c17301",
+      "url": "https://openai.com/index/amazon-partnership/",
+      "publisher": "openai.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-53ae5204e445",
+      "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+      "publisher": "www.anthropic.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-dc3bf82fb729",
+      "url": "https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/",
+      "publisher": "blogs.microsoft.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-326825e3c5cf",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-coreweave-strengthen-collaboration-to-accelerate-buildout-of-ai-factories",
+      "publisher": "nvidianews.nvidia.com",
+      "title": null,
+      "publishedAt": null,
+      "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    }
+  ]
+}

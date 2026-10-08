@@ -23,7 +23,7 @@ test('relative credit separates basket moves from IG market moves on identical d
   for(const p of group.cells){if(p.relativeChange!==null){assert.equal(p.coverage,p.count);near(p.relativeChange,(p.spread-base.spread)-(p.benchmark-base.benchmark));}}
   for(const p of group.cells)if(p.median!==null){assert.ok(p.minimum<=p.median&&p.median<=p.maximum);assert.equal(p.coverage,p.count);} 
  }
- assert.equal(data.metadata.creditAsOf,'2026-09-22');
+ assert.equal(data.metadata.creditAsOf,data.credit[0].cells.at(-1).date);
  const below=data.credit.find(g=>g.name==='Below IG');assert.ok(below.members.includes('IRM'));assert.ok(below.members.includes('9984'));
  assert.ok(!data.credit.find(g=>g.name==='All rated IG').members.includes('IRM'));
 });

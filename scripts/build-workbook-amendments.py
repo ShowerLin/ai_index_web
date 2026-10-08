@@ -2,7 +2,7 @@
 import argparse,collections,datetime,hashlib,json,math,re,statistics
 from pathlib import Path
 import openpyxl
-from openpyxl.utils.datetime import to_excel
+from openpyxl.utils.datetime import to_excel,from_excel
 p=argparse.ArgumentParser();p.add_argument('--input',type=Path,required=True);a=p.parse_args()
 w=openpyxl.load_workbook(a.input,data_only=True,read_only=True)
 roles={
@@ -50,6 +50,8 @@ for r in list(w['AI CDS Issuer Rating'].values)[1:]:
  ratings[ticker]=bucket;rating_sources[ticker]={'rating':rating,'agency':source,'bucket':bucket}
 rows=list(w['AI 5yrCDS Value'].values);headers=rows[0];daily=[]
 for r in rows[2:]:
+ if isinstance(r[0],(int,float)):
+  r=(from_excel(r[0]),*r[1:])
  if not isinstance(r[0],datetime.datetime):continue
  values={h.split()[0]:number(v) for h,v in zip(headers[1:],r[1:]) if isinstance(h,str)}
  benchmark=values.pop('IBOXUMAE',None)
@@ -82,8 +84,18 @@ for t in issuers:
  date=datetime.date.fromisoformat(last['date']);cut=date-datetime.timedelta(days=30)
  prior=next((r for r in reversed(daily) if r['date']<=cut.isoformat() and r['values'].get(t) is not None and r['benchmark'] is not None),None)
  issuer_credit.append({'ticker':t,'sector':sector.get(t,'Unclassified'),'rating':rating_sources.get(t,{}),'date':last['date'],'spread':last['values'][t],'benchmark':last['benchmark'],'excess30d':(last['values'][t]-prior['values'][t])-(last['benchmark']-prior['benchmark']) if prior else None})
+bond_sheet=list(w['Bond Issuance Value'].values)
+benchmark_month_col=next(i for i,h in enumerate(bond_sheet[0]) if h=='#US_IG_ISSUANCE')
+benchmark={}
+for r in bond_sheet[1:]:
+ m=re.fullmatch(r'(\d{6})(?:\.0)?',str(r[benchmark_month_col-1]))
+ amount=number(r[benchmark_month_col])
+ if m and amount is not None and amount>0:
+  month=m[1][:4]+'-'+m[1][4:]
+  if month in benchmark:raise ValueError(f'Duplicate benchmark month {month}')
+  benchmark[month]=amount/1e9
 bonds=[]
-for r in list(w['Bond Issuance Value'].values)[1:]:
+for r in bond_sheet[1:]:
  m=re.fullmatch(r'(\d{6})(?:\.0)?:([^:]+)',str(r[0]))
  amount=number(r[1]);count=number(r[2])
  if not m or amount is None:continue
@@ -94,9 +106,14 @@ for month in months:
  records=[r for r in bonds if r['month']==month]
  monthly.append({'month':month,'amount':sum(r['amount'] for r in records),'issues':sum(r['issues'] or 0 for r in records),'sectors':{s:sum(r['amount'] for r in records if r['sector']==s) for s in bond_sectors}})
 latest=months[-1];start=shift(latest,-11);window=[r for r in bonds if start<=r['month']<=latest]
+monthly_by_month={r['month']:r for r in monthly}
+bond_market=[{'month':m,'usIgAmount':benchmark.get(m),'coveredAmount':monthly_by_month.get(m,{}).get('amount'),'relativeSupplyPct':monthly_by_month[m]['amount']/benchmark[m]*100 if m in monthly_by_month and m in benchmark else None} for m in sorted(set(months)|set(benchmark))]
+matched=[r for r in bond_market if start<=r['month']<=latest and r['relativeSupplyPct'] is not None]
+bond_benchmark={'monthly':bond_market,'latestMatchedMonth':max(r['month'] for r in bond_market if r['relativeSupplyPct'] is not None),'benchmarkAsOf':max(benchmark),'matchedWindowRatio':sum(r['coveredAmount'] for r in matched)/sum(r['usIgAmount'] for r in matched)*100,'matchedMonths':len(matched),'numeratorScope':'All recorded covered-company bonds, across countries and ratings. Includes non-US and below-IG issuers. AI use of proceeds is not identified.','denominatorScope':'US country-of-risk, investment-grade corporate bonds, amounts converted to USD in the source BQL query.','interpretation':'Relative issuance scale, not a strict share of US IG issuance. The numerator query lacks the denominator country-of-risk and issue-level IG filters. Missing covered months remain null; October has benchmark-only month-to-date data.'}
 sector_totals=[{'sector':s,'amount':sum(r['amount'] for r in window if r['sector']==s),'issues':sum(r['issues'] or 0 for r in window if r['sector']==s),'issuers':sorted(set(r['issuer'] for r in window if r['sector']==s))} for s in bond_sectors]
 sector_totals.sort(key=lambda r:-r['amount'])
 issuer_totals=[{'issuer':t,'sector':sector.get(t,'Unclassified'),'amount':sum(r['amount'] for r in window if r['issuer']==t)} for t in sorted(set(r['issuer'] for r in window))];issuer_totals.sort(key=lambda r:-r['amount'])
 result={'metadata':{'source':'Indexlist.xlsx','sha256':hashlib.sha256(a.input.read_bytes()).hexdigest(),'creditAsOf':daily[-1]['date'],'creditBaseline':baseline['date'],'ratingAsOf':'2026-09-30','bondWindow':start+' through '+latest,'bondMissingMonths':[shift(start,i) for i in range(12) if shift(start,i) not in months],'limitations':'Supplementary indicators do not alter core weights. CDS uses Bloomberg implied issuer spreads versus the workbook IG benchmark, not a rating-matched index. Fixed groups use latest ratings retrospectively; no historical rating adjustment. Sector baskets include covered issuers across ratings, including below IG. Calendar-day values can carry prior observations. Bond amounts follow the existing USD-equivalent workbook convention; no new FX conversion. Absent issuer-month entries are no recorded issuance, not independently verified zeros. Unknown issuers remain unclassified.'},'demand':demand,'credit':credit,'creditIssuers':issuer_credit,'bondRows':bonds,'bondMonthly':monthly,'bondSectors':sector_totals,'bondIssuers':issuer_totals}
+result['bondBenchmark']=bond_benchmark
 root=Path(__file__).resolve().parents[1];(root/'app/workbook-amendments-snapshot.ts').write_text('export const workbookAmendments = '+json.dumps(result,indent=2)+' as const;\n')
 print(json.dumps({'demandSeries':len(demand),'creditDays':len(daily),'creditGroups':len(credit),'bondRecords':len(bonds),'bondWindow':result['metadata']['bondWindow'],'missingBondMonths':result['metadata']['bondMissingMonths'],'largestSector':sector_totals[0]},indent=2))

@@ -32,7 +32,7 @@ const notes: Record<string, Note> = {
   },
   labs: {
     sources: ["S10"], source: "Workbook records for OpenAI and Anthropic compiled from media reports and investor disclosures. Run rates are estimates, not audited recognized revenue; reported floors and approximations remain labeled.",
-    methodology: "Separate full-company recognized revenue from ARR and annualized run rate; FY2025 recognized revenue appears separately in the cards. Compare growth from end-2025. Plot OpenAI’s ‘more than $40B’ observation at its reported floor. Excludes product/division records and period-interpolation observations.",
+    methodology: "Separate full-company recognized revenue from ARR and annualized run rate; FY2025 recognized revenue appears separately in the cards. Compare growth from end-2025. OpenAI’s September 29, 2026 observation is plotted at approximately $70B, based on Reuters and Axios reporting around DevDay, not a verified official DevDay revenue disclosure. Earlier floors remain floor observations. Excludes product/division records and period-interpolation observations.",
     other: "ARR annualizes a point-in-time pace and is neither recognized revenue nor cash collection. Reporting dates and definitions limit direct ranking. Audited quarterly revenue, margins, cash burn and contracted compute demand are needed to connect lab revenue with infrastructure economics.",
   },
   "task-economics": {
@@ -46,7 +46,7 @@ const notes: Record<string, Note> = {
     other: "This is a derived buyer-side price-performance measure; task expenditure is not infrastructure-owner revenue or profit. Benchmark success is a proxy, not production reliability. Model, harness, reasoning and token assumptions limit comparability. MiniMax, DeepSeek and GLM candidates begin in August 2025 because earlier collected observations lack both comparable success and run cost. The shaded frontier/value gap is not an uncertainty interval.",
   },
   conversion: {
-    sources: ["S9", "S1", "S8"], source: "Retained OpenRouter platform snapshot through 10 September 2026, workbook token prices and company fundamentals. The refreshed workbook lacks the original OpenRouter sheet, so its vintage is held. Coverage is platform-specific. Macro and price inputs have different frequencies and may contain carried values.",
+    sources: ["S9", "S1", "S8"], source: "OpenRouter daily rankings refreshed 7 October 2026 through 6 October. Adoption usage includes Q3; comparisons with reported financials remain through Q2. Workbook token prices and company fundamentals retain their own vintages. Coverage is platform-specific. Macro and price inputs have different frequencies and may contain carried values.",
     methodology: "Compare platform traffic, token prices, capital spending and consolidated ROIC over matched displayed periods. Series use separately labeled axes and different units; line steepness does not compare growth rates.",
     other: "Traffic, lab revenue and hyperscaler returns cover different populations. This comparison cannot attribute revenue or NOPAT to a unit of usage, and does not establish causality. Required evidence is cloud revenue, segment profit and realized model spending; price-index × token volume does not establish revenue. It is excluded from the atmosphere scores.",
   },
@@ -61,7 +61,7 @@ const notes: Record<string, Note> = {
     other: "The aggregate includes Microsoft, Alphabet, Amazon and Meta with matching periods. Oracle is separate and appears calendarized. Missing observations are not zero-filled. Cash CapEx excludes noncash financed assets. Cash funding is not AI-specific ROIC; lease liabilities are balances rather than new financed-asset additions. Excluded from both atmosphere scores.",
   },
   chain: {
-    sources: ["S1", "S4", "S5"], source: "Cached workbook market prices, 32-company financial screen and CDS observations. Financial report vintages and issuer credit coverage vary. The current source’s one-day returns are zero and withheld.",
+    sources: ["S1", "S4", "S5"], source: "Workbook daily stock returns and financial observations for 36 companies. Returns are compounded from December 31, 2025; no FX conversion. Missing daily values remain gaps. Credit coverage remains a smaller separate universe. Historical fundamental scores retain their original 32-company coverage and vintage.",
     methodology: "Market returns, fundamental composites and credit pressure are summarized within each industry role with their displayed equal-weight rules, thresholds and coverage. Structural edges describe industry relationships.",
     other: "Industry connections do not establish supplier contracts or portfolio weights. Different coverage can affect comparisons. Prices, resilience and credit conditions are separate signals; none alone proves capital return.",
   },
@@ -71,14 +71,14 @@ const notes: Record<string, Note> = {
     other: "The screen measures reported financial quality rather than AI-specific profitability. Sector, size, outliers and expectations can affect comparisons. Historical association with stock returns is not validation of predictive timing.",
   },
   credit: {
-    sources: ["S4"], source: "Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily benchmark observations through 22 September 2026. Latest issuer ratings are dated 30 September 2026. Quotes and comparable issuer coverage limit representativeness.",
+    sources: ["S4"], source: "Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily benchmark observations through 7 October 2026. Latest issuer ratings are dated 30 September 2026. Quotes and comparable issuer coverage limit representativeness.",
     methodology: "Daily relative change = change in the equal-weight fixed issuer basket minus change in the general IG benchmark since 31 December 2025. Thirty-day issuer comparisons use matched dates. Latest rating groups are retrospective, not historical ratings. Displayed overall, sector and rating charts use median spread lines with observed minimum–maximum bands and the general IG benchmark. Overall and sector baskets include covered below-IG issuers.",
-    other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage history is available only for hyperscalers. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. Issuer and role coverage are shown; the credit adjustment is separate from the five-pillar core index.",
+    other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage uses covered issuers with four consecutive EBITDA quarters. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. Issuer and role coverage are shown; the credit adjustment is separate from the five-pillar core index.",
   },
   financing: {
-    sources: ["S6"], source: "Bloomberg workbook issuer-month bond issuance amount and count through September 2026. December 2025 is missing. Latest-month completeness is not certified. The observed total is not a complete rolling-year sample.",
-    methodology: "Sum issuer-month records into analytical supply-chain sectors and reconcile them to observed monthly totals. USD-equivalent amounts follow the workbook convention. Do not zero-fill the missing month or publish unsupported rolling-year YoY growth.",
-    other: "Issuance measures access to funding, not issuer-specific AI use of proceeds or returns. A partial month cannot be compared directly with a full month. Bond issuance retains zero weight in the supplementary adjustment until coverage and normalization are resolved.",
+    sources: ["S6"], source: "Bloomberg workbook issuer-month bond issuance amount and count through September 2026, plus US investment-grade corporate issuance through partial October. Both queries use USD amounts. December 2025 has no covered records; latest-month completeness is not certified.",
+    methodology: "Sum covered issuer-month amounts into supply-chain sectors. Relative supply = covered issuance / US IG issuance × 100 on matched months. The period ratio divides sums, not average percentages. The numerator includes countries and ratings excluded from the benchmark, so this is not an exact market-share measure. Leave missing numerator months blank and exclude benchmark-only partial October.",
+    other: "Issuance measures access to funding, not issuer-specific AI use of proceeds or returns. Supply intensity alongside stable leverage can be consistent with absorption pressure, but issuance cannot identify the cause of CDS changes. A partial month cannot be compared directly with a full month. Bond issuance retains zero weight in the supplementary adjustment until coverage and normalization are resolved.",
   },
   methodology: {
     sources: [], source: "The source register records workbook sheets, company collections, periods and modeled datasets. Cached, estimated and carried observations have different evidence limits.",

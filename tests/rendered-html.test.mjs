@@ -97,7 +97,7 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /source-S9/);
   assert.match(html, /China capital expenditure/);
   assert.match(html, /AI INDUSTRY VALUE CHAIN/);
-  assert.match(html, /See how demand becomes physical capacity/);
+  assert.match(html, /Where does the AI investment dollar go/);
   assert.match(html, /AI industry chain relationship map/);
   assert.match(html, /Demand signal/);
   assert.match(html, /Production dependency/);

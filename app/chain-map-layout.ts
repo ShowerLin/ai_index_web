@@ -11,7 +11,7 @@ export const mapX = (x: number) => `${x / mapWidth * 100}%`;
 export const nodePositions: Record<ChainNodeId, readonly [number, number]> = {
   applications: [18, 88], platforms: [245, 88], datacenters: [698, 88],
   memory: [245, 290], silicon: [472, 290], systems: [698, 290],
-  equipment: [245, 492], power: [698, 492],
+  equipment: [245, 492], foundry: [472, 492], power: [698, 492],
 };
 
 type Point = readonly [number, number];
@@ -28,6 +28,8 @@ export const edgeRoutes = {
   "edge-platform-silicon": [anchor("platforms", "bottom"), anchor("silicon", "top")],
   "edge-equipment-memory": [anchor("equipment", "top"), anchor("memory", "bottom")],
   "edge-equipment-silicon": [anchor("equipment", "right"), anchor("silicon", "bottom")],
+  "edge-equipment-foundry": [anchor("equipment", "right"), anchor("foundry", "left")],
+  "edge-foundry-silicon": [anchor("foundry", "top"), anchor("silicon", "bottom")],
   "edge-memory-silicon": [anchor("memory", "right"), anchor("silicon", "left")],
   "edge-silicon-systems": [anchor("silicon", "right"), anchor("systems", "left")],
   "edge-systems-datacenter": [anchor("systems", "top"), anchor("datacenters", "bottom")],

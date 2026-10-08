@@ -4,11 +4,14 @@ import test from "node:test";
 import { frontierLabsSnapshot as snapshot } from "../app/frontier-labs-snapshot.ts";
 
 test("frontier lab snapshot separates run rate from recognized revenue", () => {
-  assert.equal(snapshot.labs.OpenAI.latest, ">$40B");
+  assert.equal(snapshot.labs.OpenAI.latest, "~$70B");
+  assert.equal(snapshot.labs.OpenAI.latestDate, "29 Sep 2026");
+  assert.match(snapshot.labs.OpenAI.latestSource, /marketscreener/);
+  assert.match(snapshot.labs.OpenAI.series.at(-1).note, /Approximate/);
   assert.equal(snapshot.labs.Anthropic.latest, "$65B");
   assert.equal(snapshot.labs.OpenAI.fy2025Revenue, "$13B");
   assert.equal(snapshot.labs.Anthropic.fy2025Revenue, "$4.5B");
-  assert.equal(snapshot.labs.OpenAI.growthFromEnd2025, 86.9);
+  assert.equal(snapshot.labs.OpenAI.growthFromEnd2025, 227.1);
   assert.equal(snapshot.labs.Anthropic.growthFromEnd2025, 622.2);
   assert.ok(snapshot.labs.OpenAI.series.every(row => row.value > 0));
   assert.ok(snapshot.labs.Anthropic.series.every(row => row.value > 0));

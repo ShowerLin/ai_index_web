@@ -6,9 +6,17 @@ This folder is the canonical local website workspace. Keep the application sourc
 
 The OneDrive `AI_Index` folder stores spreadsheets, research documents and generated static outputs only. Never install `node_modules`, package caches or other website dependencies in OneDrive. Merge approved application changes into this Projects workspace before running or reviewing the page.
 
+Publish from the complete canonical local application, including circular financing and value distribution. Sync application source and public assets to `/Users/linyu/Projects/ai-index-sites` before publishing; preserve that checkout's Sites hosting, Worker and build configuration. Do not assemble a partial page from an older Sites version. Market groups equity returns, CDS and bond financing; Financial retains operating cash generation and capital returns.
+
 The last self-contained HTML export is preserved under `static-output/`. It is an output artifact and is not the source used by the local development server.
 
 ## Included analysis
+
+Refresh equity returns and USD market caps with `python3 scripts/build-supply-chain-stock.py`. The importer reads interleaved return/cap columns. Market chapter sector performance compounds daily returns weighted by lagged USD caps; treemap area uses latest caps. The three Asian listings with missing opening caps use first available cap proxies, with their partial opening return coverage disclosed. Do not retrospectively weight the historical series with today’s caps. Equal weights remain a comparison option.
+
+Refresh monthly US IG issuance alongside covered-company issuance with `python3 scripts/build-workbook-amendments.py --input /path/to/Indexlist.xlsx`. The ratio is relative issuance scale until the numerator also filters US country of risk and issue-level IG rating; it is not an exact US IG market share. Missing covered months and benchmark-only partial months do not become zero percentages.
+
+Refresh the wide quarterly financial sheet with `python3 scripts/build-value-chain-financials.py`, then `python3 scripts/build-supply-chain-stock.py`, using the bundled Python runtime. Net debt/EBITDA requires four consecutive quarterly EBITDA observations. Revenue and positive CapEx spending growth compare the same quarter a year earlier. Do not reuse single-quarter leverage or period-to-period growth. CDS alignment is retrospective because report publication dates are unavailable. The importer reads raw cached numeric XML to avoid corrupting revenue cells with incorrect date formatting.
 
 The application contains the interactive pillar heatmap, AI value chain, atmosphere pulse, global hyperscaler CapEx, Frontier Labs, demand-to-returns conversion, cash sustainability, ROIC, financial resilience, credit conditions, bond financing and methodology sections.
 

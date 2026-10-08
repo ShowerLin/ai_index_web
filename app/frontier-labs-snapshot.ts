@@ -2,79 +2,97 @@
 export const frontierLabsSnapshot = {
   "metadata": {
     "source": "ai_companies_revenue_reports.csv",
-    "asOf": "2026-09-24"
+    "asOf": "2026-09-29"
   },
   "labs": {
     "OpenAI": {
-      "latest": ">$40B",
-      "latestValue": 40.0,
-      "latestDate": "13 Aug 2026",
+      "latest": "~$70B",
+      "latestSource": "https://uk.marketscreener.com/news/openai-s-annualized-recurring-revenue-nears-70-billion-source-says-ce785addd18df525",
+      "latestValue": 70.0,
+      "latestDate": "29 Sep 2026",
       "latestType": "Annualized run rate",
       "latestConfidence": "Likely",
       "fy2025Revenue": "$13B",
       "end2025RunRate": "$21.4B",
-      "growthFromEnd2025": 86.9,
+      "growthFromEnd2025": 227.1,
       "series": [
         {
           "date": "2024-12-31",
           "label": "Dec-24",
           "value": 5.5,
           "type": "Annual recurring revenue (ARR)",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-06-09",
           "label": "Jun-25",
           "value": 10.0,
           "type": "Annual recurring revenue (ARR)",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-07-30",
           "label": "Jul-25",
           "value": 12.0,
           "type": "Annualized run rate",
-          "confidence": "Confident"
+          "confidence": "Confident",
+          "note": ""
         },
         {
           "date": "2025-08-01",
           "label": "Aug-25",
           "value": 13.0,
           "type": "Annual recurring revenue (ARR)",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-12-18",
           "label": "Dec-25",
           "value": 19.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-12-31",
           "label": "Dec-25",
           "value": 21.4,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2026-02-28",
           "label": "Feb-26",
           "value": 25.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2026-08-13",
           "label": "Aug-26",
           "value": 40.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": "\"More than 40B\", so 40B could be an underestimate. "
+        },
+        {
+          "date": "2026-09-29",
+          "label": "Sep-26",
+          "value": 70.0,
+          "type": "Annualized run rate",
+          "confidence": "Likely",
+          "note": "Approximate: nearly USD70B; reported around DevDay, not official event disclosure."
         }
       ]
     },
     "Anthropic": {
       "latest": "$65B",
+      "latestSource": "https://www.bloomberg.com/news/articles/2026-08-17/anthropic-revenue-run-rate-surpasses-65-billion-ahead-of-ipo",
       "latestValue": 65.0,
       "latestDate": "31 Jul 2026",
       "latestType": "Annualized run rate",
@@ -88,91 +106,104 @@ export const frontierLabsSnapshot = {
           "label": "Dec-24",
           "value": 1.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-03-01",
           "label": "Mar-25",
           "value": 1.4,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-03-31",
           "label": "Mar-25",
           "value": 2.0,
           "type": "Annualized run rate",
-          "confidence": "Confident"
+          "confidence": "Confident",
+          "note": ""
         },
         {
           "date": "2025-05-30",
           "label": "May-25",
           "value": 3.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-07-01",
           "label": "Jul-25",
           "value": 4.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-07-29",
           "label": "Jul-25",
           "value": 5.0,
           "type": "Annual recurring revenue (ARR)",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2025-10-21",
           "label": "Oct-25",
           "value": 7.0,
           "type": "Annualized run rate",
-          "confidence": "Confident"
+          "confidence": "Confident",
+          "note": ""
         },
         {
           "date": "2025-12-31",
           "label": "Dec-25",
           "value": 9.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": ""
         },
         {
           "date": "2026-02-12",
           "label": "Feb-26",
           "value": 14.0,
           "type": "Annualized run rate",
-          "confidence": "Confident"
+          "confidence": "Confident",
+          "note": ""
         },
         {
           "date": "2026-03-03",
           "label": "Mar-26",
           "value": 19.0,
           "type": "Annualized run rate",
-          "confidence": "Confident"
+          "confidence": "Confident",
+          "note": ""
         },
         {
           "date": "2026-04-06",
           "label": "Apr-26",
           "value": 30.0,
           "type": "Annualized run rate",
-          "confidence": "Confident"
+          "confidence": "Confident",
+          "note": ""
         },
         {
           "date": "2026-05-15",
           "label": "May-26",
           "value": 47.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": "As of \"earlier this month\" on May 28"
         },
         {
           "date": "2026-07-31",
           "label": "Jul-26",
           "value": 65.0,
           "type": "Annualized run rate",
-          "confidence": "Likely"
+          "confidence": "Likely",
+          "note": "\"by end of July\""
         }
       ]
     }

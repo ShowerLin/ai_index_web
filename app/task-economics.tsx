@@ -23,7 +23,7 @@ function TrainingCostChart() {
   const start = new Date("2017-01-01T00:00:00Z").valueOf();
   const end = new Date("2025-12-31T00:00:00Z").valueOf();
   const x = (date: string) => l + (new Date(`${date}T00:00:00Z`).valueOf()-start)*(w-l-r)/(end-start);
-  const y = (value: number) => t + (9-Math.log10(value))/6*(h-t-b);
+  const y = (value: number) => Number((t + (9-Math.log10(value))/6*(h-t-b)).toFixed(6));
   const ticks = [1e3,1e4,1e5,1e6,1e7,1e8,1e9];
   const xTicks = [2017,2019,2021,2023,2025];
   const line = (key: "median"|"p75") => ranges.map((row,index)=>`${index?"L":"M"}${x(`${row.year}-07-01`)},${y(row[key])}`).join(" ");
