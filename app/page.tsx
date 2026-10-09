@@ -659,17 +659,19 @@ export default function Home(){
       <SectionNotes section="adoption"/>
     </section>
     <EvidenceGroup title="Usage and affordability" description="Routed token activity measures usage intensity; successful-task costs measure affordability."/>
-    <AdoptionUsage/>
-    <UsefulTaskEconomics compact/>
+    <div className="related-evidence-row">
+      <div className="evidence-column"><AdoptionUsage/></div>
+      <div className="evidence-column"><UsefulTaskEconomics compact/></div>
+    </div>
 
     </PillarResearch>
 
     <span id="imports" aria-hidden="true"/>
     <PillarResearch id="monetization" number="02" pillar="Demand" historyPillar="Imports" classification="CORE EVIDENCE · DEMAND 20% + IMPORTS 20%" title="Equipment demand is strong; lab revenue tests monetization." summary="Telecom, semiconductor and computer imports complement DRAM and NAND exports, TSMC monthly revenue and lab revenue run rates across equipment buyers, memory, foundry and model providers. Import values also reflect inventories, prices and supply timing. Nominal hardware revenue also reflects prices and product mix. Their joint strength supports the expansion thesis, but hardware shipments can lead final consumption and annualized revenue is not recognized annual sales. Serving margins and recurring customer spending determine whether the growth becomes durable profit.">
-      <EvidenceGroup title="Hardware demand" description="Memory exports and foundry revenue complement the equipment import evidence."/>
-      <DemandSupplement/>
-    <EvidenceGroup title="Lab monetization" description="Revenue run rates provide separate evidence of paid model demand."/>
-    <FrontierLabs compact/>
+    <div className="related-evidence-row">
+      <div className="evidence-column"><EvidenceGroup title="Hardware demand" description="Memory exports and foundry revenue complement the equipment import evidence."/><DemandSupplement/></div>
+      <div className="evidence-column"><EvidenceGroup title="Lab monetization" description="Revenue run rates provide separate evidence of paid model demand."/><FrontierLabs compact/></div>
+    </div>
 
     </PillarResearch>
 
