@@ -66,7 +66,7 @@ export default function FrontierLabs({compact=false}:{compact?:boolean}={}) {
       </div>
       <aside className="labs-readthrough">
         <span className="detail-kicker">ANALYTICAL ASSESSMENT</span>
-        <div><b>Scale</b><p>Both labs have reached substantial commercial scale, increasing their ability to anchor demand for cloud compute.</p></div>
+        <div><b>Scale</b><p>Reported run rates indicate substantial commercial scale, but do not establish cash available to meet cloud commitments.</p></div>
         <div><b>Acceleration</b><p>Relative to end-2025, OpenAI’s latest reported run rate is approximately {snapshot.labs.OpenAI.growthFromEnd2025.toFixed(1)}% higher, while Anthropic’s is {snapshot.labs.Anthropic.growthFromEnd2025.toFixed(1)}% higher. Different observation dates and approximate values limit direct comparison. FY2025 recognized revenue appears separately.</p></div>
         <div><b>Link to infrastructure</b><p>Lab revenue supports the demand case. Margins, cash burn and compute commitments determine how much value remains with the labs and how much flows to infrastructure providers.</p></div>
       </aside>
