@@ -329,3 +329,10 @@
 .composite-history-chart.composite-history-chart svg{width:100%;max-height:none}.composite-latest{text-align:right;display:flex;flex-direction:column;gap:5px}.composite-latest strong{font:400 36px Georgia,serif}.composite-latest small{font-size:11px;color:var(--muted)}.composite-events{font-size:11px;line-height:1.7;margin:12px 0;color:var(--muted)}.composite-events summary{cursor:pointer;color:var(--teal)}.composite-events a{text-decoration:underline}.composite-events ul{padding-left:18px}.composite-events li{margin:8px 0}@media(max-width:1100px){.composite-history-chart.composite-history-chart svg{max-height:none}}@media(max-width:720px){.composite-history-chart svg{min-width:700px}.composite-history-chart{overflow-x:auto}.composite-chart-heading{min-width:0}.composite-latest strong{font-size:28px}}
 
 .composite-history-chart svg .event-number{fill:#fff;font:bold 9px ui-monospace,monospace}.composite-history-chart svg .event-name{fill:var(--ink);font:600 10px system-ui,sans-serif}.composite-history-chart svg .event-date{font:9px ui-monospace,monospace;fill:var(--muted)}
+
+/* Pair investment momentum with its company spending table. */
+.investment-momentum-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;min-width:0;align-items:stretch}
+.investment-momentum-row>.evidence-card{min-width:0;display:flex;flex-direction:column}
+.investment-momentum-row .evidence-table .evidence-display{overflow-x:auto}
+.investment-momentum-row .evidence-table table{min-width:480px}
+@media(max-width:850px){.investment-momentum-row{grid-template-columns:minmax(0,1fr)}}
