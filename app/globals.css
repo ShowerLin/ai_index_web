@@ -299,8 +299,8 @@
 /* Preserve the financing timeline labels below the plot, including missing months. */
 #financing .evidence-display svg{height:320px!important;overflow:visible}
 
-/* Pair monthly financing with its sector composition table. */
-#financing .pillar-chart-grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:stretch}
+/* Align the benchmark, monthly financing and sector composition equally. */
+#financing .pillar-chart-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
 #financing .evidence-card{display:flex;flex-direction:column}
 #financing .evidence-card>footer{margin-top:auto}
 #financing .evidence-table .evidence-display{flex:1;min-height:320px;overflow-x:auto}
