@@ -21,13 +21,11 @@ Core index and pillar detail
 03 Investment
   Commitments and spending
     Investment constituent momentum | CapEx by company
-    Hyperscaler capital expenditure
+    Hyperscaler capital expenditure (same row as momentum and company table)
     China CapEx comparison (expandable)
   Delivered capacity
     Operational capacity, owner comparison and capacity per CapEx
     Owned compute, owner comparison and compute per CapEx
-  Training economics
-    Frontier-model training costs
 04 Financial
   Cash generation and capital productivity
     Cash generation and investment
@@ -36,8 +34,8 @@ Core index and pillar detail
   Funding dependencies
     Circular financing network and loops
     Funding-dependent demand sensitivity
-  Usage, spending and returns
-    Token consumption, CapEx and ROIC
+  Cost escalation and monetization pressure
+    Frontier-model training costs | Token consumption, CapEx and ROIC
 05 Market
   Equity performance
     Sector performance and sector size / return
@@ -56,3 +54,5 @@ The industry context is linked from navigation and from funding dependencies. Fi
 Desktop layout: usage and task-cost charts share a two-column row; hardware demand and lab monetization share another row with their own H3 headings. Cash generation, absorption and returns share a three-column row with expandable details beneath. Rows stack on smaller screens.
 
 Adoption desktop layout: Business adoption occupies the left column; Usage and affordability spans the right two chart columns on the same row. Survey figures and coverage stay beneath Business adoption.
+
+Demand: equipment imports, hardware demand and lab monetization share one desktop row. Financial pairs training costs with usage/CapEx/ROIC to examine cost recovery, without claiming realized revenue per token. Market Credit contains CDS spreads, leverage and AI bond issuance without outer subsection frames.

@@ -28,9 +28,8 @@ export default function PillarResearch({id,number,pillar,title,summary,history=t
   return <section className="section pillar-research" id={id}>
     <div className="eyebrow">{number} · {classification}</div><h2>{pillar}</h2><p className="chapter-lead">{title}</p><p className="section-summary">{summary}</p>
     <div className="pillar-chart-grid">
-    {pillar==="Demand"&&<EvidenceGroup title="Equipment imports" description="Monthly imports show equipment demand across telecom, semiconductors and computers."/>}
     {pillar==="Investment"&&<EvidenceGroup title="Commitments and spending" description="Equipment orders and construction track commitments; quarterly company CapEx shows the scale and breadth of spending."/>}
-    {adoption?<div className="adoption-evidence-row"><div className="evidence-column"><EvidenceGroup title="Business adoption" description="Survey levels show the breadth of business AI use."/>{historyEvidence}{historyFooter}</div><div className="evidence-column adoption-usage-column">{children}</div></div>:<>{historyEvidence}{children}</>}
+    {adoption?<div className="adoption-evidence-row"><div className="evidence-column"><EvidenceGroup title="Business adoption" description="Survey levels show the breadth of business AI use."/>{historyEvidence}{historyFooter}</div><div className="evidence-column adoption-usage-column">{children}</div></div>:pillar==="Demand"?<div className="demand-evidence-row"><div className="evidence-column"><EvidenceGroup title="Equipment imports" description="Monthly imports show equipment demand across telecom, semiconductors and computers."/>{historyEvidence}</div>{children}</div>:<>{historyEvidence}{children}</>}
     </div>
   </section>;
 }

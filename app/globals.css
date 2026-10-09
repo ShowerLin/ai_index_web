@@ -372,3 +372,19 @@
 .adoption-evidence-row .adoption-observations strong{display:block}
 @media(max-width:1100px){.adoption-evidence-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.adoption-usage-column>.related-evidence-row{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:850px){.adoption-evidence-row{grid-template-columns:minmax(0,1fr)}.adoption-evidence-row .evidence-group{min-height:0}}
+
+/* Three-panel rows span subsection boundaries without merging their headings. */
+.demand-evidence-row{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:18px;align-items:start}
+.demand-evidence-row>.related-evidence-row{grid-column:auto}
+.demand-evidence-row .evidence-group{min-height:100px;box-sizing:border-box}
+.investment-momentum-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+.investment-momentum-row .evidence-table table{min-width:0;font-size:11px}
+.investment-momentum-row .evidence-table th,.investment-momentum-row .evidence-table td{white-space:normal;padding:9px 5px}
+.economics-evidence-row .evidence-wide{grid-column:auto}
+.pillar-chart-grid>.credit-section{grid-column:1/-1;border:0;background:transparent;padding:0}
+.credit-section>.evidence-group{padding-top:18px;border-top:1px solid var(--line);margin-top:12px}
+.credit-subsection{min-width:0;margin-top:24px;padding:0;border:0;background:transparent}
+.credit-subsection-title{font:400 23px/1.3 Georgia,serif;color:var(--ink);margin:8px 0 12px}
+#credit .section-head{padding:0;border:0}
+@media(max-width:1100px){.demand-evidence-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.demand-evidence-row>.related-evidence-row{grid-template-columns:minmax(0,1fr)}.investment-momentum-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.demand-evidence-row,.investment-momentum-row{grid-template-columns:minmax(0,1fr)}.demand-evidence-row .evidence-group{min-height:0}}

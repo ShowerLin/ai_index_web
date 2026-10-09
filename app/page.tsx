@@ -674,16 +674,13 @@ export default function Home(){
 
     </PillarResearch>
 
-    <PillarResearch id="utilization" number="03" pillar="Investment" classification="CORE EVIDENCE · INVESTMENT 20% + HYPERSCALER CAPEX 20%" title="Capital spending and equipment orders are expanding the capacity base." summary="Hyperscaler CapEx reached $188.3B in 2026Q2, while facility milestones and chip estimates show a growing capacity base. Together with orders and construction, these measures connect capital commitments to physical delivery. Delivery lags, owner coverage and non-AI spending limit direct comparisons. The financial section tests whether this expanding asset base generates sufficient cash and returns. Investment and Hyperscaler CapEx retain separate 20% weights in the index." historyCompanion={<EvidenceCard title="CapEx by company" unit="2026Q2 · USD billions" source="S2" note="Compute proxy follows disclosed or estimated equipment shares." table><table><thead><tr><th>Company</th><th>Total</th><th>Compute proxy</th><th>YoY</th><th>Basis</th></tr></thead><tbody>{constituents.map(c=><tr key={c.ticker}><th>{c.company}</th><td>${c.value.toFixed(1)}B</td><td>${c.proxy.toFixed(1)}B</td><td>+{c.yoy.toFixed(1)}%</td><td>{c.basis}</td></tr>)}</tbody></table></EvidenceCard>}>
-    <EvidenceCard id="capex" title="Hyperscaler capital expenditure" unit="Quarterly USD billions · company bars and total line" source="S2" note="Stacked bars show company spending; the line shows the five-company total. Company accounting bases differ.">
+    <PillarResearch id="utilization" number="03" pillar="Investment" classification="CORE EVIDENCE · INVESTMENT 20% + HYPERSCALER CAPEX 20%" title="Capital spending and equipment orders are expanding the capacity base." summary="Hyperscaler CapEx reached $188.3B in 2026Q2, while facility milestones and chip estimates show a growing capacity base. Together with orders and construction, these measures connect capital commitments to physical delivery. Delivery lags, owner coverage and non-AI spending limit direct comparisons. The financial section tests whether this expanding asset base generates sufficient cash and returns. Investment and Hyperscaler CapEx retain separate 20% weights in the index." historyCompanion={<><EvidenceCard title="CapEx by company" unit="2026Q2 · USD billions" source="S2" note="Compute proxy follows disclosed or estimated equipment shares." table><table><thead><tr><th>Company</th><th>Total</th><th>Compute proxy</th><th>YoY</th><th>Basis</th></tr></thead><tbody>{constituents.map(c=><tr key={c.ticker}><th>{c.company}</th><td>${c.value.toFixed(1)}B</td><td>${c.proxy.toFixed(1)}B</td><td>+{c.yoy.toFixed(1)}%</td><td>{c.basis}</td></tr>)}</tbody></table></EvidenceCard><div className="evidence-column"><EvidenceCard id="capex" title="Hyperscaler capital expenditure" unit="Quarterly USD billions · company bars and total line" source="S2" note="Stacked bars show company spending; the line shows the five-company total. Company accounting bases differ.">
       <CapexChart company={company}/>
     </EvidenceCard>
-    <div className="pillar-controls"><label htmlFor="company">CapEx series </label><select id="company" value={company} onChange={e=>setCompany(e.target.value as Company)}><option>Aggregate</option>{["Microsoft","Alphabet","Meta","Amazon","Oracle"].map(c=><option key={c}>{c}</option>)}</select></div>
+    <div className="pillar-controls"><label htmlFor="company">CapEx series </label><select id="company" value={company} onChange={e=>setCompany(e.target.value as Company)}><option>Aggregate</option>{["Microsoft","Alphabet","Meta","Amazon","Oracle"].map(c=><option key={c}>{c}</option>)}</select></div></div></>}>
     <details className="evidence-data"><summary>China capital expenditure · supplementary market comparison</summary><div className="chart-panel"><ChinaCapexChart company={chinaCompany}/><p>Source S3 · RMB billions · issuer definitions differ.</p></div><SectionNotes section="capex"/></details>
     <EvidenceGroup title="Delivered capacity" description="Facilities and installed chips show the capacity delivered by capital deployment; the conversion table relates those estimates to spending."/>
     <InfrastructureDeployment compact/>
-    <EvidenceGroup title="Training economics" description="Model training estimates show how capital-intensive research is becoming within the expanding compute fleet."/>
-    <TaskEconomics compact/>
 
     </PillarResearch>
 
@@ -697,29 +694,37 @@ export default function Home(){
     <InvestmentSustainability compact/>
     <RoicAnalysis compact/>
     </div>
+    <EvidenceGroup title="Cost escalation and monetization pressure" description="Larger training runs raise the recovery hurdle. Compare usage growth, capital spending and returns to assess whether monetization is catching up. These charts do not measure realized paid revenue per token; token-price benchmarks are a separate pricing signal."/>
+    <div className="related-evidence-row economics-evidence-row">
+      <div className="evidence-column"><TaskEconomics compact/></div>
+      <div className="evidence-column"><DemandToReturns compact/></div>
+    </div>
     <EvidenceGroup title="Funding dependencies" description="Supplier financing can support customer demand; test exposure to that funding separately from realized revenue."/>
     <div className="funding-dependencies"><CircularFinancing/><p className="pillar-crosslink"><a href="#chain">Compare reported financial scale across the industry value chain ↓</a></p></div>
-    <EvidenceGroup title="Usage, spending and returns" description="Compare routed token consumption, capital spending and consolidated returns across time."/>
-    <DemandToReturns compact/>
+
 
     </PillarResearch>
 
     <PillarResearch id="market" number="05" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title="Equity returns price the opportunity; credit spreads price financing risk." summary="Market-cap-weighted performance across 36 supply-chain companies shows how investors price the AI opportunity. Compare sector size and returns with issuer CDS spreads, leverage and covered issuance relative to US IG bond supply. Equity strength can coexist with rising financing pressure; neither establishes realized operating returns. The market evidence supplements the core activity index." history={false}>
     <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
     <SupplyChainStockChart/>
-    <EvidenceGroup title="Credit conditions and financing" description="Credit spreads and bond issuance assess the cost and availability of financing for the buildout."/>
-    <section className="section credit-section" id="credit">
-      <div className="section-head"><div><div className="eyebrow">MARKET · CREDIT & LEVERAGE</div><h3>Credit pressure relative to the broader IG market.</h3></div><p>Daily issuer spreads and IBOXUMAE benchmark <Source id="S4"/></p></div>
+    <section className="credit-section" id="credit">
+      <EvidenceGroup title="Credit" description="CDS spreads, leverage and bond issuance assess financing risk, balance-sheet capacity and external funding demand."/>
+    <section className="credit-subsection" aria-label="CDS spreads">
+      <div className="section-head"><div><div className="eyebrow">MARKET · CREDIT & LEVERAGE</div><p className="credit-subsection-title">CDS spreads relative to the broader IG market</p></div><p>Daily issuer spreads and IBOXUMAE benchmark <Source id="S4"/></p></div>
       <CreditBenchmark/>
+    </section>
+    <section className="credit-subsection" aria-label="Leverage">
       <LeverageDistributions/>
       <details className="evidence-data"><summary>Individual issuer leverage and CDS comparison</summary><CreditFinancialComparison/></details>
 
       <SectionNotes section="credit"/>
     </section>
-    <section className="section financing-section" id="financing">
-      <div className="section-head"><div><div className="eyebrow">MARKET · EXTERNAL FUNDING</div><h3>AI financing in the broader bond market.</h3></div><p>Bond issuance by month, issuer and sector <Source id="S6"/></p></div>
+    <section className="credit-subsection financing-section" id="financing">
+      <div className="section-head"><div><div className="eyebrow">MARKET · EXTERNAL FUNDING</div><h4 className="credit-subsection-title">AI bond issuance in the broader bond market</h4></div><p>Bond issuance by month, issuer and sector <Source id="S6"/></p></div>
       <BondSectorFinancing/>
       <SectionNotes section="financing"/>
+    </section>
     </section>
 
     </PillarResearch>
