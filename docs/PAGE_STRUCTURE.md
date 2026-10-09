@@ -54,3 +54,5 @@ Methodology and data disclosures
 The industry context is linked from navigation and from funding dependencies. Financial and Market remain supplementary research rather than new core-index pillars. Data, formulas, source vintages and index weights are unchanged by this layout update.
 
 Desktop layout: usage and task-cost charts share a two-column row; hardware demand and lab monetization share another row with their own H3 headings. Cash generation, absorption and returns share a three-column row with expandable details beneath. Rows stack on smaller screens.
+
+Adoption desktop layout: Business adoption occupies the left column; Usage and affordability spans the right two chart columns on the same row. Survey figures and coverage stay beneath Business adoption.

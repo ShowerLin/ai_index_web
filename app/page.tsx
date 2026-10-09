@@ -654,10 +654,9 @@ export default function Home(){
       <SectionNotes section="pulse"/>
     </section>
 
-    <PillarResearch id="adoption" number="01" pillar="Adoption" title="Business adoption is broadening; routed usage measures its intensity." summary="Business-use surveys show adoption breadth, while average daily OpenRouter traffic rose from 0.134T to 13.083T between 2025Q1 and 2026Q3 (2.9 times the Q2 daily average). Read alongside lower successful-task costs, the charts support expanding use and improving affordability. They do not yet establish paid retention or revenue growth: routing share, model mix and token intensity can also lift traffic.">
-    <section className="adoption-observations" aria-label="Business adoption observations"><div><span>Current business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · same source as heatmap</small></div><div><span>Expected business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · same source as heatmap</small></div>
+    <PillarResearch id="adoption" number="01" pillar="Adoption" title="Business adoption is broadening; routed usage measures its intensity." summary="Business-use surveys show adoption breadth, while average daily OpenRouter traffic rose from 0.134T to 13.083T between 2025Q1 and 2026Q3 (2.9 times the Q2 daily average). Read alongside lower successful-task costs, the charts support expanding use and improving affordability. They do not yet establish paid retention or revenue growth: routing share, model mix and token intensity can also lift traffic." historyFooter={<section className="adoption-observations" aria-label="Business adoption observations"><div><span>Current business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · same source as heatmap</small></div><div><span>Expected business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · same source as heatmap</small></div>
       <SectionNotes section="adoption"/>
-    </section>
+    </section>}>
     <EvidenceGroup title="Usage and affordability" description="Routed token activity measures usage intensity; successful-task costs measure affordability."/>
     <div className="related-evidence-row">
       <div className="evidence-column"><AdoptionUsage/></div>

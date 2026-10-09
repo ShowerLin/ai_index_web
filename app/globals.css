@@ -362,3 +362,13 @@
 .financial-cash-return-row>.evidence-data{order:1}
 @media(max-width:850px){.related-evidence-row{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:750px){.financial-cash-return-row>.evidence-data{order:0}}
+
+/* Align distinct adoption groups across the same desktop row. */
+.adoption-evidence-row{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:18px;align-items:start}
+.adoption-evidence-row .evidence-group{min-height:88px;box-sizing:border-box}
+.adoption-usage-column>.related-evidence-row{width:100%}
+.adoption-evidence-row .adoption-observations{padding:0;gap:8px}
+.adoption-evidence-row .adoption-observations>div{min-width:120px;padding:8px 0}
+.adoption-evidence-row .adoption-observations strong{display:block}
+@media(max-width:1100px){.adoption-evidence-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.adoption-usage-column>.related-evidence-row{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:850px){.adoption-evidence-row{grid-template-columns:minmax(0,1fr)}.adoption-evidence-row .evidence-group{min-height:0}}
