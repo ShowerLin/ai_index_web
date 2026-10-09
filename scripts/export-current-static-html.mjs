@@ -28,10 +28,14 @@ html = html
     /href=["']\/ai-industry-chain-price-template\.csv["']/g,
     `href="data:text/csv;charset=utf-8,${encodeURIComponent(csv)}"`,
   )
+  .replace(/<button\b/gi, '<button disabled aria-disabled="true"')
+  .replace(/<select\b/gi, '<select disabled aria-disabled="true"')
+  .replace(/<input\b/gi, '<input disabled aria-disabled="true"')
   .replace(
     "</head>",
-    `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(favicon)}"><style>${css}</style><style>.static-export-note{position:fixed;right:12px;bottom:12px;z-index:9999;padding:7px 10px;border-radius:999px;background:#132726;color:#fff;font:600 10px/1.2 Arial,sans-serif;box-shadow:0 2px 12px #0002;opacity:.82}@media print{.static-export-note{display:none}}</style></head>`,
+    `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(favicon)}"><style>${css}</style><style>button:disabled,select:disabled,input:disabled{opacity:1!important;cursor:default!important}.static-sharing-notice{margin:0;padding:12px 24px;background:#edf3fa;color:#183b60;font:12px/1.6 Arial,sans-serif}.static-sharing-notice a{text-decoration:underline}.static-export-note{position:fixed;right:12px;bottom:12px;z-index:9999;padding:7px 10px;border-radius:999px;background:#132726;color:#fff;font:600 10px/1.2 Arial,sans-serif;box-shadow:0 2px 12px #0002;opacity:.82}@media print{.static-export-note{display:none}}</style></head>`,
   )
+  .replace(/(<main\b[^>]*>)/i, '$1<p class="static-sharing-notice">Static dashboard snapshot · 9 October 2026 · Charts show saved default views. Expandable notes and source links remain available; filters require the <a href="https://ai-investment-atmosphere.linshower123.chatgpt.site">live dashboard</a>.</p>')
   .replace("</body>", '<div class="static-export-note">STATIC SNAPSHOT</div></body>');
 
 await mkdir(dirname(outputPath), { recursive: true });
