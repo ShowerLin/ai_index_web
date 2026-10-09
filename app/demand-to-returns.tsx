@@ -38,7 +38,7 @@ function DemandReturnTrend({compact=false}:{compact?:boolean}={}){
   const y = (key: keyof typeof domains, value: number) => { const domain = domains[key]; return top + (domain.max-value)/(domain.max-domain.min)*(height-top-bottom); };
   const positions = Array.from({ length: 5 }, (_, index) => index / 4);
   const axisValue = (key: keyof typeof domains, position: number) => domains[key].max-position*(domains[key].max-domains[key].min);
-  if(compact) return <EvidenceCard id="conversion" title="Usage, spending and returns" unit="Quarterly comparison · three separate axes" source="S9" legend={<ChartLegend items={trendSeries.map(s=>({label:s.label,color:s.color}))}/>} note="OpenRouter traffic and four-company financials have different coverage; comovement is not attribution." wide>    <div className="conversion-trend-chart">
+  if(compact) return <EvidenceCard id="conversion" title="Token consumption, CapEx and ROIC" unit="Quarterly comparison · three separate axes" source="S9" legend={<ChartLegend items={trendSeries.map(s=>({label:s.label,color:s.color}))}/>} note="OpenRouter traffic and four-company financials have different coverage; comovement is not attribution." wide>    <div className="conversion-trend-chart">
       <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="demand-trend-title demand-trend-desc">
         <title id="demand-trend-title">OpenRouter token consumption, hyperscaler cash capital expenditure and consolidated ROIC on separate axes</title>
         <desc id="demand-trend-desc">From 2025 Q1 to 2026 Q2, average daily OpenRouter tokens rose much faster than cash capital expenditure, while aggregate consolidated ROIC declined.</desc>

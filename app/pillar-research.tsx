@@ -14,8 +14,10 @@ export default function PillarResearch({id,number,pillar,title,summary,history=t
   const lo=Math.min(0,...values),hi=Math.max(1,...values),pad=Math.max(2,(hi-lo)*.1);
   const x=(i:number)=>65+i*790/Math.max(1,months.length-1),y=(v:number)=>35+(hi+pad-v)*235/(hi-lo+2*pad);
   return <section className="section pillar-research" id={id}>
-    <div className="eyebrow">{number} · {classification}</div><h2>{pillar}</h2><h3>{title}</h3><p className="section-summary">{summary}</p>
+    <div className="eyebrow">{number} · {classification}</div><h2>{pillar}</h2><p className="chapter-lead">{title}</p><p className="section-summary">{summary}</p>
     <div className="pillar-chart-grid">
+    {pillar==="Adoption"&&<EvidenceGroup title="Business adoption" description="Survey levels show the breadth of business AI use."/>}
+    {pillar==="Demand"&&<EvidenceGroup title="Equipment imports" description="Monthly imports show equipment demand across telecom, semiconductors and computers."/>}
     {pillar==="Investment"&&<EvidenceGroup title="Commitments and spending" description="Equipment orders and construction track commitments; quarterly company CapEx shows the scale and breadth of spending."/>}
     {history&&row&&<MomentumRow companion={historyCompanion}><EvidenceCard title={adoption?"Business AI adoption":`${historyPillar} constituent momentum`} unit={adoption?"January 2024–September 2026 · businesses reporting AI use (%)":"July 2025–June 2026 · monthly change (%)"} source="S1" note={adoption?"Raw survey levels underlying the heatmap. November 2025 question change breaks comparability; the lines are split at that boundary.":pillar==="Demand"?"KOTCDRAM: South Korea nominal DRAM export value. Monthly change = (current month / preceding month − 1) × 100, without seasonal adjustment. July 2025–June 2026; missing comparisons are gaps. This chart contains DRAM only; NAND and TSMC appear in the adjacent comparison. The core heatmap instead normalizes trailing-12-month YoY growth. Export values reflect prices and volumes, not AI-only demand.":"Raw monthly changes, not normalized scores. Missing observations appear as gaps."}><div className="constituent-plot">
       <svg viewBox="0 0 900 315" role="img" aria-label={adoption?"Business AI adoption percentage levels underlying the heatmap":`${historyPillar} constituent monthly growth histories`}>

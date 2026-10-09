@@ -547,7 +547,7 @@ export default function Home(){
   return <main id="top">
     <header className="topbar">
       <a className="brand" href="#top"><span className="brand-mark">AIA</span><span>AI Investment<br/>Atmosphere</span></a>
-      <nav aria-label="Primary"><a href="#guide">Overview</a><a href="#heatmap">Core index</a><a href="#adoption">Adoption</a><a href="#monetization">Demand</a><a href="#utilization">Investment</a><a href="#financial">Financial</a><a href="#market">Market</a><a href="#methodology">Methodology</a></nav>
+      <nav aria-label="Primary"><a href="#guide">Overview</a><a href="#heatmap">Core index</a><a href="#adoption">Adoption</a><a href="#monetization">Demand</a><a href="#utilization">Investment</a><a href="#financial">Financial</a><a href="#market">Market</a><a href="#chain">Industry context</a><a href="#methodology">Methodology</a></nav>
       <div className="asof"><span className="live-dot"/>Market data · 16 Sep 2026</div>
     </header>
 
@@ -658,6 +658,7 @@ export default function Home(){
     <section className="adoption-observations" aria-label="Business adoption observations"><div><span>Current business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · same source as heatmap</small></div><div><span>Expected business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · same source as heatmap</small></div>
       <SectionNotes section="adoption"/>
     </section>
+    <EvidenceGroup title="Usage and affordability" description="Routed token activity measures usage intensity; successful-task costs measure affordability."/>
     <AdoptionUsage/>
     <UsefulTaskEconomics compact/>
 
@@ -665,7 +666,9 @@ export default function Home(){
 
     <span id="imports" aria-hidden="true"/>
     <PillarResearch id="monetization" number="02" pillar="Demand" historyPillar="Imports" classification="CORE EVIDENCE · DEMAND 20% + IMPORTS 20%" title="Equipment demand is strong; lab revenue tests monetization." summary="Telecom, semiconductor and computer imports complement DRAM and NAND exports, TSMC monthly revenue and lab revenue run rates across equipment buyers, memory, foundry and model providers. Import values also reflect inventories, prices and supply timing. Nominal hardware revenue also reflects prices and product mix. Their joint strength supports the expansion thesis, but hardware shipments can lead final consumption and annualized revenue is not recognized annual sales. Serving margins and recurring customer spending determine whether the growth becomes durable profit.">
+      <EvidenceGroup title="Hardware demand" description="Memory exports and foundry revenue complement the equipment import evidence."/>
       <DemandSupplement/>
+    <EvidenceGroup title="Lab monetization" description="Revenue run rates provide separate evidence of paid model demand."/>
     <FrontierLabs compact/>
 
     </PillarResearch>
@@ -681,10 +684,47 @@ export default function Home(){
     <EvidenceGroup title="Training economics" description="Model training estimates show how capital-intensive research is becoming within the expanding compute fleet."/>
     <TaskEconomics compact/>
 
-    <EvidenceGroup title="Industry value chain" description="Reported revenue and EBITDA locate financial scale across industry participants."/>
+    </PillarResearch>
+
+
+
+    <PillarResearch id="financial" number="04" pillar="Financial" classification="SUSTAINABILITY & RETURNS · SUPPLEMENTARY RESEARCH" title="Cash generation, capital returns and funding capacity determine sustainability." summary="Cash investment absorbed 77.3% of operating cash flow across the four comparable hyperscalers, leaving a smaller cushion for further expansion. Cash coverage and incremental ROIC test the economic return on that spending. The Market chapter examines equity performance, CDS spreads and bond issuance separately. The thesis strengthens when profit and cash generation catch up with the capital base. These measures supplement the core index." history={false}>
+    <span id="capital-return" className="legacy-section-anchor"/>
+    <p className="pillar-crosslink"><a href="#capex">Compare with hyperscaler spending and capacity in Investment ↑</a></p>
+    <EvidenceGroup title="Cash generation and capital productivity" description="Compare cash generation with investment, assess funding headroom, then test whether the expanding capital base earns adequate returns."/>
+    <div className="financial-cash-return-row">
+    <InvestmentSustainability compact/>
+    <RoicAnalysis compact/>
+    </div>
+    <EvidenceGroup title="Funding dependencies" description="Supplier financing can support customer demand; test exposure to that funding separately from realized revenue."/>
+    <div className="funding-dependencies"><CircularFinancing/><p className="pillar-crosslink"><a href="#chain">Compare reported financial scale across the industry value chain ↓</a></p></div>
+    <EvidenceGroup title="Usage, spending and returns" description="Compare routed token consumption, capital spending and consolidated returns across time."/>
+    <DemandToReturns compact/>
+
+    </PillarResearch>
+
+    <PillarResearch id="market" number="05" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title="Equity returns price the opportunity; credit spreads price financing risk." summary="Market-cap-weighted performance across 36 supply-chain companies shows how investors price the AI opportunity. Compare sector size and returns with issuer CDS spreads, leverage and covered issuance relative to US IG bond supply. Equity strength can coexist with rising financing pressure; neither establishes realized operating returns. The market evidence supplements the core activity index." history={false}>
+    <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
+    <SupplyChainStockChart/>
+    <EvidenceGroup title="Credit conditions and financing" description="Credit spreads and bond issuance assess the cost and availability of financing for the buildout."/>
+    <section className="section credit-section" id="credit">
+      <div className="section-head"><div><div className="eyebrow">MARKET · CREDIT & LEVERAGE</div><h3>Credit pressure relative to the broader IG market.</h3></div><p>Daily issuer spreads and IBOXUMAE benchmark <Source id="S4"/></p></div>
+      <CreditBenchmark/>
+      <LeverageDistributions/>
+      <details className="evidence-data"><summary>Individual issuer leverage and CDS comparison</summary><CreditFinancialComparison/></details>
+
+      <SectionNotes section="credit"/>
+    </section>
+    <section className="section financing-section" id="financing">
+      <div className="section-head"><div><div className="eyebrow">MARKET · EXTERNAL FUNDING</div><h3>AI financing in the broader bond market.</h3></div><p>Bond issuance by month, issuer and sector <Source id="S6"/></p></div>
+      <BondSectorFinancing/>
+      <SectionNotes section="financing"/>
+    </section>
+
+    </PillarResearch>
+
     <section className="section chain-section" id="chain">
       <div className="section-head chain-head"><div><div className="eyebrow">SUPPORTING CONTEXT · AI INDUSTRY VALUE CHAIN</div><h2>How is economic activity distributed across the chain?</h2></div><p>{latestPriceDate?`Market data through ${latestPriceDate}`:"Market date unavailable"}</p></div>
-      <CircularFinancing/>
       <ValueDistribution/>
       <details className="vd-legacy"><summary>Explore the existing market signals and industry relationship map</summary>
       <div className="chain-toolbar">
@@ -788,42 +828,6 @@ export default function Home(){
     </section>
 
 
-    </PillarResearch>
-
-
-
-    <PillarResearch id="financial" number="04" pillar="Financial" classification="SUSTAINABILITY & RETURNS · SUPPLEMENTARY RESEARCH" title="Cash generation, capital returns and funding capacity determine sustainability." summary="Cash investment absorbed 77.3% of operating cash flow across the four comparable hyperscalers, leaving a smaller cushion for further expansion. Cash coverage and incremental ROIC test the economic return on that spending. The Market chapter examines equity performance, CDS spreads and bond issuance separately. The thesis strengthens when profit and cash generation catch up with the capital base. These measures supplement the core index." history={false}>
-    <span id="capital-return" className="legacy-section-anchor"/>
-    <p className="pillar-crosslink"><a href="#capex">Compare with hyperscaler spending and capacity in Investment ↑</a></p>
-    <EvidenceGroup title="Cash generation and capital productivity" description="Compare cash generation with investment, assess funding headroom, then test whether the expanding capital base earns adequate returns."/>
-    <div className="financial-cash-return-row">
-    <InvestmentSustainability compact/>
-    <RoicAnalysis compact/>
-    </div>
-    <EvidenceGroup title="Usage, spending and returns" description="Compare routed token consumption, capital spending and consolidated returns across time."/>
-    <DemandToReturns compact/>
-
-    </PillarResearch>
-
-    <PillarResearch id="market" number="05" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title="Equity returns price the opportunity; credit spreads price financing risk." summary="Market-cap-weighted performance across 36 supply-chain companies shows how investors price the AI opportunity. Compare sector size and returns with issuer CDS spreads, leverage and covered issuance relative to US IG bond supply. Equity strength can coexist with rising financing pressure; neither establishes realized operating returns. The market evidence supplements the core activity index." history={false}>
-    <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
-    <SupplyChainStockChart/>
-    <EvidenceGroup title="Credit conditions and financing" description="Credit spreads and bond issuance assess the cost and availability of financing for the buildout."/>
-    <section className="section credit-section" id="credit">
-      <div className="section-head"><div><div className="eyebrow">MARKET · CREDIT & LEVERAGE</div><h2>Credit pressure relative to the broader IG market.</h2></div><p>Daily issuer spreads and IBOXUMAE benchmark <Source id="S4"/></p></div>
-      <CreditBenchmark/>
-      <LeverageDistributions/>
-      <details className="evidence-data"><summary>Individual issuer leverage and CDS comparison</summary><CreditFinancialComparison/></details>
-
-      <SectionNotes section="credit"/>
-    </section>
-    <section className="section financing-section" id="financing">
-      <div className="section-head"><div><div className="eyebrow">MARKET · EXTERNAL FUNDING</div><h2>AI financing in the broader bond market.</h2></div><p>Bond issuance by month, issuer and sector <Source id="S6"/></p></div>
-      <BondSectorFinancing/>
-      <SectionNotes section="financing"/>
-    </section>
-
-    </PillarResearch>
 
     <section className="section methodology" id="methodology">
       <div className="method-title"><div className="eyebrow">METHODOLOGY & DATA DISCLOSURES</div><h2>Signal construction and analytical scope.</h2><p>The core index measures investment momentum. The supplementary overlay adds financial quality and credit conditions. Cash coverage, lab revenue and ROIC provide separate evidence on sustainability and returns.</p></div>
