@@ -14,10 +14,8 @@ if (!response.ok) throw new Error(`Page request failed with HTTP ${response.stat
 let html = await response.text();
 const assetDirectory = resolve(projectRoot, "dist", "client", "assets");
 const cssAssets = (await readdir(assetDirectory)).filter((name) => name.endsWith(".css"));
-if (cssAssets.length !== 1) {
-  throw new Error(`Expected one compiled CSS asset, found ${cssAssets.length}`);
-}
-const css = await readFile(resolve(assetDirectory, cssAssets[0]), "utf8");
+if (!cssAssets.length) throw new Error("No compiled CSS assets found; build the site first.");
+const css = (await Promise.all(cssAssets.sort().map(name => readFile(resolve(assetDirectory, name), "utf8")))).join("\n");
 const favicon = await readFile(resolve(projectRoot, "public", "favicon.svg"), "utf8");
 const csv = await readFile(resolve(projectRoot, "public", "ai-industry-chain-price-template.csv"), "utf8");
 
