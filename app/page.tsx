@@ -95,7 +95,7 @@ const pillars = Object.fromEntries(Object.entries(legacyPillars).map(([name,row]
 
 const series = [
   {pillar:"Adoption",name:"AI use — last 2 weeks",ticker:"BTOS0700",value:"21.8",yoy:120.2,status:"Included · latest"},
-  {pillar:"Adoption",name:"Expected AI use — next 6 weeks",ticker:"BTOS2400",value:"25.9",yoy:85.0,status:"Included · latest"},
+  {pillar:"Adoption",name:"Expected AI use — next 6 months",ticker:"BTOS2400",value:"25.9",yoy:85.0,status:"Included · latest"},
   {pillar:"Demand",name:"South Korea DRAM exports",ticker:"KOTCDRAM",value:"235.70",yoy:362.2,status:"Included · Aug"},
   {pillar:"Demand",name:"LLM token price",ticker:"SDLLMTK",value:"0.9543",yoy:null,status:"Context only · latest"},
   {pillar:"Investment",name:"Communication equipment orders",ticker:"DGNOCOEQ",value:"4,568",yoy:-6.8,status:"Included · Jul carry"},
@@ -553,17 +553,17 @@ export default function Home(){
   return <main id="top">
     <header className="topbar">
       <a className="brand" href="#top"><span className="brand-mark">AIA</span><span>AI Investment<br/>Atmosphere</span></a>
-      <nav aria-label="Primary"><a href="#guide">Overview</a><a href="#heatmap">Core index</a><a href="#adoption">Adoption</a><a href="#token-activity">Token activity</a><a href="#monetization">Demand</a><a href="#utilization">Investment</a><a href="#financial">Financial</a><a href="#market">Market</a><a href="#methodology">Methodology</a></nav>
-      <div className="asof"><span className="live-dot"/>Market data · 16 Sep 2026</div>
+      <nav aria-label="Primary"><a href="#guide">Overview</a><a href="#heatmap">Core index</a><a href="#adoption">Adoption</a><a href="#token-activity">Token activity</a><a href="#monetization">Demand</a><a href="#utilization">Investment</a><a href="#financial">Financial</a><a href="#market">Market</a><a href="#chain">Industry context</a><a href="#methodology">Methodology</a></nav>
+      <div className="asof"><span className="live-dot"/>Market data · {workbookAmendments.metadata.creditAsOf}</div>
     </header>
 
     <section className="hero">
       <div className="hero-copy">
         <div className="eyebrow">AI INVESTMENT ATMOSPHERE · PUBLIC EQUITY RESEARCH</div>
-        <h1>AI buildout is still expanding.<br/><em>Can profits catch up?</em></h1>
-        <p>The official index tracks Adoption, Demand, Investment, Imports and Hyperscaler CapEx. The research groups equipment imports with demand, follows adoption and investment, then tests financial resilience, cash absorption and capital returns.</p>
+        <h1>AI spending is rising.<br/><em>Can profits catch up?</em></h1>
+        <p>Five equally weighted pillars track business adoption, hardware demand, investment activity, equipment imports and hyperscaler CapEx. The research follows that activity into capacity, monetization, cash generation and returns, then tests it against equity and credit markets.</p>
         <div className="atmosphere-switch" aria-label="Atmosphere score view">{([{"id":"core","label":"Core","score":satelliteOverlay.core},{"id":"adjusted","label":"Satellite-adjusted","score":satelliteOverlay.adjusted}] as const).map(view=><button key={view.id} className={atmosphereView===view.id?"selected":""} onClick={()=>setAtmosphereView(view.id)} aria-pressed={atmosphereView===view.id} disabled={view.id==="adjusted"&&!satelliteOverlay.ready}><span>{view.label}</span><b>{formatIndex(view.score)}</b></button>)}</div>
-        <div className="hero-foot">Market data through 16 Sep 2026; fundamentals through latest available 2026Q2 / Q1 reporting periods <Source id="S1"/><Source id="S5"/> · CDS through 16 Sep 2026 <Source id="S4"/></div>
+        <div className="hero-foot">Core score: June 2026 <Source id="S1"/> · Equity and CDS observations through {workbookAmendments.metadata.creditAsOf} <Source id="S4"/><Source id="S5"/> · Financial periods vary by company; supplementary score adjustments retain their 16 Sep vintage.</div>
       </div>
       <div className="gauge" aria-label={`${atmosphereView==="core"?"Core":"Satellite-adjusted"} AI investment atmosphere score ${formatIndex(selectedAtmosphereScore)}${selectedAtmosphereScore===null?"":" out of 100"}`} style={{"--score":`${selectedAtmosphereScore??0}%`} as React.CSSProperties}>
         <div><span>{atmosphereView==="core"?"CORE":"ADJUSTED"}</span><strong>{formatIndex(selectedAtmosphereScore)}</strong><small>{selectedAtmosphereScore===null?"WITHHELD":selectedAtmosphereScore>50?"ABOVE HISTORICAL NORM":selectedAtmosphereScore<50?"BELOW HISTORICAL NORM":"AT HISTORICAL NORM"}</small></div>
@@ -580,18 +580,18 @@ export default function Home(){
         <div className="guide-conclusion"><b>Investment conclusion</b><span>The investment case depends on paid utilization and cloud profit catching up with the capital base. Improving incremental ROIC and cash coverage would provide the clearest confirmation.</span></div>
       </div>
       <ol className="guide-path" aria-label="Research reading path">
-        <li><a href="#adoption"><span>01</span><div><b>Adoption</b><small>Business use, capability and task affordability deepen the survey signal.</small></div></a></li>
+        <li><a href="#adoption"><span>01</span><div><b>Adoption</b><small>Survey breadth, routed usage and task affordability test adoption.</small></div></a></li>
         <li><a href="#monetization"><span>02</span><div><b>Demand</b><small>Equipment trade, foundry sales and lab revenue test the breadth of demand.</small></div></a></li>
         <li><a href="#utilization"><span>03</span><div><b>Investment</b><small>CapEx, facilities and installed compute connect spending to capacity.</small></div></a></li>
-        <li><a href="#financial"><span>04</span><div><b>Financial</b><small>Cash absorption, returns and funding resilience test sustainability.</small></div></a></li>
+        <li><a href="#financial"><span>04</span><div><b>Financial</b><small>Cash coverage, cost recovery, returns and funding dependencies test sustainability.</small></div></a></li>
         <li><a href="#market"><span>05</span><div><b>Market</b><small>Equity returns, credit spreads and financing demand.</small></div></a></li>
       </ol>
       <p className="guide-orientation"><a href="#chain">Explore the industry value chain.</a> <a href="#heatmap">Track the core index and momentum heatmap.</a> <a href="#financial">Assess cash generation, returns and funding</a>.</p>
     </section>
 
     <section className="snapshot" aria-label="Headline indicators">
-      <article><span>Official macro pulse</span><strong>{formatIndex(coreAtmosphereScore)}</strong><small>June · last complete comparable month</small></article>
-      <article><span>Latest signal mix</span><strong>Mixed</strong><small>adoption and imports firm; orders uneven</small></article>
+      <article><span>Core activity score</span><strong>{formatIndex(coreAtmosphereScore)}</strong><small>June · last complete comparable month</small></article>
+      <article><span>June activity breadth</span><strong>Broad</strong><small>all five pillars above their historical norms</small></article>
       <article><span>Quarterly CapEx</span><strong>$188.3B</strong><small className="up">+79.3% YoY</small></article>
       <article><span>Core pillars above historical norm</span><strong>{Object.values(coreByPillar).filter(v=>v>50).length} / 5</strong><small>methodology v2 · June pillar scores</small></article>
     </section>
@@ -600,7 +600,7 @@ export default function Home(){
       <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
       <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
       <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 25 issuers</small></article>
-      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · September is partial</small></article>
+      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · latest coverage incomplete</small></article>
       <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
     </section></details>
 
@@ -609,7 +609,7 @@ export default function Home(){
       <SectionSummary current={`Methodology v2.4 puts the June core score at ${latestCore.score?.toFixed(1)}. Adoption scores ${coreByPillar.Adoption.toFixed(1)} and Demand ${coreByPillar.Demand.toFixed(1)}. Ramp paid adoption joins the survey measures; paid spending and token volume join the hardware-demand signals. Five pillar weights remain 20% each.`} conclusion="The buildout remains broad. The next test is whether paid usage, cash generation and incremental returns justify the expanding capital base."/>
       <div className="core-heatmap-workbench">
       <div className="compact-heatmap-panel">
-        <p className="compact-heatmap-instruction">Read each row across time: a shift toward green indicates a rising signal; toward red, a falling signal. Colors use a continuous scale relative to each constituent’s own history. Available constituent observations extend through September 2026, including August data. Missing cells stay blank; the headline remains the last complete composite, June 2026. The normalization baseline remains fixed through June. Select a pillar to inspect its constituents.</p>
+        <p className="compact-heatmap-instruction">Read each row across time: a shift toward green indicates a rising signal; toward red, a falling signal. Colors use a continuous scale relative to each constituent’s own history. Available constituent observations extend through September 2026; some source values may be carried forward. Missing cells stay blank; the headline remains the last complete composite, June 2026. The normalization baseline remains fixed through June. Select a pillar to inspect its constituents.</p>
       <div className="heat-table-wrap"><table className="heat-table monthly-heat-table compact-heat-table">
 
         <thead><tr><th rowSpan={2}>Pillar / scoring basis</th>{heatmapQuarters.map(quarter=><th key={quarter} colSpan={3}>{quarter}</th>)}</tr>
@@ -660,13 +660,15 @@ export default function Home(){
       <SectionNotes section="pulse"/>
     </section>
 
-    <PillarResearch id="adoption" number="01" pillar="Adoption" title="Business adoption is broadening; routed usage measures its intensity." summary="Business-use surveys and observed Ramp payments show adoption breadth, while average daily OpenRouter traffic rose from 0.134T to 13.083T between 2025Q1 and 2026Q3 (2.9 times the Q2 daily average). Read alongside lower successful-task costs, the charts support expanding use and improving affordability. Ramp adds evidence of paid adoption; these measures do not establish retention or profitability: routing share, model mix and token intensity can also lift traffic.">
-    <section className="adoption-observations" aria-label="Business adoption observations"><div><span>Current business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · same source as heatmap</small></div><div><span>Expected business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · same source as heatmap</small></div>
+    <PillarResearch id="adoption" number="01" pillar="Adoption" title="Business adoption is broadening; routed usage measures its intensity." summary="Business-use surveys and observed Ramp payments show adoption breadth, while average daily OpenRouter traffic rose from 0.134T to 13.083T between 2025Q1 and 2026Q3 (2.9 times the Q2 daily average). Read alongside lower successful-task costs, the charts support expanding use and improving affordability. Ramp adds evidence of paid adoption; these measures do not establish retention or profitability: routing share, model mix and token intensity can also lift traffic." historyFooter={<section className="adoption-observations" aria-label="Business adoption observations"><div><span>Current business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · same source as heatmap</small></div><div><span>Expected business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · same source as heatmap</small></div>
       <div><span>Ramp paid business AI adoption</span><strong>{latestCore.rows.find(r=>r.ticker==="RAMP_PAID_ADOPTION")?.level?.toFixed(1)}%</strong><small>June 2026 · 6.67% core weight · August: {rampSnapshot.monthly.at(-1)?.paidAdoption?.toFixed(1)}%</small></div>
       <SectionNotes section="adoption"/>
-    </section>
-    <AdoptionUsage/>
-    <UsefulTaskEconomics compact/>
+    </section>}>
+    <EvidenceGroup title="Usage and affordability" description="Routed token activity measures usage intensity; successful-task costs measure affordability."/>
+    <div className="related-evidence-row">
+      <div className="evidence-column"><AdoptionUsage/></div>
+      <div className="evidence-column"><UsefulTaskEconomics compact/></div>
+    </div>
 
     </PillarResearch>
 
@@ -680,22 +682,63 @@ export default function Home(){
 
     </PillarResearch>
 
-    <PillarResearch id="utilization" number="03" pillar="Investment" classification="CORE EVIDENCE · INVESTMENT 20% + HYPERSCALER CAPEX 20%" title="Capital spending and equipment orders are expanding the capacity base." summary="Hyperscaler CapEx reached $188.3B in 2026Q2, while facility milestones and chip estimates show a growing capacity base. Together with orders and construction, these measures connect capital commitments to physical delivery. Delivery lags, owner coverage and non-AI spending limit direct comparisons. The financial section tests whether this expanding asset base generates sufficient cash and returns. Investment and Hyperscaler CapEx retain separate 20% weights in the index.">
-    <EvidenceCard id="capex" title="Hyperscaler capital expenditure" unit="Quarterly USD billions · company bars and total line" source="S2" note="Stacked bars show company spending; the line shows the five-company total. Company accounting bases differ.">
+    <PillarResearch id="utilization" number="03" pillar="Investment" classification="CORE EVIDENCE · INVESTMENT 20% + HYPERSCALER CAPEX 20%" title="Capital spending and equipment orders are expanding the capacity base." summary="The core Investment pillar tracks equipment orders, construction and high-tech production; Hyperscaler CapEx is a separate pillar. Five-company CapEx reached $188.3B in 2026Q2. Facility milestones track delivery, while the latest chip-owner estimate has incomplete 2026Q1 coverage and cannot establish quarter-on-quarter fleet growth. Together with orders and construction, these measures connect capital commitments to physical delivery. Delivery lags, owner coverage and non-AI spending limit direct comparisons. The financial section tests whether this expanding asset base generates sufficient cash and returns. Investment and Hyperscaler CapEx retain separate 20% weights in the index." historyCompanion={<><EvidenceCard title="CapEx by company" unit="2026Q2 · USD billions" source="S2" note="Compute proxy follows disclosed or estimated equipment shares." table><table><thead><tr><th>Company</th><th>Total</th><th>Compute proxy</th><th>YoY</th><th>Basis</th></tr></thead><tbody>{constituents.map(c=><tr key={c.ticker}><th>{c.company}</th><td>${c.value.toFixed(1)}B</td><td>${c.proxy.toFixed(1)}B</td><td>+{c.yoy.toFixed(1)}%</td><td>{c.basis}</td></tr>)}</tbody></table></EvidenceCard><div className="evidence-column"><EvidenceCard id="capex" title="Hyperscaler capital expenditure" unit="Quarterly USD billions · company bars and total line" source="S2" note="Stacked bars show company spending; the line shows the five-company total. Company accounting bases differ.">
       <CapexChart company={company}/>
     </EvidenceCard>
-    <div className="pillar-controls"><label htmlFor="company">CapEx series </label><select id="company" value={company} onChange={e=>setCompany(e.target.value as Company)}><option>Aggregate</option>{["Microsoft","Alphabet","Meta","Amazon","Oracle"].map(c=><option key={c}>{c}</option>)}</select></div>
-    <EvidenceCard title="CapEx by company" unit="2026Q2 · USD billions" source="S2" note="Compute proxy follows disclosed or estimated equipment shares." wide table><table><thead><tr><th>Company</th><th>Total</th><th>Compute proxy</th><th>YoY</th><th>Basis</th></tr></thead><tbody>{constituents.map(c=><tr key={c.ticker}><th>{c.company}</th><td>${c.value.toFixed(1)}B</td><td>${c.proxy.toFixed(1)}B</td><td>+{c.yoy.toFixed(1)}%</td><td>{c.basis}</td></tr>)}</tbody></table></EvidenceCard>
+    <div className="pillar-controls"><label htmlFor="company">CapEx series </label><select id="company" value={company} onChange={e=>setCompany(e.target.value as Company)}><option>Aggregate</option>{["Microsoft","Alphabet","Meta","Amazon","Oracle"].map(c=><option key={c}>{c}</option>)}</select></div></div></>}>
     <details className="evidence-data"><summary>China capital expenditure · supplementary market comparison</summary><div className="chart-panel"><ChinaCapexChart company={chinaCompany}/><p>Source S3 · RMB billions · issuer definitions differ.</p></div><SectionNotes section="capex"/></details>
-    <EvidenceGroup title="Delivered capacity" description="Facilities and installed chips show the capacity delivered by capital deployment; the conversion table relates those estimates to spending."/>
+    <EvidenceGroup title="Delivered capacity" description="Facility milestones track operational capacity; chip-owner estimates track ownership. The conversion charts compare same-quarter additions with compute CapEx, subject to delivery lags and changing source coverage."/>
     <InfrastructureDeployment compact/>
-    <EvidenceGroup title="Training economics" description="Model training estimates show how capital-intensive research is becoming within the expanding compute fleet."/>
-    <TaskEconomics compact/>
 
-    <EvidenceGroup title="Industry value chain" description="Reported revenue and EBITDA locate financial scale across industry participants."/>
+    </PillarResearch>
+
+
+
+    <PillarResearch id="financial" number="04" pillar="Financial" classification="SUSTAINABILITY & RETURNS · SUPPLEMENTARY RESEARCH" title="Cash generation, capital returns and funding capacity determine sustainability." summary="Cash CapEx absorbed 77.3% of operating cash flow across the four comparable hyperscalers in the twelve months to June 2026, versus 59.1% a year earlier. Cash coverage tests funding capacity; consolidated and incremental ROIC separately test capital productivity. Training costs, buyer affordability and funding dependencies frame the recovery challenge. The Market chapter examines equity performance, CDS spreads and bond issuance separately. The thesis strengthens when profit and cash generation catch up with the capital base. These measures supplement the core index." history={false}>
+    <span id="capital-return" className="legacy-section-anchor"/>
+    <p className="pillar-crosslink"><a href="#capex">Compare with hyperscaler spending and capacity in Investment ↑</a></p>
+    <EvidenceGroup title="Cash generation and capital productivity" description="Compare cash generation with investment, assess funding headroom, then test whether the expanding capital base earns adequate returns."/>
+    <div className="financial-cash-return-row">
+    <InvestmentSustainability compact/>
+    <RoicAnalysis compact/>
+    </div>
+    <EvidenceGroup title="Cost escalation and monetization pressure" description="Estimated training costs set a recovery hurdle; usage, cash CapEx and consolidated ROIC test whether activity and returns move together. Read with task affordability in Adoption and lab revenue in Demand. Lower buyer costs can stimulate use, but do not establish lower realized revenue per token or lower margins."/>
+    <div className="related-evidence-row economics-evidence-row">
+      <div className="evidence-column"><TaskEconomics compact/></div>
+      <div className="evidence-column"><DemandToReturns compact/></div>
+    </div>
+    <EvidenceGroup title="Funding dependencies" description="Supplier financing can support customer demand; test exposure to that funding separately from realized revenue."/>
+    <div className="funding-dependencies"><CircularFinancing/><p className="pillar-crosslink"><a href="#chain">Compare reported financial scale across the industry value chain ↓</a></p></div>
+
+
+    </PillarResearch>
+
+    <PillarResearch id="market" number="05" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title="Equity returns price the opportunity; credit spreads price financing risk." summary="Market-cap-weighted performance across 36 supply-chain companies tracks market expectations across the value chain, alongside interest rates and non-AI business drivers. Compare sector size and returns with issuer CDS spreads, leverage and covered issuance relative to US IG bond supply. Equity strength can coexist with rising financing pressure; neither establishes realized operating returns. The market evidence supplements the core activity index." history={false}>
+    <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
+    <SupplyChainStockChart/>
+    <section className="credit-section" id="credit">
+      <EvidenceGroup title="Credit" description="CDS spreads, leverage and bond issuance assess financing risk, balance-sheet capacity and external funding demand."/>
+    <section className="credit-subsection" aria-label="CDS spreads">
+      <div className="section-head"><div><div className="eyebrow">MARKET · CREDIT & LEVERAGE</div><p className="credit-subsection-title">CDS spreads relative to the broader IG market</p></div><p>Daily issuer spreads and IBOXUMAE benchmark <Source id="S4"/></p></div>
+      <CreditBenchmark/>
+    </section>
+    <section className="credit-subsection" aria-label="Leverage">
+      <LeverageDistributions/>
+      <details className="evidence-data"><summary>Individual issuer leverage and CDS comparison</summary><CreditFinancialComparison/></details>
+
+      <SectionNotes section="credit"/>
+    </section>
+    <section className="credit-subsection financing-section" id="financing">
+      <div className="section-head"><div><div className="eyebrow">MARKET · EXTERNAL FUNDING</div><h4 className="credit-subsection-title">AI bond issuance in the broader bond market</h4></div><p>Bond issuance by month, issuer and sector <Source id="S6"/></p></div>
+      <BondSectorFinancing/>
+      <SectionNotes section="financing"/>
+    </section>
+    </section>
+
+    </PillarResearch>
+
     <section className="section chain-section" id="chain">
       <div className="section-head chain-head"><div><div className="eyebrow">SUPPORTING CONTEXT · AI INDUSTRY VALUE CHAIN</div><h2>How is economic activity distributed across the chain?</h2></div><p>{latestPriceDate?`Market data through ${latestPriceDate}`:"Market date unavailable"}</p></div>
-      <CircularFinancing/>
       <ValueDistribution/>
       <details className="vd-legacy"><summary>Explore the existing market signals and industry relationship map</summary>
       <div className="chain-toolbar">
@@ -799,42 +842,6 @@ export default function Home(){
     </section>
 
 
-    </PillarResearch>
-
-
-
-    <PillarResearch id="financial" number="04" pillar="Financial" classification="SUSTAINABILITY & RETURNS · SUPPLEMENTARY RESEARCH" title="Cash generation, capital returns and funding capacity determine sustainability." summary="Cash investment absorbed 77.3% of operating cash flow across the four comparable hyperscalers, leaving a smaller cushion for further expansion. Cash coverage and incremental ROIC test the economic return on that spending. The Market chapter examines equity performance, CDS spreads and bond issuance separately. The thesis strengthens when profit and cash generation catch up with the capital base. These measures supplement the core index." history={false}>
-    <span id="capital-return" className="legacy-section-anchor"/>
-    <p className="pillar-crosslink"><a href="#capex">Compare with hyperscaler spending and capacity in Investment ↑</a></p>
-    <EvidenceGroup title="Cash generation and capital productivity" description="Compare cash generation with investment, assess funding headroom, then test whether the expanding capital base earns adequate returns."/>
-    <div className="financial-cash-return-row">
-    <InvestmentSustainability compact/>
-    <RoicAnalysis compact/>
-    </div>
-    <EvidenceGroup title="Usage, spending and returns" description="Compare routed token consumption, capital spending and consolidated returns across time."/>
-    <DemandToReturns compact/>
-
-    </PillarResearch>
-
-    <PillarResearch id="market" number="05" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title="Equity returns price the opportunity; credit spreads price financing risk." summary="Market-cap-weighted performance across 36 supply-chain companies shows how investors price the AI opportunity. Compare sector size and returns with issuer CDS spreads, leverage and covered issuance relative to US IG bond supply. Equity strength can coexist with rising financing pressure; neither establishes realized operating returns. The market evidence supplements the core activity index." history={false}>
-    <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
-    <SupplyChainStockChart/>
-    <EvidenceGroup title="Credit conditions and financing" description="Credit spreads and bond issuance assess the cost and availability of financing for the buildout."/>
-    <section className="section credit-section" id="credit">
-      <div className="section-head"><div><div className="eyebrow">MARKET · CREDIT & LEVERAGE</div><h2>Credit pressure relative to the broader IG market.</h2></div><p>Daily issuer spreads and IBOXUMAE benchmark <Source id="S4"/></p></div>
-      <CreditBenchmark/>
-      <LeverageDistributions/>
-      <details className="evidence-data"><summary>Individual issuer leverage and CDS comparison</summary><CreditFinancialComparison/></details>
-
-      <SectionNotes section="credit"/>
-    </section>
-    <section className="section financing-section" id="financing">
-      <div className="section-head"><div><div className="eyebrow">MARKET · EXTERNAL FUNDING</div><h2>AI financing in the broader bond market.</h2></div><p>Bond issuance by month, issuer and sector <Source id="S6"/></p></div>
-      <BondSectorFinancing/>
-      <SectionNotes section="financing"/>
-    </section>
-
-    </PillarResearch>
 
     <section className="section methodology" id="methodology">
       <div className="method-title"><div className="eyebrow">METHODOLOGY & DATA DISCLOSURES</div><h2>Signal construction and analytical scope.</h2><p>The core index measures investment momentum. The supplementary overlay adds financial quality and credit conditions. Cash coverage, lab revenue and ROIC provide separate evidence on sustainability and returns.</p></div>

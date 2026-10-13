@@ -12,8 +12,8 @@ const notes: Record<string, Note> = {
   pulse: {
     sources: ["S1", "S2"],
     source: "Bloomberg macro workbook and consolidated U.S. hyperscaler CapEx. Later observations mix source periods and may contain carried values; the official score remains at the last complete comparable month.",
-    methodology: "Series receive equal weights within pillars; Adoption, Demand, Investment, Imports and Hyperscaler CapEx each receive 20%. Signal scores use the methodology-v2 constituent treatments and are capped at 0–100; 50 is each signal’s historical norm.",
-    other: "Latest pillar cards are diagnostic snapshots, not the June score decomposition. They must not be averaged to reconstruct the held official index. Token prices remain context rather than a core input.",
+    methodology: "Series receive equal weights within pillars; Adoption, Demand, Investment, Imports and Hyperscaler CapEx each receive 20%. Signal scores use the methodology-v2.2 constituent treatments and are capped at 0–100; 50 is each signal’s historical norm.",
+    other: "Pillar cards show June normalized scores and average equally to the June core score before rounding. The source table contains separately dated observations; those raw levels and growth rates must not be averaged to reconstruct the score. Token prices remain context rather than a core input.",
   },
   adoption: {
     sources: ["S1", "S14"], source: "Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption ends August 2026; missing September is retained.",
@@ -26,8 +26,8 @@ const notes: Record<string, Note> = {
     other: "Compute proxies include AI and non-AI workloads. Tencent uses operating CapEx, Alibaba reported CapEx and Baidu cash CapEx. Missing proxy constituents are not zero-filled. Spending does not establish operational capacity, utilization or return.",
   },
   infrastructure: {
-    sources: ["S11"], source: "Epoch AI chip-owner, chip-user and data-center datasets. H100-equivalent capacity, facility power and ownership allocations are modeled estimates rather than measured workloads. Coverage and source dates differ. Facility records cover identified projects rather than the complete global fleet. The 2026Q1 compute decline reflects estimate revisions and fleet-mix changes rather than observed disposals.",
-    methodology: "Compare CapEx, operational IT capacity and estimated installed H100 equivalents. Training workloads are expressed as H100e-years; fleet-year shares assume 30% effective utilization. CapEx conversion divides trailing-four-quarter compute spending by YoY additions in estimated H100e or operational MW. Owner estimate ranges sum 5th–95th percentile values; chip thermal load is accelerator TDP, not measured electricity consumption.",
+    sources: ["S11"], source: "Epoch AI chip-owner, chip-user and data-center datasets. H100-equivalent capacity, facility power and ownership allocations are modeled estimates rather than measured workloads. Coverage and source dates differ. Facility records cover identified projects rather than the complete global fleet. The 2026Q1 chip-owner snapshot omits AMD and Amazon custom-chip rows present in 2025Q4; its decline cannot be read as observed disposals.",
+    methodology: "Compare CapEx, modeled operational IT capacity and estimated owned H100 equivalents. Training workloads are expressed as H100e-years; fleet-year shares assume 30% effective utilization. Headline yield charts divide same-quarter net additions by compute CapEx for a matched four-company cohort. The expanded conversion table separately divides trailing-four-quarter spending by YoY additions through 2026Q1; incomplete chip coverage limits that table. These ratios have different units and periods. Owner estimate ranges sum 5th–95th percentile values; chip thermal load is accelerator TDP, not measured electricity consumption.",
     other: "Owned-chip and facility views overlap and are not added. Spending, delivery and commissioning lags limit conversion-ratio comparisons. CapEx per H100e is not a chip quote; CapEx per MW is not a construction quote. Oracle conversion is withheld without four comparable quarters. Epoch uses CapEx in some allocations, so ownership-to-CapEx correlation is not an independent validation. Installed capacity is not a measure of paid workload utilization. Inference, experiments and cloud workloads remain unmeasured.",
   },
   labs: {
@@ -37,7 +37,7 @@ const notes: Record<string, Note> = {
   },
   "task-economics": {
     sources: ["S12"], source: "Epoch AI frontier-model and accelerator datasets. Training costs are compute estimates in constant 2023 USD; disclosure is sparse and the latest model records may lack costs.",
-    methodology: "Plot cost-bearing model observations and annual median/interquartile range; shading shows the interquartile range of covered estimates. Compare accelerator release-price performance. Training-cost recovery divides estimated compute cost by the illustrated contribution-margin assumptions.",
+    methodology: "Plot cost-bearing model observations and annual median/interquartile range; shading shows the interquartile range of covered estimates. Compare accelerator release-price performance. Training-cost recovery divides estimated compute cost by the illustrated contribution-margin assumptions, which must already allow for variable serving costs.",
     other: "Covered observations do not represent every frontier model. Recovery sensitivities exclude serving costs, research payroll, failed experiments, data, financing and overhead. Hardware comparisons exclude systems, networking, power, utilization and purchasing terms. Sensitivities are not forecasts.",
   },
   "useful-task-economics": {
@@ -46,8 +46,8 @@ const notes: Record<string, Note> = {
     other: "This is a derived buyer-side price-performance measure; task expenditure is not infrastructure-owner revenue or profit. Benchmark success is a proxy, not production reliability. Model, harness, reasoning and token assumptions limit comparability. MiniMax, DeepSeek and GLM candidates begin in August 2025 because earlier collected observations lack both comparable success and run cost. The shaded frontier/value gap is not an uncertainty interval.",
   },
   conversion: {
-    sources: ["S9", "S1", "S8"], source: "OpenRouter daily rankings refreshed 7 October 2026 through 6 October. Adoption usage includes Q3; comparisons with reported financials remain through Q2. Workbook token prices and company fundamentals retain their own vintages. Coverage is platform-specific. Macro and price inputs have different frequencies and may contain carried values.",
-    methodology: "Compare platform traffic, token prices, capital spending and consolidated ROIC over matched displayed periods. Series use separately labeled axes and different units; line steepness does not compare growth rates.",
+    sources: ["S9", "S1", "S7", "S8"], source: "OpenRouter daily rankings refreshed 7 October 2026 through 6 October. Adoption usage includes Q3; comparisons with reported financials remain through Q2. Workbook token prices and company fundamentals retain their own vintages. Coverage is platform-specific. Macro and price inputs have different frequencies and may contain carried values.",
+    methodology: "The trend chart compares platform traffic, four-company cash CapEx and consolidated ROIC from 2025Q1 to 2026Q2. Token pricing appears only in the accompanying interpretation, using a separate June-to-16-September 2026 window. Series use separately labeled axes and different units; line steepness does not compare growth rates.",
     other: "Traffic, lab revenue and hyperscaler returns cover different populations. This comparison cannot attribute revenue or NOPAT to a unit of usage, and does not establish causality. Required evidence is cloud revenue, segment profit and realized model spending; price-index × token volume does not establish revenue. It is excluded from the atmosphere scores.",
   },
   roic: {
@@ -72,7 +72,7 @@ const notes: Record<string, Note> = {
   },
   credit: {
     sources: ["S4"], source: "Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily benchmark observations through 7 October 2026. Latest issuer ratings are dated 30 September 2026. Quotes and comparable issuer coverage limit representativeness.",
-    methodology: "Daily relative change = change in the equal-weight fixed issuer basket minus change in the general IG benchmark since 31 December 2025. Thirty-day issuer comparisons use matched dates. Latest rating groups are retrospective, not historical ratings. Displayed overall, sector and rating charts use median spread lines with observed minimum–maximum bands and the general IG benchmark. Overall and sector baskets include covered below-IG issuers.",
+    methodology: "The spread view plots issuer medians; the relative-change view summarizes issuer changes minus the general IG benchmark change since 31 December 2025. Thirty-day issuer comparisons use matched dates. Latest rating groups are retrospective, not historical ratings. Displayed overall, sector and rating charts use median lines with selectable central-50% or minimum–maximum issuer bands and the general IG benchmark. Overall and sector baskets include covered below-IG issuers.",
     other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage uses covered issuers with four consecutive EBITDA quarters. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. Issuer and role coverage are shown; the credit adjustment is separate from the five-pillar core index.",
   },
   financing: {
