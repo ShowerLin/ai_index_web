@@ -49,7 +49,7 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /id="heatmap-demand-evidence"/);
   assert.match(html, /Demand · DRAM, NAND and TSMC revenue/);
   assert.match(html, /Demand heatmap comparison basis/);
-  assert.match(html, /Methodology v2.2 contributions/);
+  assert.match(html, /Methodology v2.4 contributions/);
   assert.match(html, /Core atmosphere/);
   assert.match(html, /Separate funding signal · September is partial/);
   assert.match(html, /SELECTED PILLAR · CONSTITUENTS/);
