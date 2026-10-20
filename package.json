@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
-    "data:infrastructure": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-infrastructure-snapshot.py",
-    "data:frontier-labs": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-frontier-labs-snapshot.py",
-    "data:task-economics": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-task-economics-snapshot.py",
-    "data:useful-task": "/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-useful-task-snapshot.py",
-    "data:epoch-pricing": "python3 scripts/download-epoch-model-pricing.py",
-    "data:swebench": "python3 scripts/download-swebench-results.py",
+    "data:infrastructure": "node scripts/data-pipeline.mjs build --group infrastructure",
+    "data:frontier-labs": "node scripts/data-pipeline.mjs build --group labs",
+    "data:task-economics": "node scripts/data-pipeline.mjs build --group task",
+    "data:useful-task": "node scripts/data-pipeline.mjs build --group task",
+    "data:epoch-pricing": "node scripts/data-pipeline.mjs collect pricing",
+    "data:swebench": "node scripts/data-pipeline.mjs collect swebench",
     "dev": "node ./node_modules/vinext/dist/cli.js dev --port 8000",
     "build": "node ./node_modules/vinext/dist/cli.js build",
     "start": "node ./node_modules/vinext/dist/cli.js start --port 8000",
-    "test": "node ./node_modules/vinext/dist/cli.js build"
+    "test": "node ./node_modules/vinext/dist/cli.js build",
+    "data:build": "node scripts/data-pipeline.mjs build --group all",
+    "data:status": "node scripts/data-pipeline.mjs status",
+    "data:sync": "node scripts/data-pipeline.mjs sync --web-root ."
   },
   "dependencies": {
     "next": "16.2.6",

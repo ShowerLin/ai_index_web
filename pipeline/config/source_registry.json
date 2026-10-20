@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "data_root": "directory containing Indexlist.xlsx and pipeline/",
+  "updated": "2026-10-16",
+  "sources": [
+    {
+      "id": "bloomberg",
+      "paths": [
+        "Indexlist.xlsx"
+      ],
+      "update_method": "Bloomberg Excel refresh and saved Value tabs",
+      "usage": "Macro, credit, issuance, equity, financials, cash flow, ROIC and cloud segment / RPO estimate references",
+      "build_group": "bloomberg",
+      "credential": "Licensed Bloomberg environment"
+    },
+    {
+      "id": "ramp",
+      "paths": [
+        "data/raw/ramp/latest/normalized.json",
+        "data/raw/ramp/latest/dashboard-data.json"
+      ],
+      "update_method": "python pipeline/run.py collect ramp",
+      "usage": "Paid adoption, spending, provider/sector breakdowns and weekly tokens",
+      "build_group": "ramp",
+      "credential": "None for public website payload; schema may change"
+    },
+    {
+      "id": "openrouter",
+      "paths": [
+        "data/raw/openrouter/rankings-daily.json"
+      ],
+      "update_method": "python pipeline/run.py collect openrouter",
+      "usage": "Routed traffic and token index inputs",
+      "build_group": "tokens",
+      "credential": "OPENROUTER_API_KEY environment variable; never store in OneDrive"
+    },
+    {
+      "id": "epoch-models-hardware-benchmarks",
+      "paths": [
+        "epoch_ai/ml_models",
+        "epoch_ai/chip_dataset",
+        "epoch_ai/benchmark_data"
+      ],
+      "update_method": "python pipeline/run.py collect epoch",
+      "usage": "Model and hardware economics, task success",
+      "build_group": "task",
+      "credential": null
+    },
+    {
+      "id": "epoch-pricing",
+      "paths": [
+        "epoch_ai/model_pricing"
+      ],
+      "update_method": "python pipeline/run.py collect pricing",
+      "usage": "API price context and successful-task economics",
+      "build_group": "task",
+      "credential": null
+    },
+    {
+      "id": "swebench",
+      "paths": [
+        "swe_bench"
+      ],
+      "update_method": "python pipeline/run.py collect swebench",
+      "usage": "Model-agent success and observed task costs",
+      "build_group": "task",
+      "credential": null
+    },
+    {
+      "id": "physical-infrastructure",
+      "paths": [
+        "epoch_ai/ai_chip_owners",
+        "epoch_ai/ai_chip_users",
+        "epoch_ai/data_centers"
+      ],
+      "update_method": "Download/review Epoch CSV releases; recurring collector not yet provided",
+      "usage": "Compute ownership/use, facilities and capacity conversion",
+      "build_group": "infrastructure",
+      "credential": null
+    },
+    {
+      "id": "capex",
+      "paths": [
+        "data/research/capex/source_workbook.xlsx",
+        "data/research/capex/quarterly_history.json"
+      ],
+      "update_method": "Review quarterly filings; update accounting definitions and compute assumptions",
+      "usage": "Buildout, capacity conversion and fixed core reference",
+      "build_group": "infrastructure",
+      "credential": null
+    },
+    {
+      "id": "lab-revenue",
+      "paths": [
+        "epoch_ai/ai_companies/ai_companies_revenue_reports.csv",
+        "data/research/frontier_labs"
+      ],
+      "update_method": "Source research; python pipeline/research.py capture / import-labs",
+      "usage": "Lab revenue, ARR and annualized run rates",
+      "build_group": "labs",
+      "credential": null
+    },
+    {
+      "id": "financing",
+      "paths": [
+        "data/research/financing/circular-financing.json",
+        "data/research/financing/csv"
+      ],
+      "update_method": "Research disclosures; candidate CSV import and validation; reconcile before acceptance",
+      "usage": "Funding and counterparty relationships",
+      "build_group": null,
+      "credential": null
+    },
+    {
+      "id": "task-assumptions",
+      "paths": [
+        "data/research/task_economics/observations.csv"
+      ],
+      "update_method": "Review sourced observations and explicit task assumptions in CSV",
+      "usage": "Successful-task economics anchors; enriched by public datasets",
+      "build_group": "task",
+      "credential": null
+    },
+    {
+      "id": "core-reference",
+      "paths": [
+        "data/reference/core-v2.1.ts",
+        "data/reference/core-v2.2.ts",
+        "data/reference/core-v2.3.ts",
+        "data/reference/financial_publication_coverage.json"
+      ],
+      "update_method": "Versioned methodology and new-period review, not routine data collection",
+      "usage": "Preserved normalization, historical core bases and accepted cash/ROIC coverage",
+      "build_group": "core",
+      "credential": null
+    },
+    {
+      "id": "electricity-capacity",
+      "paths": [
+        "data/raw/electricity",
+        "data/reference/electricity",
+        "data/derived/electricity",
+        "data/research/electricity"
+      ],
+      "update_method": "python -m pipeline.electricity.cli collect / build --cached / forecast / validate / promote / report; reviewed vintage-specific extracts",
+      "usage": "Supplementary capacity: retail electricity, construction spending, LBNL energy, CBRE/JLL pipelines, PJM revisions; partial coverage",
+      "build_group": "infrastructure",
+      "credential": null
+    }
+  ]
+}

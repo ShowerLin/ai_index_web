@@ -1,0 +1,28 @@
+.section{grid-column:1/-1;min-width:0;scroll-margin-top:90px}
+.heading{padding-top:18px;border-top:1px solid var(--line);margin:12px 0 18px}
+.section a{text-decoration:underline;text-underline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.card{min-width:0}
+.card>header{height:88px}
+.body{min-width:0;min-height:300px;padding-bottom:18px;display:flex;flex-direction:column;justify-content:center}
+.body>p{font-size:11px;line-height:1.65;color:var(--muted);margin:12px 0 0}
+.body svg{display:block;width:100%;height:200px;flex-shrink:0}
+.body svg text{fill:var(--muted);font:18px Arial,sans-serif}
+.controls{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;min-height:40px;margin:0 0 10px;font-size:11px;color:var(--muted)}
+.controls label{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.controls select{max-width:100%;min-width:0;padding:6px;background:var(--card);border:1px solid var(--line);color:var(--ink);font:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:10px;line-height:1.5;color:var(--muted);margin:8px 0 0;min-height:32px}
+.legend span{display:flex;gap:5px;align-items:center}
+.legend i{width:14px;height:3px;display:inline-block}
+.body table{width:100%;border-collapse:collapse;font-size:11px}
+.body th,.body td{padding:12px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:normal}
+.body th:first-child{text-align:left;font-weight:500}
+.body details{margin-top:12px;font-size:11px;line-height:1.6;color:var(--muted)}
+.body summary{cursor:pointer;color:var(--ink)}
+.body details p{margin:10px 0 0}
+.sources{margin-top:18px;color:var(--muted);line-height:1.65}
+.sources summary{cursor:pointer;color:var(--ink)}
+.sources ul{padding-left:18px;columns:2}
+.sources p{max-width:1100px}
+@media(max-width:1350px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.grid{grid-template-columns:minmax(0,1fr)}.card>header{height:auto;min-height:78px;padding-bottom:12px}.body{min-height:260px}.body svg{height:220px}.sources ul{columns:1}}

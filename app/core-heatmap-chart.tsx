@@ -1,8 +1,16 @@
+import {coreProjectionSnapshot as projection} from "./core-projection-snapshot";
 export type CompositePoint = { month: string; value: number | null; low: number | null; high: number | null };
 
-export default function CoreHeatmapChart({ title, points, corePoints, official, quarterly }: {
+export default function CoreHeatmapChart({ title, points: historicalPoints, corePoints: historicalCorePoints, official, quarterly }: {
   title: string; points: CompositePoint[]; corePoints: {month: string; value: number | null}[]; official: boolean; quarterly: boolean;
 }) {
+  const displayEndDate = new Date(`${projection.metadata.anchorMonth}-01T00:00:00Z`);
+  displayEndDate.setUTCMonth(displayEndDate.getUTCMonth()+3);
+  const displayEnd = displayEndDate.toISOString().slice(0,7);
+  const displayedProjection = projection.months.filter(p => p.month <= displayEnd);
+  const futureMonths = displayedProjection.filter(p => p.month > historicalPoints.at(-1)!.month);
+  const points: CompositePoint[] = [...historicalPoints.map(p => p.month > projection.metadata.anchorMonth ? {...p,value:null,low:null,high:null} : p), ...futureMonths.map(p => ({month:p.month,value:null,low:null,high:null}))];
+  const corePoints = points.map(p => ({month:p.month,value:p.month <= projection.metadata.anchorMonth ? historicalCorePoints.find(h => h.month === p.month)?.value ?? null : null}));
   const values = points.flatMap(point => [point.value, point.low, point.high]).filter((value): value is number => value !== null);
   const baseline = 50;
   const minimum = Math.min(baseline, ...values), maximum = Math.max(baseline, ...values);
@@ -12,6 +20,8 @@ export default function CoreHeatmapChart({ title, points, corePoints, official, 
   const x = (index: number) => left + index * (w - left - right) / Math.max(points.length - 1, 1);
   const y = (value: number) => top + (upper - value) * (h - top - bottom) / (upper - lower);
   const coreY = (value: number) => top + (100 - value) * (h - top - bottom) / 100;
+  const projectionLine = displayedProjection.map((point,index) => `${index ? "L" : "M"}${x(points.findIndex(p => p.month === point.month))},${coreY(point.value)}`).join(" ");
+  const projectedPillarLine = displayedProjection.map((point,index) => `${index ? "L" : "M"}${x(points.findIndex(p => p.month === point.month))},${y(point.capexScore)}`).join(" ");
   const coreLine = corePoints.map((point,index)=>point.value===null?"":`${index===0||corePoints[index-1].value===null?"M":"L"}${x(index)},${coreY(point.value)}`).join(" ");
   const line = points.map((point, index) => point.value === null ? "" : `${index === 0 || points[index - 1].value === null ? "M" : "L"}${x(index)},${y(point.value)}`).join(" ");
   // Separate bands at missing inputs rather than connecting across a gap.
@@ -43,9 +53,12 @@ export default function CoreHeatmapChart({ title, points, corePoints, official, 
     return {...event,anchor,center,lane,color,number:index+1};
   });
   return <div className="composite-history-chart" aria-live="polite">
-    <div className="composite-chart-heading"><div><span>{official ? "NORMALIZED CORE SCORE" : quarterly ? "NORMALIZED PILLAR SCORE · QUARTERLY HELD" : "NORMALIZED PILLAR SCORE"}</span><h3>{title}</h3></div><div className="composite-latest"><span>Latest available {official?"core":"pillar"} score</span><strong>{latestPoint?.value?.toFixed(1)??"n/a"}</strong><small>{latestPoint?.month??"Unavailable"}{latestPoint&&latestPoint.month!==points.at(-1)?.month?" · latest months incomplete":""}</small>{!official&&<small>Core: {latestCore?.value?.toFixed(1)??"n/a"} · {latestCore?.month??"unavailable"}</small>}</div></div>
-    <div className="composite-chart-legend"><span><i className="core-line-key"/>Core index · {latestCore?.value?.toFixed(1)??"n/a"} · {latestCore?.month} · left axis</span>{!official && <><span><i style={quarterly?{borderTopStyle:"dotted"}:undefined}/>{title} · right axis</span><span><i className="range-key"/>Constituent min–max range</span></>}</div>
+    <div className="composite-chart-heading"><div><span>{official ? "NORMALIZED CORE SCORE" : quarterly ? "NORMALIZED PILLAR SCORE · QUARTERLY HELD" : "NORMALIZED PILLAR SCORE"}</span><h3>{title}</h3></div><div className="composite-latest"><span>Latest actual {official?"core":"pillar"} score</span><strong>{latestPoint?.value?.toFixed(1)??"n/a"}</strong><small>{latestPoint?.month??"Unavailable"}{latestPoint&&latestPoint.month!==points.at(-1)?.month?" · actual cutoff":""}</small>{!official&&<small>Core: {latestCore?.value?.toFixed(1)??"n/a"} · {latestCore?.month??"unavailable"}</small>}</div></div>
+    <div className="composite-chart-legend"><span><i className="core-line-key"/>Actual core · solid · {latestCore?.value?.toFixed(1)??"n/a"} · {latestCore?.month} · left axis</span><span><i style={{borderTopStyle:"dashed",borderTopColor:"#d88952"}}/>Estimated composite · dashed · Jul 2026–Sep 2026</span>{!official && <><span><i/>{title} · right axis</span><span><i className="range-key"/>Constituent min–max range</span></>}</div>
+    <p><b>Dashed projection through September 2026:</b> Bloomberg CapEx estimates drive the 20% CapEx pillar; other pillars stay at June 2026 scores. September 2026 conditional composite: {displayedProjection.at(-1)!.value.toFixed(1)}. This is a conditional scenario.</p>
     <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label={`Official core index${official ? " historical composite" : ` with ${title} historical composite and constituent range`}`}>
+      <rect x={x(points.findIndex(p => p.month === projection.metadata.anchorMonth))} y={top} width={w-right-x(points.findIndex(p => p.month === projection.metadata.anchorMonth))} height={h-top-bottom} fill="#d88952" opacity=".07"/>
+      <text x={w-right} y={top-8} textAnchor="end">ESTIMATES / CONDITIONAL COMPOSITE</text>
       <text x={left} y="14">CORE SCORE</text>{!official&&<text x={w-right} y="14" textAnchor="end">PILLAR SCORE</text>}
       {[0,25,50,75,100].map(value=><g key={value}><line x1={left} x2={w-right} y1={coreY(value)} y2={coreY(value)} className="task-grid"/><text x={left-9} y={coreY(value)+4} textAnchor="end">{value}</text></g>)}
       {!official&&Array.from({ length: 5 }, (_, index) => lower + index * (upper - lower) / 4).map(value => <text key={value} x={w-right+9} y={y(value)+4}>{value.toFixed(0)}</text>)}
@@ -65,13 +78,16 @@ export default function CoreHeatmapChart({ title, points, corePoints, official, 
         </g>;
       })}
       {bands.map((band, index) => <path key={index} d={`${band.map(({ point, index }, i) => `${i ? "L" : "M"}${x(index)},${y(point.high!)}`).join(" ")} ${[...band].reverse().map(({ point, index }) => `L${x(index)},${y(point.low!)}`).join(" ")} Z`} className="constituent-range"/>)}
-      <path d={coreLine} className="pinned-core-line"/>
+      <path d={projectionLine} fill="none" stroke="#d88952" strokeWidth="3" strokeDasharray="8 5"><title>Conditional composite projection</title></path>
+      {quarterly && <path d={projectedPillarLine} fill="none" stroke="#1d7f80" strokeWidth="2" strokeDasharray="8 5"/>}
+      <path d={coreLine} className="pinned-core-line" style={{strokeDasharray:'none'}}/>
       {corePoints.map((point,index)=>point.value!==null&&<circle key={point.month} cx={x(index)} cy={coreY(point.value)} r="3.5" className="pinned-core-point"><title>{`${point.month}: official core index ${point.value.toFixed(1)}`}</title></circle>)}
-      {!official&&<path d={line} className="composite-history-line" strokeDasharray={quarterly?"2 5":undefined}/>}
+      {!official&&<path d={line} className="composite-history-line" style={{strokeDasharray:'none'}}/>}
       {points.map((point, index) => <g key={point.month}>{index % 2 === 0 || index === points.length - 1 ? <text x={x(index)} y={h - 15} textAnchor="middle">{point.month.slice(2)}</text> : null}{!official&&point.value !== null && <circle cx={x(index)} cy={y(point.value)} r="4" className="composite-history-point"><title>{`${point.month}: ${point.value.toFixed(1)} points${point.low === null ? "" : `; constituents ${point.low.toFixed(1)} to ${point.high!.toFixed(1)}`}`}</title></circle>}</g>)}
     </svg>
     <p>Agent adoption can increase inference intensity through repeated reasoning, tool calls and longer-running tasks. The launch markers identify potential demand catalysts; the collected data do not isolate their contribution. Provider-direct agent traffic is not comprehensively captured by OpenRouter.</p>
+    <details><summary>Projection inputs and assumptions</summary><p>{projection.metadata.method}</p><table><thead><tr><th>Quarter</th><th>Bridged CapEx ($B)</th><th>TTM YoY</th><th>CapEx score</th><th>Conditional composite</th></tr></thead><tbody>{projection.quarters.filter(q=>q.quarter<=`${displayEnd.slice(0,4)}Q${Math.ceil(Number(displayEnd.slice(5))/3)}`).map(q => <tr key={q.quarter}><th>{q.quarter} E</th><td>{q.total.toFixed(1)}</td><td>{q.growth.toFixed(1)}%</td><td>{q.capexScore.toFixed(1)}</td><td>{q.composite.toFixed(1)}</td></tr>)}</tbody></table></details>
     <details className="composite-events"><summary>Event context and sources</summary><ul>{events.map(event=><li key={event.month}><a href={event.url} target="_blank" rel="noreferrer">{events.indexOf(event)+1}. {event.date} · {event.label}</a> — {event.note}{event.month==="2025-01"&&<> <a href="https://openai.com/index/announcing-the-stargate-project/" target="_blank" rel="noreferrer">Stargate announcement</a>.</>}</li>)}</ul><p>Markers identify the event month, not an estimated effect on the index. Announcements may precede measured adoption, orders or spending; these dates do not establish causality.</p></details>
-    <p>History begins in January 2024 wherever the required signal is available. Missing observations are not interpolated and do not require a composite score.{quarterly?" Dotted pillar line: quarterly observations carried across months, a retrospective timing assumption rather than monthly measurements.":" Solid lines connect available observations; gaps indicate unavailable inputs."}</p>
+    <p>History begins in January 2024 wherever the required signal is available. Missing observations are not interpolated and do not require a composite score.{quarterly?" Actual pillar observations are solid; quarterly values are held across months. Estimates are dashed.":" Solid lines connect available observations; gaps indicate unavailable inputs."}</p>
   </div>;
 }

@@ -2,7 +2,9 @@
 export const frontierLabsSnapshot = {
   "metadata": {
     "source": "ai_companies_revenue_reports.csv",
-    "asOf": "2026-09-29"
+    "asOf": "2026-09-29",
+    "quarterlySource": "data/research/frontier_labs/quarterly_revenue.json",
+    "quarterlyReviewedOn": "2026-10-15"
   },
   "labs": {
     "OpenAI": {
@@ -207,5 +209,24 @@ export const frontierLabsSnapshot = {
         }
       ]
     }
-  }
+  },
+  "reportedQuarterlyRevenue": [
+    {
+      "id": "anthropic-2026-q3-revenue-reuters-20261014",
+      "company": "Anthropic",
+      "period": "2026 Q3",
+      "periodStart": "2026-07-01",
+      "periodEnd": "2026-09-30",
+      "metric": "Quarterly revenue",
+      "value": 16800000000,
+      "currency": "USD",
+      "unit": "USD",
+      "reportDate": "2026-10-14",
+      "verificationStatus": "Media-reported; public company filing not verified",
+      "sourceName": "Reuters (via Investing.com)",
+      "sourceUrl": "https://www.investing.com/news/stock-market-news/anthropics-q3-revenue-surges-45-to-nearly-17-billion-4950208",
+      "corroboratingUrl": "https://www.theinformation.com/briefings/anthropic-reports-16-8-billion-third-quarter-revenue",
+      "note": "Reuters attributes the figure to two attendees at the October 14 investor meeting. This is revenue for the quarter, not ARR, an annualized run rate or a forecast. Accounting basis and audit status were not independently established."
+    }
+  ]
 } as const;

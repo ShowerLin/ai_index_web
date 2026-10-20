@@ -1,0 +1,23 @@
+[
+  "core-projection-snapshot.ts",
+  "cloud-reference-snapshot.ts",
+  "capacity-yields-snapshot.ts",
+  "electricity-capacity-snapshot.ts",
+  "chain-economics-snapshot.ts",
+  "core-contribution-snapshot.ts",
+  "credit-financial-history.ts",
+  "frontier-labs-snapshot.ts",
+  "industry-chain-snapshot.ts",
+  "infrastructure-snapshot.ts",
+  "monthly-heatmap-snapshot.ts",
+  "openrouter-company-snapshot.ts",
+  "ramp-snapshot.ts",
+  "roic-snapshot.ts",
+  "supply-chain-stock-snapshot.ts",
+  "sustainability-snapshot.ts",
+  "task-economics-snapshot.ts",
+  "token-activity-snapshot.ts",
+  "useful-task-snapshot.ts",
+  "value-chain-financials.ts",
+  "workbook-amendments-snapshot.ts"
+]

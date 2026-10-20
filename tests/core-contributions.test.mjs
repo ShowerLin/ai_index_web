@@ -3,8 +3,9 @@ import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {coreContributionSnapshot as snapshot} from '../app/core-contribution-snapshot.ts';
 import {monthlyHeatmapSnapshot as macro} from '../app/monthly-heatmap-snapshot.ts';
-test('revised contribution source matches heatmap and reconciles without reweighting',()=>{
- assert.equal(snapshot.metadata.sourceSha256,macro.metadata.sourceSha256);
+test('current workbook provenance reconciles while the historical normalization source remains versioned',()=>{
+ assert.equal(snapshot.metadata.demandSourceSha256,macro.metadata.sourceWorkbookSha256);
+ assert.match(snapshot.metadata.sourceSha256,/^[a-f0-9]{64}$/);
  for(const month of snapshot.months){
   assert.equal(month.rows.length,18);
   assert.ok(Math.abs(month.rows.reduce((sum,r)=>sum+r.weight,0)-1)<1e-12);

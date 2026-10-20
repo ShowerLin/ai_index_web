@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import {join} from 'node:path';
+import {sharedDataRoot} from '../scripts/shared-data.mjs';
 import { infrastructureSnapshot as snapshot } from "../app/infrastructure-snapshot.ts";
 
 test("infrastructure snapshot preserves coverage and calculation boundaries", () => {
@@ -21,7 +23,7 @@ test("infrastructure snapshot preserves coverage and calculation boundaries", ()
 
 test("infrastructure build script documents source mappings and does not claim utilization", async () => {
   const [script, component] = await Promise.all([
-    readFile(new URL("../scripts/build-infrastructure-snapshot.py", import.meta.url), "utf8"),
+    readFile(join(sharedDataRoot(),'pipeline/builders/build-infrastructure-snapshot.py'), "utf8"),
     readFile(new URL("../app/infrastructure-deployment.tsx", import.meta.url), "utf8"),
   ]);
   assert.match(script, /"Google": "Alphabet"/);

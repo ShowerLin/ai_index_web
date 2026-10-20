@@ -1,14 +1,30 @@
 # AI Investment Atmosphere — canonical local website
 
+Current data architecture and changes are documented in [Data pipeline](docs/DATA_PIPELINE.md). This covers the OneDrive source split, Bloomberg estimates, conditional composite, actual/estimate display rules and GitHub reproducibility limits. Older dated sections below describe historical vintages; use the current guide for operating instructions.
+
 ## Workspace rule
 
-This folder is the canonical local website workspace. Keep the application source, scripts, tests, package files and all dependencies here, outside OneDrive.
+This folder is the canonical local website workspace. Keep application components, tests, package files and installed dependencies here, outside OneDrive. Canonical data collectors/builders now live in the synced OneDrive AI_Index/pipeline folder; this checkout contains lightweight compatibility adapters.
 
-The OneDrive `AI_Index` folder stores spreadsheets, research documents and generated static outputs only. Never install `node_modules`, package caches or other website dependencies in OneDrive. Merge approved application changes into this Projects workspace before running or reviewing the page.
+The OneDrive `AI_Index` folder is authoritative for Bloomberg inputs, public/researched data, methodology references, portable refresh code and generated snapshots. See its `README.md`, `docs/DATA_PIPELINE.md` and `docs/CHANGELOG_2026-10-15.md`. Never install `node_modules`, package caches or other website dependencies in OneDrive. Merge approved application changes into this Projects workspace before running or reviewing the page.
 
-Publish from the complete canonical local application, including circular financing and value distribution. Sync application source and public assets to `/Users/linyu/Projects/ai-index-sites` before publishing; preserve that checkout's Sites hosting, Worker and build configuration. Do not assemble a partial page from an older Sites version. Market groups equity returns, CDS and bond financing; Financial retains operating cash generation and capital returns.
+Publish from the complete canonical local application, including circular financing and value distribution. Sync application source and public assets to the configured local publishing checkout before publishing; preserve its hosting, Worker and build configuration. Do not assemble a partial page from an older Sites version. Market groups equity returns, CDS and bond financing; Financial retains operating cash generation and capital returns.
 
 The last self-contained HTML export is preserved under `static-output/`. It is an output artifact and is not the source used by the local development server.
+
+## Shared data workflow — 15 October 2026
+
+The workbook is now Bloomberg-only. Ramp, task observations, lab notes, OpenRouter and financing research live in separate files in OneDrive. Set `AI_INDEX_DATA_ROOT` on this computer if automatic OneDrive discovery does not find the shared folder. Keep credentials in the local environment only.
+
+```sh
+npm run data:status
+npm run data:build
+npm run data:sync
+```
+
+Use `PYTHON` to select the local Python environment. Collection, saved-input build and website sync are separate operations. `data:sync` installs only generated data and accepted financing records into this checkout; it does not publish. Older `scripts/*.py` data entrypoints delegate to the shared implementation and write OneDrive outputs, so follow them with `data:sync` when updating this website.
+
+The shared refresh guide is authoritative for all data commands below. Historical methodology descriptions remain useful; their dates describe stored vintages.
 
 ## Included analysis
 
@@ -25,7 +41,6 @@ The application contains the interactive pillar heatmap, AI value chain, atmosph
 Install dependencies once:
 
 ```sh
-export PATH="/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:$PATH"
 pnpm install
 ```
 
@@ -61,7 +76,7 @@ pnpm run data:task-economics
 
 The generator reads `epoch_ai/ml_models/frontier_ai_models.csv` and `epoch_ai/chip_dataset/ml_hardware.csv` from the OneDrive research-data folder.
 
-Refresh the separate buyer-side cost-per-successful-task analysis after updating the `Cost Useful Task` sheet in `Indexlist.xlsx`:
+Refresh the separate buyer-side cost-per-successful-task analysis after updating `data/research/task_economics/observations.csv` in the shared data folder:
 
 ```sh
 pnpm run data:useful-task
@@ -146,7 +161,7 @@ CapEx aggregation (v2.1): sum Microsoft, Alphabet, Meta, Amazon and Oracle spend
 Refresh the supplementary charts directly from the current workbook (the workbook is read only):
 
 ```sh
-/Users/linyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/build-workbook-amendments.py --input /absolute/path/Indexlist.xlsx
+python scripts/data-pipeline.py build --group bloomberg
 ```
 
 The generated `workbook-amendments-snapshot.ts` records the workbook SHA-256 and source dates. DRAM/NAND export values and TSMC monthly revenue supplement Demand without silently changing index weights. Monthly YoY and trailing-12-month YoY comparisons use matched source history, leaving gaps where unavailable. September macro values may be carried from August; the chart ends in August 2026. TSMC history begins July 2024.
@@ -176,7 +191,7 @@ Score interpretation: 50 is the historical baseline reference, not a validated e
 
 ## Ramp integration — methodology v2.3 (13 October 2026)
 
-The active core snapshot adds observed paid adoption and nominal spending intensity from `Indexlist.xlsx / Ramp AI Data`. The previous v2.2 snapshot is preserved in `data/core-v2.2.ts` for comparison. All headline scores, heatmap cells, pillar summaries and contribution rankings read the new shared snapshot.
+The active core snapshot adds observed paid adoption and nominal spending intensity from the standalone Ramp public-data files in OneDrive. The previous v2.2 snapshot is preserved in the shared `data/reference/core-v2.2.ts` for comparison. All headline scores, heatmap cells, pillar summaries and contribution rankings read the new shared snapshot.
 
 - Adoption retains 20% overall, split equally between current BTOS use, expected BTOS use and Ramp paid adoption (6.6667% each). Ramp paid adoption uses its percentage level, calibrated on 42 monthly observations from January 2023 through June 2026. Ramp's business sample differs from Census surveys.
 - Demand retains 20% overall, split equally between DRAM exports, NAND exports, TSMC revenue and Ramp spending intensity (5% each). Ramp intensity is `(mean of last 3 monthly median spending observations / mean of corresponding 3 months a year earlier - 1) × 100`. This averages monthly medians, not business-wide total spending. Only dashboard Overall spending from September 2023 is used; earlier Filter ALL observations are excluded. The transformed baseline contains 20 observations, November 2024–June 2026. Nominal prices, model mix and sample composition affect spending. It does not measure returns.
@@ -185,7 +200,7 @@ The active core snapshot adds observed paid adoption and nominal spending intens
 - Provider/sector adoption, AI share of payment volume, token traffic and other spending percentiles are supporting data, not extra core constituents. Provider adoption overlaps and must not be summed.
 - The source was retrieved 13 October 2026 from the public Ramp dashboard. Website JSON filters are undocumented. The supported adoption API requires credentials. No live refresh is implied. Source S14 documents definitions and access.
 
-Regenerate the original core and hardware-demand stage first, then run `scripts/integrate-ramp-core.py --input PATH/Indexlist.xlsx` with the bundled Python runtime. Repeated Ramp runs use the preserved v2.2 input, so they do not compound weight changes. The builder validates source-month continuity when computing YoY spending and records the current workbook SHA-256 separately from existing macro-source vintages.
+Regenerate the original core and hardware-demand stage first, then run `scripts/integrate-ramp-core.py --input PATH/data/raw/ramp/latest/normalized.json` with the bundled Python runtime. Repeated Ramp runs use the preserved v2.2 input, so they do not compound weight changes. The builder validates source-month continuity when computing YoY spending and records the standalone Ramp source SHA-256 separately from existing macro-source vintages.
 
 
 ## Token volume and high-frequency view — methodology v2.4 (13 October 2026)

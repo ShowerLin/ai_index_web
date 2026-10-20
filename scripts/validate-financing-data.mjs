@@ -1,5 +1,7 @@
+import {sharedDataRoot} from './shared-data.mjs';
+import {join} from 'node:path';
 import {readFileSync} from 'node:fs';
-const path=process.argv[2]||'data/circular-financing.json';
+const path=process.argv[2]||join(sharedDataRoot(),'data/research/financing/circular-financing.json');
 const data=JSON.parse(readFileSync(path,'utf8'));const errors=[];
 const check=(ok,msg)=>{if(!ok)errors.push(msg)};
 const unique=(rows,label)=>{const ids=rows.map(r=>r.id);check(ids.every(i=>typeof i==='string'&&i.length),'Missing '+label+' id');check(new Set(ids).size===ids.length,'Duplicate '+label+' id');return new Set(ids)};

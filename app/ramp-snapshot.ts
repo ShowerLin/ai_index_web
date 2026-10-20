@@ -3,7 +3,7 @@ export const rampSnapshot = {
     "source": "https://ramp.com/data/ai-index",
     "retrieved": "2026-10-13",
     "through": "2026-08",
-    "workbookSha256": "fb9038729e5571b58f89c4b06b54478aa00cdb01114403f1628eda405c8bb8f9",
+    "sourceSha256": "b76dc5f60bf43960095dbc68d1fa9109fbdb688f9c4d25028e7f1bb85efeaddf",
     "access": "Public dashboard payload; undocumented website JSON filters. Documented API requires credentials."
   },
   "monthly": [
@@ -1465,85 +1465,85 @@ export const rampSnapshot = {
       "month": "2023-01",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-02",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-03",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-04",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-05",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-06",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-07",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-08",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-09",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-10",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-11",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-12",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2024-01",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2024-02",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2024-03",
@@ -1555,13 +1555,13 @@ export const rampSnapshot = {
       "month": "2024-04",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2024-05",
       "dimension": "Provider",
       "cohort": "DeepSeek",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2024-06",
@@ -1993,67 +1993,67 @@ export const rampSnapshot = {
       "month": "2023-01",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-02",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-03",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-04",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-05",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-06",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-07",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-08",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-09",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-10",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-11",
       "dimension": "Provider",
       "cohort": "Mistral AI",
-      "share": 0
+      "share": 0.0
     },
     {
       "month": "2023-12",

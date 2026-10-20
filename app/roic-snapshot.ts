@@ -2,7 +2,7 @@
 export const roicSnapshot = {
   "source": "Indexlist.xlsx",
   "sheet": "Hyperscaler Core Data Value",
-  "sha256": "44b3be4bb612d0fb8abe747346bcc2d357f3f908e26a41fa9f4e59261618fa8c",
+  "sha256": "6bf4505e82d548c35069d7c2256cd8407e63e339549cfcefb3c7f76f6a8910cb",
   "unit": "USD billions",
   "basis": "Cached Bloomberg BQ data; direct Bloomberg NOPAT and simplified core invested capital.",
   "companies": [
@@ -15,7 +15,7 @@ export const roicSnapshot = {
       "quarters": [
         {
           "period": "2022-12-31",
-          "sourceRow": 3,
+          "sourceRow": 4,
           "nopat": null,
           "cashAndShortTermInvestments": null,
           "totalDebt": null,
@@ -26,7 +26,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-03-31",
-          "sourceRow": 4,
+          "sourceRow": 5,
           "nopat": 18.039926255899086,
           "cashAndShortTermInvestments": 104.427,
           "totalDebt": 79.312,
@@ -37,7 +37,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-06-30",
-          "sourceRow": 5,
+          "sourceRow": 6,
           "nopat": 19.69687281109718,
           "cashAndShortTermInvestments": 111.262,
           "totalDebt": 79.441,
@@ -48,7 +48,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-09-30",
-          "sourceRow": 6,
+          "sourceRow": 7,
           "nopat": 21.973187399208328,
           "cashAndShortTermInvestments": 143.951,
           "totalDebt": 105.681,
@@ -59,7 +59,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-12-31",
-          "sourceRow": 7,
+          "sourceRow": 8,
           "nopat": 22.287183895046372,
           "cashAndShortTermInvestments": 81.017,
           "totalDebt": 111.358,
@@ -70,7 +70,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-03-31",
-          "sourceRow": 8,
+          "sourceRow": 9,
           "nopat": 22.64001043888203,
           "cashAndShortTermInvestments": 80.021,
           "totalDebt": 106.229,
@@ -81,7 +81,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-06-30",
-          "sourceRow": 9,
+          "sourceRow": 10,
           "nopat": 22.581845871559633,
           "cashAndShortTermInvestments": 75.543,
           "totalDebt": 97.852,
@@ -92,7 +92,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-09-30",
-          "sourceRow": 10,
+          "sourceRow": 11,
           "nopat": 24.897624103868644,
           "cashAndShortTermInvestments": 78.428,
           "totalDebt": 96.838,
@@ -103,7 +103,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-12-31",
-          "sourceRow": 11,
+          "sourceRow": 12,
           "nopat": 25.98639618593564,
           "cashAndShortTermInvestments": 71.555,
           "totalDebt": 102.909,
@@ -114,7 +114,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-03-31",
-          "sourceRow": 12,
+          "sourceRow": 13,
           "nopat": 26.336743474519555,
           "cashAndShortTermInvestments": 79.618,
           "totalDebt": 105.019,
@@ -125,7 +125,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-06-30",
-          "sourceRow": 13,
+          "sourceRow": 14,
           "nopat": 28.658273822663723,
           "cashAndShortTermInvestments": 94.565,
           "totalDebt": 112.184,
@@ -136,7 +136,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-09-30",
-          "sourceRow": 14,
+          "sourceRow": 15,
           "nopat": 30.707672283606893,
           "cashAndShortTermInvestments": 102.012,
           "totalDebt": 120.375,
@@ -147,7 +147,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-12-31",
-          "sourceRow": 15,
+          "sourceRow": 16,
           "nopat": 30.509885793640922,
           "cashAndShortTermInvestments": 89.462,
           "totalDebt": 123.278,
@@ -158,7 +158,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-03-31",
-          "sourceRow": 16,
+          "sourceRow": 17,
           "nopat": 31.01707280122013,
           "cashAndShortTermInvestments": 78.272,
           "totalDebt": 125.432,
@@ -169,7 +169,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-06-30",
-          "sourceRow": 17,
+          "sourceRow": 18,
           "nopat": 32.969484823029944,
           "cashAndShortTermInvestments": 76.843,
           "totalDebt": 128.813,
@@ -189,7 +189,7 @@ export const roicSnapshot = {
       "quarters": [
         {
           "period": "2022-12-31",
-          "sourceRow": 3,
+          "sourceRow": 4,
           "nopat": null,
           "cashAndShortTermInvestments": null,
           "totalDebt": null,
@@ -200,7 +200,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-03-31",
-          "sourceRow": 4,
+          "sourceRow": 5,
           "nopat": 14.397866794836585,
           "cashAndShortTermInvestments": 115.102,
           "totalDebt": 29.121,
@@ -211,7 +211,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-06-30",
-          "sourceRow": 5,
+          "sourceRow": 6,
           "nopat": 18.313490572067753,
           "cashAndShortTermInvestments": 118.332,
           "totalDebt": 29.432,
@@ -222,7 +222,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-09-30",
-          "sourceRow": 6,
+          "sourceRow": 7,
           "nopat": 19.824613247157615,
           "cashAndShortTermInvestments": 119.935,
           "totalDebt": 29.446,
@@ -233,7 +233,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-12-31",
-          "sourceRow": 7,
+          "sourceRow": 8,
           "nopat": 20.081101056857285,
           "cashAndShortTermInvestments": 110.916,
           "totalDebt": 28.867,
@@ -244,7 +244,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-03-31",
-          "sourceRow": 8,
+          "sourceRow": 9,
           "nopat": 21.286189793395724,
           "cashAndShortTermInvestments": 108.09,
           "totalDebt": 28.059,
@@ -255,7 +255,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-06-30",
-          "sourceRow": 9,
+          "sourceRow": 10,
           "nopat": 23.510982359986933,
           "cashAndShortTermInvestments": 100.725,
           "totalDebt": 27.801,
@@ -266,7 +266,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-09-30",
-          "sourceRow": 10,
+          "sourceRow": 11,
           "nopat": 23.65895480350722,
           "cashAndShortTermInvestments": 93.23,
           "totalDebt": 28.29,
@@ -277,7 +277,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-12-31",
-          "sourceRow": 11,
+          "sourceRow": 12,
           "nopat": 25.489966566386503,
           "cashAndShortTermInvestments": 95.657,
           "totalDebt": 25.696,
@@ -288,7 +288,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-03-31",
-          "sourceRow": 12,
+          "sourceRow": 13,
           "nopat": 25.296878125822587,
           "cashAndShortTermInvestments": 95.328,
           "totalDebt": 25.537,
@@ -299,7 +299,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-06-30",
-          "sourceRow": 13,
+          "sourceRow": 14,
           "nopat": 25.9840602363481,
           "cashAndShortTermInvestments": 95.148,
           "totalDebt": 38.666,
@@ -310,7 +310,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-09-30",
-          "sourceRow": 14,
+          "sourceRow": 15,
           "nopat": 24.832887262145633,
           "cashAndShortTermInvestments": 98.496,
           "totalDebt": 37.15,
@@ -321,10 +321,10 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-12-31",
-          "sourceRow": 15,
+          "sourceRow": 16,
           "nopat": 31.651352864483474,
           "cashAndShortTermInvestments": 126.843,
-          "totalDebt": 65.0,
+          "totalDebt": 62.941,
           "operatingLeaseLiabilities": 15.954,
           "financeLeaseLiabilitiesCurrent": 0.441,
           "financeLeaseLiabilitiesLongTerm": 2.059,
@@ -332,10 +332,10 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-03-31",
-          "sourceRow": 16,
-          "nopat": 31.532272359369916,
+          "sourceRow": 17,
+          "nopat": 31.518134853922383,
           "cashAndShortTermInvestments": 126.84,
-          "totalDebt": 95.837,
+          "totalDebt": 93.839,
           "operatingLeaseLiabilities": 16.161,
           "financeLeaseLiabilitiesCurrent": 0.177,
           "financeLeaseLiabilitiesLongTerm": 2.037,
@@ -343,8 +343,8 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-06-30",
-          "sourceRow": 17,
-          "nopat": 30.468748358241395,
+          "sourceRow": 18,
+          "nopat": 30.41334854116214,
           "cashAndShortTermInvestments": 242.474,
           "totalDebt": 118.65,
           "operatingLeaseLiabilities": 18.037,
@@ -363,7 +363,7 @@ export const roicSnapshot = {
       "quarters": [
         {
           "period": "2022-12-31",
-          "sourceRow": 3,
+          "sourceRow": 4,
           "nopat": null,
           "cashAndShortTermInvestments": null,
           "totalDebt": null,
@@ -374,7 +374,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-03-31",
-          "sourceRow": 4,
+          "sourceRow": 5,
           "nopat": 3.6762498179169705,
           "cashAndShortTermInvestments": 64.405,
           "totalDebt": 162.779,
@@ -385,7 +385,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-06-30",
-          "sourceRow": 5,
+          "sourceRow": 6,
           "nopat": 6.855455771519239,
           "cashAndShortTermInvestments": 63.97,
           "totalDebt": 153.917,
@@ -396,7 +396,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-09-30",
-          "sourceRow": 6,
+          "sourceRow": 7,
           "nopat": 9.067376158831733,
           "cashAndShortTermInvestments": 64.169,
           "totalDebt": 153.461,
@@ -407,7 +407,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-12-31",
-          "sourceRow": 7,
+          "sourceRow": 8,
           "nopat": 10.253720298114862,
           "cashAndShortTermInvestments": 86.78,
           "totalDebt": 154.556,
@@ -418,7 +418,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-03-31",
-          "sourceRow": 8,
+          "sourceRow": 9,
           "nopat": 12.395565556724241,
           "cashAndShortTermInvestments": 85.074,
           "totalDebt": 153.741,
@@ -429,7 +429,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-06-30",
-          "sourceRow": 9,
+          "sourceRow": 10,
           "nopat": 12.978414627746801,
           "cashAndShortTermInvestments": 89.092,
           "totalDebt": 150.577,
@@ -440,7 +440,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-09-30",
-          "sourceRow": 10,
+          "sourceRow": 11,
           "nopat": 14.795915617896545,
           "cashAndShortTermInvestments": 88.051,
           "totalDebt": 150.634,
@@ -451,7 +451,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-12-31",
-          "sourceRow": 11,
+          "sourceRow": 12,
           "nopat": 18.977220099333305,
           "cashAndShortTermInvestments": 101.202,
           "totalDebt": 147.838,
@@ -462,7 +462,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-03-31",
-          "sourceRow": 12,
+          "sourceRow": 13,
           "nopat": 14.540601918907699,
           "cashAndShortTermInvestments": 94.565,
           "totalDebt": 150.502,
@@ -473,7 +473,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-06-30",
-          "sourceRow": 13,
+          "sourceRow": 14,
           "nopat": 16.6944792635566,
           "cashAndShortTermInvestments": 93.18,
           "totalDebt": 151.917,
@@ -484,7 +484,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-09-30",
-          "sourceRow": 14,
+          "sourceRow": 15,
           "nopat": 13.075445864394746,
           "cashAndShortTermInvestments": 94.197,
           "totalDebt": 152.737,
@@ -495,7 +495,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-12-31",
-          "sourceRow": 15,
+          "sourceRow": 16,
           "nopat": 19.866653185491447,
           "cashAndShortTermInvestments": 123.029,
           "totalDebt": 169.934,
@@ -506,8 +506,8 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-03-31",
-          "sourceRow": 16,
-          "nopat": 17.36627721929064,
+          "sourceRow": 17,
+          "nopat": 17.378425650942063,
           "cashAndShortTermInvestments": 143.089,
           "totalDebt": 226.848,
           "operatingLeaseLiabilities": 91.617,
@@ -517,8 +517,8 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-06-30",
-          "sourceRow": 17,
-          "nopat": 19.22750113418818,
+          "sourceRow": 18,
+          "nopat": 19.288723238485602,
           "cashAndShortTermInvestments": 122.988,
           "totalDebt": 241.995,
           "operatingLeaseLiabilities": 96.32,
@@ -537,7 +537,7 @@ export const roicSnapshot = {
       "quarters": [
         {
           "period": "2022-12-31",
-          "sourceRow": 3,
+          "sourceRow": 4,
           "nopat": null,
           "cashAndShortTermInvestments": null,
           "totalDebt": null,
@@ -548,7 +548,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-03-31",
-          "sourceRow": 4,
+          "sourceRow": 5,
           "nopat": 5.64649555221021,
           "cashAndShortTermInvestments": 37.439,
           "totalDebt": 28.262,
@@ -559,7 +559,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-06-30",
-          "sourceRow": 5,
+          "sourceRow": 6,
           "nopat": 7.870966964381793,
           "cashAndShortTermInvestments": 53.446,
           "totalDebt": 36.978,
@@ -570,7 +570,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-09-30",
-          "sourceRow": 6,
+          "sourceRow": 7,
           "nopat": 11.358279885877318,
           "cashAndShortTermInvestments": 61.123,
           "totalDebt": 36.876,
@@ -581,7 +581,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-12-31",
-          "sourceRow": 7,
+          "sourceRow": 8,
           "nopat": 13.663405997144217,
           "cashAndShortTermInvestments": 65.403,
           "totalDebt": 37.924,
@@ -592,7 +592,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-03-31",
-          "sourceRow": 8,
+          "sourceRow": 9,
           "nopat": 12.050683353310301,
           "cashAndShortTermInvestments": 58.12,
           "totalDebt": 37.633,
@@ -603,7 +603,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-06-30",
-          "sourceRow": 9,
+          "sourceRow": 10,
           "nopat": 13.234135773864688,
           "cashAndShortTermInvestments": 58.08,
           "totalDebt": 37.991,
@@ -614,7 +614,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-09-30",
-          "sourceRow": 10,
+          "sourceRow": 11,
           "nopat": 15.272517113679722,
           "cashAndShortTermInvestments": 70.9,
           "totalDebt": 49.047,
@@ -625,7 +625,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-12-31",
-          "sourceRow": 11,
+          "sourceRow": 12,
           "nopat": 20.67167112469749,
           "cashAndShortTermInvestments": 77.815,
           "totalDebt": 49.769,
@@ -636,7 +636,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-03-31",
-          "sourceRow": 12,
+          "sourceRow": 13,
           "nopat": 15.895192035687087,
           "cashAndShortTermInvestments": 70.23,
           "totalDebt": 49.519,
@@ -647,7 +647,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-06-30",
-          "sourceRow": 13,
+          "sourceRow": 14,
           "nopat": 18.253950374987824,
           "cashAndShortTermInvestments": 47.071,
           "totalDebt": 49.56,
@@ -658,7 +658,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-09-30",
-          "sourceRow": 14,
+          "sourceRow": 15,
           "nopat": 2.5679414208558375,
           "cashAndShortTermInvestments": 44.448,
           "totalDebt": 51.06,
@@ -669,7 +669,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-12-31",
-          "sourceRow": 15,
+          "sourceRow": 16,
           "nopat": 22.22111540585312,
           "cashAndShortTermInvestments": 81.592,
           "totalDebt": 85.081,
@@ -680,8 +680,8 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-03-31",
-          "sourceRow": 16,
-          "nopat": 27.60436532555011,
+          "sourceRow": 17,
+          "nopat": 27.60457389235173,
           "cashAndShortTermInvestments": 81.18,
           "totalDebt": 86.769,
           "operatingLeaseLiabilities": 28.021,
@@ -691,8 +691,8 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-06-30",
-          "sourceRow": 17,
-          "nopat": 15.864187512346476,
+          "sourceRow": 18,
+          "nopat": 15.864192849272705,
           "cashAndShortTermInvestments": 90.26,
           "totalDebt": 112.318,
           "operatingLeaseLiabilities": 28.654,
@@ -711,7 +711,7 @@ export const roicSnapshot = {
       "quarters": [
         {
           "period": "2022-12-31",
-          "sourceRow": 3,
+          "sourceRow": 4,
           "nopat": 2.6307118261519498,
           "cashAndShortTermInvestments": 7.838766666666666,
           "totalDebt": 91.22624444444446,
@@ -722,7 +722,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-03-31",
-          "sourceRow": 4,
+          "sourceRow": 5,
           "nopat": 3.3339778427962994,
           "cashAndShortTermInvestments": 9.246804347826085,
           "totalDebt": 93.00214130434783,
@@ -733,7 +733,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-06-30",
-          "sourceRow": 5,
+          "sourceRow": 6,
           "nopat": 3.9347023197069944,
           "cashAndShortTermInvestments": 10.805260869565217,
           "totalDebt": 93.25741304347825,
@@ -744,7 +744,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-09-30",
-          "sourceRow": 6,
+          "sourceRow": 7,
           "nopat": 3.358920479247222,
           "cashAndShortTermInvestments": 10.96442857142857,
           "totalDebt": 88.89089010989011,
@@ -755,7 +755,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2023-12-31",
-          "sourceRow": 7,
+          "sourceRow": 8,
           "nopat": 3.3036281353365062,
           "cashAndShortTermInvestments": 9.10356043956044,
           "totalDebt": 88.5134065934066,
@@ -766,7 +766,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-03-31",
-          "sourceRow": 8,
+          "sourceRow": 9,
           "nopat": 3.3839147105278458,
           "cashAndShortTermInvestments": 10.159076086956523,
           "totalDebt": 90.16651086956522,
@@ -777,7 +777,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-06-30",
-          "sourceRow": 9,
+          "sourceRow": 10,
           "nopat": 3.7835280692444813,
           "cashAndShortTermInvestments": 10.742521739130433,
           "totalDebt": 91.2231304347826,
@@ -788,7 +788,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-09-30",
-          "sourceRow": 10,
+          "sourceRow": 11,
           "nopat": 3.779077037625216,
           "cashAndShortTermInvestments": 11.042868131868131,
           "totalDebt": 85.86961538461539,
@@ -799,7 +799,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2024-12-31",
-          "sourceRow": 11,
+          "sourceRow": 12,
           "nopat": 3.9087075131049946,
           "cashAndShortTermInvestments": 13.55402222222222,
           "totalDebt": 91.2596888888889,
@@ -810,7 +810,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-03-31",
-          "sourceRow": 12,
+          "sourceRow": 13,
           "nopat": 3.8531930155645666,
           "cashAndShortTermInvestments": 15.592347826086955,
           "totalDebt": 100.54726086956522,
@@ -821,7 +821,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-06-30",
-          "sourceRow": 13,
+          "sourceRow": 14,
           "nopat": 3.9874574100904896,
           "cashAndShortTermInvestments": 11.138434782608696,
           "totalDebt": 108.51276086956521,
@@ -832,7 +832,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-09-30",
-          "sourceRow": 14,
+          "sourceRow": 15,
           "nopat": 4.032955693592769,
           "cashAndShortTermInvestments": 13.893241758241757,
           "totalDebt": 113.91785714285714,
@@ -843,7 +843,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2025-12-31",
-          "sourceRow": 15,
+          "sourceRow": 16,
           "nopat": 4.722324139818826,
           "cashAndShortTermInvestments": 26.43651111111111,
           "totalDebt": 138.95112222222224,
@@ -854,7 +854,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-03-31",
-          "sourceRow": 16,
+          "sourceRow": 17,
           "nopat": 4.670180255213717,
           "cashAndShortTermInvestments": 36.69310869565217,
           "totalDebt": 163.93975,
@@ -865,7 +865,7 @@ export const roicSnapshot = {
         },
         {
           "period": "2026-06-30",
-          "sourceRow": 17,
+          "sourceRow": 18,
           "nopat": null,
           "cashAndShortTermInvestments": null,
           "totalDebt": null,

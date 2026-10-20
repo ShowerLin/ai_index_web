@@ -11,6 +11,19 @@ import { frontierLabsSnapshot as snapshot } from "./frontier-labs-snapshot";
 type LabView = "Both" | "OpenAI" | "Anthropic";
 type LabName = Exclude<LabView, "Both">;
 
+function QuarterlyRevenue({ view }: { view: LabView }) {
+  const observations = snapshot.reportedQuarterlyRevenue.filter(row => view === "Both" || row.company === view);
+  if (!observations.length) return null;
+  return <div className="labs-kpis">{observations.map(row => <article className="lab-card" key={row.id}>
+    <header><span>{row.company} · {row.period}</span><small>Media-reported</small></header>
+    <div className="lab-arr"><span>Quarterly revenue · USD</span><strong>${(row.value / 1e9).toFixed(1)}B</strong>
+      <small>Reported {row.reportDate} · <a href={row.sourceUrl} target="_blank" rel="noreferrer">{row.sourceName}</a></small>
+    </div>
+    <p>{row.note}</p>
+    <small>{row.verificationStatus}</small>
+  </article>)}</div>;
+}
+
 function FrontierArrChart({ view }: { view: LabView }) {
   const shown = view === "Both" ? (["OpenAI", "Anthropic"] as const) : ([view] as const);
   const colors: Record<LabName, string> = { OpenAI: "#1d7f80", Anthropic: "#d88952" };
@@ -39,7 +52,7 @@ export default function FrontierLabs({compact=false}:{compact?:boolean}={}) {
   const [view, setView] = useState<LabView>("Both");
   const shownLabs = view === "Both" ? (["OpenAI", "Anthropic"] as const) : ([view] as const);
 
-  if(compact) return <><EvidenceCard id="labs" title="Frontier-lab revenue run rates" unit="USD billions annualized · OpenAI / Anthropic" source="S10" legend={<ChartLegend items={[{label:"OpenAI",color:"#1d7f80"},{label:"Anthropic",color:"#d88952"}]}/>} note="Reported floors and approximate observations; annualized run rates differ from recognized revenue."><FrontierArrChart view="Both"/></EvidenceCard><details className="evidence-data"><summary>Lab observations and revenue definitions</summary><FrontierLabs/></details></>;
+  if(compact) return <><EvidenceCard id="labs" title="Frontier-lab revenue run rates" unit="USD billions annualized · OpenAI / Anthropic" source="S10" legend={<ChartLegend items={[{label:"OpenAI",color:"#1d7f80"},{label:"Anthropic",color:"#d88952"}]}/>} note="Reported floors and approximate observations; annualized run rates differ from recognized revenue."><FrontierArrChart view="Both"/></EvidenceCard><QuarterlyRevenue view="Both"/><details className="evidence-data"><summary>Lab observations and revenue definitions</summary><FrontierLabs/></details></>;
   return <section className="section labs-section" id="labs-detail">
     <div className="section-head labs-head">
       <div><div className="eyebrow">PAID DEMAND · FRONTIER LAB MONETIZATION</div><h2>Reported lab revenue provides evidence of paid demand.</h2></div>
@@ -57,6 +70,8 @@ export default function FrontierLabs({compact=false}:{compact?:boolean}={}) {
         <div className="lab-quarter-grid"><div><span>FY2025 revenue</span><b>{snapshot.labs[lab].fy2025Revenue}</b></div><div><span>End-2025 run rate</span><b>{snapshot.labs[lab].end2025RunRate}</b></div><div><span>Growth since end-2025</span><b>+{snapshot.labs[lab].growthFromEnd2025.toFixed(1)}%</b></div></div>
       </article>)}
     </div>
+
+    <QuarterlyRevenue view={view}/>
 
     <div className="labs-layout">
       <div className="chart-panel labs-chart-panel">

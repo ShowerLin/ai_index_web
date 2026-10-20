@@ -1,7 +1,7 @@
 export const workbookAmendments = {
   "metadata": {
     "source": "Indexlist.xlsx",
-    "sha256": "31b7ea1604ce53ae6425435ca203ce2a2383d869ef322b6efc106fb836dfa019",
+    "sha256": "6bf4505e82d548c35069d7c2256cd8407e63e339549cfcefb3c7f76f6a8910cb",
     "creditAsOf": "2026-10-07",
     "creditBaseline": "2025-12-31",
     "ratingAsOf": "2026-09-30",

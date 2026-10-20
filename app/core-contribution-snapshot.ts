@@ -5,15 +5,15 @@ export const coreContributionSnapshot = {
     "method": "Adoption levels; TTM YoY growth for monthly flows; 12M-average YoY growth for construction and industrial-production indices; trailing-four-quarter YoY growth of summed five-company CapEx. Score = clip(50 + 15 \u00d7 z, 0, 100). Five 20% pillars; equal constituent weights within macro pillars, one combined CapEx signal. Company growth is supplementary.",
     "limitation": "Fixed per-series baseline uses all valid transformed observations through June 2026. Retrospective scores, not real-time backtests. Sample standard deviation; quarterly values held within quarter. Missing scores withhold the core; no reweighting. Macro source definitions and nominal price effects remain limitations.",
     "baselineEnd": "2026-06",
-    "demandSourceSha256": "cb02bbaf9139678cd9bdc1e70c64900f738e9131bf7a3c8b29172d8912b5f1a5",
+    "demandSourceSha256": "6bf4505e82d548c35069d7c2256cd8407e63e339549cfcefb3c7f76f6a8910cb",
     "demandMethod": "Token volume receives 10% of the core, divided equally between two sources. DRAM, NAND, TSMC and Ramp median spending share the remaining 10% equally. Existing transformed signals and baselines are unchanged.",
     "tsmcSources": [
       "https://investor.tsmc.com/english/monthly-revenue/2023",
       "https://investor.tsmc.com/schinese/monthly-revenue/2024"
     ],
     "previousVersion": "2.3",
-    "rampWorkbookSha256": "fb9038729e5571b58f89c4b06b54478aa00cdb01114403f1628eda405c8bb8f9",
-    "rampSource": "Indexlist.xlsx / Ramp AI Data, public dashboard snapshot retrieved 13 October 2026",
+    "rampSourceSha256": "b76dc5f60bf43960095dbc68d1fa9109fbdb688f9c4d25028e7f1bb85efeaddf",
+    "rampSource": "data/raw/ramp/latest/normalized.json; public dashboard payload",
     "rampMethod": "Ramp paid adoption remains one third of Adoption (6.6667% core). Ramp nominal median spending remains 3M-average YoY, with its v2.3 baseline, at the revised Demand weight. Ramp token volume is a separate TSM sample, not all Ramp AI-paying firms. Provider/sector adoption and AI spend share remain context.",
     "rampBaseline": {
       "adoption": {
