@@ -19,5 +19,8 @@
   "token-activity-snapshot.ts",
   "useful-task-snapshot.ts",
   "value-chain-financials.ts",
-  "workbook-amendments-snapshot.ts"
+  "workbook-amendments-snapshot.ts",
+  "projected-buildout-snapshot.ts",
+  "index-price-snapshot.ts",
+  "adoption-price-snapshot.ts"
 ]

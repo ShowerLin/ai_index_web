@@ -2,7 +2,7 @@
 export const roicSnapshot = {
   "source": "Indexlist.xlsx",
   "sheet": "Hyperscaler Core Data Value",
-  "sha256": "6bf4505e82d548c35069d7c2256cd8407e63e339549cfcefb3c7f76f6a8910cb",
+  "sha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
   "unit": "USD billions",
   "basis": "Cached Bloomberg BQ data; direct Bloomberg NOPAT and simplified core invested capital.",
   "companies": [
@@ -333,7 +333,7 @@ export const roicSnapshot = {
         {
           "period": "2026-03-31",
           "sourceRow": 17,
-          "nopat": 31.518134853922383,
+          "nopat": 31.515026392383916,
           "cashAndShortTermInvestments": 126.84,
           "totalDebt": 93.839,
           "operatingLeaseLiabilities": 16.161,
@@ -344,7 +344,7 @@ export const roicSnapshot = {
         {
           "period": "2026-06-30",
           "sourceRow": 18,
-          "nopat": 30.41334854116214,
+          "nopat": 30.401167594440842,
           "cashAndShortTermInvestments": 242.474,
           "totalDebt": 118.65,
           "operatingLeaseLiabilities": 18.037,
@@ -507,7 +507,7 @@ export const roicSnapshot = {
         {
           "period": "2026-03-31",
           "sourceRow": 17,
-          "nopat": 17.378425650942063,
+          "nopat": 17.378415333650118,
           "cashAndShortTermInvestments": 143.089,
           "totalDebt": 226.848,
           "operatingLeaseLiabilities": 91.617,
@@ -518,7 +518,7 @@ export const roicSnapshot = {
         {
           "period": "2026-06-30",
           "sourceRow": 18,
-          "nopat": 19.288723238485602,
+          "nopat": 19.28867124442237,
           "cashAndShortTermInvestments": 122.988,
           "totalDebt": 241.995,
           "operatingLeaseLiabilities": 96.32,
@@ -681,7 +681,7 @@ export const roicSnapshot = {
         {
           "period": "2026-03-31",
           "sourceRow": 17,
-          "nopat": 27.60457389235173,
+          "nopat": 27.60277810417318,
           "cashAndShortTermInvestments": 81.18,
           "totalDebt": 86.769,
           "operatingLeaseLiabilities": 28.021,
@@ -692,7 +692,7 @@ export const roicSnapshot = {
         {
           "period": "2026-06-30",
           "sourceRow": 18,
-          "nopat": 15.864192849272705,
+          "nopat": 15.864146897620964,
           "cashAndShortTermInvestments": 90.26,
           "totalDebt": 112.318,
           "operatingLeaseLiabilities": 28.654,

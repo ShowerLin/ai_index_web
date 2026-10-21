@@ -220,3 +220,9 @@ The standalone Token activity section provides weekly comparisons for both sourc
 Cached source dates: OpenRouter through 6 October 2026 (snapshot 7 October); Ramp weekly model volume through 27 September 2026 (public page retrieved 13 October). An unauthenticated OpenRouter refresh returned HTTP 401 and no credential is configured. The high-frequency panel displays source timestamps and does not imply a live feed. Ramp website routes are undocumented. No new automation or deployment is configured.
 
 Generation order: existing core/hardware stage → `scripts/integrate-ramp-core.py` → `scripts/integrate-token-core.py`. The token builder accepts `--ramp-input PATH/dashboard-data.json` and `--token-weight 0.10`; reruns start from the preserved v2.3 input rather than compounding weight changes. Tests reconcile daily source sums, missing-window treatment, source-specific weekly gaps, fixed baselines and weighted core attribution.
+
+## Current refresh and spending methodology
+
+The accepted composite is [v2.7 nominal spending growth](docs/data-changes/ADOPTION_V2_7_2026-10-21.md). [Refresh instructions](docs/data-changes/AUTOMATED_REFRESH.md) cover collection, validation and website sync. The Adoption spending chart supports indexed, dollar and growth views.
+
+Pipeline fixture-based tests require the provisioned private data root via `AI_INDEX_DATA_ROOT`; workbooks, credentials, raw research inputs and run logs remain outside this repository.

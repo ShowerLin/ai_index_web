@@ -2,7 +2,7 @@
 export const sustainabilitySnapshot = {
   "source": "Indexlist.xlsx",
   "sheet": "Hyperscaler Core Data Value",
-  "sha256": "6bf4505e82d548c35069d7c2256cd8407e63e339549cfcefb3c7f76f6a8910cb",
+  "sha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
   "unit": "USD billions",
   "basis": "Cached Bloomberg BQ data; Oracle calendarization requires reconciliation.",
   "companies": [

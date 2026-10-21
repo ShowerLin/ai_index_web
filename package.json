@@ -15,8 +15,9 @@
     "data:swebench": "node scripts/data-pipeline.mjs collect swebench",
     "dev": "node ./node_modules/vinext/dist/cli.js dev --port 8000",
     "build": "node ./node_modules/vinext/dist/cli.js build",
-    "start": "node ./node_modules/vinext/dist/cli.js start --port 8000",
+    "start": "node scripts/start-network-server.mjs --port 8000",
     "test": "node ./node_modules/vinext/dist/cli.js build",
+    "data:refresh": "node scripts/data-pipeline.mjs refresh --web-root .",
     "data:build": "node scripts/data-pipeline.mjs build --group all",
     "data:status": "node scripts/data-pipeline.mjs status",
     "data:sync": "node scripts/data-pipeline.mjs sync --web-root ."

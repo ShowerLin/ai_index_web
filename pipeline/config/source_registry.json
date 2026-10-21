@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "data_root": "directory containing Indexlist.xlsx and pipeline/",
-  "updated": "2026-10-16",
+  "updated": "2026-10-21",
   "sources": [
     {
       "id": "bloomberg",
@@ -12,6 +12,18 @@
       "usage": "Macro, credit, issuance, equity, financials, cash flow, ROIC and cloud segment / RPO estimate references",
       "build_group": "bloomberg",
       "credential": "Licensed Bloomberg environment"
+    },
+    {
+      "id": "index-price-monthly",
+      "paths": [
+        "Indexlist.xlsx",
+        "data/reference/index_price_config.json",
+        "data/research/tsmc/monthly_backfills.json"
+      ],
+      "update_method": "Save refreshed Index Price Value cells; review completed-month cutoff; python pipeline/run.py build --group index-price",
+      "usage": "Monthly macro and demand history, all 19 cached fields including context-only prices/export series; frozen core calibration; October partial rows excluded from monthly scoring",
+      "build_group": "index-price",
+      "credential": "Licensed Bloomberg environment for source refresh; none for saved-input rebuild"
     },
     {
       "id": "ramp",
@@ -127,7 +139,9 @@
         "data/reference/core-v2.1.ts",
         "data/reference/core-v2.2.ts",
         "data/reference/core-v2.3.ts",
-        "data/reference/financial_publication_coverage.json"
+        "data/reference/financial_publication_coverage.json",
+        "data/reference/core-v2.5.ts",
+        "data/reference/core-v2.6.ts"
       ],
       "update_method": "Versioned methodology and new-period review, not routine data collection",
       "usage": "Preserved normalization, historical core bases and accepted cash/ROIC coverage",
@@ -146,6 +160,26 @@
       "usage": "Supplementary capacity: retail electricity, construction spending, LBNL energy, CBRE/JLL pipelines, PJM revisions; partial coverage",
       "build_group": "infrastructure",
       "credential": null
+    },
+    {
+      "id": "epoch-projected-buildout",
+      "paths": [
+        "data/raw/epoch-buildout/2026-10-20"
+      ],
+      "update_method": "Reviewed dated public CSV downloads; python pipeline/builders/build-projected-buildout.py; rebuild after CapEx projection changes",
+      "usage": "Supplementary forward construction pipeline versus estimated five-company quarterly CapEx; no core weight",
+      "build_group": "infrastructure",
+      "credential": null
+    },
+    {
+      "id": "adoption-price",
+      "paths": [
+        "AI_Aoption.xlsx"
+      ],
+      "update_method": "Refresh Bloomberg SDLLMTK daily values in the Adoption workbook and save Value sheet; build --group core",
+      "usage": "Bloomberg token-price driver of OpenRouter estimated nominal spending growth; no standalone price weight in v2.7",
+      "build_group": "core",
+      "credential": "Licensed Bloomberg for refresh; none for saved-input build"
     }
   ]
 }

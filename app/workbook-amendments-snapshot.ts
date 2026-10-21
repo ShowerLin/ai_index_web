@@ -1,7 +1,9 @@
 export const workbookAmendments = {
   "metadata": {
     "source": "Indexlist.xlsx",
-    "sha256": "6bf4505e82d548c35069d7c2256cd8407e63e339549cfcefb3c7f76f6a8910cb",
+    "sha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
+    "indexPriceCompletedThrough": "2026-09",
+    "indexPriceReviewedAt": "2026-10-20",
     "creditAsOf": "2026-10-07",
     "creditBaseline": "2025-12-31",
     "ratingAsOf": "2026-09-30",
@@ -288,9 +290,15 @@ export const workbookAmendments = {
         },
         {
           "month": "2026-09",
-          "level": 235.6930511,
-          "yoy": 362.19383444442065,
-          "ttmYoy": 279.6284307975054
+          "level": 332.6,
+          "yoy": 552.2282630682714,
+          "ttmYoy": 300.2118171203617
+        },
+        {
+          "month": "2026-10",
+          "level": 332.6,
+          "yoy": 584.7598374413087,
+          "ttmYoy": 343.845707094935
         }
       ],
       "unit": "Source-native export value"
@@ -571,9 +579,15 @@ export const workbookAmendments = {
         },
         {
           "month": "2026-09",
-          "level": 28.62152422,
-          "yoy": 304.985503663595,
-          "ttmYoy": 258.5382324232657
+          "level": 33.0,
+          "yoy": 366.93954934656637,
+          "ttmYoy": 265.73207514608066
+        },
+        {
+          "month": "2026-10",
+          "level": 33.0,
+          "yoy": 390.3945629354446,
+          "ttmYoy": 293.8497628242276
         }
       ],
       "unit": "Source-native export value"
@@ -698,7 +712,7 @@ export const workbookAmendments = {
         },
         {
           "month": "2024-07",
-          "level": 256953.058,
+          "level": null,
           "yoy": null,
           "ttmYoy": null
         },
@@ -771,7 +785,7 @@ export const workbookAmendments = {
         {
           "month": "2025-07",
           "level": 323165.707,
-          "yoy": 25.76838334416709,
+          "yoy": null,
           "ttmYoy": null
         },
         {
@@ -838,7 +852,7 @@ export const workbookAmendments = {
           "month": "2026-06",
           "level": 442679.969,
           "yoy": 67.86684148057138,
-          "ttmYoy": 30.556686094035477
+          "ttmYoy": null
         },
         {
           "month": "2026-07",
@@ -854,6 +868,12 @@ export const workbookAmendments = {
         },
         {
           "month": "2026-09",
+          "level": 511857.399,
+          "yoy": 54.64861207105231,
+          "ttmYoy": 36.16740881484877
+        },
+        {
+          "month": "2026-10",
           "level": null,
           "yoy": null,
           "ttmYoy": null

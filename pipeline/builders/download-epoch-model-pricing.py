@@ -11,7 +11,7 @@ import io
 import json
 import re
 import urllib.parse
-import urllib.request
+import requests
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -22,13 +22,28 @@ OUTPUT_DIR = DATA_ROOT / 'epoch_ai/model_pricing'
 
 
 def fetch(url: str) -> str:
-    request = urllib.request.Request(url, headers={"User-Agent": "AI-Index-research-data/1.0"})
-    with urllib.request.urlopen(request, timeout=120) as response:
-        return response.read().decode("utf-8")
+    print(f"Fetching {url}", flush=True)
+    response = requests.get(url, headers={"User-Agent": "AI-Index-research-data/1.0"}, timeout=(15, 45))
+    response.raise_for_status()
+    return response.content.decode("utf-8")
 
 
 def absolute(path: str) -> str:
     return urllib.parse.urljoin(BASE_URL, path)
+
+
+def locate_data_asset(search_js: str) -> str:
+    match = re.search(r'from"(\./(?:organizationLogos|models)\.[^"]+\.js)"', search_js)
+    if not match:
+        raise RuntimeError("Could not locate Epoch's embedded model-data asset")
+    return absolute("/_astro/" + match.group(1).removeprefix("./"))
+
+
+def extract_csv(asset_js: str) -> str:
+    match = re.search(r"var a=`(.*?)`,o=", asset_js, re.S)
+    if not match:
+        raise RuntimeError("Could not extract the embedded model CSV")
+    return match.group(1)
 
 
 def main() -> None:
@@ -39,16 +54,9 @@ def main() -> None:
     model_search_url = absolute(html.unescape(model_search_match.group(1)))
 
     model_search_js = fetch(model_search_url)
-    data_asset_match = re.search(r'from"(\./organizationLogos\.[^"]+\.js)"', model_search_js)
-    if not data_asset_match:
-        raise RuntimeError("Could not locate Epoch's embedded model-data asset")
-    data_asset_url = absolute("/_astro/" + data_asset_match.group(1).removeprefix("./"))
-
+    data_asset_url = locate_data_asset(model_search_js)
     data_asset_js = fetch(data_asset_url)
-    csv_match = re.search(r"var a=`(.*?)`,o=", data_asset_js, re.S)
-    if not csv_match:
-        raise RuntimeError("Could not extract the embedded model CSV")
-    raw_csv = csv_match.group(1)
+    raw_csv = extract_csv(data_asset_js)
     rows = list(csv.DictReader(io.StringIO(raw_csv)))
     if not rows or "Input price" not in rows[0] or "Output price" not in rows[0]:
         raise RuntimeError("Epoch model CSV no longer has the expected pricing columns")

@@ -1,5 +1,6 @@
 from paths import DATA_ROOT, RAMP
-import argparse, shutil, urllib.request
+import argparse, shutil
+import requests
 import concurrent.futures
 import datetime
 import hashlib
@@ -17,12 +18,11 @@ OUT.mkdir(parents=True,exist_ok=False)
 PAGE = 'https://ramp.com/data/ai-index'
 
 def fetch(url):
-    request=urllib.request.Request(url,headers={'User-Agent':'AI-Index-research/1.0'})
-    try:
-        with urllib.request.urlopen(request,timeout=45) as response:return response.read(),response.status
-    except urllib.error.HTTPError as error:
-        if error.code in (401,403):return error.read(),error.code
-        raise
+    print(f'Fetching {url}',flush=True)
+    response=requests.get(url,headers={'User-Agent':'AI-Index-research/1.0'},timeout=(15,45))
+    if response.status_code not in (401,403):response.raise_for_status()
+    print(f'Received {response.status_code}: {len(response.content):,} bytes',flush=True)
+    return response.content,response.status_code
 
 if args.cached:
     data=json.loads((RAMP/'dashboard-data.json').read_text(encoding='utf-8'))

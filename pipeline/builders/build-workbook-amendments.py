@@ -24,10 +24,9 @@ def number(x):
 def shift(month,n):
  k=int(month[:4])*12+int(month[5:])-1+n
  return f'{k//12:04}-{k%12+1:02}'
-rows=list(w['Index Price Value'].values);headers=rows[0];obs={}
-for r in rows[2:]:
- if isinstance(r[0],datetime.datetime) and r[0].day>=28:
-  obs[r[0].strftime('%Y-%m')]={h:number(v) for h,v in zip(headers[1:],r[1:])}
+from index_price import load
+index_config,index_headers,obs,index_hash,index_inspection_hash=load(a.input)
+
 demand=[]
 for field,name in [('KOTCDRAM Index','South Korea DRAM exports'),('KOTCNAND Index','South Korea NAND exports'),('TSMC Monthly Revenue','TSMC monthly revenue')]:
  cells=[]
@@ -114,7 +113,7 @@ bond_benchmark={'monthly':bond_market,'latestMatchedMonth':max(r['month'] for r 
 sector_totals=[{'sector':s,'amount':sum(r['amount'] for r in window if r['sector']==s),'issues':sum(r['issues'] or 0 for r in window if r['sector']==s),'issuers':sorted(set(r['issuer'] for r in window if r['sector']==s))} for s in bond_sectors]
 sector_totals.sort(key=lambda r:-r['amount'])
 issuer_totals=[{'issuer':t,'sector':sector.get(t,'Unclassified'),'amount':sum(r['amount'] for r in window if r['issuer']==t)} for t in sorted(set(r['issuer'] for r in window))];issuer_totals.sort(key=lambda r:-r['amount'])
-result={'metadata':{'source':'Indexlist.xlsx','sha256':hashlib.sha256(a.input.read_bytes()).hexdigest(),'creditAsOf':daily[-1]['date'],'creditBaseline':baseline['date'],'ratingAsOf':'2026-09-30','bondWindow':start+' through '+latest,'bondMissingMonths':[shift(start,i) for i in range(12) if shift(start,i) not in months],'limitations':'Supplementary indicators do not alter core weights. CDS uses Bloomberg implied issuer spreads versus the workbook IG benchmark, not a rating-matched index. Fixed groups use latest ratings retrospectively; no historical rating adjustment. Sector baskets include covered issuers across ratings, including below IG. Calendar-day values can carry prior observations. Bond amounts follow the existing USD-equivalent workbook convention; no new FX conversion. Absent issuer-month entries are no recorded issuance, not independently verified zeros. Unknown issuers remain unclassified.'},'demand':demand,'credit':credit,'creditIssuers':issuer_credit,'bondRows':bonds,'bondMonthly':monthly,'bondSectors':sector_totals,'bondIssuers':issuer_totals}
+result={'metadata':{'source':'Indexlist.xlsx','sha256':index_hash,'indexPriceCompletedThrough':index_config['completedMonthThrough'],'indexPriceReviewedAt':index_config['reviewedAt'],'creditAsOf':daily[-1]['date'],'creditBaseline':baseline['date'],'ratingAsOf':'2026-09-30','bondWindow':start+' through '+latest,'bondMissingMonths':[shift(start,i) for i in range(12) if shift(start,i) not in months],'limitations':'Supplementary indicators do not alter core weights. CDS uses Bloomberg implied issuer spreads versus the workbook IG benchmark, not a rating-matched index. Fixed groups use latest ratings retrospectively; no historical rating adjustment. Sector baskets include covered issuers across ratings, including below IG. Calendar-day values can carry prior observations. Bond amounts follow the existing USD-equivalent workbook convention; no new FX conversion. Absent issuer-month entries are no recorded issuance, not independently verified zeros. Unknown issuers remain unclassified.'},'demand':demand,'credit':credit,'creditIssuers':issuer_credit,'bondRows':bonds,'bondMonthly':monthly,'bondSectors':sector_totals,'bondIssuers':issuer_totals}
 result['bondBenchmark']=bond_benchmark
 root=BUILD_ROOT;(root/'app/workbook-amendments-snapshot.ts').write_text('export const workbookAmendments = '+json.dumps(result,indent=2)+' as const;\n')
 print(json.dumps({'demandSeries':len(demand),'creditDays':len(daily),'creditGroups':len(credit),'bondRecords':len(bonds),'bondWindow':result['metadata']['bondWindow'],'missingBondMonths':result['metadata']['bondMissingMonths'],'largestSector':sector_totals[0]},indent=2))

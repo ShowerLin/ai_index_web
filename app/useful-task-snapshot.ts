@@ -29,7 +29,7 @@ export const usefulTaskSnapshot = {
       "successAgent": "",
       "successAttempts": "",
       "workbookSuccessRate": 0.02,
-      "eci": 125.88,
+      "eci": 125.74,
       "eciGap": null,
       "evidenceTier": "C",
       "classification": "Frontier anchor"
@@ -53,8 +53,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.04,
       "successReasoningEffort": "",
       "successModelVersion": "GPT-4 (1106)",
-      "eci": 126.46,
-      "eciGap": -0.5799999999999983,
+      "eci": 126.43,
+      "eciGap": -0.6900000000000119,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
     },
@@ -77,7 +77,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.13,
       "successReasoningEffort": "",
       "successModelVersion": "Claude 3 Opus",
-      "eci": 126.91,
+      "eci": 126.9,
       "eciGap": 0.0,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
@@ -101,8 +101,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.18,
       "successReasoningEffort": "",
       "successModelVersion": "GPT-4o",
-      "eci": 128.97,
-      "eciGap": -1.7199999999999989,
+      "eci": 128.99,
+      "eciGap": -1.720000000000013,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
     },
@@ -123,7 +123,7 @@ export const usefulTaskSnapshot = {
       "successAgent": "Epoch Inspect harness",
       "successAttempts": "1",
       "workbookSuccessRate": 0.30991735537190085,
-      "eci": 128.81,
+      "eci": 128.69,
       "eciGap": 7.009999999999991,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
@@ -145,8 +145,8 @@ export const usefulTaskSnapshot = {
       "successAgent": "",
       "successAttempts": "",
       "workbookSuccessRate": 0.49,
-      "eci": 138.98,
-      "eciGap": 2.9399999999999977,
+      "eci": 138.82,
+      "eciGap": 2.9000000000000057,
       "evidenceTier": "C",
       "classification": "Frontier anchor"
     },
@@ -169,8 +169,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.55,
       "successReasoningEffort": "",
       "successModelVersion": "gpt-4.1-2025-04-14",
-      "eci": 136.79,
-      "eciGap": 7.3700000000000045,
+      "eci": 136.65,
+      "eciGap": 7.310000000000002,
       "evidenceTier": "B",
       "classification": "Comparator"
     },
@@ -244,8 +244,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "DeepSeek V3.2 Reasoner",
       "successVerification": "verified",
       "workbookSuccessRate": 0.6,
-      "eci": 146.28,
-      "eciGap": 6.680000000000007,
+      "eci": 146.09,
+      "eciGap": 6.97999999999999,
       "evidenceTier": "A",
       "classification": "Best-value anchor"
     },
@@ -294,8 +294,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "MiniMax M2.5",
       "successVerification": "not stated",
       "workbookSuccessRate": 0.758,
-      "eci": 146.68,
-      "eciGap": 10.159999999999997,
+      "eci": 146.59,
+      "eciGap": 10.5,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -319,8 +319,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "GLM 5",
       "successVerification": "not stated",
       "workbookSuccessRate": 0.728,
-      "eci": 145.84,
-      "eciGap": 11.0,
+      "eci": 145.8,
+      "eciGap": 11.289999999999992,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -344,8 +344,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "DeepSeek V3.2",
       "successVerification": "not stated",
       "workbookSuccessRate": 0.7,
-      "eci": 146.28,
-      "eciGap": 10.560000000000002,
+      "eci": 146.09,
+      "eciGap": 11.0,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -368,8 +368,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.8,
       "successReasoningEffort": "high",
       "successModelVersion": "claude-sonnet-4-6_high",
-      "eci": 152.25,
-      "eciGap": 4.590000000000003,
+      "eci": 152.79,
+      "eciGap": 4.300000000000011,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -392,8 +392,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.8,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-5.4-2026-03-05_xhigh",
-      "eci": 156.92,
-      "eciGap": 2.200000000000017,
+      "eci": 157.31,
+      "eciGap": 2.259999999999991,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -416,8 +416,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.94,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-5.5_xhigh",
-      "eci": 159.25,
-      "eciGap": 3.1999999999999886,
+      "eci": 159.68,
+      "eciGap": 3.2299999999999898,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -440,7 +440,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.94,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "claude-fable-5_xhigh",
-      "eci": 163.6,
+      "eci": 163.42,
       "eciGap": 0.0,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
@@ -450,7 +450,7 @@ export const usefulTaskSnapshot = {
       "model": "Grok 4.5",
       "lab": "xAI",
       "series": "Comparator",
-      "blendedTokenPrice": "$3.36",
+      "blendedTokenPrice": "$6.72",
       "tokensPerAttempt": "Observed DeepSWE run",
       "rawCostPerAttempt": 2.4157481725663716,
       "successRate": 0.5376106194690266,
@@ -464,8 +464,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.62,
       "successReasoningEffort": "high",
       "successModelVersion": "grok-4.5_high",
-      "eci": 154.02,
-      "eciGap": 9.579999999999984,
+      "eci": 154.07,
+      "eciGap": 9.349999999999994,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -474,7 +474,7 @@ export const usefulTaskSnapshot = {
       "model": "GPT-5.6 Sol",
       "lab": "OpenAI",
       "series": "Frontier",
-      "blendedTokenPrice": "$4.72",
+      "blendedTokenPrice": "$9.44",
       "tokensPerAttempt": "Observed DeepSWE run",
       "rawCostPerAttempt": 8.386436346666667,
       "successRate": 0.7266666666666667,
@@ -488,8 +488,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.7,
       "successReasoningEffort": "max",
       "successModelVersion": "gpt-5.6-sol_max",
-      "eci": 161.99,
-      "eciGap": 1.6099999999999852,
+      "eci": 162.79,
+      "eciGap": 0.6299999999999955,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -510,8 +510,8 @@ export const usefulTaskSnapshot = {
       "successAgent": "",
       "successAttempts": "",
       "workbookSuccessRate": 0.35,
-      "eci": 154.51,
-      "eciGap": 9.090000000000003,
+      "eci": 154.76,
+      "eciGap": 9.180000000000007,
       "evidenceTier": "C",
       "classification": "Comparator"
     },
@@ -534,8 +534,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.57,
       "successReasoningEffort": "max",
       "successModelVersion": "glm-5.3-flash_max",
-      "eci": 151.9,
-      "eciGap": 11.699999999999989,
+      "eci": 153.08,
+      "eciGap": 10.859999999999985,
       "evidenceTier": "A",
       "classification": "Best-value anchor"
     },
@@ -546,9 +546,9 @@ export const usefulTaskSnapshot = {
       "series": "Frontier",
       "blendedTokenPrice": "$23.60",
       "tokensPerAttempt": "Observed DeepSWE run",
-      "rawCostPerAttempt": 6.52377356460177,
+      "rawCostPerAttempt": 4.429117203539823,
       "successRate": 0.7411504424778761,
-      "costPerUsefulTask": 8.802225824477611,
+      "costPerUsefulTask": 5.976002913432836,
       "evidence": "Epoch DeepSWE mean run cost and Pass@1",
       "priceSource": "Epoch AI DeepSWE observed mean cost",
       "successSource": "Epoch AI DeepSWE data",
@@ -558,7 +558,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.741,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-6-astra_xhigh",
-      "eci": 166.6,
+      "eci": 168.81,
       "eciGap": 0.0,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
@@ -623,7 +623,7 @@ export const usefulTaskSnapshot = {
       },
       {
         "date": "2026-09-03",
-        "costPerUsefulTask": 8.802225824477611,
+        "costPerUsefulTask": 5.976002913432835,
         "model": "GPT-6 Astra"
       }
     ],
@@ -668,9 +668,9 @@ export const usefulTaskSnapshot = {
       "series": "Frontier",
       "blendedTokenPrice": "$23.60",
       "tokensPerAttempt": "Observed DeepSWE run",
-      "rawCostPerAttempt": 6.52377356460177,
+      "rawCostPerAttempt": 4.429117203539823,
       "successRate": 0.7411504424778761,
-      "costPerUsefulTask": 8.802225824477611,
+      "costPerUsefulTask": 5.976002913432836,
       "evidence": "Epoch DeepSWE mean run cost and Pass@1",
       "priceSource": "Epoch AI DeepSWE observed mean cost",
       "successSource": "Epoch AI DeepSWE data",
@@ -680,7 +680,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.741,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-6-astra_xhigh",
-      "eci": 166.6,
+      "eci": 168.81,
       "eciGap": 0.0,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
@@ -704,8 +704,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.57,
       "successReasoningEffort": "max",
       "successModelVersion": "glm-5.3-flash_max",
-      "eci": 151.9,
-      "eciGap": 11.699999999999989,
+      "eci": 153.08,
+      "eciGap": 10.859999999999985,
       "evidenceTier": "A",
       "classification": "Best-value anchor"
     }
@@ -724,11 +724,11 @@ export const usefulTaskSnapshot = {
     {
       "series": "Frontier",
       "model": "GPT-6 Astra",
-      "pricePerUsefulTask": 8.802225824477611,
+      "pricePerUsefulTask": 5.976002913432836,
       "tasksPerDay": [
-        311254,
-        186752,
-        133394
+        458455,
+        275073,
+        196481
       ]
     },
     {

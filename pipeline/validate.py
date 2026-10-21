@@ -21,13 +21,34 @@ def validate(root,build):
    periods=[r['period'] for r in c['quarters']]
    assert periods==sorted(set(periods)),(name,c['ticker'],'duplicate or unsorted quarters')
  core=load_ts(build/'app/core-contribution-snapshot.ts')
- assert core['metadata']['version']=='2.4'
+ assert core['metadata']['version']=='2.7'
  for month in core['months']:
+  for pillar in ['Adoption','Demand','Investment','Imports','Hyperscaler CapEx']:
+   assert math.isclose(sum(r['weight'] for r in month['rows'] if r['pillar']==pillar),.2,abs_tol=1e-10)
+  assert {r['ticker'] for r in month['rows'] if r['pillar']=='Adoption'}=={'RAMP_MATCHED_SPENDING','OPENROUTER_SPENDING_PROXY'}
+  assert len(month['contextRows'])==3 and all(r['weight']==0 for r in month['contextRows'])
   assert math.isclose(sum(r['weight'] for r in month['rows']),1,abs_tol=1e-10)
   complete=all(r['score'] is not None for r in month['rows'])
   assert complete==(month['score'] is not None),month['month']
   if complete:assert math.isclose(month['score'],sum(r['weight']*r['score'] for r in month['rows']),abs_tol=1e-8)
  tokens=load_ts(build/'app/token-activity-snapshot.ts')
+ prices=load_ts(build/'app/adoption-price-snapshot.ts')
+ assert prices['metadata']['coreWeight']==0
+ assert core['metadata']['spendingCoreWeight']==.2 and core['metadata']['tokenCoreWeight']==0
+ for source in ('openrouter','ramp'):
+  stats=core['metadata']['spendingBaseline'][source]
+  assert stats['count']==6 and stats['start']=='2026-01' and stats['end']=='2026-06' and stats['std']>0
+ for month in core['months']:
+  for row in month['rows']:
+   if row['pillar']=='Adoption':assert row['weight']==.1
+   if row['pillar']=='Adoption' and row['score'] is not None:
+    expected=max(0,min(100,50+15*(row['growth']-row['baselineMean'])/row['baselineStd']))
+    assert math.isclose(row['score'],expected,abs_tol=1e-10)
+    assert math.isclose(row['growth'],row['volumeGrowth']+row['priceChange']+row['interaction'],abs_tol=1e-8)
+ assert len(prices['siliconDaily'])==len({r['date'] for r in prices['siliconDaily']})>0
+ for row in prices['rampWeekly']:
+  assert 0<=row['coverage']<=1
+  if row['value'] is not None:assert math.isclose(row['value'],row['spendUsd']/row['tokens']*1e6)
  for row in tokens['weekly']:
   assert row['openrouter'] is None or row['openrouterDays']==7
  return {'bloombergSheets':len(names),'rampMonths':len(dates),'coreVersion':core['metadata']['version'],'coreRows':len(core['months']),'cashAndRoicCoverage':'five companies with at least eight unique quarters','status':'passed'}

@@ -10,7 +10,7 @@ import hashlib
 import json
 import shutil
 import tempfile
-import urllib.request
+import requests
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,12 +65,14 @@ def download_dataset(name: str, spec: dict[str, str], output_root: Path) -> None
 
     with tempfile.TemporaryDirectory(prefix="epoch-ai-") as temporary_directory:
         archive = Path(temporary_directory) / f"{name}.zip"
-        request = urllib.request.Request(
-            spec["url"], headers={"User-Agent": "AI-Index-research-data/1.0"}
-        )
-        with urllib.request.urlopen(request, timeout=120) as response:
+        print(f"Fetching {spec['url']}", flush=True)
+        with requests.get(spec['url'], headers={"User-Agent": "AI-Index-research-data/1.0"},
+                          timeout=(15, 45), stream=True) as response:
+            response.raise_for_status()
             with archive.open("wb") as target:
-                shutil.copyfileobj(response, target)
+                for chunk in response.iter_content(chunk_size=65536):
+                    target.write(chunk)
+        print(f"Received {archive.stat().st_size:,} bytes", flush=True)
 
         with zipfile.ZipFile(archive) as package:
             for member in package.infolist():

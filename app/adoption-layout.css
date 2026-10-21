@@ -1,0 +1,12 @@
+#adoption > .pillar-chart-grid { display:block; }
+#adoption .adoption-research-layout, #adoption .adoption-volume-price { display:block; width:100%; min-width:0; }
+#adoption .token-activity { margin:24px 0; padding:24px; width:100%; min-width:0; border:1px solid var(--line); background:var(--card); }
+#adoption .token-activity h2 { font:400 clamp(28px,3vw,42px)/1.15 Georgia,serif; }
+#adoption .token-activity .section-summary { display:block; margin:16px 0 24px; }
+#adoption .token-activity .adoption-observations { margin:20px 0; }
+#adoption .token-frequency-chart { width:100%; overflow-x:auto; }
+#adoption .token-frequency-chart svg { width:100%; min-width:520px!important; }
+#adoption .adoption-breadth-context { margin-top:32px; padding:20px; border:1px solid var(--line); }
+#adoption .adoption-breadth-context > summary { cursor:pointer; font-weight:700; }
+#adoption .adoption-breadth-context .adoption-observations { margin:20px 0; }
+@media(max-width:720px) { #adoption .token-activity { padding:16px; } }

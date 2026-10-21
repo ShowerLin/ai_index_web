@@ -6,7 +6,7 @@ const notes: Record<string, Note> = {
   heatmap: {
     sources: ["S1", "S2", "S3", "S9", "S14"],
     source: "Saved Bloomberg monthly workbook observations and U.S./China CapEx collections. Macro inputs may contain prior-value fills; CapEx accounting definitions vary. These are cached observations rather than a live feed.",
-    methodology: "Methodology v2.4: survey and Ramp paid-adoption levels; 3M-average median AI spend per employee YoY growth; natural log of matched four-week OpenRouter and Ramp token volume; TTM YoY growth for exports, orders and imports; 12M-average YoY growth for construction and high-tech production; trailing-four-quarter YoY growth for company CapEx. Normalize against each transformed series’ fixed history through June 2026 using sample standard deviation, and clip 50 + 15 × z to 0–100. Equal weights within five 20% pillars. Heatmap and attribution use these same scores.",
+    methodology: "Methodology v2.5: Adoption uses only separate Ramp and OpenRouter token volumes (10% core weight each); survey and paid-adoption levels and token prices are zero-weight context; 3M-average median AI spend per employee YoY growth; natural log of matched four-week OpenRouter and Ramp token volume; TTM YoY growth for exports, orders and imports; 12M-average YoY growth for construction and high-tech production; trailing-four-quarter YoY growth for company CapEx. Normalize against each transformed series’ fixed history through June 2026 using sample standard deviation, and clip 50 + 15 × z to 0–100. Equal weights within five 20% pillars. Heatmap and attribution use these same scores.",
     other: "The core line uses a fixed 0–100 left axis; selected growth uses the right axis. The range is not a confidence interval. Revised complete core history begins February 2025 and ends June 2026, with June–July 2025 withheld because OpenRouter days are missing; earlier periods lack full trailing windows. The baseline is retrospective, not a real-time backtest. Quarterly scores are held within quarter. Nominal price effects remain. OpenRouter and Ramp token volume contribute separate core signals, with a provisional 15-observation calibration. Lab revenue, task cost and installed capacity remain supplementary. Historical quarterly alignment does not imply the data was published at the quarter’s start. China is supplementary.",
   },
   pulse: {
@@ -17,7 +17,7 @@ const notes: Record<string, Note> = {
   },
   adoption: {
     sources: ["S1", "S14"], source: "Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption ends August 2026; missing September is retained.",
-    methodology: "Show current use, expected use and Ramp paid adoption as percentages. Each contributes one third of the 20% Adoption pillar. Ramp is not split at the BTOS wording change.",
+    methodology: "Show current use, expected use and Ramp paid adoption as percentages. All three are zero-weight breadth context. Ramp TSM and OpenRouter matched-window token volumes each contribute half of the 20% Adoption pillar. Prices carry zero weight. Ramp is not split at the BTOS wording change.",
     other: "Ramp identifies firms with observed AI payments. It does not establish retention, profitability or market-wide utilization. Survey intentions and observed payments are distinct measures.",
   },
   capex: {

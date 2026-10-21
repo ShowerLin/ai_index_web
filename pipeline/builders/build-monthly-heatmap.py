@@ -13,25 +13,16 @@ from pathlib import Path
 parser = argparse.ArgumentParser()
 parser.add_argument('--input', type=Path, required=True)
 args = parser.parse_args()
-raw = args.input.read_bytes()
-table = next(item for line in raw.decode('utf-8').splitlines()
-             if (item := json.loads(line)).get('kind') == 'table'
-             and item.get('sheet') == 'Index Price Value')
-values = table['values']
-headers = values[0]
-observations = {}
-for row in values[2:]:
-    if isinstance(row[0], (int, float)):
-        date = datetime(1899, 12, 30) + timedelta(days=row[0])
-        observations[date.strftime('%Y-%m')] = dict(zip(headers[1:], row[1:]))
+from index_price import load, shift
+config, headers, observations, workbook_hash, inspection_hash = load(inspection=args.input)
+
 groups = {
     'Adoption': ['BTOS0700', 'BTOS2400'],
     'Demand': ['KOTCDRAM'],
     'Investment': ['DGNOCOEQ', 'DGNOITIN', 'DGNOTGOP', 'CNSTPRDA', 'IPNEHITC'],
     'Imports': ['USIMTELE', 'USIMSEMI', 'USIMCOMP'],
 }
-months = [f'{year}-{month:02}' for year, month in
-          [(2025, m) for m in range(7, 13)] + [(2026, m) for m in range(1, 7)]]
+months = sorted(m for m in observations if shift(config['completedMonthThrough'], -11) <= m <= config['completedMonthThrough'])
 rows = []
 for pillar, tickers in groups.items():
     cells = []
@@ -56,10 +47,10 @@ for pillar, tickers in groups.items():
                       'coverage': f'{len(changes)}/{len(tickers)}'})
     rows.append({'pillar': pillar, 'cells': cells, 'constituents': constituents})
 snapshot = {'metadata': {'source': 'Indexlist.xlsx — Index Price Value (saved inspection)',
-                         'sourceSha256': hashlib.sha256(raw).hexdigest(),
-                         'sourceWorkbookSha256': table.get('sourceSha256'),
+                         'sourceSha256': inspection_hash,
+                         'sourceWorkbookSha256': workbook_hash,
                          'method': 'Equal-weight mean of constituent month-over-month percentage changes; incomplete pillars withheld. Token price excluded from Demand.',
-                         'window': '2025-07 through 2026-06'}, 'months': months, 'rows': rows}
+                         'reviewedAt': config['reviewedAt'], 'completedMonthThrough': config['completedMonthThrough'], 'window': f'{months[0]} through {months[-1]}'}, 'months': months, 'rows': rows}
 output = BUILD_ROOT / 'app' / 'monthly-heatmap-snapshot.ts'
 output.write_text('export const monthlyHeatmapSnapshot = ' + json.dumps(snapshot, indent=2) + ' as const;\n', encoding='utf-8')
 print(f'Generated {len(rows)} monthly macro rows across {len(months)} months.')

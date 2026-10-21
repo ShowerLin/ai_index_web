@@ -2,7 +2,7 @@
 export const taskEconomicsSnapshot = {
   "metadata": {
     "source": "Epoch AI \u2014 frontier_ai_models.csv and ml_hardware.csv",
-    "retrievedAt": "2026-09-29T03:01:34.578135+00:00",
+    "retrievedAt": "2026-10-21T08:50:58.539343+00:00",
     "modelDatasetAsOf": "2026-09-03",
     "costObservationAsOf": "2025-07-09",
     "observationCount": 48,
@@ -646,7 +646,7 @@ export const taskEconomicsSnapshot = {
       "releasePrice": 43000.0,
       "pricePerformance": 58139534883.72093,
       "energyEfficiency": 10714285714285.717,
-      "memoryBytes": 287500000000.0
+      "memoryBytes": 288000000000.0
     },
     {
       "name": "Google TPU v7 Ironwood",

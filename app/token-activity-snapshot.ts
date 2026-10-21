@@ -1,7 +1,7 @@
 export const tokenActivitySnapshot = {
   "metadata": {
     "openrouterThrough": "2026-10-06",
-    "rampThrough": "2026-09-27",
+    "rampThrough": "2026-10-11",
     "openrouterSource": "https://openrouter.ai/api/v1/datasets/rankings-daily",
     "rampSource": "https://ramp.com/data/ai-index",
     "openrouterMissingDays": [
@@ -11,10 +11,12 @@ export const tokenActivitySnapshot = {
     "scope": "OpenRouter public routed traffic and Ramp TSM sampled-business published model volumes. Customer overlap cannot be measured. No combined industry-token total.",
     "dailyRampLimit": "Ramp tokenPrices daily fields are overlapping 7-day totals for a narrower provider sample. They are neither summed nor treated as actual daily volumes.",
     "openrouterSha256": "7fccb3d7622fa57fbb2bbed020ab37d881ee0ffff3dbab34febdfb633ec2f304",
-    "rampSha256": "aa0269a57e1146c1c9db5b63fe51efce5a348618f83b9b845071b91ce1a858a8",
-    "rampRetrieved": "2026-10-13",
+    "rampSha256": "da3ca36c6c5c92da95a9073e7ee103b77af593c5c0a12da0b195c3e1bfba955c",
+    "rampRetrieved": "2026-10-21",
     "openrouterAsOf": "2026-10-07T08:18:10.306Z",
-    "tokenCoreWeight": 0.1
+    "tokenCoreWeight": 0,
+    "corePillar": "Adoption",
+    "spendingCoreWeight": 0.2
   },
   "monthly": [
     {
@@ -155,7 +157,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.11093914007657142,
-      "ramp": 0.09489678323896428
+      "ramp": 0.09497363750278572
     },
     {
       "month": "2025-03",
@@ -165,7 +167,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.20680089976710714,
-      "ramp": 0.11796452536142857
+      "ramp": 0.11818392379528572
     },
     {
       "month": "2025-04",
@@ -175,7 +177,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.2771477511881786,
-      "ramp": 0.12761137340160714
+      "ramp": 0.12781594866689286
     },
     {
       "month": "2025-05",
@@ -185,7 +187,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.30200705367764286,
-      "ramp": 0.15656021136075
+      "ramp": 0.1568647887552857
     },
     {
       "month": "2025-06",
@@ -215,7 +217,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.4845550973069286,
-      "ramp": 0.3208966009035357
+      "ramp": 0.3221842209752143
     },
     {
       "month": "2025-09",
@@ -225,7 +227,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.702591171,
-      "ramp": 0.43637377626742857
+      "ramp": 0.4377283630268214
     },
     {
       "month": "2025-10",
@@ -235,7 +237,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.7118158758598928,
-      "ramp": 0.6428338330618572
+      "ramp": 0.6467360493530357
     },
     {
       "month": "2025-11",
@@ -245,7 +247,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.9004514185042858,
-      "ramp": 0.7058260817721072
+      "ramp": 0.7113061146008214
     },
     {
       "month": "2025-12",
@@ -255,7 +257,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.8379244834881429,
-      "ramp": 0.760903506815
+      "ramp": 0.7659906695453929
     },
     {
       "month": "2026-01",
@@ -265,7 +267,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 0.9686849018026786,
-      "ramp": 0.8202602895046786
+      "ramp": 0.8446830585547143
     },
     {
       "month": "2026-02",
@@ -275,7 +277,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 1.6077364003747143,
-      "ramp": 1.18910024473875
+      "ramp": 1.259850950246
     },
     {
       "month": "2026-03",
@@ -285,7 +287,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 2.664289439704321,
-      "ramp": 1.680133707650607
+      "ramp": 1.9005984344222144
     },
     {
       "month": "2026-04",
@@ -295,7 +297,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 3.226748035145643,
-      "ramp": 1.9696333051744643
+      "ramp": 2.404906215057786
     },
     {
       "month": "2026-05",
@@ -305,7 +307,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 4.048765130371429,
-      "ramp": 2.5477494086113213
+      "ramp": 3.285038710380857
     },
     {
       "month": "2026-06",
@@ -315,7 +317,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 6.217863251586679,
-      "ramp": 3.08521497986
+      "ramp": 4.006958340483714
     },
     {
       "month": "2026-07",
@@ -325,7 +327,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 7.862673168533714,
-      "ramp": 3.60742152861925
+      "ramp": 4.853926982442822
     },
     {
       "month": "2026-08",
@@ -335,7 +337,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 12.527197152684142,
-      "ramp": 4.968948917956214
+      "ramp": 6.793772902757179
     },
     {
       "month": "2026-09",
@@ -345,7 +347,7 @@ export const tokenActivitySnapshot = {
       "rampWeeks": 4,
       "complete": true,
       "openrouter": 18.463096466588215,
-      "ramp": 5.4684260845208215
+      "ramp": 7.6487568372433214
     }
   ],
   "weekly": [
@@ -364,7 +366,7 @@ export const tokenActivitySnapshot = {
       "start": "2025-01-06",
       "end": "2025-01-12",
       "openrouter": 0.07122675447685714,
-      "ramp": 0.07550880905028572,
+      "ramp": 0.07665757008828572,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.498587281338,
       "rampComplete": true,
@@ -375,991 +377,991 @@ export const tokenActivitySnapshot = {
       "start": "2025-01-13",
       "end": "2025-01-19",
       "openrouter": 0.07404917743514285,
-      "ramp": 0.07911313818571428,
+      "ramp": 0.08023502074314286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.518344242046,
       "rampComplete": true,
       "openrouterWow": 3.962588186160798,
-      "rampWow": 4.773388934035805
+      "rampWow": 4.666793704440431
     },
     {
       "start": "2025-01-20",
       "end": "2025-01-26",
       "openrouter": 0.07529979986414286,
-      "ramp": 0.07594423211614286,
+      "ramp": 0.07699421572971428,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.527098599049,
       "rampComplete": true,
       "openrouterWow": 1.6889079289170938,
-      "rampWow": -4.005537060270015
+      "rampWow": -4.03914024501022
     },
     {
       "start": "2025-01-27",
       "end": "2025-02-02",
       "openrouter": 0.08167262568428572,
-      "ramp": 0.08335147922228572,
+      "ramp": 0.08341957410942857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.57170837979,
       "rampComplete": true,
       "openrouterWow": 8.46327059519525,
-      "rampWow": 9.753534797500919
+      "rampWow": 8.345248170681163
     },
     {
       "start": "2025-02-03",
       "end": "2025-02-09",
       "openrouter": 0.10611914520057143,
-      "ramp": 0.08795009646742857,
+      "ramp": 0.08806578123342858,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.742834016404,
       "rampComplete": true,
       "openrouterWow": 29.932329604274432,
-      "rampWow": 5.517139333399279
+      "rampWow": 5.569684541790121
     },
     {
       "start": "2025-02-10",
       "end": "2025-02-16",
       "openrouter": 0.12004966907814285,
-      "ramp": 0.10330473782042858,
+      "ramp": 0.10342368062114285,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.840347683547,
       "rampComplete": true,
       "openrouterWow": 13.12724848211122,
-      "rampWow": 17.458356465460433
+      "rampWow": 17.439122406700026
     },
     {
       "start": "2025-02-17",
       "end": "2025-02-23",
       "openrouter": 0.13591512034328573,
-      "ramp": 0.10498081944571427,
+      "ramp": 0.10498551404714285,
       "openrouterDays": 7,
       "openrouterObservedTotal": 0.951405842403,
       "rampComplete": true,
       "openrouterWow": 13.215739274396277,
-      "rampWow": 1.622463461646051
+      "rampWow": 1.510131351562749
     },
     {
       "start": "2025-02-24",
       "end": "2025-03-02",
       "openrouter": 0.156985071906,
-      "ramp": 0.132472958696,
+      "ramp": 0.13255514379057143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.098895503342,
       "rampComplete": true,
       "openrouterWow": 15.502286654712982,
-      "rampWow": 26.187773533718662
+      "rampWow": 26.260413156665273
     },
     {
       "start": "2025-03-03",
       "end": "2025-03-09",
       "openrouter": 0.18314826934414286,
-      "ramp": 0.11933483032885715,
+      "ramp": 0.11945160545657142,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.282037885409,
       "rampComplete": true,
       "openrouterWow": 16.666041630894,
-      "rampWow": -9.917592613970626
+      "rampWow": -9.885348813549443
     },
     {
       "start": "2025-03-10",
       "end": "2025-03-16",
       "openrouter": 0.20270981730214285,
-      "ramp": 0.11703374314857143,
+      "ramp": 0.11736065368742857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.418968721115,
       "rampComplete": true,
       "openrouterWow": 10.680716791946887,
-      "rampWow": -1.9282611572367436
+      "rampWow": -1.7504593271482238
     },
     {
       "start": "2025-03-17",
       "end": "2025-03-23",
       "openrouter": 0.20995257977414286,
-      "ramp": 0.11874903011685714,
+      "ramp": 0.11898518860042857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.469668058419,
       "rampComplete": true,
       "openrouterWow": 3.5729707462586857,
-      "rampWow": 1.4656345444819197
+      "rampWow": 1.3842244925856395
     },
     {
       "start": "2025-03-24",
       "end": "2025-03-30",
       "openrouter": 0.231392932648,
-      "ramp": 0.11674049785142858,
+      "ramp": 0.11693824743671428,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.619750528536,
       "rampComplete": true,
       "openrouterWow": 10.211997822042317,
-      "rampWow": -1.6914094064195972
+      "rampWow": -1.7203327471188468
     },
     {
       "start": "2025-03-31",
       "end": "2025-04-06",
       "openrouter": 0.2906974496537143,
-      "ramp": 0.12812243428314285,
+      "ramp": 0.128336050619,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.034882147576,
       "rampComplete": true,
       "openrouterWow": 25.629355368398233,
-      "rampWow": 9.749775477400856
+      "rampWow": 9.746856509418844
     },
     {
       "start": "2025-04-07",
       "end": "2025-04-13",
       "openrouter": 0.3118746273338571,
-      "ramp": 0.11904022117442857,
+      "ramp": 0.11922572500428572,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.183122391337,
       "rampComplete": true,
       "openrouterWow": 7.2849547546322,
-      "rampWow": -7.088698524602755
+      "rampWow": -7.098804716813934
     },
     {
       "start": "2025-04-14",
       "end": "2025-04-20",
       "openrouter": 0.2540955100162857,
-      "ramp": 0.11477871989914286,
+      "ramp": 0.11492547069114285,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.778668570114,
       "rampComplete": true,
       "openrouterWow": -18.52639241977184,
-      "rampWow": -3.579883532845063
+      "rampWow": -3.606817499317605
     },
     {
       "start": "2025-04-21",
       "end": "2025-04-27",
       "openrouter": 0.2519234177488571,
-      "ramp": 0.1485041182497143,
+      "ramp": 0.14877654835314286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.763463924242,
       "rampComplete": true,
       "openrouterWow": -0.8548329985403447,
-      "rampWow": 29.382971320995964
+      "rampWow": 29.4548088064597
     },
     {
       "start": "2025-04-28",
       "end": "2025-05-04",
       "openrouter": 0.25756428745142856,
-      "ramp": 0.14436186665442854,
+      "ramp": 0.14463931760285714,
       "openrouterDays": 7,
       "openrouterObservedTotal": 1.80295001216,
       "rampComplete": true,
       "openrouterWow": 2.23912082210429,
-      "rampWow": -2.789317659406876
+      "rampWow": -2.780835283572647
     },
     {
       "start": "2025-05-05",
       "end": "2025-05-11",
       "openrouter": 0.3042875853697143,
-      "ramp": 0.15286930273542856,
+      "ramp": 0.153173201508,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.130013097588,
       "rampComplete": true,
       "openrouterWow": 18.14044112272235,
-      "rampWow": 5.893132499709908
+      "rampWow": 5.900113500655979
     },
     {
       "start": "2025-05-12",
       "end": "2025-05-18",
       "openrouter": 0.3078946095291429,
-      "ramp": 0.1600013627827143,
+      "ramp": 0.16034894930228571,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.155262266704,
       "rampComplete": true,
       "openrouterWow": 1.185399711607027,
-      "rampWow": 4.6654625354242585
+      "rampWow": 4.68472795739725
     },
     {
       "start": "2025-05-19",
       "end": "2025-05-25",
       "openrouter": 0.3382817323602857,
-      "ramp": 0.16900831327042856,
+      "ramp": 0.169297686608,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.367972126522,
       "rampComplete": true,
       "openrouterWow": 9.869326026075353,
-      "rampWow": 5.629296107899995
+      "rampWow": 5.580789487335114
     },
     {
       "start": "2025-05-26",
       "end": "2025-06-01",
       "openrouter": 0.3568727889277143,
-      "ramp": 0.162899985322,
+      "ramp": 0.16377093179785715,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.498109522494,
       "rampComplete": true,
       "openrouterWow": 5.495731749306598,
-      "rampWow": -3.6142174489693146
+      "rampWow": -3.264518801689098
     },
     {
       "start": "2025-06-02",
       "end": "2025-06-08",
       "openrouter": 0.337909974112,
-      "ramp": 0.1748200015582857,
+      "ramp": 0.17548802869042857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.365369818784,
       "rampComplete": true,
       "openrouterWow": -5.313606249636271,
-      "rampWow": 7.3173832475943446
+      "rampWow": 7.154564466320479
     },
     {
       "start": "2025-06-09",
       "end": "2025-06-15",
       "openrouter": null,
-      "ramp": 0.17550387633785713,
+      "ramp": 0.17639402172157145,
       "openrouterDays": 6,
       "openrouterObservedTotal": 1.822025311474,
       "rampComplete": true,
       "openrouterWow": null,
-      "rampWow": 0.39118794959136505
+      "rampWow": 0.5162705615327834
     },
     {
       "start": "2025-06-16",
       "end": "2025-06-22",
       "openrouter": 0.3221273640867143,
-      "ramp": 0.1999472004182857,
+      "ramp": 0.2008529000762857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.254891548607,
       "rampComplete": true,
       "openrouterWow": null,
-      "rampWow": 13.927512366378437
+      "rampWow": 13.866047225410671
     },
     {
       "start": "2025-06-23",
       "end": "2025-06-29",
       "openrouter": 0.3369537682047143,
-      "ramp": 0.22755185058585714,
+      "ramp": 0.2284561032317143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.358676377433,
       "rampComplete": true,
       "openrouterWow": 4.6026527923311855,
-      "rampWow": 13.805969830946886
+      "rampWow": 13.742994572119539
     },
     {
       "start": "2025-06-30",
       "end": "2025-07-06",
       "openrouter": 0.3014149882864286,
-      "ramp": 0.2228120726742857,
+      "ramp": 0.223847321642,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.109904918005,
       "rampComplete": true,
       "openrouterWow": -10.54707893834691,
-      "rampWow": -2.0829441287198325
+      "rampWow": -2.0173598010816973
     },
     {
       "start": "2025-07-07",
       "end": "2025-07-13",
       "openrouter": 0.3388141136038571,
-      "ramp": 0.2872536038592857,
+      "ramp": 0.2885067295095714,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.371698795227,
       "rampComplete": true,
       "openrouterWow": 12.407851888867881,
-      "rampWow": 28.92192079699507
+      "rampWow": 28.88549543200767
     },
     {
       "start": "2025-07-14",
       "end": "2025-07-20",
       "openrouter": null,
-      "ramp": 0.3068499203642857,
+      "ramp": 0.3082665310094286,
       "openrouterDays": 6,
       "openrouterObservedTotal": 2.222634927445,
       "rampComplete": true,
       "openrouterWow": null,
-      "rampWow": 6.821956710628241
+      "rampWow": 6.848991541184013
     },
     {
       "start": "2025-07-21",
       "end": "2025-07-27",
       "openrouter": 0.4280692140722857,
-      "ramp": 0.30155572857414287,
+      "ramp": 0.3029240753034286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 2.996484498506,
       "rampComplete": true,
       "openrouterWow": null,
-      "rampWow": -1.7253358853271616
+      "rampWow": -1.7330638160769407
     },
     {
       "start": "2025-07-28",
       "end": "2025-08-03",
       "openrouter": 0.4868693260017143,
-      "ramp": 0.29331116129742857,
+      "ramp": 0.294570323677,
       "openrouterDays": 7,
       "openrouterObservedTotal": 3.408085282012,
       "rampComplete": true,
       "openrouterWow": 13.736122570005538,
-      "rampWow": -2.7340111612859763
+      "rampWow": -2.757704754255974
     },
     {
       "start": "2025-08-04",
       "end": "2025-08-10",
       "openrouter": 0.4901751785438571,
-      "ramp": 0.2759741969927143,
+      "ramp": 0.2772561744921429,
       "openrouterDays": 7,
       "openrouterObservedTotal": 3.431226249807,
       "rampComplete": true,
       "openrouterWow": 0.6790020166789423,
-      "rampWow": -5.910775514994437
+      "rampWow": -5.877764252940243
     },
     {
       "start": "2025-08-11",
       "end": "2025-08-17",
       "openrouter": 0.4576650199575714,
-      "ramp": 0.29267327854285713,
+      "ramp": 0.2941260994534286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 3.203655139703,
       "rampComplete": true,
       "openrouterWow": -6.632355127173573,
-      "rampWow": 6.050957564914539
+      "rampWow": 6.0845984736631165
     },
     {
       "start": "2025-08-18",
       "end": "2025-08-24",
       "openrouter": 0.4582022290261429,
-      "ramp": 0.32605927415828573,
+      "ramp": 0.32718546698185713,
       "openrouterDays": 7,
       "openrouterObservedTotal": 3.207415603183,
       "rampComplete": true,
       "openrouterWow": 0.11738040819053719,
-      "rampWow": 11.40725787528285
+      "rampWow": 11.23986194692086
     },
     {
       "start": "2025-08-25",
       "end": "2025-08-31",
       "openrouter": 0.5321779617001429,
-      "ramp": 0.38887965392028573,
+      "ramp": 0.3901691429734286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 3.725245731901,
       "rampComplete": true,
       "openrouterWow": 16.14477800145735,
-      "rampWow": 19.266552047681927
+      "rampWow": 19.250144748960984
     },
     {
       "start": "2025-09-01",
       "end": "2025-09-07",
       "openrouter": 0.6571037520631429,
-      "ramp": 0.381590072662,
+      "ramp": 0.38261112455528573,
       "openrouterDays": 7,
       "openrouterObservedTotal": 4.599726264442,
       "rampComplete": true,
       "openrouterWow": 23.47443888204257,
-      "rampWow": -1.874508266194863
+      "rampWow": -1.9371133146368735
     },
     {
       "start": "2025-09-08",
       "end": "2025-09-14",
       "openrouter": 0.6996390969692857,
-      "ramp": 0.4003438577177143,
+      "ramp": 0.40156783407871427,
       "openrouterDays": 7,
       "openrouterObservedTotal": 4.897473678785,
       "rampComplete": true,
       "openrouterWow": 6.4731550797864745,
-      "rampWow": 4.914641758074723
+      "rampWow": 4.954563081630781
     },
     {
       "start": "2025-09-15",
       "end": "2025-09-21",
       "openrouter": 0.7024818248515714,
-      "ramp": 0.4877843415532857,
+      "ramp": 0.4892168952722857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 4.917372773961,
       "rampComplete": true,
       "openrouterWow": 0.40631346855826145,
-      "rampWow": 21.84134517113696
+      "rampWow": 21.826713634735672
     },
     {
       "start": "2025-09-22",
       "end": "2025-09-28",
       "openrouter": 0.751140010116,
-      "ramp": 0.4757768331367143,
+      "ramp": 0.477517598201,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.257980070812,
       "rampComplete": true,
       "openrouterWow": 6.926611272072369,
-      "rampWow": -2.4616428601080265
+      "rampWow": -2.391433571560153
     },
     {
       "start": "2025-09-29",
       "end": "2025-10-05",
       "openrouter": 0.7686176656128572,
-      "ramp": 0.5922572362047143,
+      "ramp": 0.5953212205408572,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.38032365929,
       "rampComplete": true,
       "openrouterWow": 2.3268172726091496,
-      "rampWow": 24.48215107491989
+      "rampWow": 24.67000646335773
     },
     {
       "start": "2025-10-06",
       "end": "2025-10-12",
       "openrouter": 0.7171016103205714,
-      "ramp": 0.6636734369828572,
+      "ramp": 0.6688149473994286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.019711272244,
       "rampComplete": true,
       "openrouterWow": -6.702429256711062,
-      "rampWow": 12.058307845386596
+      "rampWow": 12.345222095695041
     },
     {
       "start": "2025-10-13",
       "end": "2025-10-19",
       "openrouter": 0.6634996283122858,
-      "ramp": 0.667076360951,
+      "ramp": 0.6708434937312857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 4.644497398186,
       "rampComplete": true,
       "openrouterWow": -7.474809878661892,
-      "rampWow": 0.5127407213422419
+      "rampWow": 0.30330457471752226
     },
     {
       "start": "2025-10-20",
       "end": "2025-10-26",
       "openrouter": 0.6980445991938572,
-      "ramp": 0.6483282981088572,
+      "ramp": 0.6519645357405714,
       "openrouterDays": 7,
       "openrouterObservedTotal": 4.886312194357,
       "rampComplete": true,
       "openrouterWow": 5.206479311743073,
-      "rampWow": -2.8104822685389608
+      "rampWow": -2.814211983440129
     },
     {
       "start": "2025-10-27",
       "end": "2025-11-02",
       "openrouter": 0.7873084294554286,
-      "ramp": 0.6778237655402858,
+      "ramp": 0.6820570148415714,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.511159006188,
       "rampComplete": true,
       "openrouterWow": 12.787697285339416,
-      "rampWow": 4.549464756893307
+      "rampWow": 4.615661964928464
     },
     {
       "start": "2025-11-03",
       "end": "2025-11-09",
       "openrouter": 0.8326010407852857,
-      "ramp": 0.7325205139972858,
+      "ramp": 0.7388181322374285,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.828207285497,
       "rampComplete": true,
       "openrouterWow": 5.752842169006822,
-      "rampWow": 8.069464547824134
+      "rampWow": 8.322048767292811
     },
     {
       "start": "2025-11-10",
       "end": "2025-11-16",
       "openrouter": 0.8468163459448572,
-      "ramp": 0.7249637839397143,
+      "ramp": 0.7303239185125714,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.927714421614,
       "rampComplete": true,
       "openrouterWow": 1.7073369432932806,
-      "rampWow": -1.0316066121254797
+      "rampWow": -1.1497029315094554
     },
     {
       "start": "2025-11-17",
       "end": "2025-11-23",
       "openrouter": 0.895976014524,
-      "ramp": 0.7033999507265715,
+      "ramp": 0.7092551371431428,
       "openrouterDays": 7,
       "openrouterObservedTotal": 6.271832101668,
       "rampComplete": true,
       "openrouterWow": 5.805233781156116,
-      "rampWow": -2.9744704067777294
+      "rampWow": -2.884854355083799
     },
     {
       "start": "2025-11-24",
       "end": "2025-11-30",
       "openrouter": 1.026412272763,
-      "ramp": 0.6624200784248572,
+      "ramp": 0.6668272705101428,
       "openrouterDays": 7,
       "openrouterObservedTotal": 7.184885909341,
       "rampComplete": true,
       "openrouterWow": 14.558007817686525,
-      "rampWow": -5.825970311681772
+      "rampWow": -5.982031628829388
     },
     {
       "start": "2025-12-01",
       "end": "2025-12-07",
       "openrouter": 0.8833841546494285,
-      "ramp": 0.8429620353975714,
+      "ramp": 0.8486890365212858,
       "openrouterDays": 7,
       "openrouterObservedTotal": 6.183689082546,
       "rampComplete": true,
       "openrouterWow": -13.93476304882384,
-      "rampWow": 27.254904078695485
+      "rampWow": 27.2726947522727
     },
     {
       "start": "2025-12-08",
       "end": "2025-12-14",
       "openrouter": 0.824678090817,
-      "ramp": 0.8365711724302858,
+      "ramp": 0.8420315614197142,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.772746635719,
       "rampComplete": true,
       "openrouterWow": -6.645587146140974,
-      "rampWow": -0.7581436291222099
+      "rampWow": -0.7844422179482891
     },
     {
       "start": "2025-12-15",
       "end": "2025-12-21",
       "openrouter": 0.834357230129,
-      "ramp": 0.8009995380091428,
+      "ramp": 0.8073044092008572,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.840500610903,
       "rampComplete": true,
       "openrouterWow": 1.1736869718960152,
-      "rampWow": -4.252075088579177
+      "rampWow": -4.1242102802304785
     },
     {
       "start": "2025-12-22",
       "end": "2025-12-28",
       "openrouter": 0.8092784583571428,
-      "ramp": 0.563081281423,
+      "ramp": 0.5659376710397143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.6649492085,
       "rampComplete": true,
       "openrouterWow": -3.0057595075888233,
-      "rampWow": -29.702670887611326
+      "rampWow": -29.897859519938653
     },
     {
       "start": "2025-12-29",
       "end": "2026-01-04",
       "openrouter": 0.7952201983832857,
-      "ramp": 0.5610979903292858,
+      "ramp": 0.5691320975198572,
       "openrouterDays": 7,
       "openrouterObservedTotal": 5.566541388683,
       "rampComplete": true,
       "openrouterWow": -1.7371350773868088,
-      "rampWow": -0.3522211018455623
+      "rampWow": 0.5644484620142443
     },
     {
       "start": "2026-01-05",
       "end": "2026-01-11",
       "openrouter": 0.9170976730117142,
-      "ramp": 0.8213582374672858,
+      "ramp": 0.8458638637994286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 6.419683711082,
       "rampComplete": true,
       "openrouterWow": 15.326254900995995,
-      "rampWow": 46.38409896732365
+      "rampWow": 48.62346852084127
     },
     {
       "start": "2026-01-12",
       "end": "2026-01-18",
       "openrouter": 1.0918960796702857,
-      "ramp": 0.910098281782,
+      "ramp": 0.9414122916871428,
       "openrouterDays": 7,
       "openrouterObservedTotal": 7.643272557692,
       "rampComplete": true,
       "openrouterWow": 19.05995531365161,
-      "rampWow": 10.804060916020063
+      "rampWow": 11.295958129542537
     },
     {
       "start": "2026-01-19",
       "end": "2026-01-25",
       "openrouter": 1.0705256561454286,
-      "ramp": 0.9884866484401428,
+      "ramp": 1.0223239812124285,
       "openrouterDays": 7,
       "openrouterObservedTotal": 7.493679593018,
       "rampComplete": true,
       "openrouterWow": -1.9571847470420622,
-      "rampWow": 8.61317598629634
+      "rampWow": 8.594713521349995
     },
     {
       "start": "2026-01-26",
       "end": "2026-02-01",
       "openrouter": 1.178562050274,
-      "ramp": 1.0921910941641428,
+      "ramp": 1.1382584958751427,
       "openrouterDays": 7,
       "openrouterObservedTotal": 8.249934351918,
       "rampComplete": true,
       "openrouterWow": 10.091901441911343,
-      "rampWow": 10.491233835848801
+      "rampWow": 11.34029102254075
     },
     {
       "start": "2026-02-02",
       "end": "2026-02-08",
       "openrouter": 1.4006181328372855,
-      "ramp": 1.1804106692788572,
+      "ramp": 1.2401484385717143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 9.804326929861,
       "rampComplete": true,
       "openrouterWow": 18.84127208335451,
-      "rampWow": 8.077302185129899
+      "rampWow": 8.951388728114363
     },
     {
       "start": "2026-02-09",
       "end": "2026-02-15",
       "openrouter": 1.8592328753172855,
-      "ramp": 1.2409860116367144,
+      "ramp": 1.3202432138377143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 13.014630127221,
       "rampComplete": true,
       "openrouterWow": 32.743738762753736,
-      "rampWow": 5.131717624584353
+      "rampWow": 6.45848293436917
     },
     {
       "start": "2026-02-16",
       "end": "2026-02-22",
       "openrouter": 1.9925325430702856,
-      "ramp": 1.2428132038752857,
+      "ramp": 1.3407536526994284,
       "openrouterDays": 7,
       "openrouterObservedTotal": 13.947727801492,
       "rampComplete": true,
       "openrouterWow": 7.169605783258959,
-      "rampWow": 0.1472371341367129
+      "rampWow": 1.5535348825686413
     },
     {
       "start": "2026-02-23",
       "end": "2026-03-01",
       "openrouter": 1.9450958841508572,
-      "ramp": 1.5007027356757143,
+      "ramp": 1.6324605532238572,
       "openrouterDays": 7,
       "openrouterObservedTotal": 13.615671189056,
       "rampComplete": true,
       "openrouterWow": -2.380721915152939,
-      "rampWow": 20.750466039167325
+      "rampWow": 21.756934984821097
     },
     {
       "start": "2026-03-02",
       "end": "2026-03-08",
       "openrouter": 2.1127014507137143,
-      "ramp": 1.6833378795102856,
+      "ramp": 1.8413687064287143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 14.788910154996,
       "rampComplete": true,
       "openrouterWow": 8.616827989229247,
-      "rampWow": 12.16997473869046
+      "rampWow": 12.797133308507558
     },
     {
       "start": "2026-03-09",
       "end": "2026-03-15",
       "openrouter": 2.410639268659857,
-      "ramp": 1.6928296982608573,
+      "ramp": 1.8814358286634285,
       "openrouterDays": 7,
       "openrouterObservedTotal": 16.874474880619,
       "rampComplete": true,
       "openrouterWow": 14.102220540696496,
-      "rampWow": 0.5638688979857642
+      "rampWow": 2.1759423897467656
     },
     {
       "start": "2026-03-16",
       "end": "2026-03-22",
       "openrouter": 2.8995421192187143,
-      "ramp": 1.6305648096402856,
+      "ramp": 1.8695244270194284,
       "openrouterDays": 7,
       "openrouterObservedTotal": 20.296794834531,
       "rampComplete": true,
       "openrouterWow": 20.281045651042295,
-      "rampWow": -3.678154316676985
+      "rampWow": -0.6331016696148439
     },
     {
       "start": "2026-03-23",
       "end": "2026-03-29",
       "openrouter": 3.234274920225,
-      "ramp": 1.713802443191,
+      "ramp": 2.010064775577286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 22.639924441575,
       "rampComplete": true,
       "openrouterWow": 11.544333113411698,
-      "rampWow": 5.104834414344883
+      "rampWow": 7.517438474014493
     },
     {
       "start": "2026-03-30",
       "end": "2026-04-05",
       "openrouter": 3.857936628702,
-      "ramp": 1.7391001823297143,
+      "ramp": 2.064185666221,
       "openrouterDays": 7,
       "openrouterObservedTotal": 27.005556400914,
       "rampComplete": true,
       "openrouterWow": 19.282891029981265,
-      "rampWow": 1.4761175793174486
+      "rampWow": 2.6924948539616356
     },
     {
       "start": "2026-04-06",
       "end": "2026-04-12",
       "openrouter": 2.998692259396429,
-      "ramp": 1.8158226305785716,
+      "ramp": 2.216660599033,
       "openrouterDays": 7,
       "openrouterObservedTotal": 20.990845815775,
       "rampComplete": true,
       "openrouterWow": -22.272122432313335,
-      "rampWow": 4.411617515103661
+      "rampWow": 7.386686929724839
     },
     {
       "start": "2026-04-13",
       "end": "2026-04-19",
       "openrouter": 2.924181873885857,
-      "ramp": 2.0284451042455713,
+      "ramp": 2.502608982630857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 20.469273117201,
       "rampComplete": true,
       "openrouterWow": -2.4847626586920746,
-      "rampWow": 11.70942965939643
+      "rampWow": 12.899962390390286
     },
     {
       "start": "2026-04-20",
       "end": "2026-04-26",
       "openrouter": 3.1261813785982855,
-      "ramp": 2.295165303544,
+      "ramp": 2.8361696123462856,
       "openrouterDays": 7,
       "openrouterObservedTotal": 21.883269650188,
       "rampComplete": true,
       "openrouterWow": 6.907898120714284,
-      "rampWow": 13.148997660334928
+      "rampWow": 13.328515642294803
     },
     {
       "start": "2026-04-27",
       "end": "2026-05-03",
       "openrouter": 3.399679544795714,
-      "ramp": 2.3421288560775713,
+      "ramp": 2.951163793192286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 23.79775681357,
       "rampComplete": true,
       "openrouterWow": 8.748633974656306,
-      "rampWow": 2.046194775646626
+      "rampWow": 4.054559372803834
     },
     {
       "start": "2026-05-04",
       "end": "2026-05-10",
       "openrouter": 3.6759697970825713,
-      "ramp": 2.421645267642,
+      "ramp": 3.090775977082,
       "openrouterDays": 7,
       "openrouterObservedTotal": 25.731788579578,
       "rampComplete": true,
       "openrouterWow": 8.126949868254684,
-      "rampWow": 3.395048541334189
+      "rampWow": 4.730750092955538
     },
     {
       "start": "2026-05-11",
       "end": "2026-05-17",
       "openrouter": 3.843668910353143,
-      "ramp": 2.5275711145487145,
+      "ramp": 3.287264185960429,
       "openrouterDays": 7,
       "openrouterObservedTotal": 26.905682372472,
       "rampComplete": true,
       "openrouterWow": 4.562037299753285,
-      "rampWow": 4.374127306013587
+      "rampWow": 6.357245246351795
     },
     {
       "start": "2026-05-18",
       "end": "2026-05-24",
       "openrouter": 4.131457844404,
-      "ramp": 2.660036791283286,
+      "ramp": 3.439722080959571,
       "openrouterDays": 7,
       "openrouterObservedTotal": 28.920204910828,
       "rampComplete": true,
       "openrouterWow": 7.487349737009885,
-      "rampWow": 5.240828872117498
+      "rampWow": 4.637835183745631
     },
     {
       "start": "2026-05-25",
       "end": "2026-05-31",
       "openrouter": 4.543963969646,
-      "ramp": 2.5817444609712856,
+      "ramp": 3.3223925975214286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 31.807747787522,
       "rampComplete": true,
       "openrouterWow": 9.984517349020837,
-      "rampWow": -2.9432799790047093
+      "rampWow": -3.4110163750616596
     },
     {
       "start": "2026-06-01",
       "end": "2026-06-07",
       "openrouter": 5.160872180415286,
-      "ramp": 2.9763706446304288,
+      "ramp": 3.891012116663571,
       "openrouterDays": 7,
       "openrouterObservedTotal": 36.126105262907,
       "rampComplete": true,
       "openrouterWow": 13.576432711400809,
-      "rampWow": 15.285253425533817
+      "rampWow": 17.114759994539597
     },
     {
       "start": "2026-06-08",
       "end": "2026-06-14",
       "openrouter": 6.37225886041,
-      "ramp": 2.930717156524857,
+      "ramp": 3.880311991326429,
       "openrouterDays": 7,
       "openrouterObservedTotal": 44.60581202287,
       "rampComplete": true,
       "openrouterWow": 23.472518552033495,
-      "rampWow": -1.5338643454212764
+      "rampWow": -0.2749959397792212
     },
     {
       "start": "2026-06-15",
       "end": "2026-06-21",
       "openrouter": 6.663986509459286,
-      "ramp": 2.957440586408143,
+      "ramp": 3.851651568573857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 46.647905566215,
       "rampComplete": true,
       "openrouterWow": 4.578088483845999,
-      "rampWow": 0.9118392685486532
+      "rampWow": -0.7386112976646153
     },
     {
       "start": "2026-06-22",
       "end": "2026-06-28",
       "openrouter": 6.674335456062143,
-      "ramp": 3.4763315318765713,
+      "ramp": 4.404857685371,
       "openrouterDays": 7,
       "openrouterObservedTotal": 46.720348192435,
       "rampComplete": true,
       "openrouterWow": 0.1552966319509741,
-      "rampWow": 17.545270321005148
+      "rampWow": 14.362828696936813
     },
     {
       "start": "2026-06-29",
       "end": "2026-07-05",
       "openrouter": 6.674248323434,
-      "ramp": 2.8915272894967146,
+      "ramp": 3.861335433012143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 46.719738264038,
       "rampComplete": true,
       "openrouterWow": -0.0013054876956131167,
-      "rampWow": -16.82245312385874
+      "rampWow": -12.339155795292822
     },
     {
       "start": "2026-07-06",
       "end": "2026-07-12",
       "openrouter": 7.517095528472571,
-      "ramp": 3.7258946194652856,
+      "ramp": 5.009608979379,
       "openrouterDays": 7,
       "openrouterObservedTotal": 52.619668699308,
       "rampComplete": true,
       "openrouterWow": 12.62834650726501,
-      "rampWow": 28.85559244069238
+      "rampWow": 29.737731059306437
     },
     {
       "start": "2026-07-13",
       "end": "2026-07-19",
       "openrouter": 8.967706334231142,
-      "ramp": 3.750019758737,
+      "ramp": 5.091837423014571,
       "openrouterDays": 7,
       "openrouterObservedTotal": 62.773944339618,
       "rampComplete": true,
       "openrouterWow": 19.297490636697102,
-      "rampWow": 0.6474992380535172
+      "rampWow": 1.641414409269193
     },
     {
       "start": "2026-07-20",
       "end": "2026-07-26",
       "openrouter": 8.291642487997143,
-      "ramp": 4.062244446778,
+      "ramp": 5.452926094365571,
       "openrouterDays": 7,
       "openrouterObservedTotal": 58.04149741598,
       "rampComplete": true,
       "openrouterWow": -7.5388713795561895,
-      "rampWow": 8.325947811703195
+      "rampWow": 7.091520041840238
     },
     {
       "start": "2026-07-27",
       "end": "2026-08-02",
       "openrouter": 8.112655558845857,
-      "ramp": 4.675447542121858,
+      "ramp": 6.293665294963,
       "openrouterDays": 7,
       "openrouterObservedTotal": 56.788588911921,
       "rampComplete": true,
       "openrouterWow": -2.158642626118823,
-      "rampWow": 15.095179607672904
+      "rampWow": 15.418129386828694
     },
     {
       "start": "2026-08-03",
       "end": "2026-08-09",
       "openrouter": 9.863791121133142,
-      "ramp": 4.796668189182857,
+      "ramp": 6.493543185027858,
       "openrouterDays": 7,
       "openrouterObservedTotal": 69.046537847932,
       "rampComplete": true,
       "openrouterWow": 21.585232475177452,
-      "rampWow": 2.592706815099577
+      "rampWow": 3.175858274904231
     },
     {
       "start": "2026-08-10",
       "end": "2026-08-16",
       "openrouter": 10.762940154975857,
-      "ramp": 4.870645982421,
+      "ramp": 6.632294712187143,
       "openrouterDays": 7,
       "openrouterObservedTotal": 75.340581084831,
       "rampComplete": true,
       "openrouterWow": 9.115653634597876,
-      "rampWow": 1.5422745605996546
+      "rampWow": 2.1367614444946614
     },
     {
       "start": "2026-08-17",
       "end": "2026-08-23",
       "openrouter": 13.339653886617715,
-      "ramp": 5.008664459002714,
+      "ramp": 6.875858705672286,
       "openrouterDays": 7,
       "openrouterObservedTotal": 93.377577206324,
       "rampComplete": true,
       "openrouterWow": 23.940611901020436,
-      "rampWow": 2.8336790865081563
+      "rampWow": 3.6723940062190374
     },
     {
       "start": "2026-08-24",
       "end": "2026-08-30",
       "openrouter": 16.14240344800986,
-      "ramp": 5.199817041218286,
+      "ramp": 7.173395008141429,
       "openrouterDays": 7,
       "openrouterObservedTotal": 112.996824136069,
       "rampComplete": true,
       "openrouterWow": 21.010661784889706,
-      "rampWow": 3.816438169899561
+      "rampWow": 4.327260276940947
     },
     {
       "start": "2026-08-31",
       "end": "2026-09-06",
       "openrouter": 16.494757672308,
-      "ramp": 5.191050130746,
+      "ramp": 7.331572941062857,
       "openrouterDays": 7,
       "openrouterObservedTotal": 115.463303706156,
       "rampComplete": true,
       "openrouterWow": 2.1827866304604315,
-      "rampWow": -0.16860036425880853
+      "rampWow": 2.205063749339109
     },
     {
       "start": "2026-09-07",
       "end": "2026-09-13",
       "openrouter": 18.109003149169,
-      "ramp": 4.835047181667143,
+      "ramp": 6.795247619551858,
       "openrouterDays": 7,
       "openrouterObservedTotal": 126.763022044183,
       "rampComplete": true,
       "openrouterWow": 9.786415229191592,
-      "rampWow": -6.858014084092401
+      "rampWow": -7.315283170779563
     },
     {
       "start": "2026-09-14",
       "end": "2026-09-20",
       "openrouter": 18.413609997011,
-      "ramp": 5.785556213415,
+      "ramp": 8.014266168409714,
       "openrouterDays": 7,
       "openrouterObservedTotal": 128.895269979077,
       "rampComplete": true,
       "openrouterWow": 1.6820740784728505,
-      "rampWow": 19.65873332843295
+      "rampWow": 17.939280760724508
     },
     {
       "start": "2026-09-21",
       "end": "2026-09-27",
       "openrouter": 20.835015047864854,
-      "ramp": 6.062050812255142,
+      "ramp": 8.453940619948858,
       "openrouterDays": 7,
       "openrouterObservedTotal": 145.845105335054,
       "rampComplete": true,
       "openrouterWow": 13.150083287562353,
-      "rampWow": 4.779049561372051
+      "rampWow": 5.48614735647579
     },
     {
       "start": "2026-09-28",
       "end": "2026-10-04",
       "openrouter": 23.69371971504557,
-      "ramp": null,
+      "ramp": 9.258148831887,
       "openrouterDays": 7,
       "openrouterObservedTotal": 165.856038005319,
-      "rampComplete": false,
+      "rampComplete": true,
       "openrouterWow": 13.72067483807109,
-      "rampWow": null
+      "rampWow": 9.51282068436161
     }
   ],
   "daily": [
@@ -5877,10 +5879,10 @@ export const tokenActivitySnapshot = {
       "start": "2026-10-05",
       "end": "2026-10-11",
       "openrouter": null,
-      "ramp": null,
+      "ramp": 10.358738162718142,
       "openrouterDays": 2,
       "openrouterObservedTotal": 47.982929438176,
-      "rampComplete": false
+      "rampComplete": true
     }
   ]
 } as const;

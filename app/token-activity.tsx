@@ -15,15 +15,18 @@ export default function TokenActivity(){
  const visible=(frequency==='daily'?['openrouter']:source==='both'?['openrouter','ramp']:[source]) as ('openrouter'|'ramp')[];
  const values=points.flatMap(p=>visible.map(s=>p[s]).filter((v):v is number=>v!==null));
  const lo=Math.min(0,...values),hi=Math.max(1,...values),pad=(hi-lo)*.1;
- const x=(i:number)=>75+i*970/Math.max(1,points.length-1),y=(v:number)=>295-(v-lo+pad)*245/(hi-lo+2*pad);
+ const dual=metric==='volume'&&visible.length===2;
+ const maxima={openrouter:Math.max(1,...points.map(p=>p.openrouter??0))*1.1,ramp:Math.max(1,...points.map(p=>p.ramp??0))*1.1};
+ const x=(i:number)=>95+i*910/Math.max(1,points.length-1);
+ const y=(v:number,s:'openrouter'|'ramp'=visible[0])=>dual?295-v/maxima[s]*245:295-(v-lo+pad)*245/(hi-lo+2*pad);
  const latestOr=[...data.weekly].reverse().find(r=>r.openrouter!==null)!;
  const latestRamp=[...data.weekly].reverse().find(r=>r.ramp!==null)!;
  const latestDaily=[...data.daily].reverse().find(r=>r.openrouter!==null)!;
  const matched=[...data.weekly].reverse().find(r=>r.openrouter!==null&&r.ramp!==null)!;
  const colors={openrouter:'#315e87',ramp:'#237d67'};
  return <section className="section token-activity" id="token-activity" aria-labelledby="token-heading">
-  <div className="eyebrow">HIGH FREQUENCY · DAILY AND WEEKLY OBSERVATIONS</div><h2 id="token-heading">Token activity</h2>
-  <p className="section-summary">OpenRouter tracks public routed traffic; Ramp tracks published model usage within its Token Spend Management business sample. They provide different views of usage, with possible customer overlap. Their separate volume signals contribute {(data.metadata.tokenCoreWeight*100).toFixed(1)}% of the monthly core. This panel shows observed changes without refreshing or extrapolating the slower macro inputs.</p>
+  <div className="eyebrow">VOLUME · BUSINESS SAMPLE AND ROUTED USAGE</div><h2 id="token-heading">Adoption volume</h2>
+  <p className="section-summary">OpenRouter tracks public routed traffic; Ramp tracks published model usage within its Token Spend Management business sample. They provide different views of usage, with possible customer overlap. Their separate volume signals contribute {(data.metadata.tokenCoreWeight*100).toFixed(1)}% of the monthly core in Adoption, split equally. This panel shows observed changes without refreshing or extrapolating the slower macro inputs.</p>
   <div className="token-frequency-summary">
    <article><span>OpenRouter · latest complete week</span><strong>{format(latestOr.openrouter,'T/day')}</strong><small>{latestOr.end} · {format(latestOr.openrouterWow,'% WoW')}</small></article>
    <article><span>Ramp · latest published week</span><strong>{format(latestRamp.ramp,'T/day')}</strong><small>{latestRamp.end} · {format(latestRamp.rampWow,'% WoW')}</small></article>
@@ -35,10 +38,11 @@ export default function TokenActivity(){
    <label>History <select aria-label="Token activity history" value={range} onChange={e=>setRange(e.target.value as typeof range)}><option value="12">Last 12 weeks</option><option value="26">Last 26 weeks</option><option value="all">All observed history</option></select></label>
    {frequency==='weekly'&&<label>Source <select aria-label="Token activity source" value={source} onChange={e=>setSource(e.target.value as typeof source)}><option value="both">Both, separately</option><option value="openrouter">OpenRouter</option><option value="ramp">Ramp</option></select></label>}
   </div>
-  <p className="panel-source">{metric==='volume'?frequency==='weekly'?'Trillion tokens per day · average within completed Monday–Sunday weeks':'Trillion tokens in each UTC daily bucket':frequency==='weekly'?'Week-over-week change (%) · matched consecutive completed weeks':'Day-over-day change (%) · adjacent observed UTC days'}. Latest matched source week ends {matched.end}.</p>
+  <p className="panel-source">{metric==='volume'?frequency==='weekly'?'Trillion tokens per day · average within completed Monday–Sunday weeks':'Trillion tokens in each UTC daily bucket':frequency==='weekly'?'Week-over-week change (%) · matched consecutive completed weeks':'Day-over-day change (%) · adjacent observed UTC days'}. Latest matched source week ends {matched.end}. {dual&&"Independent zero-based axes: compare trends, and read each level from its own axis. Line crossings do not imply equal volumes."}</p>
   <div className="token-frequency-chart"><svg viewBox="0 0 1120 355" role="img" aria-label={`${frequency} token ${metric==='volume'?'volumes':'percentage changes'} for ${visible.join(' and ')}`}>
-   {[0,.25,.5,.75,1].map(t=>{const value=lo+(hi-lo)*t;return <g key={t}><line x1="75" x2="1045" y1={y(value)} y2={y(value)} stroke="#d6d7ce"/><text x="65" y={y(value)+5} textAnchor="end">{value.toFixed(metric==='volume'?1:0)}{metric==='change'?'%':'T'}</text></g>;})}
-   {visible.map(s=><path key={s} d={points.map((p,i)=>p[s]===null?'':`${i===0||points[i-1][s]===null?'M':'L'}${x(i)},${y(p[s]!)}`).join(' ')} fill="none" stroke={colors[s]} strokeWidth="3"/>)}
+   {dual&&<><text x="95" y="24" fill={colors.openrouter}>OpenRouter · T/day · left axis</text><text x="1005" y="24" textAnchor="end" fill={colors.ramp}>Ramp · T/day · right axis</text></>}
+   {[0,.25,.5,.75,1].map(t=>{const value=lo+(hi-lo)*t,axisY=dual?295-t*245:y(value);return <g key={t}><line x1="95" x2="1005" y1={axisY} y2={axisY} stroke="#d6d7ce"/><text x="85" y={axisY+5} textAnchor="end" fill={dual?colors.openrouter:undefined}>{(dual?maxima.openrouter*t:value).toFixed(metric==='volume'?1:0)}{metric==='change'?'%':'T'}</text>{dual&&<text x="1015" y={axisY+5} fill={colors.ramp}>{(maxima.ramp*t).toFixed(1)}T</text>}</g>;})}
+   {visible.map(s=><path key={s} d={points.map((p,i)=>p[s]===null?'':`${i===0||points[i-1][s]===null?'M':'L'}${x(i)},${y(p[s]!,s)}`).join(' ')} fill="none" stroke={colors[s]} strokeWidth="3"/>)}
    {points.map((p,i)=>i===0||i===points.length-1||i%Math.max(1,Math.ceil(points.length/6))===0?<text key={p.date} x={x(i)} y="337" textAnchor="middle">{p.date.slice(2)}</text>:null)}
   </svg></div>
   <div className="pillar-series-legend">{visible.map(s=><span key={s} style={{color:colors[s]}}>{s==='openrouter'?'OpenRouter routed traffic':'Ramp TSM sampled-business usage'}</span>)}</div>

@@ -8,7 +8,7 @@ import csv
 import hashlib
 import json
 import re
-import urllib.request
+import requests
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -19,9 +19,10 @@ OUTPUT_DIR = DATA_ROOT / 'swe_bench'
 
 
 def fetch_json(url: str) -> object:
-    request = urllib.request.Request(url, headers={"User-Agent": "AI-Index-research-data/1.0"})
-    with urllib.request.urlopen(request, timeout=120) as response:
-        return json.load(response)
+    print(f"Fetching {url}", flush=True)
+    response = requests.get(url, headers={"User-Agent": "AI-Index-research-data/1.0"}, timeout=(15, 45))
+    response.raise_for_status()
+    return response.json()
 
 
 def attempts(tags: list[str] | None) -> int | None:
