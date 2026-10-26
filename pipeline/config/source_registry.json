@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "data_root": "directory containing Indexlist.xlsx and pipeline/",
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "sources": [
     {
       "id": "bloomberg",
@@ -104,11 +104,10 @@
     {
       "id": "lab-revenue",
       "paths": [
-        "epoch_ai/ai_companies/ai_companies_revenue_reports.csv",
-        "data/research/frontier_labs"
+        "AI_Monetization.xlsx"
       ],
-      "update_method": "Source research; python pipeline/research.py capture / import-labs",
-      "usage": "Lab revenue, ARR and annualized run rates",
+      "update_method": "Maintain Lab Revenue and Quarterly Revenue in AI_Monetization.xlsx; build --group labs",
+      "usage": "Authoritative maintained lab revenue / ARR and reviewed quarterly revenue",
       "build_group": "labs",
       "credential": null
     },
@@ -141,7 +140,9 @@
         "data/reference/core-v2.3.ts",
         "data/reference/financial_publication_coverage.json",
         "data/reference/core-v2.5.ts",
-        "data/reference/core-v2.6.ts"
+        "data/reference/core-v2.6.ts",
+        "data/reference/core-v2.7.ts",
+        "data/reference/supply_config.json"
       ],
       "update_method": "Versioned methodology and new-period review, not routine data collection",
       "usage": "Preserved normalization, historical core bases and accepted cash/ROIC coverage",
@@ -180,6 +181,17 @@
       "usage": "Bloomberg token-price driver of OpenRouter estimated nominal spending growth; no standalone price weight in v2.7",
       "build_group": "core",
       "credential": "Licensed Bloomberg for refresh; none for saved-input build"
+    },
+    {
+      "id": "monetization",
+      "paths": [
+        "AI_Monetization.xlsx",
+        "data/reference/monetization_config.json"
+      ],
+      "update_method": "Bloomberg refresh / paste into Public Value and Cloud FA Value; maintain funding records and IPO assumptions in Excel",
+      "usage": "AI company monetization, funding valuations, public multiples, IPO scenarios and cloud estimates",
+      "build_group": "monetization",
+      "credential": "Bloomberg for public collection; sourced research for private labs"
     }
   ]
 }

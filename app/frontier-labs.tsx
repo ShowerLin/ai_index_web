@@ -24,7 +24,7 @@ function QuarterlyRevenue({ view }: { view: LabView }) {
   </article>)}</div>;
 }
 
-function FrontierArrChart({ view }: { view: LabView }) {
+export function FrontierArrChart({ view }: { view: LabView }) {
   const shown = view === "Both" ? (["OpenAI", "Anthropic"] as const) : ([view] as const);
   const colors: Record<LabName, string> = { OpenAI: "#1d7f80", Anthropic: "#d88952" };
   const w = 960, h = 330, l = 58, r = 18, t = 24, b = 48, max = 80;

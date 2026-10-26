@@ -7,7 +7,7 @@ from validate import validate
 ROOT=Path(os.environ.get('AI_INDEX_DATA_ROOT',Path(__file__).resolve().parents[1])).expanduser().resolve()
 BUILDERS=Path(__file__).resolve().parent/'builders'
 DERIVED=ROOT/'data/derived'
-INDEX_PRICE=['build-index-price.py','build-workbook-amendments.py','build-monthly-heatmap.py','update-demand-core.py','integrate-ramp-core.py','integrate-token-core.py','build-adoption.py','build-affordability.py','build-spending.py','build-core-projection.py','build-projected-buildout.py']
+INDEX_PRICE=['build-index-price.py','build-workbook-amendments.py','build-monthly-heatmap.py','update-demand-core.py','integrate-ramp-core.py','integrate-token-core.py','build-adoption.py','build-affordability.py','build-spending.py','build-cloud-reference.py','build-supply.py','build-core-projection.py','build-projected-buildout.py']
 GROUPS={
  'index-price':INDEX_PRICE,
  'bloomberg':['build-index-price.py','build-workbook-amendments.py','build-value-chain-financials.py','build-supply-chain-stock.py','build-chain-economics.py','extract-sustainability.py','extract-roic.py','build-monthly-heatmap.py',*INDEX_PRICE[3:]],
@@ -16,6 +16,7 @@ GROUPS={
  'task':['build-task-economics-snapshot.py','build-useful-task-snapshot.py'],
  'infrastructure':['build-infrastructure-snapshot.py','build-capacity-yields.py','build-electricity-capacity.py','build-projected-buildout.py'],
  'labs':['build-frontier-labs-snapshot.py'],
+ 'monetization':['build-monetization.py','build-frontier-labs-snapshot.py'],
  'cloud':['build-cloud-reference.py'],
  'core':INDEX_PRICE,
  'projection':['build-core-projection.py','build-projected-buildout.py'],
@@ -42,6 +43,7 @@ def invoke(script,args,build,log,data_root=ROOT,timeout=None):
  print('Completed '+script,flush=True)
 
 def build(group):
+ if group=='monetization':return build_monetization()
  run=ROOT/'data/runs'/stamp();run.mkdir(parents=True)
  staging=run/'build';(staging/'app').mkdir(parents=True)
  for p in (DERIVED/'app').glob('*.ts'):shutil.copy2(p,staging/'app'/p.name)
@@ -69,10 +71,12 @@ def build(group):
   report['validation']=checks
   # A focused rebuild must not hydrate unrelated OneDrive-only archives merely
   # to hash them. These groups read the same explicitly listed source families.
-  source_ids=['bloomberg','index-price-monthly','adoption-price','ramp','openrouter','core-reference','capex','epoch-projected-buildout'] if group in ('index-price','core','bloomberg','ramp','tokens') else None
+  source_ids=['bloomberg','index-price-monthly','adoption-price','ramp','openrouter','core-reference','capex','monetization','epoch-projected-buildout'] if group in ('index-price','core','bloomberg','ramp','tokens') else None
   report['inputSourceIds']=source_ids
   report['inputHashes']=input_hashes(source_ids)
   report['builderHashes']={s:sha(BUILDERS/s) for s in selected}
+  if any(s in selected for s in ('build-frontier-labs-snapshot.py','build-monetization.py')):report['builderHashes']['monetization.py']=sha(BUILDERS/'monetization.py')
+  if 'build-supply.py' in selected:report['builderHashes']['supply.py']=sha(BUILDERS/'supply.py')
   if 'build-spending.py' in selected:report['builderHashes']['spending.py']=sha(BUILDERS/'spending.py')
   if 'build-affordability.py' in selected:report['builderHashes']['affordability.py']=sha(BUILDERS/'affordability.py')
   if any(s in selected for s in ('build-index-price.py','build-workbook-amendments.py','build-monthly-heatmap.py','update-demand-core.py')):
@@ -86,6 +90,30 @@ def build(group):
   print(json.dumps({'status':'success','changedOutputs':changed,'run':str(run)},indent=2))
  except (Exception, KeyboardInterrupt) as exc:
   dump(run/'result.json',{'status':'failed','error':str(exc),'promoted':False});raise
+
+def build_monetization():
+ # This focused group requires no Indexlist read: Bloomberg may hold that file open.
+ run=ROOT/'data/runs'/stamp();run.mkdir(parents=True)
+ staging=run/'build';(staging/'app').mkdir(parents=True)
+ invoke('build-monetization.py',[],staging,run/'build-monetization.py.log')
+ invoke('build-frontier-labs-snapshot.py',[],staging,run/'build-frontier-labs-snapshot.py.log')
+ file=staging/'app/monetization-snapshot.ts'
+ payload=json.JSONDecoder().raw_decode(file.read_text(encoding='utf-8').split(' = ',1)[1].lstrip())[0]
+ assert len(payload['publicCompanies'])==2 and payload['metadata']['coreWeight']==0
+ assert all(c['forwardPS'] is None for c in payload['publicCompanies'])
+ for c in payload['publicCompanies']:
+  assert len(c['history'])==len({r['date'] for r in c['history']})
+  for row in c['history']:
+   if row['revenueUsd'] is not None:assert row['revenueStatus'] in ('Reported','Estimate')
+ report={'status':'success','group':'monetization','inputHashes':input_hashes(['monetization']),
+  'builderHashes':{s:sha(BUILDERS/s) for s in ['build-monetization.py','monetization.py','build-frontier-labs-snapshot.py']},
+  'validation':'Source mapping, distinct dates, classification and no unsupported annual multiple',
+  'outputHash':sha(file)}
+ shutil.copyfile(file,DERIVED/'app'/file.name)
+ shutil.copyfile(staging/'app/frontier-labs-snapshot.ts',DERIVED/'app/frontier-labs-snapshot.ts')
+ shutil.copytree(staging/'monetization',DERIVED/'monetization',dirs_exist_ok=True)
+ dump(run/'result.json',report);dump(DERIVED/'monetization/build-manifest.json',report)
+ print(json.dumps({'status':'success','group':'monetization','run':str(run)},indent=2))
 
 def sync(web):
  web=Path(web).expanduser().resolve()

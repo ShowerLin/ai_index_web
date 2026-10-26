@@ -10,3 +10,15 @@
 #adoption .adoption-breadth-context > summary { cursor:pointer; font-weight:700; }
 #adoption .adoption-breadth-context .adoption-observations { margin:20px 0; }
 @media(max-width:720px) { #adoption .token-activity { padding:16px; } }
+
+/* One visual language for all Adoption chart panels and controls. */
+#adoption .adoption-chart-heading{font:400 clamp(21px,2vw,27px)/1.25 Georgia,serif;margin:28px 0 14px;color:var(--ink);}
+#adoption .token-controls{display:flex;align-items:flex-end;flex-wrap:wrap;gap:14px;margin:14px 0 18px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+#adoption .token-controls label{display:flex;flex-direction:column;gap:7px;min-width:150px;max-width:100%;font:600 12px/1.3 Arial,sans-serif;color:var(--muted);}
+#adoption .token-controls select{width:100%;height:38px;min-height:38px;padding:0 32px 0 11px;border:1px solid var(--line);border-radius:0;background:var(--card);color:var(--ink);font:400 12px/1.3 Arial,sans-serif;cursor:pointer;}
+#adoption .token-controls select:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+#adoption .token-frequency-chart{padding:16px 10px;}
+#adoption .token-frequency-chart svg text{font-family:Arial,sans-serif;font-size:13px;}
+#adoption .pillar-series-legend{font:600 12px/1.5 Arial,sans-serif;gap:16px;margin:12px 0 18px;}
+#adoption .panel-source{font-size:12px;line-height:1.7;}
+@media(max-width:720px){#adoption .token-controls label{flex:1 1 160px;}#adoption .token-frequency-chart svg{min-width:660px!important;}#adoption .token-frequency-chart{padding:10px 4px;}}

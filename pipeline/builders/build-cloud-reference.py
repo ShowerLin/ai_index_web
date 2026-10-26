@@ -3,7 +3,7 @@ import datetime, hashlib, json, math, re
 import openpyxl
 from paths import DATA_ROOT, BUILD_ROOT
 
-source = DATA_ROOT / 'Indexlist.xlsx'
+source = DATA_ROOT / 'AI_Monetization.xlsx'
 values = openpyxl.load_workbook(source, read_only=True, data_only=True)
 formulas = openpyxl.load_workbook(source, read_only=True, data_only=False)
 sheet, query = values['Cloud FA Value'], formulas['Cloud FA Formula']
@@ -40,7 +40,7 @@ for header, rows in blocks:
                 sourceCell=cell.coordinate, formula=formula,
                 basis='Bloomberg estimate' if direct else 'Derived from Bloomberg estimates'))
 assert len(records) == sum(len(rows) for _, rows in blocks) * (sheet.max_column - 1), len(records)
-payload = dict(metadata=dict(source='Indexlist.xlsx', sheet=sheet.title,
+payload = dict(metadata=dict(source='AI_Monetization.xlsx', sheet=sheet.title,
     formulaSheet=query.title, workbookSha256=hashlib.sha256(source.read_bytes()).hexdigest(),
     extractedAtUtc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
     sourceRetrievedAt=None, role='Core index reference; no scoring weight',

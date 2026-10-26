@@ -1,8 +1,8 @@
 export const coreContributionSnapshot = {
   "metadata": {
-    "version": "2.7",
+    "version": "2.8",
     "sourceSha256": "b13564641ab10f2b10306524095a9edd74ae279f193a7f4d58f11ae9ec36aee8",
-    "method": "Five equal 20% pillars. Adoption scores Ramp matched nominal spending growth and OpenRouter estimated nominal spending growth at 10% each. Combine raw growth factors before standardizing: (1 + volume growth) \u00d7 (1 + price change) \u2212 1. Price declines reduce nominal growth. Other pillars unchanged. Six-month January\u2013June 2026 calibration is provisional and retrospective. Missing scores withhold the composite, without redistributing weights.",
+    "method": "Five equal 20% pillars: Adoption, Demand, Investment, Imports and Supply. Supply combines historical five-company CapEx momentum (10% of composite), DDR5 price momentum (5%) and H100 rental-price momentum (5%). Other pillars retain v2.7 treatments. Higher Supply means stronger investment/pricing pressure, not more delivered capacity. Forecast RPO and CapEx, B200 and supplier financials are supporting context at zero weight. Missing scores withhold the composite; no weight redistribution.",
     "limitation": "Fixed per-series baseline uses all valid transformed observations through June 2026. Retrospective scores, not real-time backtests. Sample standard deviation; quarterly values held within quarter. Missing scores withhold the core; no reweighting. Macro source definitions and nominal price effects remain limitations.",
     "baselineEnd": "2026-06",
     "observationWorkbookSha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
@@ -42,7 +42,7 @@ export const coreContributionSnapshot = {
       "https://investor.tsmc.com/english/monthly-revenue/2023",
       "https://investor.tsmc.com/schinese/monthly-revenue/2024"
     ],
-    "previousVersion": "2.6",
+    "previousVersion": "2.7",
     "rampSourceSha256": "72da4911405ddbeafc676bb80377f24f5b6c77795580b2136a596e725aba272b",
     "rampSource": "data/raw/ramp/latest/normalized.json; public dashboard payload",
     "rampMethod": "Ramp matched spending growth carries 10% in Adoption; median spend per employee remains 5% in Demand. Samples differ. Changing model/sample composition affects matched spending growth.",
@@ -81,7 +81,7 @@ export const coreContributionSnapshot = {
     "priceMethod": "Price has no standalone score or inverse-price reward. Bloomberg daily saved values are averaged over the same complete 28-day window as OpenRouter tokens. Ramp effective price is matched spending divided by matched tokens. Volume and price changes use the preceding monthly observation window.",
     "priceCoreWeight": 0,
     "earliestPriceMonth": "2025-12",
-    "comparisonVersion": "2.6",
+    "comparisonVersion": "2.7",
     "spendingCoreWeight": 0.2,
     "spendingBaseline": {
       "ramp": {
@@ -101,7 +101,25 @@ export const coreContributionSnapshot = {
         "provisional": true
       }
     },
-    "earliestScoringMonth": "2026-01"
+    "earliestScoringMonth": "2026-01",
+    "supplyCoreWeight": 0.2,
+    "supplyBaseline": {
+      "ISPPDR48 Index": {
+        "mean": 654.4073328638569,
+        "std": 71.90193900344656,
+        "count": 6,
+        "start": "2026-01",
+        "end": "2026-06"
+      },
+      "SDH100RT Index": {
+        "mean": 18.291135441266874,
+        "std": 9.016589553680957,
+        "count": 6,
+        "start": "2026-01",
+        "end": "2026-06"
+      }
+    },
+    "supplyMethod": "Price signals use YoY growth and fixed January\u2013June 2026 sample mean/stdev; provisional six-month retrospective calibration. CapEx retains its existing baseline. Price increases may indicate scarcity; falling H100 prices may reflect hardware substitution. No electrical-equipment series is added to Supply. Existing Investment inputs are unchanged."
   },
   "months": [
     {
@@ -325,8 +343,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -382,6 +400,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.21,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -656,8 +710,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -713,6 +767,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.22,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -987,8 +1077,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -1044,6 +1134,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.21,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -1318,8 +1444,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -1375,6 +1501,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.25,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -1649,8 +1811,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -1706,6 +1868,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.25,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -1980,8 +2178,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -2037,6 +2235,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.3,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -2311,8 +2545,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -2368,6 +2602,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.44,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -2642,8 +2912,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -2699,6 +2969,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.47,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": null,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -2973,8 +3279,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -3030,6 +3336,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.5,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.74,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -3304,11 +3646,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 61.67182662538701,
           "score": 19.369006453794793,
-          "contribution": -6.1261987092410415,
+          "contribution": -3.0630993546205207,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 83.5,
@@ -3361,6 +3703,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 10.565110565110558,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.5,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.67,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -3635,11 +4013,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 61.67182662538701,
           "score": 19.369006453794793,
-          "contribution": -6.1261987092410415,
+          "contribution": -3.0630993546205207,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 83.5,
@@ -3692,6 +4070,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 6.25,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.42,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.44,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -3966,11 +4380,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 61.67182662538701,
           "score": 19.369006453794793,
-          "contribution": -6.1261987092410415,
+          "contribution": -3.0630993546205207,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 83.5,
@@ -4023,6 +4437,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 5.4892601431980825,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.42,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.11,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -4297,11 +4747,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 70.71759259259258,
           "score": 45.99795882121264,
-          "contribution": -0.8004082357574718,
+          "contribution": -0.4002041178787359,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 83.2,
@@ -4354,6 +4804,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 3.5629453681710332,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.36,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 1.9,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -4628,11 +5114,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 70.71759259259258,
           "score": 45.99795882121264,
-          "contribution": -0.8004082357574718,
+          "contribution": -0.4002041178787359,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 83.2,
@@ -4685,6 +5171,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 4.502369668246464,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.41,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 1.89,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -4959,11 +5481,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 70.71759259259258,
           "score": 45.99795882121264,
-          "contribution": -0.8004082357574718,
+          "contribution": -0.4002041178787359,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 83.2,
@@ -5016,6 +5538,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 86.40932282724646,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 12.11401425178147,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.72,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.5,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -5290,11 +5848,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 72.4681933842239,
           "score": 51.15138256263131,
-          "contribution": 0.23027651252626244,
+          "contribution": 0.11513825626313122,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 105.0,
@@ -5347,6 +5905,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 34.01670471467673,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 15.764705882352947,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 4.92,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.38,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -5621,11 +6215,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 72.4681933842239,
           "score": 51.15138256263131,
-          "contribution": 0.23027651252626244,
+          "contribution": 0.11513825626313122,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 105.0,
@@ -5678,6 +6272,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 8.96969301857522,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 18.588235294117638,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 5.04,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.21,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -5952,11 +6582,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 72.4681933842239,
           "score": 51.15138256263131,
-          "contribution": 0.23027651252626244,
+          "contribution": 0.11513825626313122,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 105.0,
@@ -6009,6 +6639,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 21.86046511627908,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 5.24,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.12,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -6283,11 +6949,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 75.87131367292226,
           "score": 61.169498043053906,
-          "contribution": 2.2338996086107814,
+          "contribution": 1.1169498043053907,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 121.9,
@@ -6340,6 +7006,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 18.01801801801801,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 5.24,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.12,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -6614,11 +7316,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 75.87131367292226,
           "score": 61.169498043053906,
-          "contribution": 2.2338996086107814,
+          "contribution": 1.1169498043053907,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 121.9,
@@ -6671,6 +7373,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": null,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 16.33109619686801,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 5.2,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": null,
+          "score": null,
+          "contribution": null,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.08,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -6945,11 +7683,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 75.87131367292226,
           "score": 61.169498043053906,
-          "contribution": 2.2338996086107814,
+          "contribution": 1.1169498043053907,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 121.9,
@@ -7002,6 +7740,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 44.997168517032904,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 57.77777777777777,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 7.1,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": -26.642335766423376,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.01,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -7276,11 +8050,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 72.00306396016852,
           "score": 49.78213320080182,
-          "contribution": -0.043573359839635374,
+          "contribution": -0.021786679919817687,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 139.0,
@@ -7333,6 +8107,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 1.3129548506513933,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 254.22222222222223,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 15.94,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": -25.468164794007485,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 1.99,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -7607,11 +8417,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 72.00306396016852,
           "score": 49.78213320080182,
-          "contribution": -0.043573359839635374,
+          "contribution": -0.021786679919817687,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 139.0,
@@ -7664,6 +8474,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 26.500609081880345,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 552.9411764705882,
+          "score": 28.83238801354055,
+          "contribution": -1.0583805993229725,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 28.86,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": -19.672131147540984,
+          "score": 0,
+          "contribution": -2.5,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 1.96,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -7938,11 +8784,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 72.00306396016852,
           "score": 49.78213320080182,
-          "contribution": -0.043573359839635374,
+          "contribution": -0.021786679919817687,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 139.0,
@@ -7995,6 +8841,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": -6.943954302388078,
           "priceChange": null,
           "interaction": null
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 544.1176470588235,
+          "score": 26.991645705184652,
+          "contribution": -1.1504177147407675,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 28.47,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 4.2654028436019065,
+          "score": 26.666788732876725,
+          "contribution": -1.1666605633561637,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.2,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -8046,7 +8928,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 49.16853411753093
+      "previousVersionScore": null
     },
     {
       "month": "2026-01",
@@ -8082,7 +8964,7 @@ export const coreContributionSnapshot = {
           "growth": 221.33333333333334
         }
       ],
-      "score": 50.335802039329884,
+      "score": 50.10946442176704,
       "rows": [
         {
           "ticker": "KOTCDRAM",
@@ -8269,11 +9151,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 74.94915254237289,
           "score": 58.454837404086554,
-          "contribution": 1.690967480817311,
+          "contribution": 0.8454837404086555,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 150.20000000000002,
@@ -8326,6 +9208,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 15.605274805934965,
           "priceChange": 38.23026017406734,
           "interaction": 5.96593715918712
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 691.743119266055,
+          "score": 57.788896986576766,
+          "contribution": 0.3894448493288383,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 34.52,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 21.052631578947366,
+          "score": 54.5940254703395,
+          "contribution": 0.22970127351697514,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.3,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -8377,7 +9295,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 50.933193395890164
+      "previousVersionScore": 50.335802039329884
     },
     {
       "month": "2026-02",
@@ -8413,7 +9331,7 @@ export const coreContributionSnapshot = {
           "growth": 221.33333333333334
         }
       ],
-      "score": 55.162729174995846,
+      "score": 55.20799004801179,
       "rows": [
         {
           "ticker": "KOTCDRAM",
@@ -8600,11 +9518,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 74.94915254237289,
           "score": 58.454837404086554,
-          "contribution": 1.690967480817311,
+          "contribution": 0.8454837404086555,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 150.20000000000002,
@@ -8657,6 +9575,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 65.97103943529932,
           "priceChange": -2.3008133196662506,
           "interaction": -1.5178704624496415
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 657.8231292517007,
+          "score": 50.71259477182112,
+          "contribution": 0.03562973859105583,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 33.42,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 28.57142857142858,
+          "score": 67.10229749667076,
+          "contribution": 0.855114874833538,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.43,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -8708,7 +9662,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 52.1954292007049
+      "previousVersionScore": 55.162729174995846
     },
     {
       "month": "2026-03",
@@ -8744,7 +9698,7 @@ export const coreContributionSnapshot = {
           "growth": 221.33333333333334
         }
       ],
-      "score": 56.425425699986974,
+      "score": 53.5877187827568,
       "rows": [
         {
           "ticker": "KOTCDRAM",
@@ -8931,11 +9885,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 74.94915254237289,
           "score": 58.454837404086554,
-          "contribution": 1.690967480817311,
+          "contribution": 0.8454837404086555,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 150.20000000000002,
@@ -8988,6 +9942,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 65.71680774804607,
           "priceChange": 2.248854613779949,
           "interaction": 1.4778754630708333
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 564.6186440677966,
+          "score": 31.26851166174606,
+          "contribution": -0.936574416912697,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 31.37,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 5.600000000000005,
+          "score": 28.887024801823536,
+          "contribution": -1.0556487599088233,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.64,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -9039,7 +10029,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 54.257974701881196
+      "previousVersionScore": 56.425425699986974
     },
     {
       "month": "2026-04",
@@ -9075,7 +10065,7 @@ export const coreContributionSnapshot = {
           "growth": 161.03286384976525
         }
       ],
-      "score": 53.229480415749556,
+      "score": 50.22735966056854,
       "rows": [
         {
           "ticker": "KOTCDRAM",
@@ -9262,11 +10252,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 76.85836529949842,
           "score": 64.0751835144191,
-          "contribution": 2.8150367028838192,
+          "contribution": 1.4075183514419096,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 188.273,
@@ -9319,6 +10309,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 21.111016958568207,
           "priceChange": 10.956690600913399,
           "interaction": 2.3130688108566764
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 577.0325203252032,
+          "score": 33.85826301535245,
+          "contribution": -0.8070868492323776,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 33.31,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 8.823529411764696,
+          "score": 34.249688909865434,
+          "contribution": -0.7875155545067284,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.59,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -9370,7 +10396,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 58.38318129444474
+      "previousVersionScore": 53.229480415749556
     },
     {
       "month": "2026-05",
@@ -9406,7 +10432,7 @@ export const coreContributionSnapshot = {
           "growth": 161.03286384976525
         }
       ],
-      "score": 59.42653231787143,
+      "score": 58.75231804230667,
       "rows": [
         {
           "ticker": "KOTCDRAM",
@@ -9593,11 +10619,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 76.85836529949842,
           "score": 64.0751835144191,
-          "contribution": 2.8150367028838192,
+          "contribution": 1.4075183514419096,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 188.273,
@@ -9650,6 +10676,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 25.475094004006515,
           "priceChange": 18.340726464239655,
           "interaction": 4.672317307782752
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 682.936507936508,
+          "score": 55.95168408558846,
+          "contribution": 0.29758420427942306,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 39.46,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 23.529411764705888,
+          "score": 58.71439743195451,
+          "contribution": 0.4357198715977255,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.73,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -9701,7 +10763,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 61.68937224783437
+      "previousVersionScore": 59.42653231787143
     },
     {
       "month": "2026-06",
@@ -9737,7 +10799,7 @@ export const coreContributionSnapshot = {
           "growth": 161.03286384976525
         }
       ],
-      "score": 62.26520897662535,
+      "score": 62.20132139359651,
       "rows": [
         {
           "ticker": "KOTCDRAM",
@@ -9924,11 +10986,11 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": 76.85836529949842,
           "score": 64.0751835144191,
-          "contribution": 2.8150367028838192,
+          "contribution": 1.4075183514419096,
           "baselineCount": 7,
           "treatment": "Combined trailing 4Q YoY growth (%)",
           "level": 188.273,
@@ -9981,6 +11043,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 53.574313435569906,
           "priceChange": -9.133450550574128,
           "interaction": -4.8931834254473685
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 752.2900763358778,
+          "score": 70.42004947891508,
+          "contribution": 1.0210024739457537,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 44.66,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 22.169811320754707,
+          "score": 56.45256588934625,
+          "contribution": 0.32262829446731267,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.59,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -10032,7 +11130,7 @@ export const coreContributionSnapshot = {
           "sourceField": "adoption_rate_pct"
         }
       ],
-      "previousVersionScore": 67.19074023606876
+      "previousVersionScore": 62.26520897662535
     },
     {
       "month": "2026-07",
@@ -10255,8 +11353,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -10312,6 +11410,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 26.452976696251906,
           "priceChange": -10.35591357446698,
           "interaction": -2.739447404537738
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 829.7709923664122,
+          "score": 86.58392150470712,
+          "contribution": 1.8291960752353562,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 48.72,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 31.132075471698094,
+          "score": 71.36219013960051,
+          "contribution": 1.0681095069800257,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.78,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -10586,8 +11720,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -10643,6 +11777,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 59.324912585935486,
           "priceChange": -31.51737803101282,
           "interaction": -18.69765696627719
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 855.5769230769229,
+          "score": 91.96748926411213,
+          "contribution": 2.0983744632056065,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 49.69,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 25.96153846153846,
+          "score": 62.760483841376924,
+          "contribution": 0.6380241920688463,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.62,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [
@@ -10917,8 +12087,8 @@ export const coreContributionSnapshot = {
         {
           "ticker": "HYPERSCALER_TOTAL",
           "name": "Combined hyperscaler CapEx",
-          "pillar": "Hyperscaler CapEx",
-          "weight": 0.2,
+          "pillar": "Supply",
+          "weight": 0.1,
           "growth": null,
           "score": null,
           "contribution": null,
@@ -10974,6 +12144,42 @@ export const coreContributionSnapshot = {
           "volumeGrowth": 47.38409750845358,
           "priceChange": -10.55127697388446,
           "interaction": -4.999627369692423
+        },
+        {
+          "ticker": "ISPPDR48",
+          "name": "DDR5 spot price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 601.6901408450705,
+          "score": 39.00227321764031,
+          "contribution": -0.5498863391179846,
+          "baselineCount": 6,
+          "baselineMean": 654.4073328638569,
+          "baselineStd": 71.90193900344656,
+          "level": 49.82,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "ISPPDR48 Index"
+        },
+        {
+          "ticker": "SDH100RT",
+          "name": "H100 rental price momentum",
+          "pillar": "Supply",
+          "weight": 0.05,
+          "growth": 36.81592039800996,
+          "score": 80.81783557927477,
+          "contribution": 1.5408917789637386,
+          "baselineCount": 6,
+          "baselineMean": 18.291135441266874,
+          "baselineStd": 9.016589553680957,
+          "level": 2.75,
+          "shortMomentum": null,
+          "unit": "Source-native price index",
+          "treatment": "Monthly price level YoY growth; higher means stronger pricing pressure",
+          "source": "Indexlist.xlsx",
+          "sourceField": "SDH100RT Index"
         }
       ],
       "contextRows": [

@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 import pandas as pd
+from monetization import SOURCE as MONETIZATION_SOURCE, records
 
 
 DATA_ROOT = DATA_ROOT
@@ -24,11 +25,11 @@ def money_label(value: float, floor: bool = False) -> str:
 
 
 def main() -> None:
-    data = pd.read_csv(SOURCE)
+    data = pd.DataFrame(records('Lab Revenue')).replace({None: float('nan')})
     data["Date"] = pd.to_datetime(data["Date"])
     data["Report date"] = pd.to_datetime(data["Report date"])
-    payload = {"metadata": {"source": "ai_companies_revenue_reports.csv", "asOf": str(data["Report date"].max().date())}, "labs": {}}
-    quarterly = json.loads(QUARTERLY_SOURCE.read_text(encoding="utf-8"))
+    payload = {"metadata": {"source": "AI_Monetization.xlsx / Lab Revenue", "asOf": str(data["Report date"].max().date())}, "labs": {}}
+    quarterly = {'observations': records('Quarterly Revenue')}
     seen = set()
     for row in quarterly["observations"]:
         if row["id"] in seen:
@@ -43,8 +44,8 @@ def main() -> None:
         start, end, reported = (pd.Timestamp(row[k]) for k in ("periodStart", "periodEnd", "reportDate"))
         if not start <= end <= reported:
             raise ValueError("Invalid quarterly revenue dates")
-    payload["metadata"]["quarterlySource"] = "data/research/frontier_labs/quarterly_revenue.json"
-    payload["metadata"]["quarterlyReviewedOn"] = quarterly["reviewedOn"]
+    payload["metadata"]["quarterlySource"] = "AI_Monetization.xlsx / Quarterly Revenue"
+    payload["metadata"]["quarterlyReviewedOn"] = "2026-10-15"
     payload["reportedQuarterlyRevenue"] = sorted(quarterly["observations"], key=lambda row: (row["periodEnd"], row["reportDate"]))
 
     for lab in LABS:

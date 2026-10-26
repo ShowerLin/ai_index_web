@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
+const {headers,row}=JSON.parse(await fs.readFile('tmp/monetization/correction.json','utf8'));
+const wb=Workbook.create(),s=wb.worksheets.add('Revenue Corrections');
+s.getRangeByIndexes(0,0,2,headers.length).values=[headers,row];
+s.showGridLines=false;s.getUsedRange().format.font.name='Arial';s.getUsedRange().format.columnWidth=26;s.getUsedRange().format.rowHeight=42;
+s.getRange('A1:R1').format.fill='#18364b';s.getRange('A1:R1').format.font.color='#FFFFFF';s.getRange('D2').setNumberFormat('#,##0');
+s.getRange('O1:O2').format.columnWidth=85;s.getRange('R1:R2').format.columnWidth=75;s.getRange('O2:R2').format.wrapText=true;s.getRange('A2:R2').format.rowHeight=110;
+await fs.writeFile('tmp/monetization/correction-preview.png',new Uint8Array(await(await wb.render({sheetName:'Revenue Corrections',range:'A1:F2',scale:1.5})).arrayBuffer()));
+await(await SpreadsheetFile.exportXlsx(wb)).save('tmp/monetization/correction-sheet.xlsx');

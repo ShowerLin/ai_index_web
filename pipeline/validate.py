@@ -21,9 +21,9 @@ def validate(root,build):
    periods=[r['period'] for r in c['quarters']]
    assert periods==sorted(set(periods)),(name,c['ticker'],'duplicate or unsorted quarters')
  core=load_ts(build/'app/core-contribution-snapshot.ts')
- assert core['metadata']['version']=='2.7'
+ assert core['metadata']['version']=='2.8'
  for month in core['months']:
-  for pillar in ['Adoption','Demand','Investment','Imports','Hyperscaler CapEx']:
+  for pillar in ['Adoption','Demand','Investment','Imports','Supply']:
    assert math.isclose(sum(r['weight'] for r in month['rows'] if r['pillar']==pillar),.2,abs_tol=1e-10)
   assert {r['ticker'] for r in month['rows'] if r['pillar']=='Adoption'}=={'RAMP_MATCHED_SPENDING','OPENROUTER_SPENDING_PROXY'}
   assert len(month['contextRows'])==3 and all(r['weight']==0 for r in month['contextRows'])

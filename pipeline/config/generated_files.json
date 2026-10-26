@@ -22,5 +22,7 @@
   "workbook-amendments-snapshot.ts",
   "projected-buildout-snapshot.ts",
   "index-price-snapshot.ts",
-  "adoption-price-snapshot.ts"
+  "adoption-price-snapshot.ts",
+  "monetization-snapshot.ts",
+  "supply-snapshot.ts"
 ]

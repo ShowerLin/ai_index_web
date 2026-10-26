@@ -1,10 +1,10 @@
 export const cloudReferenceSnapshot = {
   "metadata": {
-    "source": "Indexlist.xlsx",
+    "source": "AI_Monetization.xlsx",
     "sheet": "Cloud FA Value",
     "formulaSheet": "Cloud FA Formula",
-    "workbookSha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
-    "extractedAtUtc": "2026-10-21T09:09:33.772699+00:00",
+    "workbookSha256": "b59c6514efe5b15eae66f9a6fbc6ba2207a8718c48983a56499c897eae2247dd",
+    "extractedAtUtc": "2026-10-23T03:06:12.605056+00:00",
     "sourceRetrievedAt": null,
     "role": "Core index reference; no scoring weight",
     "periodBasis": "Native Bloomberg FPR fiscal labels; calendar alignment not verified",
