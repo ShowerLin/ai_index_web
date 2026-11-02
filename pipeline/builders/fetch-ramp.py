@@ -55,7 +55,18 @@ else:
             pass
     assert len(found) == 1
     data = found[0]
-version = data['filterModeBundleVersion']
+# Ramp moved large chart datasets out of the initial payload in October 2026.
+version = data.get('filterModeBundleVersion') or data['dataVersion']
+for dataset in ['tokenVolumes', 'tokenPrices', 'modelShareCurated']:
+    if dataset not in data:
+        if args.cached:
+            raise ValueError(f'Cached payload is missing {dataset}')
+        body, code = fetch(f'{PAGE}/chart-data/{dataset}?version={version}')
+        assert code == 200, (dataset, code)
+        rows = json.loads(body)
+        assert isinstance(rows, list) and rows, f'Invalid chart dataset: {dataset}'
+        data[dataset] = rows
+        (OUT / f'{dataset}-response.json').write_bytes(body)
 urls = {
     'spend': f'{PAGE}/filter-mode/spendPerEmployee?version={version}',
     'model': f'{PAGE}/filter-mode/modelShare?version={version}',

@@ -1,7 +1,7 @@
 export const monetizationSnapshot = {
   "metadata": {
     "source": "AI_Monetization.xlsx",
-    "workbookSha256": "b59c6514efe5b15eae66f9a6fbc6ba2207a8718c48983a56499c897eae2247dd",
+    "workbookSha256": "408de89e06ba6e59c9f15a083eed5868625ed1903f8a3a9036170499815b06ee",
     "currency": "USD",
     "sourceUnit": "USD",
     "coreWeight": 0,
@@ -546,5 +546,323 @@ export const monetizationSnapshot = {
       "note": "Around $1.5T discussed by some investors versus company desired $2T; neither priced nor completed. Reiterated in Oct 19 Reuters report.",
       "reviewed": "2026-10-22"
     }
-  ]
+  ],
+  "appSpending": {
+    "history": [
+      {
+        "date": "2025-10-12",
+        "openai": 1175593.86,
+        "anthropic": 108367.2
+      },
+      {
+        "date": "2025-10-19",
+        "openai": 1161884.11,
+        "anthropic": 97959.05
+      },
+      {
+        "date": "2025-10-26",
+        "openai": 1131924.42,
+        "anthropic": 97691.66
+      },
+      {
+        "date": "2025-11-02",
+        "openai": 1052421.09,
+        "anthropic": 110445.1
+      },
+      {
+        "date": "2025-11-09",
+        "openai": 1196345.71,
+        "anthropic": 120305.54
+      },
+      {
+        "date": "2025-11-16",
+        "openai": 1278138.73,
+        "anthropic": 101170.78
+      },
+      {
+        "date": "2025-11-23",
+        "openai": 1239219.5,
+        "anthropic": 111758.33
+      },
+      {
+        "date": "2025-11-30",
+        "openai": 1491180.52,
+        "anthropic": 119428.01
+      },
+      {
+        "date": "2025-12-07",
+        "openai": 1272371,
+        "anthropic": 125141.56
+      },
+      {
+        "date": "2025-12-14",
+        "openai": 1324750.91,
+        "anthropic": 121230.68
+      },
+      {
+        "date": "2025-12-21",
+        "openai": 1160211.82,
+        "anthropic": 114656.95
+      },
+      {
+        "date": "2025-12-28",
+        "openai": 1121686.92,
+        "anthropic": 107420.42
+      },
+      {
+        "date": "2026-01-04",
+        "openai": 1123752.77,
+        "anthropic": 122002.89
+      },
+      {
+        "date": "2026-01-11",
+        "openai": 1333737.05,
+        "anthropic": 172270.12
+      },
+      {
+        "date": "2026-01-18",
+        "openai": 1315880.32,
+        "anthropic": 159092.22
+      },
+      {
+        "date": "2026-01-25",
+        "openai": 1212957.75,
+        "anthropic": 171073.04
+      },
+      {
+        "date": "2026-02-01",
+        "openai": 1175361.25,
+        "anthropic": 187788.3
+      },
+      {
+        "date": "2026-02-08",
+        "openai": 1365909.41,
+        "anthropic": 244983.65
+      },
+      {
+        "date": "2026-02-15",
+        "openai": 1460987.25,
+        "anthropic": 268332.14
+      },
+      {
+        "date": "2026-02-22",
+        "openai": 1330209.05,
+        "anthropic": 307534.86
+      },
+      {
+        "date": "2026-03-01",
+        "openai": 1705196.03,
+        "anthropic": 402889.81
+      },
+      {
+        "date": "2026-03-08",
+        "openai": 1488458.68,
+        "anthropic": 379351.15
+      },
+      {
+        "date": "2026-03-15",
+        "openai": 1519114.14,
+        "anthropic": 392612.46
+      },
+      {
+        "date": "2026-03-22",
+        "openai": 1359255.4,
+        "anthropic": 439196.81
+      },
+      {
+        "date": "2026-03-29",
+        "openai": 1294996.31,
+        "anthropic": 567372.76
+      },
+      {
+        "date": "2026-04-05",
+        "openai": 1378710.61,
+        "anthropic": 587420.89
+      },
+      {
+        "date": "2026-04-12",
+        "openai": 1531620.35,
+        "anthropic": 669478.6
+      },
+      {
+        "date": "2026-04-19",
+        "openai": 1457840.14,
+        "anthropic": 736650.17
+      },
+      {
+        "date": "2026-04-26",
+        "openai": 1419036.29,
+        "anthropic": 745532.57
+      },
+      {
+        "date": "2026-05-03",
+        "openai": 1504534.07,
+        "anthropic": 838022.06
+      },
+      {
+        "date": "2026-05-10",
+        "openai": 1575436.72,
+        "anthropic": 903306.38
+      },
+      {
+        "date": "2026-05-17",
+        "openai": 1544476.18,
+        "anthropic": 961028.68
+      },
+      {
+        "date": "2026-05-24",
+        "openai": 1478154.59,
+        "anthropic": 962433.12
+      },
+      {
+        "date": "2026-05-31",
+        "openai": 1341468.41,
+        "anthropic": 639431.72
+      },
+      {
+        "date": "2026-06-07",
+        "openai": 1545535.37,
+        "anthropic": 829991
+      },
+      {
+        "date": "2026-06-14",
+        "openai": 1659416.8,
+        "anthropic": 908002.61
+      },
+      {
+        "date": "2026-06-21",
+        "openai": 1520197.2,
+        "anthropic": 732638.57
+      },
+      {
+        "date": "2026-06-28",
+        "openai": 1536543.76,
+        "anthropic": 888445.67
+      },
+      {
+        "date": "2026-07-05",
+        "openai": 1690632.22,
+        "anthropic": 1108156.38
+      },
+      {
+        "date": "2026-07-12",
+        "openai": 1834433.96,
+        "anthropic": 1255116.69
+      },
+      {
+        "date": "2026-07-19",
+        "openai": 1809840.96,
+        "anthropic": 1098135.77
+      },
+      {
+        "date": "2026-07-26",
+        "openai": 1806729.24,
+        "anthropic": 992851.39
+      },
+      {
+        "date": "2026-08-02",
+        "openai": 1785944.89,
+        "anthropic": 973832.08
+      },
+      {
+        "date": "2026-08-09",
+        "openai": 2346128.35,
+        "anthropic": 1053515.79
+      },
+      {
+        "date": "2026-08-16",
+        "openai": 2161436.13,
+        "anthropic": 1052516.12
+      },
+      {
+        "date": "2026-08-23",
+        "openai": 2023413.97,
+        "anthropic": 1094458.76
+      },
+      {
+        "date": "2026-08-30",
+        "openai": 2056776.95,
+        "anthropic": 1050867.59
+      },
+      {
+        "date": "2026-09-06",
+        "openai": 2309867.06,
+        "anthropic": 981261.29
+      },
+      {
+        "date": "2026-09-13",
+        "openai": 2606804.45,
+        "anthropic": 1060063.74
+      },
+      {
+        "date": "2026-09-20",
+        "openai": 2621803.36,
+        "anthropic": 1099625.34
+      },
+      {
+        "date": "2026-09-27",
+        "openai": 2483894.58,
+        "anthropic": 1096573.12
+      },
+      {
+        "date": "2026-10-04",
+        "openai": 2780251.33,
+        "anthropic": 1123790.22
+      }
+    ],
+    "field": "observed_sales",
+    "frequency": "Weekly",
+    "source": "AI_Monetization.xlsx / App Revenue Value",
+    "basis": "USD value of observed transactions (Transaction Spend, formerly Observed Sales). User-confirmed Bloomberg definition: aggregated U.S. consumer credit/debit card panel, 20M+ members. U.S. residents with cards at U.S. financial institutions; not extrapolated to total market."
+  },
+  "anthropicFiling": {
+    "filingDate": "2026-10-26",
+    "reviewedOn": "2026-10-30",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+    "accession": "0001628280-26-067168",
+    "currency": "USD",
+    "unit": "USD millions",
+    "quarterlyRevenue": [
+      {
+        "period": "2025 Q1",
+        "value": 376
+      },
+      {
+        "period": "2025 Q2",
+        "value": 787
+      },
+      {
+        "period": "2025 Q3",
+        "value": 1382
+      },
+      {
+        "period": "2025 Q4",
+        "value": 2040
+      },
+      {
+        "period": "2026 Q1",
+        "value": 4731
+      },
+      {
+        "period": "2026 Q2",
+        "value": 11555
+      }
+    ],
+    "annualRevenue": {
+      "2023": 41,
+      "2024": 386,
+      "2025": 4585
+    },
+    "h1Revenue2025": 1163,
+    "h1Revenue2026": 16286,
+    "h1ComputeInfrastructure2026": 8945,
+    "h1ConsumptionRevenue2026": 13064,
+    "h1SubscriptionRevenue2026": 3222,
+    "notes": [
+      "Interim financial results are unaudited. Quarterly table: prospectus p.158; revenue mix: financial statement revenue note.",
+      "October 31 run-rate revenue and offering price remain blank in this initial S-1. No new run rate or priced IPO valuation inferred.",
+      "Run rate annualizes trailing 28-day consumption fees and monthly subscription fees; it is not GAAP revenue or a forecast.",
+      "Q3 2026 media reports are not upgraded to filing-confirmed figures."
+    ]
+  }
 } as const;

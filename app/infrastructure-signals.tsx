@@ -1,7 +1,7 @@
 "use client";
 import {useState} from 'react';
 import {indexPriceSnapshot as data} from './index-price-snapshot';
-const groups={commitments:[{title:'Equipment orders',fields:['DGNOCOEQ Index','DGNOITIN Index']}],execution:[{title:'Equipment imports',fields:['USIMTELE Index','USIMSEMI Index','USIMCOMP Index']},{title:'Data-center construction',fields:['CNSTPRDA Index']},{title:'High-tech production',fields:['IPNEHITC Index']}],tightness:[{title:'GPU rental prices',fields:['SDH100RT Index','SDB200RT Index']},{title:'DDR5 memory pricing',fields:['ISPPDR48 Index']}]};
+const groups={commitments:[{title:'Equipment orders',fields:['DGNOCOEQ Index','DGNOITIN Index']}],execution:[{title:'Equipment imports',fields:['USIMTELE Index','USIMCOMP Index']}],tightness:[{title:'GPU rental prices',fields:['SDH100RT Index','SDB200RT Index']}],memory:[{title:'Memory and storage prices',fields:['ISPPDR48 Index','ISPPN512 Index']},{title:'Memory exports',fields:['KOTCDRAM Index','KOTCNAND Index']}],shared:[{title:'Broad semiconductor activity',fields:['USIMSEMI Index','IPNEHITC Index']}]};
 const colors=['#237d67','#bd7738','#747cae'];
 type Group={title:string;fields:string[]};
 function GroupChart({group}:{group:Group}){

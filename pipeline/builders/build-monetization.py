@@ -19,6 +19,18 @@ def number(value):
 
 def build():
     config=json.loads(CONFIG.read_text(encoding='utf-8'))
+    appbook=openpyxl.load_workbook(SOURCE,read_only=True,data_only=True)
+    appSheet=appbook['App Revenue Value']
+    appRows=[]
+    for row in appSheet.iter_rows(min_row=4):
+        if not isinstance(row[0].value,datetime.datetime):continue
+        appRows.append(dict(date=row[0].value.strftime('%Y-%m-%d'),openai=number(row[1].value),anthropic=number(row[2].value)))
+    appbook.close()
+    appRows.sort(key=lambda r:r['date'])
+    assert len(appRows)==len({r['date'] for r in appRows})
+    appSpending=dict(history=appRows,field='observed_sales',frequency='Weekly',
+        source='AI_Monetization.xlsx / App Revenue Value',
+        basis='USD value of observed transactions (Transaction Spend, formerly Observed Sales). User-confirmed Bloomberg definition: aggregated U.S. consumer credit/debit card panel, 20M+ members. U.S. residents with cards at U.S. financial institutions; not extrapolated to total market.')
     book=openpyxl.load_workbook(SOURCE,read_only=True,data_only=True)
     sheet=book['Public Value']
     formula=openpyxl.load_workbook(SOURCE,read_only=True,data_only=False)
@@ -78,7 +90,8 @@ def build():
         'Repeated adjacent quarter values may reflect source blending or reporting cadence.',
         'Public Value query text differs from Public Formula; Formula query describes the saved forecast extent.',
         'Source values are saved Bloomberg observations, not independently refreshed figures.']),
-        publicCompanies=companies,privateLabs=private,valuationResearch=research)
+        publicCompanies=companies,privateLabs=private,valuationResearch=research,appSpending=appSpending,
+        anthropicFiling=json.loads((DATA_ROOT/'data/research/frontier_labs/anthropic-s1.json').read_text()))
 
 if __name__=='__main__':
     payload=build()

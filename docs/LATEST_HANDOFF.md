@@ -7,3 +7,7 @@ Clone or pull main, install dependencies with pnpm install, and run pnpm dev. Ge
 For data refreshes, sync the private AI_Index folder separately and set AI_INDEX_DATA_ROOT to it. Git contains the portable pipeline mirror, not raw licensed workbooks or source histories. pipeline/config/source_registry.json and generated_files.json belong under data/; supply_config.json belongs under data/reference/. The archived core-v2.7.ts reference remains in the private shared folder. Do not run adapter installation over an edited website without reviewing its changes.
 
 Build verification: production build passes. Existing unrelated project-wide TypeScript errors are documented in the methodology notes. No hosting deployment is part of this GitHub sync.
+
+## 2 November 2026 sync
+
+Infrastructure charts are grouped by product: Data Centers, Power & Electricity, Compute & Networking, and Memory & Storage, with shared semiconductor context expandable. The subsequent discussion about simplifying the chart hierarchy is a proposal and has not been implemented. Includes the current saved Monetization updates and matching builder/component sources. No raw workbooks are included.
