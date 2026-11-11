@@ -20,10 +20,11 @@ class SupplyTests(unittest.TestCase):
 
     def test_unchanged_other_pillars_and_reconciliation(self):
         for old,new in zip(self.old['months'],self.new['months']):
-            self.assertEqual([r for r in old['rows'] if r['pillar']!='Hyperscaler CapEx'],[r for r in new['rows'] if r['pillar']!='Supply'])
-            self.assertAlmostEqual(sum(r['weight'] for r in new['rows']),1)
-            supply=[r for r in new['rows'] if r['pillar']=='Supply']
-            self.assertEqual([r['weight'] for r in supply],[.1,.05,.05])
+            by_ticker = {r['ticker']: r for r in new['rows']}
+            for row in old['rows']:
+                self.assertEqual(row['score'], by_ticker[row['ticker']]['score'])
+            for pillar in ('Adoption', 'Monetization', 'Hyperscalers', 'Infrastructure'):
+                self.assertAlmostEqual(sum(r['weight'] for r in new['rows'] if r['pillar']==pillar), .25)
             if new['score'] is not None:
                 self.assertAlmostEqual(new['score'],50+sum(r['contribution'] for r in new['rows']))
 
@@ -33,7 +34,7 @@ class SupplyTests(unittest.TestCase):
         next(c for c in field['cells'] if c['month']=='2025-07')['level']=None
         new=integrate(self.old,prices)
         m=next(m for m in new['months'] if m['month']=='2026-07')
-        self.assertIsNone(m['score'])
+        self.assertIsNotNone(m['score'])
         self.assertIsNone(next(r for r in m['rows'] if r['ticker']=='SDH100RT')['score'])
         ddr=next(s for s in prices['series'] if s['field']=='ISPPDR48 Index')
         next(c for c in ddr['cells'] if c['month']=='2026-07')['partial']=True
@@ -48,9 +49,9 @@ class SupplyTests(unittest.TestCase):
         self.assertEqual(self.new['metadata']['supplyBaseline'],integrate(self.old,prices)['metadata']['supplyBaseline'])
 
     def test_forecasts_stay_out_of_score_and_projection_identity(self):
-        self.assertEqual({r['ticker'] for r in self.new['months'][-1]['rows'] if r['pillar']=='Supply'},{'HYPERSCALER_TOTAL','ISPPDR48','SDH100RT'})
+        self.assertEqual({r['ticker'] for r in self.new['months'][-1]['rows'] if r['pillar']=='Hyperscalers'},{'HYPERSCALER_TOTAL'})
         p=load(ROOT/'data/derived/app/core-projection-snapshot.ts'); anchor=next(m for m in self.new['months'] if m['month']==p['metadata']['anchorMonth'])
         cap=next(r for r in anchor['rows'] if r['ticker']=='HYPERSCALER_TOTAL')
-        for q in p['quarters']:self.assertAlmostEqual(q['composite'],anchor['score']+.1*(q['capexScore']-cap['score']))
+        for q in p['quarters']:self.assertAlmostEqual(q['composite'],anchor['score']+cap['effectiveWeight']*(q['capexScore']-cap['score']))
 
 if __name__=='__main__':unittest.main()

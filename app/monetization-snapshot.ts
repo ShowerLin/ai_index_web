@@ -1,7 +1,7 @@
 export const monetizationSnapshot = {
   "metadata": {
     "source": "AI_Monetization.xlsx",
-    "workbookSha256": "408de89e06ba6e59c9f15a083eed5868625ed1903f8a3a9036170499815b06ee",
+    "workbookSha256": "3201aab7decdf40eab5f29407d55c9c1737066a18beef7ff6c366c3e4c1104ea",
     "currency": "USD",
     "sourceUnit": "USD",
     "coreWeight": 0,
@@ -816,38 +816,12 @@ export const monetizationSnapshot = {
     "basis": "USD value of observed transactions (Transaction Spend, formerly Observed Sales). User-confirmed Bloomberg definition: aggregated U.S. consumer credit/debit card panel, 20M+ members. U.S. residents with cards at U.S. financial institutions; not extrapolated to total market."
   },
   "anthropicFiling": {
-    "filingDate": "2026-10-26",
-    "reviewedOn": "2026-10-30",
-    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
-    "accession": "0001628280-26-067168",
+    "filingDate": "2026-11-02",
+    "reviewedOn": "2026-11-05",
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+    "accession": "0001628280-26-068676",
     "currency": "USD",
     "unit": "USD millions",
-    "quarterlyRevenue": [
-      {
-        "period": "2025 Q1",
-        "value": 376
-      },
-      {
-        "period": "2025 Q2",
-        "value": 787
-      },
-      {
-        "period": "2025 Q3",
-        "value": 1382
-      },
-      {
-        "period": "2025 Q4",
-        "value": 2040
-      },
-      {
-        "period": "2026 Q1",
-        "value": 4731
-      },
-      {
-        "period": "2026 Q2",
-        "value": 11555
-      }
-    ],
     "annualRevenue": {
       "2023": 41,
       "2024": 386,
@@ -859,10 +833,105 @@ export const monetizationSnapshot = {
     "h1ConsumptionRevenue2026": 13064,
     "h1SubscriptionRevenue2026": 3222,
     "notes": [
-      "Interim financial results are unaudited. Quarterly table: prospectus p.158; revenue mix: financial statement revenue note.",
-      "October 31 run-rate revenue and offering price remain blank in this initial S-1. No new run rate or priced IPO valuation inferred.",
-      "Run rate annualizes trailing 28-day consumption fees and monthly subscription fees; it is not GAAP revenue or a forecast.",
-      "Q3 2026 media reports are not upgraded to filing-confirmed figures."
+      "Quarterly results are unaudited. See MD&A p. 161.",
+      "Offering price and share count remain pending."
+    ],
+    "quarterlyRevenue": [
+      {
+        "period": "2025 Q1",
+        "value": 376.0
+      },
+      {
+        "period": "2025 Q2",
+        "value": 787.0
+      },
+      {
+        "period": "2025 Q3",
+        "value": 1382.0
+      },
+      {
+        "period": "2025 Q4",
+        "value": 2040.0
+      },
+      {
+        "period": "2026 Q1",
+        "value": 4731.0
+      },
+      {
+        "period": "2026 Q2",
+        "value": 11555.0
+      },
+      {
+        "period": "2026 Q3",
+        "value": 16956.0
+      }
+    ],
+    "nineMonthRevenue2026": 33242,
+    "q3OperatingIncome2026": -567
+  },
+  "anthropicComputeDemand": {
+    "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
+    "observations": [
+      {
+        "period": "2025 Q1",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 944,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2025 Q2",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 1390,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2025 Q3",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 2047,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2025 Q4",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 2945,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2026 Q1",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 3387,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2026 Q2",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 5558,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2026 Q3",
+        "metric": "Compute and infrastructure expense",
+        "usdMillions": 9863,
+        "basis": "Quarterly operating expense, MD&A p. 161"
+      },
+      {
+        "period": "2025-12-31",
+        "metric": "Noncancelable purchase commitments",
+        "usdMillions": 54559,
+        "basis": "Future minimum payments, Note 13"
+      },
+      {
+        "period": "2026-09-30",
+        "metric": "Fixed or minimum guaranteed commitments",
+        "usdMillions": 313800,
+        "basis": "Approximate, unaudited. Excludes agreements with no fixed or minimum dollar commitment. Note 13."
+      },
+      {
+        "period": "2026-09-30",
+        "metric": "Maximum potential developer guarantees",
+        "usdMillions": 4700,
+        "basis": "Contingent, unaudited. Note 13."
+      }
     ]
   }
 } as const;

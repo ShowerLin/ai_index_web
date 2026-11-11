@@ -1,9 +1,9 @@
 export const rampSnapshot = {
   "metadata": {
     "source": "https://ramp.com/data/ai-index",
-    "retrieved": "2026-10-21",
+    "retrieved": "2026-11-10",
     "through": "2026-09",
-    "sourceSha256": "72da4911405ddbeafc676bb80377f24f5b6c77795580b2136a596e725aba272b",
+    "sourceSha256": "2c43be092fb2ce00a100bcda91eca295979b3ac1b8a11301c1d43066094c7021",
     "access": "Public dashboard payload; undocumented website JSON filters. Documented API requires credentials."
   },
   "monthly": [

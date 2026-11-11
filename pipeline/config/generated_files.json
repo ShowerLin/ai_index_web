@@ -24,5 +24,6 @@
   "index-price-snapshot.ts",
   "adoption-price-snapshot.ts",
   "monetization-snapshot.ts",
-  "supply-snapshot.ts"
+  "supply-snapshot.ts",
+  "hyperscaler-financial-snapshot.ts"
 ]

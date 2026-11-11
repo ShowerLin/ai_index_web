@@ -4,7 +4,7 @@ export default function CloudReference() {
   const entities = [...new Set(snapshot.observations.map(row => row.entity))];
   return <details className="heatmap-detail-wrap">
     <summary>Cloud estimates · profitability and source detail</summary>
-    <p>Bloomberg estimates provide context for future cloud demand and investment. Amounts are USD billions; margins are percentages. Period labels follow each source’s fiscal quarters. These are unweighted outlook observations.</p>
+    <p>Bloomberg estimates provide context for future cloud demand and investment. Amounts are USD billions; margins are percentages. Fiscal labels follow the issuer. Saved period ends appear on the chart and forward estimates table. These are unweighted outlook observations.</p>
     {entities.map(entity => {
       const rows = snapshot.observations.filter(row => row.entity === entity);
       const periods = [...new Set(rows.map(row => row.fiscalPeriod))];
@@ -18,7 +18,7 @@ export default function CloudReference() {
         })}</tr>)}</tbody>
       </table></div>;
     })}
-    <p>Source: AI_Monetization.xlsx, Cloud FA Value / Formula. Bloomberg retrieval time is not recorded.</p>
+    <p>Source: AI_Hyperscalers.xlsx, Cloud FA Value / Formula. Bloomberg retrieval time is not recorded. The extraction omits observations if the query quarter disagrees with the column label.</p>
     {snapshot.metadata.limitations.map(note => <p key={note}>{note}</p>)}
   </details>;
 }

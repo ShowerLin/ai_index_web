@@ -21,16 +21,22 @@ def validate(root,build):
    periods=[r['period'] for r in c['quarters']]
    assert periods==sorted(set(periods)),(name,c['ticker'],'duplicate or unsorted quarters')
  core=load_ts(build/'app/core-contribution-snapshot.ts')
- assert core['metadata']['version']=='2.8'
+ assert core['metadata']['version']=='2.9'
  for month in core['months']:
-  for pillar in ['Adoption','Demand','Investment','Imports','Supply']:
-   assert math.isclose(sum(r['weight'] for r in month['rows'] if r['pillar']==pillar),.2,abs_tol=1e-10)
+  for pillar in ['Adoption','Monetization','Hyperscalers','Infrastructure']:
+   assert math.isclose(sum(r['weight'] for r in month['rows'] if r['pillar']==pillar),.25,abs_tol=1e-10)
   assert {r['ticker'] for r in month['rows'] if r['pillar']=='Adoption'}=={'RAMP_MATCHED_SPENDING','OPENROUTER_SPENDING_PROXY'}
   assert len(month['contextRows'])==3 and all(r['weight']==0 for r in month['contextRows'])
   assert math.isclose(sum(r['weight'] for r in month['rows']),1,abs_tol=1e-10)
-  complete=all(r['score'] is not None for r in month['rows'])
-  assert complete==(month['score'] is not None),month['month']
-  if complete:assert math.isclose(month['score'],sum(r['weight']*r['score'] for r in month['rows']),abs_tol=1e-8)
+  available=[r for r in month['rows'] if r['weight']>0 and r['score'] is not None]
+  assert bool(available)==(month['score'] is not None),month['month']
+  assert all(r['effectiveWeight']==0 for r in month['rows'] if r not in available)
+  if available:
+   active={r['pillar'] for r in available}
+   for pillar in active:
+    assert math.isclose(sum(r['effectiveWeight'] for r in available if r['pillar']==pillar),1/len(active))
+   assert math.isclose(month['score'],sum(r['effectiveWeight']*r['score'] for r in available),abs_tol=1e-8)
+   assert math.isclose(month['score']-50,sum(r['contribution'] for r in month['rows']),abs_tol=1e-8)
  tokens=load_ts(build/'app/token-activity-snapshot.ts')
  prices=load_ts(build/'app/adoption-price-snapshot.ts')
  assert prices['metadata']['coreWeight']==0
@@ -40,7 +46,7 @@ def validate(root,build):
   assert stats['count']==6 and stats['start']=='2026-01' and stats['end']=='2026-06' and stats['std']>0
  for month in core['months']:
   for row in month['rows']:
-   if row['pillar']=='Adoption':assert row['weight']==.1
+   if row['pillar']=='Adoption':assert row['weight']==.125
    if row['pillar']=='Adoption' and row['score'] is not None:
     expected=max(0,min(100,50+15*(row['growth']-row['baselineMean'])/row['baselineStd']))
     assert math.isclose(row['score'],expected,abs_tol=1e-10)

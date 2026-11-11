@@ -1,8 +1,8 @@
 export const monthlyHeatmapSnapshot = {
   "metadata": {
     "source": "Indexlist.xlsx \u2014 Index Price Value (saved inspection)",
-    "sourceSha256": "d4628d29ca6eb6d902880dba4658bbc6228be502f50cf28f84b12ed22a2f94c6",
-    "sourceWorkbookSha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
+    "sourceSha256": "3bc4ec2bd4db0a16a6c25d3edd091a4c02499b60b95d6b1e6b11e853e898432b",
+    "sourceWorkbookSha256": "2087ba73078d67f788935cd301735baecaf8c97a2b713e63945c2fb2460edc1d",
     "method": "Equal-weight mean of constituent month-over-month percentage changes; incomplete pillars withheld. Token price excluded from Demand.",
     "reviewedAt": "2026-10-20",
     "completedMonthThrough": "2026-09",
@@ -405,7 +405,7 @@ export const monthlyHeatmapSnapshot = {
             {
               "month": "2026-09",
               "value": 41.1,
-              "level": 332.6,
+              "level": 332.60491507,
               "priorLevel": 235.6930511
             }
           ]
@@ -483,8 +483,8 @@ export const monthlyHeatmapSnapshot = {
         },
         {
           "month": "2026-09",
-          "value": 0.3,
-          "breadth": "1/5",
+          "value": 8.6,
+          "breadth": "3/5",
           "coverage": "5/5"
         }
       ],
@@ -560,8 +560,8 @@ export const monthlyHeatmapSnapshot = {
             },
             {
               "month": "2026-09",
-              "value": 0.0,
-              "level": 4932.0,
+              "value": 24.9,
+              "level": 6161.0,
               "priorLevel": 4932.0
             }
           ]
@@ -631,15 +631,15 @@ export const monthlyHeatmapSnapshot = {
             },
             {
               "month": "2026-08",
-              "value": 3.3,
-              "level": 29262.0,
+              "value": 3.4,
+              "level": 29273.0,
               "priorLevel": 28320.0
             },
             {
               "month": "2026-09",
-              "value": 0.0,
-              "level": 29262.0,
-              "priorLevel": 29262.0
+              "value": 16.7,
+              "level": 34160.0,
+              "priorLevel": 29273.0
             }
           ]
         },
@@ -947,8 +947,8 @@ export const monthlyHeatmapSnapshot = {
         },
         {
           "month": "2026-09",
-          "value": 0.0,
-          "breadth": "0/3",
+          "value": 5.4,
+          "breadth": "2/3",
           "coverage": "3/3"
         }
       ],
@@ -1013,20 +1013,20 @@ export const monthlyHeatmapSnapshot = {
             {
               "month": "2026-07",
               "value": 2.4,
-              "level": 15.329,
+              "level": 15.32882,
               "priorLevel": 14.97324
             },
             {
               "month": "2026-08",
               "value": 4.3,
-              "level": 15.987,
-              "priorLevel": 15.329
+              "level": 15.986,
+              "priorLevel": 15.32882
             },
             {
               "month": "2026-09",
-              "value": 0.0,
-              "level": 15.987,
-              "priorLevel": 15.987
+              "value": 0.9,
+              "level": 16.134,
+              "priorLevel": 15.986
             }
           ]
         },
@@ -1090,19 +1090,19 @@ export const monthlyHeatmapSnapshot = {
             {
               "month": "2026-07",
               "value": 10.2,
-              "level": 13.041,
+              "level": 13.04125,
               "priorLevel": 11.83273
             },
             {
               "month": "2026-08",
               "value": 18.3,
               "level": 15.429,
-              "priorLevel": 13.041
+              "priorLevel": 13.04125
             },
             {
               "month": "2026-09",
-              "value": 0.0,
-              "level": 15.429,
+              "value": -7.5,
+              "level": 14.268,
               "priorLevel": 15.429
             }
           ]
@@ -1173,14 +1173,14 @@ export const monthlyHeatmapSnapshot = {
             {
               "month": "2026-08",
               "value": -6.0,
-              "level": 25.196,
+              "level": 25.197,
               "priorLevel": 26.79234
             },
             {
               "month": "2026-09",
-              "value": 0.0,
-              "level": 25.196,
-              "priorLevel": 25.196
+              "value": 22.7,
+              "level": 30.911,
+              "priorLevel": 25.197
             }
           ]
         }

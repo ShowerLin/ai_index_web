@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json,posixpath,zipfile,xml.etree.ElementTree as E
 
-def export(source,destination):
+def read_tables(source, sheet_names):
  ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
  with zipfile.ZipFile(source) as z:
   strings=[''.join(e.itertext()) for e in E.fromstring(z.read('xl/sharedStrings.xml'))]
@@ -11,7 +11,7 @@ def export(source,destination):
   records=[]
   for sheet in sheets:
    name=sheet.get('name')
-   if name!='Index Price Value':continue
+   if name not in sheet_names:continue
    target=rel[sheet.get('{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id')]
    target=target.lstrip('/') if target.startswith('/') else posixpath.normpath('xl/'+target)
    rows=[]
@@ -30,6 +30,10 @@ def export(source,destination):
      cells[col]=value
     rows.append([cells.get(i) for i in range(1,max(cells,default=0)+1)])
    records.append({'kind':'table','sheet':name,'values':rows,'sourceSha256':hashlib.sha256(Path(source).read_bytes()).hexdigest()})
+ return records
+
+def export(source,destination):
+ records=read_tables(source, {"Index Price Value"})
  destination=Path(destination);destination.parent.mkdir(parents=True,exist_ok=True)
  destination.write_text('\n'.join(json.dumps(r) for r in records)+'\n',encoding='utf-8')
 

@@ -1,7 +1,7 @@
 """Publish all monthly workbook fields, with source and partial-period qualifications."""
 import json
-from index_price import load, shift
-from paths import BUILD_ROOT
+from index_price import load, shift, INFRA_FIELDS, INFRA_SHEETS, read_infrastructure
+from paths import BUILD_ROOT, DATA_ROOT
 
 config, headers, obs, workbook_hash, inspection_hash = load()
 core = {
@@ -20,6 +20,10 @@ core = {
     'USIMCOMP Index': ('Imports', 'Computer equipment imports', .2 / 3),
 }
 context = {'SDLLMTK Index': 'LLM price per million tokens', 'ISPPDR48 Index': 'DDR5 spot price index', 'ISPPN512 Index': 'TLC 512Gb spot price index', 'SDH100RT Index': 'Silicon H100 rental price index', 'SDB200RT Index': 'Silicon B200 rental price index (non-hyperscale)', 'KOEISEU Index': 'South Korea semiconductor export price (USD)'}
+infra_sources = {
+    f'{ticker} Index': sheet for sheet, tickers in zip(INFRA_SHEETS, INFRA_FIELDS) for ticker in tickers
+} if config.get('infrastructureSha256') else {}
+daily = read_infrastructure(DATA_ROOT / 'AI_Infra.xlsx') if infra_sources else {}
 series = []
 for field in headers:
     pillar, name, weight = core.get(field, ('Context', context.get(field, field), 0))
@@ -31,8 +35,10 @@ for field in headers:
         cells.append(dict(month=month, level=value, yoy=(value / prior_year - 1) * 100 if value is not None and prior_year is not None and prior_year > 0 else None,
                           unchangedFromPrevious=value is not None and previous is not None and value == previous,
                           partial=month > config['completedMonthThrough']))
-    series.append(dict(field=field, name=name, pillar=pillar, coreWeight=weight, unit='Source-native; verify Bloomberg field units before cross-series comparisons', cells=cells))
-payload = dict(metadata=dict(source='Indexlist.xlsx', sheet='Index Price Value', workbookSha256=workbook_hash, inspectionSha256=inspection_hash,
+    series.append(dict(source='AI_Infra.xlsx' if field in infra_sources else 'Indexlist.xlsx', sheet=infra_sources.get(field, 'Index Price Value'), field=field, name=name, pillar=pillar, coreWeight=weight, unit='Source-native; verify Bloomberg field units before cross-series comparisons', cells=cells,
+                       daily=[dict(date=day.isoformat(), value=value) for day, value in daily.get(field, {}).items()]
+                       if infra_sources.get(field) == INFRA_SHEETS[1] else []))
+payload = dict(metadata=dict(source='Indexlist.xlsx', sheet='Index Price Value', workbookSha256=workbook_hash, inspectionSha256=inspection_hash, infrastructureSha256=config.get('infrastructureSha256'),
     reviewedAt=config['reviewedAt'], completedMonthThrough=config['completedMonthThrough'], gridThrough=max(obs),
     headerAliases=config['headerAliases'], labelsSource='Saved Indexlist descriptions; field units require independent verification', limitations=config['note'], sourceRetrievedAt=None), series=series)
 (BUILD_ROOT / 'app/index-price-snapshot.ts').write_text('export const indexPriceSnapshot = ' + json.dumps(payload, indent=2) + ' as const;\n', encoding='utf-8')

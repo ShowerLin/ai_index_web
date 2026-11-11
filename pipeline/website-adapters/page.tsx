@@ -1,8 +1,14 @@
+import "./design-system.css";
+import { legacyAtmosphereHistory } from "./pulse-reference-data";
+import { latestCapexPulse, chinaCapexHistory } from "./hyperscaler-reference-data";
+import { cdsSnapshot, fundamentalSnapshot, fundamentalLeaders, bondSnapshot, bondHistory, cdsIssuers, cdsRoleQuarterly, hyperscalerDebtCapital, roleLeverageSnapshot } from "./market-reference-data";
 import {coreProjectionSnapshot as capexProjection} from "./core-projection-snapshot";
 "use client";
 import LeverageDistributions from "./leverage-distributions";
 import CreditFinancialComparison from "./credit-financial-comparison";
 import SupplyChainStockChart from "./equity-market";
+import SemiconductorMarket from "./semiconductor-market";
+import WeeklyPulse from "./weekly-pulse";
 import {workbookAmendments} from "./workbook-amendments-snapshot";
 import {DemandSupplement,DemandHeatmap,CreditBenchmark,BondSectorFinancing} from "./workbook-amendments";
 
@@ -23,20 +29,24 @@ import InvestmentSustainability from "./investment-sustainability";
 import RoicAnalysis from "./roic-analysis";
 import DemandToReturns from "./demand-to-returns";
 import Monetization from "./monetization";
+import PolicyDataCenters from "./policy-data-centers";
 import InfrastructureDeployment from "./infrastructure-deployment";
 import ElectricityCapacity from "./electricity-capacity";
 import TaskEconomics from "./task-economics";
 import UsefulTaskEconomics from "./useful-task-economics";
 import SectionSummary from "./section-summary";
+import DataFreshness from "./data-freshness";
 import SectionNotes from "./section-notes";
 import EvidenceCard from "./evidence-card";
-import OwnerTimeSeries from "./owner-time-series";
 import PillarResearch from "./pillar-research";
 import EvidenceGroup from "./evidence-group";
+import { AdoptionMetric, AdoptionMetrics } from "./adoption-widgets";
 import AdoptionPrices from "./adoption-prices";
+import AdoptionSpending, { AdoptionReadthrough, RampWeeklySpending } from "./adoption-spending";
 import CoreContributions from "./core-contributions";
 import CloudReference from "./cloud-reference";
 import HyperscalerDemand from "./hyperscaler-demand";
+import HyperscalerCapexLatest from "./hyperscaler-capex-latest";
 import InfrastructureSignals from "./infrastructure-signals";
 import SupplyPanel from "./supply-panel";
 import RampDemand from "./ramp-demand";
@@ -44,93 +54,33 @@ import TokenActivity from "./token-activity";
 import {rampSnapshot} from "./ramp-snapshot";
 import {coreContributionSnapshot as coreScores} from "./core-contribution-snapshot";
 import CoreHeatmapChart from "./core-heatmap-chart";
+import HeatmapPillarLabel from "./heatmap-pillar-label";
 import { monthlyHeatmapSnapshot } from "./monthly-heatmap-snapshot";
 import { edgeRoutes, mapHeight, mapX, nodeHeight, nodePositions, nodeWidth } from "./chain-map-layout";
 
-type Pillar = "Adoption" | "Demand" | "Investment" | "Imports" | "Supply";
-type Company = "Aggregate" | "Microsoft" | "Alphabet" | "Meta" | "Amazon" | "Oracle";
+const corePillarNames = ["Adoption", "Monetization", "Hyperscalers", "Infrastructure"] as const;
+type Pillar = typeof corePillarNames[number];
 type CapexCountry = "United States" | "China";
 type ChinaCompany = "All companies" | "Tencent" | "Alibaba" | "Baidu";
 type AiRole = "Hyperscalers" | "Accelerators & logic" | "Semiconductor equipment" | "Memory & storage" | "Systems & networking" | "Data centers" | "Power";
 type ChainView = "map" | "cards" | "companies";
 type AtmosphereView = "core" | "adjusted";
 
-const legacyAtmosphereHistory = [
-  ["2023-12",50],["2024-01",56.8],["2024-02",50.9],["2024-03",48.4],["2024-04",56.4],["2024-05",60.8],["2024-06",59.8],["2024-07",57.4],["2024-08",57.6],["2024-09",53.5],["2024-10",49.8],["2024-11",41.4],["2024-12",50.1],["2025-01",52.4],["2025-02",47.8],["2025-03",58.4],["2025-04",54.4],["2025-05",51.6],["2025-06",50.6],["2025-07",54.4],["2025-08",49.3],["2025-09",45.6],["2025-10",55.2],["2025-11",68.4],["2025-12",67.3],["2026-01",76.9],["2026-02",72],["2026-03",70.3],["2026-04",75.1],["2026-05",74.8],["2026-06",69.3],
-] as const;
+const atmosphereHistory = coreScores.months.filter(row=>row.score!==null&&row.month<=capexProjection.metadata.anchorMonth).map(row=>[row.month,row.score!] as const);
+const latestCore = coreScores.months.filter(row=>row.score!==null&&row.month<=capexProjection.metadata.anchorMonth).at(-1)!;
+const coreByPillar = Object.fromEntries(corePillarNames.map(name=>{
+  const rows=latestCore.rows.filter(r=>r.pillar===name);
+  const weight=rows.reduce((sum,r)=>sum+r.effectiveWeight,0);
+  return [name,weight ? rows.reduce((sum,r)=>sum+(r.score??0)*r.effectiveWeight,0)/weight : 0];
+}));
 
-const atmosphereHistory = coreScores.months.filter(row=>row.score!==null).map(row=>[row.month,row.score!] as const);
-const latestCore = coreScores.months.filter(row=>row.score!==null).at(-1)!;
-const coreByPillar = Object.fromEntries(["Adoption","Demand","Investment","Imports","Supply"].map(name=>[name,latestCore.rows.filter(r=>r.pillar===name).reduce((sum,r)=>sum+(r.score??0)*r.weight/.2,0)]));
+const pillars = Object.fromEntries(corePillarNames.map(name=>{
+  const members=latestCore.rows.filter(r=>r.pillar===name);
+  return [name,{score:Number(coreByPillar[name].toFixed(1)),change:"Methodology v3.0",breadth:`${members.filter(r=>r.score!==null&&r.score>50).length} / ${members.length} above norm`,tone:coreByPillar[name]>50?"Above historical norm":"Below historical norm",note:name==="Monetization"?"Business spending, consumer card spending and released lab revenue.":"Scores use constituent-specific treatments and a fixed historical baseline through June 2026."}];
+}));
 
-const capexHistory = [
-  {q:"2023Q1",Microsoft:7.8,Alphabet:6.3,Meta:7.1,Amazon:14.2,Oracle:2.6,total:38},
-  {q:"2023Q2",Microsoft:10.7,Alphabet:6.9,Meta:6.4,Amazon:11.5,Oracle:1.9,total:37.4},
-  {q:"2023Q3",Microsoft:11.2,Alphabet:8.1,Meta:6.8,Amazon:12.5,Oracle:1.3,total:39.9},
-  {q:"2023Q4",Microsoft:11.5,Alphabet:11,Meta:8,Amazon:14.6,Oracle:1.1,total:46.2},
-  {q:"2024Q1",Microsoft:14,Alphabet:12,Meta:6.7,Amazon:14.9,Oracle:1.7,total:49.3},
-  {q:"2024Q2",Microsoft:19,Alphabet:13.2,Meta:8.5,Amazon:17.6,Oracle:2.8,total:61.1},
-  {q:"2024Q3",Microsoft:20,Alphabet:13.1,Meta:9.2,Amazon:22.6,Oracle:2.3,total:67.2},
-  {q:"2024Q4",Microsoft:22.6,Alphabet:14.3,Meta:14.8,Amazon:27.8,Oracle:4,total:83.5},
-  {q:"2025Q1",Microsoft:21.4,Alphabet:17.2,Meta:13.7,Amazon:25,Oracle:5.9,total:83.2},
-  {q:"2025Q2",Microsoft:24.2,Alphabet:22.5,Meta:17,Amazon:32.2,Oracle:9.1,total:105},
-  {q:"2025Q3",Microsoft:34.9,Alphabet:24,Meta:19.4,Amazon:35.1,Oracle:8.5,total:121.9},
-  {q:"2025Q4",Microsoft:37.5,Alphabet:27.9,Meta:22.1,Amazon:39.5,Oracle:12,total:139},
-  {q:"2026Q1",Microsoft:31.9,Alphabet:35.7,Meta:19.8,Amazon:44.2,Oracle:18.6,total:150.2},
-  {q:"2026Q2",Microsoft:41.0,Alphabet:44.924,Meta:31.078,Amazon:54.771,Oracle:16.5,total:188.273},
-] as const;
-
-const proxyHistory: Record<Company, readonly (number|null)[]> = {
-  Aggregate:[null,null,null,null,null,null,null,null,null,null,74.02,91.93,100.783,123.851],
-  Microsoft:[null,null,5.6,5.75,7,9.5,10,11.3,10.7,12.1,17.45,25.125,21.373,27.333],
-  Alphabet:[null,null,null,null,null,null,null,8.58,10.32,13.5,14.4,16.74,21.42,26.954],
-  Meta:[null,null,null,null,null,null,null,9.62,8.905,11.05,12.61,14.365,12.87,20.201],
-  Amazon:[null,null,null,null,null,null,13.56,16.68,15,19.32,21.06,23.7,26.52,32.863],
-  Oracle:[null,null,null,null,null,null,null,null,null,null,8.5,12,18.6,16.5],
-};
-
-const legacyPillars: Record<Pillar, { score:number; change:string; breadth:string; tone:string; note:string }> = {
-  Adoption: {score:59,change:"+112% avg. YoY",breadth:"2 / 2 positive",tone:"Firm",note:"Current and expected AI use remain above their own recent momentum norms."},
-  Demand: {score:89,change:"+385% YoY",breadth:"1 / 1 positive",tone:"Surging",note:"South Korea DRAM exports are the strongest pulse in the current source set."},
-  Investment: {score:56,change:"+18% avg. YoY",breadth:"4 / 5 positive",tone:"Expanding",note:"Orders and construction are positive overall; information-technology orders are the exception."},
-  Imports: {score:74,change:"+72% avg. YoY",breadth:"3 / 3 positive",tone:"Broad",note:"Telecom, semiconductor and computer imports all point to stronger equipment inflows."},
-  "Supply": {score:60,change:"+79.3% YoY",breadth:"5 / 5 positive YoY",tone:"Accelerating",note:"Five-company total reached $188.3B in 2026Q2, a new high and 25.3% above the prior quarter."},
-};
-
-const pillars = Object.fromEntries(Object.entries(legacyPillars).map(([name,row])=>{const members=latestCore.rows.filter(r=>r.pillar===name);return [name,{...row,score:Number(coreByPillar[name].toFixed(1)),change:"Methodology v2.8 · June 2026",breadth:`${members.filter(r=>r.score!==null&&r.score>50).length} / ${members.length} above norm`,tone:coreByPillar[name]>50?"Above historical norm":"Below historical norm",note:"Scores use constituent-specific treatments and a fixed historical baseline through June 2026."}];})) as Record<Pillar,(typeof legacyPillars)[Pillar]>;
-
-const series = [
-  {pillar:"Adoption",name:"AI use — last 2 weeks",ticker:"BTOS0700",value:"21.8",yoy:120.2,status:"Included · latest"},
-  {pillar:"Adoption",name:"Expected AI use — next 6 months",ticker:"BTOS2400",value:"25.9",yoy:85.0,status:"Included · latest"},
-  {pillar:"Demand",name:"South Korea DRAM exports",ticker:"KOTCDRAM",value:"235.70",yoy:362.2,status:"Included · Aug"},
-  {pillar:"Demand",name:"LLM token price",ticker:"SDLLMTK",value:"0.9543",yoy:null,status:"Context only · latest"},
-  {pillar:"Investment",name:"Communication equipment orders",ticker:"DGNOCOEQ",value:"4,568",yoy:-6.8,status:"Included · Jul carry"},
-  {pillar:"Investment",name:"Information technology orders",ticker:"DGNOITIN",value:"28,308",yoy:-5.8,status:"Included · Jul carry"},
-  {pillar:"Investment",name:"Power equipment orders",ticker:"DGNOTGOP",value:"5,386",yoy:17.4,status:"Included · Jul carry"},
-  {pillar:"Investment",name:"Data-center construction",ticker:"CNSTPRDA",value:"75,166",yoy:48.3,status:"Included · Jul carry"},
-  {pillar:"Investment",name:"High-tech industry activity",ticker:"IPNEHITC",value:"199.62",yoy:14.6,status:"Included · Jul carry"},
-  {pillar:"Imports",name:"Telecom equipment imports",ticker:"USIMTELE",value:"15.328",yoy:66.9,status:"Included · Jul carry"},
-  {pillar:"Imports",name:"Semiconductor imports",ticker:"USIMSEMI",value:"13.048",yoy:131.4,status:"Included · Jul carry"},
-  {pillar:"Imports",name:"Computer imports",ticker:"USIMCOMP",value:"26.792",yoy:140.8,status:"Included · Jul carry"},
-] as const;
-
-const constituents = [
-  {company:"Amazon",ticker:"AMZN",value:54.771,proxy:32.863,share:29.1,yoy:70.1,basis:"60% server mix; cash PP&E plus new finance-lease additions",quality:"Disclosed mix"},
-  {company:"Alphabet",ticker:"GOOGL",value:44.924,proxy:26.954,share:23.9,yoy:99.7,basis:"60% server share; AI and non-AI compute",quality:"Disclosed mix"},
-  {company:"Microsoft",ticker:"MSFT",value:41.0,proxy:27.333,share:21.8,yoy:69.4,basis:"Two-thirds short-lived split applied to total CapEx",quality:"Disclosed mix"},
-  {company:"Meta",ticker:"META",value:31.078,proxy:20.201,share:16.5,yoy:82.8,basis:"65% equipment share is analyst-estimated",quality:"Estimated mix"},
-  {company:"Oracle",ticker:"ORCL",value:16.5,proxy:16.5,share:8.8,yoy:81.3,basis:"100% equipment-heavy proxy is inferred",quality:"Inferred proxy"},
-] as const;
-
-const heatmap = [
-  {pillar:"Adoption",source:"S1",cells:[{q:"2025Q3",v:13.1,b:"2/2"},{q:"2025Q4",v:66.0,b:"2/2"},{q:"2026Q1",v:5.4,b:"2/2"},{q:"2026Q2",v:7.6,b:"2/2"}]},
-  {pillar:"Demand",source:"S1",cells:[{q:"2025Q3",v:13.2,b:"1/1"},{q:"2025Q4",v:49.9,b:"1/1"},{q:"2026Q1",v:101.7,b:"1/1"},{q:"2026Q2",v:41.6,b:"1/1"}]},
-  {pillar:"Investment",source:"S1",cells:[{q:"2025Q3",v:6.8,b:"4/5"},{q:"2025Q4",v:10.9,b:"5/5"},{q:"2026Q1",v:1.9,b:"4/5"},{q:"2026Q2",v:-1.8,b:"3/5"}]},
-  {pillar:"Imports",source:"S1",cells:[{q:"2025Q3",v:-3.9,b:"1/3"},{q:"2025Q4",v:36.5,b:"3/3"},{q:"2026Q1",v:12.7,b:"3/3"},{q:"2026Q2",v:16.8,b:"3/3"}]},
-  {pillar:"Supply",source:"S2",cells:[{q:"2025Q3",v:16.1,b:"4/5"},{q:"2025Q4",v:14.0,b:"5/5"},{q:"2026Q1",v:8.1,b:"3/5"},{q:"2026Q2",v:25.3,b:"4/5"}]},
-  {pillar:"China · 3-company CapEx",source:"S3",cells:[{q:"2025Q3",v:-16.8,b:"0/3"},{q:"2025Q4",v:-5.6,b:"1/3"},{q:"2026Q1",v:96.1,b:"3/3"},{q:"2026Q2",v:92.6,b:"3/3"}]},
-] as const;
-type HeatmapPillar = (typeof heatmap)[number]["pillar"];
+const heatmap = corePillarNames.map(pillar=>({pillar,source:pillar==="Hyperscalers"?"S2" as const:"S1" as const}));
+type HeatmapPillar = Pillar;
 
 // Show one quarter after the last complete actual core observation.
 const actualCoreMonth = capexProjection.metadata.anchorMonth;
@@ -140,45 +90,12 @@ const heatmapEnd = heatmapEndDate.toISOString().slice(0,7);
 const heatmapMonths = [...new Set([...coreScores.months.map(row=>row.month), ...capexProjection.months.map(row=>row.month)])].filter(month=>month<=heatmapEnd).sort();
 const displayedCoreScore = (month:string) => atmosphereHistory.find(([date])=>date===month)?.[1] ?? capexProjection.months.find(p=>p.month===month)?.value ?? null;
 const heatmapQuarters = [...new Set(heatmapMonths.map(month=>`${month.slice(0,4)} Q${Math.ceil(Number(month.slice(5))/3)}`))];
-const monthlyHeatmap = heatmap.map(row => ({...row,quarterly:row.pillar.includes("CapEx")||row.pillar==="Supply",monthlyCells:heatmapMonths.map(month=>{
+const monthlyHeatmap = heatmap.map(row => ({...row,quarterly:row.pillar==="Hyperscalers",monthlyCells:heatmapMonths.map(month=>{
  const quarter=`${month.slice(0,4)}Q${Math.ceil(Number(month.slice(5))/3)}`;
  const members=coreScores.months.find(d=>d.month===month)?.rows.filter(r=>r.pillar===row.pillar)??[];
- const complete=members.length>0&&members.every(r=>r.score!==null);
- return {month,quarter,value:row.pillar==="Supply"&&month>actualCoreMonth ? capexProjection.months.find(p=>p.month===month)?.supplyScore??null : complete?members.reduce((s,r)=>s+r.score!*r.weight/.2,0):null,breadth:`${members.filter(r=>r.score!==null&&r.score>50).length}/${members.length}`};
-})})).filter(row=>row.pillar!=="China · 3-company CapEx");
-
-const latestCapexPulse = [
-  {ticker:"MSFT",v:28.5},{ticker:"GOOGL",v:25.8},{ticker:"META",v:57.0},{ticker:"AMZN",v:23.9},{ticker:"ORCL",v:-11.3},
-] as const;
-
-const chinaCapexHistory = [
-  {q:"2024Q1",Tencent:5.4,Alibaba:14.7,Baidu:2.04},{q:"2024Q2",Tencent:7.2,Alibaba:11.9,Baidu:2.12},
-  {q:"2024Q3",Tencent:12.0,Alibaba:17.5,Baidu:1.65},{q:"2024Q4",Tencent:36.6,Alibaba:31.8,Baidu:2.33},
-  {q:"2025Q1",Tencent:27.5,Alibaba:25.7,Baidu:2.90},{q:"2025Q2",Tencent:19.1,Alibaba:38.7,Baidu:3.80},
-  {q:"2025Q3",Tencent:13.0,Alibaba:31.5,Baidu:3.80},{q:"2025Q4",Tencent:19.6,Alibaba:25.4,Baidu:1.97},
-  {q:"2026Q1",Tencent:31.2,Alibaba:30.6,Baidu:6.08},{q:"2026Q2",Tencent:52.8,Alibaba:67.7,Baidu:11.40},
-] as const;
-
-const cdsSnapshot = {
-  asOf:"16 Sep 2026", oneMonth:1.9252, threeMonth:8.2692, composite:-5.0972, coverage:25,
-} as const;
-
-const fundamentalSnapshot = {
-  asOf:"30 Jun 2026", q2Coverage:26, q1Fallback:6, median:49.6381538462,
-  topQuartile1m:-11.3202337450, bottomQuartile1m:-4.6032705742, correlation1m:-0.3068002452,
-} as const;
-
-const fundamentalLeaders = [
-  {rank:1,ticker:"SNDK",company:"Sandisk",score:84.7240,cohort:"2026Q2",revenue:50.7,capex:4.4},
-  {rank:2,ticker:"ANET",company:"Arista Networks",score:77.1644,cohort:"2026Q2",revenue:12.1,capex:45.5},
-  {rank:3,ticker:"NVDA",company:"NVIDIA",score:74.9963,cohort:"2026Q1",revenue:19.8,capex:-36.8},
-  {rank:4,ticker:"MU",company:"Micron",score:74.3356,cohort:"2026Q2",revenue:73.7,capex:-22.5},
-  {rank:5,ticker:"WDC",company:"Western Digital",score:72.2486,cohort:"2026Q2",revenue:12.3,capex:25.5},
-] as const;
-
-const bondSnapshot = {
-  asOf:"16 Sep 2026", latest:5.739625, mom:-82.972, rolling12m:400.6744695, issues12m:174,
-} as const;
+ const weight=members.reduce((sum,r)=>sum+r.effectiveWeight,0);
+ return {month,quarter,value:row.pillar==="Hyperscalers"&&month>actualCoreMonth ? capexProjection.months.find(p=>p.month===month)?.supplyScore??null : weight>0?members.reduce((s,r)=>s+(r.score??0)*r.effectiveWeight/weight,0):null,breadth:`${members.filter(r=>r.score!==null&&r.score>50).length}/${members.length}`};
+})}));
 
 const clampScore=(value:number)=>Math.max(0,Math.min(100,value));
 const coreAtmosphereScore=atmosphereHistory.at(-1)![1];
@@ -201,58 +118,6 @@ const satelliteOverlay = {
   ready:fundamentalOverlayReady&&creditOverlayReady,
 } as const;
 
-const bondHistory = [
-  {month:"Sep 25",amount:24.0,issues:11},{month:"Oct 25",amount:15.456555,issues:7},{month:"Nov 25",amount:70.00165,issues:26},
-  {month:"Jan 26",amount:4.5,issues:4},{month:"Feb 26",amount:52.5064,issues:20},{month:"Mar 26",amount:82.5655515,issues:32},
-  {month:"Apr 26",amount:1.0,issues:1},{month:"May 26",amount:49.03846,issues:29},{month:"Jun 26",amount:35.0198,issues:12},
-  {month:"Jul 26",amount:32.877703,issues:12},{month:"Aug 26",amount:33.70835,issues:20},{month:"Sep 26*",amount:5.739625,issues:4},
-] as const;
-
-const cdsIssuers = [
-  {issuer:"Microsoft",ticker:"MSFT",role:"Hyperscalers",latest:25.0,oneMonth:1.7,threeMonth:2.0},
-  {issuer:"Amazon",ticker:"AMZN",role:"Hyperscalers",latest:45.1,oneMonth:-0.1,threeMonth:0.4},
-  {issuer:"Alphabet",ticker:"GOOGL",role:"Hyperscalers",latest:39.1,oneMonth:0.1,threeMonth:0.0},
-  {issuer:"Meta Platforms",ticker:"META",role:"Hyperscalers",latest:47.3,oneMonth:-0.2,threeMonth:8.3},
-  {issuer:"Oracle",ticker:"ORCL",role:"Hyperscalers",latest:169.3,oneMonth:-4.0,threeMonth:19.1},
-  {issuer:"NVIDIA",ticker:"NVDA",role:"Accelerators & logic",latest:25.0,oneMonth:1.7,threeMonth:2.0},
-  {issuer:"AMD",ticker:"AMD",role:"Accelerators & logic",latest:60.7,oneMonth:2.2,threeMonth:11.4},
-  {issuer:"Broadcom",ticker:"AVGO",role:"Accelerators & logic",latest:52.6,oneMonth:1.1,threeMonth:5.7},
-  {issuer:"Intel",ticker:"INTC",role:"Accelerators & logic",latest:148.7,oneMonth:1.3,threeMonth:25.8},
-  {issuer:"Texas Instruments",ticker:"TXN",role:"Accelerators & logic",latest:47.1,oneMonth:4.0,threeMonth:18.3},
-  {issuer:"TSMC",ticker:"TSM",role:"Accelerators & logic",latest:23.8,oneMonth:-2.7,threeMonth:-4.7},
-  {issuer:"ASML",ticker:"ASML",role:"Semiconductor equipment",latest:23.2,oneMonth:-0.3,threeMonth:-4.4},
-  {issuer:"Applied Materials",ticker:"AMAT",role:"Semiconductor equipment",latest:80.0,oneMonth:8.5,threeMonth:36.1},
-  {issuer:"Samsung Electronics",ticker:"005930",role:"Memory & storage",latest:35.8,oneMonth:-3.7,threeMonth:-6.8},
-  {issuer:"SK Hynix",ticker:"000660",role:"Memory & storage",latest:38.6,oneMonth:-4.1,threeMonth:-6.7},
-  {issuer:"Micron",ticker:"MU",role:"Memory & storage",latest:82.4,oneMonth:2.9,threeMonth:10.2},
-  {issuer:"Western Digital",ticker:"WDC",role:"Memory & storage",latest:101.7,oneMonth:9.2,threeMonth:30.5},
-  {issuer:"Seagate",ticker:"STX",role:"Memory & storage",latest:94.6,oneMonth:10.9,threeMonth:29.6},
-  {issuer:"Dell",ticker:"DELL",role:"Systems & networking",latest:127.2,oneMonth:6.1,threeMonth:20.3},
-  {issuer:"Cisco",ticker:"CSCO",role:"Systems & networking",latest:31.6,oneMonth:2.0,threeMonth:8.6},
-  {issuer:"TE Connectivity",ticker:"TEL",role:"Systems & networking",latest:45.9,oneMonth:0.1,threeMonth:-1.1},
-  {issuer:"Equinix",ticker:"EQIX",role:"Data centers",latest:41.5,oneMonth:6.9,threeMonth:-7.0},
-  {issuer:"Iron Mountain",ticker:"IRM",role:"Data centers",latest:102.6,oneMonth:2.7,threeMonth:9.7},
-  {issuer:"Eaton",ticker:"ETN",role:"Power",latest:58.0,oneMonth:3.6,threeMonth:3.5},
-  {issuer:"Vistra",ticker:"VST",role:"Power",latest:86.9,oneMonth:-1.8,threeMonth:-4.0},
-] as const;
-
-const cdsRoleQuarterly = [
-  {quarter:"2025Q4",Hyperscalers:25.6,"Accelerators & logic":52.2,"Semiconductor equipment":31.8,"Memory & storage":78.7,"Systems & networking":39.5,"Data centers":78.5,Power:81.5},
-  {quarter:"2026Q1",Hyperscalers:40.2,"Accelerators & logic":51.1,"Semiconductor equipment":36.1,"Memory & storage":77.8,"Systems & networking":48.6,"Data centers":64.2,Power:69.7},
-  {quarter:"2026Q2",Hyperscalers:39.5,"Accelerators & logic":42.9,"Semiconductor equipment":37.3,"Memory & storage":64.2,"Systems & networking":48.2,"Data centers":64.9,Power:72.3},
-  {quarter:"2026Q3*",Hyperscalers:45.1,"Accelerators & logic":49.8,"Semiconductor equipment":51.6,"Memory & storage":82.4,"Systems & networking":45.9,"Data centers":72.1,Power:72.4},
-] as const;
-
-const hyperscalerDebtCapital = [
-  {quarter:"2025Q4",value:28.1},{quarter:"2026Q1",value:26.3},{quarter:"2026Q2",value:30.1},
-] as const;
-
-const roleLeverageSnapshot = [
-  {role:"Hyperscalers",value:1.0,coverage:"5 / 5"},{role:"Accelerators & logic",value:-1.9,coverage:"3 / 6"},
-  {role:"Semiconductor equipment",value:-1.0,coverage:"2 / 2"},{role:"Memory & storage",value:-0.2,coverage:"3 / 5"},
-  {role:"Systems & networking",value:2.9,coverage:"2 / 3"},{role:"Data centers",value:21.1,coverage:"2 / 2"},{role:"Power",value:9.5,coverage:"2 / 2"},
-] as const;
-
 const aiRoles: readonly {role:AiRole;label:string;description:string}[] = [
   {role:"Hyperscalers",label:"Hyperscalers",description:"Cloud platforms, model hosting and enterprise compute capacity"},
   {role:"Accelerators & logic",label:"Accelerators & logic",description:"AI accelerators, custom silicon, foundry and diversified logic"},
@@ -268,7 +133,6 @@ const cdsRoleOverview = aiRoles.map(meta=>{
   return {...meta,members,oneMonth:members.reduce((sum,c)=>sum+c.oneMonth,0)/members.length,threeMonth:members.reduce((sum,c)=>sum+c.threeMonth,0)/members.length};
 });
 
-const companyColors: Record<Exclude<Company,"Aggregate">,string> = {Microsoft:"#1d7f80",Alphabet:"#4a83b5",Meta:"#747cae",Amazon:"#2381aa",Oracle:"#779bbb"};
 
 function Source({id}:{id:"S1"|"S2"|"S3"|"S4"|"S5"|"S6"}) { return <a className="source-chip" href={`#source-${id}`}>{id}</a>; }
 
@@ -305,11 +169,6 @@ function LineChart({data,neutral}:{data:readonly (readonly [string,number])[];ne
     <polyline points={points} className="signal-line"/>
     {data.map((d,i)=><g key={d[0]}><circle cx={x(i)} cy={y(d[1])} r={i===data.length-1?6:3} className="signal-point"><title>{`${d[0]}: ${d[1]}`}</title></circle>{(i%6===0||i===data.length-1)&&<text x={x(i)} y={h-14} textAnchor="middle">{d[0]}</text>}</g>)}
   </svg>;
-}
-
-function CapexChart({company}:{company:Company}) {
-  return <OwnerTimeSeries title="Quarterly hyperscaler capital expenditure" unit="USD billions" money
-    selected={company} data={capexHistory.map(d=>({period:d.q,total:d.total,owners:{Microsoft:d.Microsoft,Alphabet:d.Alphabet,Meta:d.Meta,Amazon:d.Amazon,Oracle:d.Oracle}}))}/>;
 }
 
 function ChinaCapexChart({company}:{company:ChinaCompany}) {
@@ -465,12 +324,75 @@ function formatScore(value:number|null){return value===null?"—":value.toFixed(
 function formatBp(value:number|null){return value===null?"—":`${value>0?"+":""}${value.toFixed(1)} bp`;}
 function formatIndex(value:number|null){return value===null?"Unavailable":value.toFixed(1);}
 
+const infrastructureAreas = [
+  {name:"Data centers", status:"Epoch estimates 9.18 GW of operational IT capacity across five owners.", outlook:"CBRE tracked 7.48 GW under construction in eight U.S. markets in H1 2026, 80.4% preleased."},
+  {name:"Power & electricity", status:"LBNL estimates U.S. data centers used 192 TWh in 2024.", outlook:"LBNL’s 2026 update puts its 2028 reference at 464 TWh. PJM revisions show regional load expectations."},
+  {name:"Compute & networking", status:"Epoch estimates 13.34 million H100 equivalents owned in Q1 2026, with partial coverage.", outlook:"Follow equipment orders and GPU rents for procurement and near-term tightness."},
+  {name:"Memory & storage", status:"DDR5 and NAND spot prices are available daily. DRAM and NAND exports are monthly.", outlook:"Compare spot prices with export growth to see whether pricing and shipments move together."},
+] as const;
+
+function InfrastructureBrowser() {
+  const [grouping, setGrouping] = useState<"area" | "type">("area");
+  const [selection, setSelection] = useState(0);
+  const byArea = [
+    {name:"Data centers", content:<><ElectricityCapacity part="facilities"/><InfrastructureDeployment compact part="facilities"/></>},
+    {name:"Power & electricity", content:<ElectricityCapacity part="power"/>},
+    {name:"Compute & networking", content:<><InfrastructureSignals stage="commitments"/><InfrastructureSignals stage="execution"/><InfrastructureDeployment compact part="compute"/><InfrastructureSignals stage="tightness"/></>},
+    {name:"Memory & storage", content:<><InfrastructureSignals stage="memoryExports"/><InfrastructureSignals stage="memoryPrices"/></>},
+  ];
+  const byType = [
+    {name:"Orders", content:<InfrastructureSignals stage="commitments"/>},
+    {name:"Imports & exports", content:<><InfrastructureSignals stage="execution"/><InfrastructureSignals stage="memoryExports"/></>},
+    {name:"Construction & leasing", content:<ElectricityCapacity part="facilities"/>},
+    {name:"Installed capacity", content:<InfrastructureDeployment compact/>},
+    {name:"Prices", content:<><InfrastructureSignals stage="tightness"/><InfrastructureSignals stage="memoryPrices"/><p><a href="#weekly-pulse">View weekly GPU rental and memory price signals ↑</a></p></>},
+    {name:"Electricity demand", content:<ElectricityCapacity part="power" powerView="demand"/>},
+    {name:"Forecasts & scenarios", content:<ElectricityCapacity part="power" powerView="outlook"/>},
+  ];
+  const groups = grouping === "area" ? byArea : byType;
+  const active = groups[selection];
+  return <div className="infra-browser">
+    <h3>Status &amp; outlook</h3>
+    <div className="infra-overview">
+      {infrastructureAreas.map((area,index) => <article className="research-card" key={area.name}>
+        <h4><button type="button" onClick={() => {setGrouping("area");setSelection(index);document.getElementById("infra-evidence")?.scrollIntoView();}}>{area.name}</button></h4>
+        <p><strong>Status.</strong> {area.status}</p>
+        <p><strong>Outlook.</strong> {area.outlook}</p>
+      </article>)}
+    </div>
+    <div id="infra-evidence">
+      <h3>Infrastructure evidence</h3>
+      <div className="pulse-frequency-tabs" role="group" aria-label="Group infrastructure charts">
+        <button type="button" aria-pressed={grouping === "area"} onClick={() => {setGrouping("area");setSelection(0);}}>By area</button>
+        <button type="button" aria-pressed={grouping === "type"} onClick={() => {setGrouping("type");setSelection(0);}}>By data type</button>
+      </div>
+      <div className="pulse-frequency-tabs" role="group" aria-label="Select evidence category">
+        {groups.map((group,index) => <button key={group.name} type="button" aria-pressed={selection === index} onClick={() => setSelection(index)}>{group.name}</button>)}
+      </div>
+      <div key={grouping+active.name} aria-label={active.name}>{active.content}</div>
+    </div>
+  </div>;
+}
+
 export default function Home(){
+  const [pulseTab, setPulseTab] = useState<"monthly" | "weekly">("monthly");
+  useEffect(() => {
+    const syncPulseTab = () => {
+      if (location.hash === "#weekly-pulse") {
+        setPulseTab("weekly");
+        requestAnimationFrame(() => document.getElementById("heatmap")?.scrollIntoView());
+      } else if (location.hash === "#heatmap") {
+        setPulseTab("monthly");
+      }
+    };
+    syncPulseTab();
+    window.addEventListener("hashchange", syncPulseTab);
+    return () => window.removeEventListener("hashchange", syncPulseTab);
+  }, []);
   const [contributionMonth,setContributionMonth]=useState("2026-06");
-  const [pillar,setPillar]=useState<Pillar>("Demand");
+  const [pillar,setPillar]=useState<Pillar>("Infrastructure");
   const [compositeSelection,setCompositeSelection]=useState<HeatmapPillar | "Official core index">("Official core index");
-  const [heatmapPillar,setHeatmapPillar]=useState<HeatmapPillar>("Demand");
-  const [company,setCompany]=useState<Company>("Aggregate");
+  const [heatmapPillar,setHeatmapPillar]=useState<HeatmapPillar>("Infrastructure");
   const [capexCountry,setCapexCountry]=useState<CapexCountry>("United States");
   const [chinaCompany,setChinaCompany]=useState<ChinaCompany>("All companies");
   const [priceMetric,setPriceMetric]=useState<PriceMetric>("change1m");
@@ -487,15 +409,7 @@ export default function Home(){
     const values=constituentHistory.map(row=>row.cells[index].value as number|null).filter((value):value is number=>value!==null);
     return {month,value:monthlyHeatmap.find(row=>row.pillar===compositeSelection)?.monthlyCells[index].value??null,low:values.length?Math.min(...values):null,high:values.length?Math.max(...values):null};
   });
-  const visibleSeries=useMemo(()=>{
- const base=series.filter(s=>s.pillar===pillar);
- if(pillar==="Adoption")return latestCore.rows.filter(r=>r.pillar==='Adoption').map(r=>({pillar:"Adoption",name:r.name,ticker:r.ticker,value:`${r.growth?.toFixed(1)}% window change`,yoy:null,status:r.ticker.startsWith("OPENROUTER")?"Included · 10% weight · estimated nominal spending · provisional":"Included · 10% weight · matched nominal spending · provisional"}));
- if(pillar!=="Demand")return base;
- const hardware=workbookAmendments.demand.map(s=>{const p=[...s.cells].reverse().find(p=>p.month<="2026-08"&&p.level!==null)!;return {pillar:"Demand",name:s.name,ticker:s.field.replace(" Index",""),value:p.level!.toLocaleString(undefined,{maximumFractionDigits:2}),yoy:p.yoy,status:`${"Included · Demand"} · ${p.month}`};});
- const ramp=latestCore.rows.find(r=>r.ticker==="RAMP_MEDIAN_SPEND")!;
- const tokens:typeof base=[];
- return [...hardware,{pillar:"Demand",name:ramp.name,ticker:ramp.ticker,value:`$${ramp.level?.toFixed(2)} / employee`,yoy:ramp.growth,status:"Included · June 2026 · 3M-average YoY · 5% weight"},...tokens,...base.filter(s=>s.ticker!=="KOTCDRAM")];
- },[pillar]);
+  const visibleSeries=latestCore.rows.filter(r=>r.pillar===pillar).map(r=>({name:r.name,ticker:r.ticker,value:r.level?.toFixed(2)??"n/a",yoy:r.growth,status:`${(r.effectiveWeight*100).toFixed(2)}% effective weight`}));
   const chainStats=useMemo(()=>industryChain.map(node=>{
     const values=node.companies.map(c=>priceRows[c.ticker]?.[priceMetric] ?? null).filter((value):value is number=>value!==null);
     const fundamentalValues=node.companies.map(c=>priceRows[c.ticker]?.fundamentalComposite ?? null).filter((value):value is number=>value!==null);
@@ -565,7 +479,7 @@ export default function Home(){
   return <main id="top">
     <header className="topbar">
       <a className="brand" href="#top"><span className="brand-mark">AIA</span><span>AI Investment<br/>Atmosphere</span></a>
-      <nav aria-label="Primary"><a href="#guide">Overview</a><a href="#heatmap">Core index</a><a href="#adoption">Adoption</a><a href="#monetization">Monetization</a><a href="#hyperscalers">Hyperscalers</a><a href="#utilization">Infrastructure</a><a href="#market">Market</a><details className="nav-more"><summary>More</summary><div><a href="#financial">Funding &amp; recovery</a><a href="#chain">Industry context</a><a href="#methodology">Methodology &amp; sources</a></div></details></nav>
+      <nav aria-label="Primary"><a href="#guide">Overview</a><a href="#heatmap" onClick={() => setPulseTab("monthly")}>Core index</a><a href="#adoption">Adoption</a><a href="#monetization">Monetization</a><a href="#hyperscalers">Hyperscalers</a><a href="#utilization">Infrastructure</a><a href="#market">Market</a><details className="nav-more"><summary>More</summary><div><a href="#policy">Policy</a><a href="#financial">Funding &amp; recovery</a><a href="#chain">Industry context</a><a href="#methodology">Methodology &amp; sources</a></div></details></nav>
       <div className="asof"><span className="live-dot"/>Market data · {workbookAmendments.metadata.creditAsOf}</div>
     </header>
 
@@ -573,7 +487,7 @@ export default function Home(){
       <div className="hero-copy">
         <div className="eyebrow">AI INVESTMENT ATMOSPHERE · PUBLIC EQUITY RESEARCH</div>
         <h1>AI spending is rising.<br/><em>Can profits catch up?</em></h1>
-        <p>Five equally weighted pillars track token usage, hardware demand, investment activity, equipment imports and hyperscaler CapEx. The research follows that activity into capacity, monetization, cash generation and returns, then tests it against equity and credit markets.</p>
+        <p>Four equally weighted pillars track adoption, monetization, hyperscalers and infrastructure. The research follows that activity into capacity, monetization, cash generation and returns, then tests it against equity and credit markets.</p>
         <div className="atmosphere-switch" aria-label="Atmosphere score view">{([{"id":"core","label":"Core","score":satelliteOverlay.core},{"id":"adjusted","label":"Satellite-adjusted","score":satelliteOverlay.adjusted}] as const).map(view=><button key={view.id} className={atmosphereView===view.id?"selected":""} onClick={()=>setAtmosphereView(view.id)} aria-pressed={atmosphereView===view.id} disabled={view.id==="adjusted"&&!satelliteOverlay.ready}><span>{view.label}</span><b>{formatIndex(view.score)}</b></button>)}</div>
         <div className="hero-foot">Core score: June 2026 <Source id="S1"/> · Equity and CDS observations through {workbookAmendments.metadata.creditAsOf} <Source id="S4"/><Source id="S5"/> · Financial periods vary by company; supplementary score adjustments retain their 16 Sep vintage.</div>
       </div>
@@ -586,7 +500,7 @@ export default function Home(){
       <div className="guide-intro">
         <div className="eyebrow">EXECUTIVE SUMMARY · INVESTMENT CONCLUSION</div>
         <h2 id="guide-title">AI capacity is arriving faster than evidence of capital productivity.</h2>
-        <p>The revised June core index stands at {latestCore.score?.toFixed(1)} (methodology v2.8), using separate Ramp business-sample and OpenRouter routed-volume signals for Adoption; volume and price changes combine into nominal spending growth; adoption breadth provides context. Hyperscaler CapEx reached a record $188.3B in 2026Q2. The five covered hyperscalers owned an estimated 13.34 million H100 equivalents by 2026Q1, and cash investment absorbed 77.3% of operating cash flow across Microsoft, Alphabet, Amazon and Meta.</p>
+        <p>The revised June core index stands at {latestCore.score?.toFixed(1)} (methodology v3.0), using separate Ramp business-sample and OpenRouter routed-volume signals for Adoption; volume and price changes combine into nominal spending growth; adoption breadth provides context. Hyperscaler CapEx reached a record $188.3B in 2026Q2. The five covered hyperscalers owned an estimated 13.34 million H100 equivalents by 2026Q1, and cash investment absorbed 77.3% of operating cash flow across Microsoft, Alphabet, Amazon and Meta.</p>
         <p>Epoch estimates 6.15 million H100 equivalents in use across five frontier labs at year-end 2025. Under a 30% effective-utilization scenario, one frontier training run represents 0.28%–4.20% of a covered lab&apos;s annual compute capacity. Fleet economics therefore depend on recurring inference, experimentation and external cloud workloads.</p>
         <p>The core index places the covered signals above their historical norms; it does not establish an expansion or contraction threshold. Hyperscalers brings together cloud revenue, RPO, capital spending, cash coverage and returns. Infrastructure follows equipment commitments into delivered capacity. These research groupings preserve the five underlying index weights.</p>
         <div className="guide-conclusion"><b>Investment conclusion</b><span>The investment case depends on paid utilization and cloud profit catching up with the capital base. Improving incremental ROIC and cash coverage would provide the clearest confirmation.</span></div>
@@ -594,23 +508,23 @@ export default function Home(){
       <ol className="guide-path" aria-label="Research reading path">
         <li><a href="#adoption"><span>01</span><div><b>Adoption</b><small>Business-sample and routed token volumes; volume and price changes combine into nominal spending growth; adoption breadth provides context.</small></div></a></li>
         <li><a href="#demand"><span>02</span><div><b>Business spending</b><small>Supporting demand context.</small></div></a></li>
-        <li><a href="#monetization"><span>03</span><div><b>Monetization</b><small>US frontier-lab revenue and valuations; China is a supplementary overlay. Future core pillar, currently unweighted.</small></div></a></li>
+        <li><a href="#monetization"><span>03</span><div><b>Monetization</b><small>US frontier-lab revenue and valuations; China is a supplementary overlay. Business and consumer spending plus released lab revenue contribute to the core.</small></div></a></li>
         <li><a href="#hyperscalers"><span>03</span><div><b>Hyperscalers</b><small>Cloud revenue, RPO, capital spending, cash funding and returns.</small></div></a></li>
         <li><a href="#utilization"><span>04</span><div><b>Infrastructure</b><small>Equipment commitments, facilities and installed compute track physical delivery.</small></div></a></li>
         <li><a href="#financial"><span>05</span><div><b>Funding & recovery</b><small>Training costs and financing dependencies frame recovery.</small></div></a></li>
         <li><a href="#market"><span>06</span><div><b>Market</b><small>Equity returns, credit spreads and financing demand.</small></div></a></li>
       </ol>
-      <p className="guide-orientation"><a href="#chain">Explore the industry value chain.</a> <a href="#heatmap">Track the core index and momentum heatmap.</a> <a href="#hyperscalers">Assess cloud demand, cash generation and returns</a>.</p>
+      <p className="guide-orientation"><a href="#chain">Explore the industry value chain.</a> <a href="#heatmap">Track the core index and momentum heatmap.</a> <a href="#hyperscalers">Assess cloud demand, cash generation and returns.</a> <a href="#data-freshness">Check data freshness by section.</a></p>
     </section>
 
     <section className="snapshot" aria-label="Headline indicators">
-      <article><span>Core activity score</span><strong>{formatIndex(coreAtmosphereScore)}</strong><small>June · last complete comparable month</small></article>
-      <article><span>June activity breadth</span><strong>Broad</strong><small>all five pillars above their historical norms</small></article>
+      <article><span>Core activity score</span><strong>{formatIndex(coreAtmosphereScore)}</strong><small>June · latest observed month</small></article>
+      <article><span>June activity breadth</span><strong>Broad</strong><small>pillar scores relative to historical norms</small></article>
       <article><span>Quarterly CapEx</span><strong>$188.3B</strong><small className="up">+79.3% YoY</small></article>
-      <article><span>Core pillars above historical norm</span><strong>{Object.values(coreByPillar).filter(v=>v>50).length} / 5</strong><small>methodology v2 · June pillar scores</small></article>
+      <article><span>Core pillars above historical norm</span><strong>{Object.values(coreByPillar).filter(v=>v>50).length} / 4</strong><small>methodology v2 · June pillar scores</small></article>
     </section>
 
-    <details className="overlay-disclosure"><summary>View supplementary financial and credit adjustment · excluded from the five-pillar core</summary><section className="overlay-bridge" aria-label="Supplementary satellite overlay bridge">
+    <details className="overlay-disclosure"><summary>View supplementary financial and credit adjustment · excluded from the four-pillar core</summary><section className="overlay-bridge" aria-label="Supplementary satellite overlay bridge">
       <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
       <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
       <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 25 issuers</small></article>
@@ -618,48 +532,63 @@ export default function Home(){
       <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
     </section></details>
 
-    <section className="heatmap-overview" id="heatmap" aria-labelledby="heatmap-title">
+    <DataFreshness/>
+    <section className="heatmap-overview" id="heatmap" aria-label="AI activity pulse">
+      <div className="pulse-frequency-tabs" role="tablist" aria-label="Pulse frequency" onKeyDown={event => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === "Home" ? "monthly" : event.key === "End" ? "weekly" : pulseTab === "monthly" ? "weekly" : "monthly";
+        setPulseTab(next);
+        document.getElementById(`pulse-tab-${next}`)?.focus();
+      }}>
+        {(["monthly", "weekly"] as const).map(tab => <button key={tab} type="button" role="tab" id={`pulse-tab-${tab}`} aria-controls={`pulse-panel-${tab}`} aria-selected={pulseTab === tab} tabIndex={pulseTab === tab ? 0 : -1} onClick={() => setPulseTab(tab)}>{tab === "monthly" ? "Monthly core index" : "Weekly pulse"}</button>)}
+      </div>
+      <div role="tabpanel" id="pulse-panel-monthly" aria-labelledby="pulse-tab-monthly" hidden={pulseTab !== "monthly"}>
       <div className="heatmap-head"><div><div className="eyebrow">MONTHLY CONSTITUENT SCORE HEATMAP</div><h2 id="heatmap-title">Adoption and demand are strong; capital spending remains above its historical norm.</h2><p>January 2024–September 2026 · each constituent compared with its own history · 50 = historical norm · relative strength, not zero growth</p></div><div className="heat-legend continuous-legend" aria-label="Continuous heatmap legend"><div className="continuous-scale"><i/><span>0 · Below norm</span><span>50 · Norm</span><span>100 · Above norm</span></div><span><i className="heat-na"/>Unavailable</span></div></div>
-      <SectionSummary current={`Methodology v2.8 puts the June core score at ${latestCore.score?.toFixed(1)}. Adoption scores ${coreByPillar.Adoption.toFixed(1)} and Demand ${coreByPillar.Demand.toFixed(1)}. Nominal spending growth drives Adoption; surveys and paid-adoption rates provide breadth context. Demand combines hardware activity and paid spending. Five pillar weights remain 20% each.`} conclusion="The buildout remains broad. The next test is whether paid usage, cash generation and incremental returns justify the expanding capital base."/>
+      <SectionSummary current={`Methodology v3.0 puts the June core score at ${latestCore.score?.toFixed(1)}. Adoption scores ${coreByPillar.Adoption.toFixed(1)} and Infrastructure ${coreByPillar.Infrastructure.toFixed(1)}. Nominal spending growth drives Adoption; surveys and paid-adoption rates provide breadth context. Monetization includes business spending, consumer card spending and released lab revenue. Available pillars share the index equally.`} conclusion="The buildout remains broad. The next test is whether paid usage, cash generation and incremental returns justify the expanding capital base."/>
       <div className="core-heatmap-workbench">
       <div className="compact-heatmap-panel">
-        <p className="compact-heatmap-instruction">Read each row across time: a shift toward green indicates a rising signal; toward red, a falling signal. Colors use a continuous scale relative to each constituent’s own history. Available constituent observations extend through September 2026; some source values may be carried forward. CapEx and conditional core estimates fill July–September cells and carry an E label. The display stops one quarter after the last complete actual core observation; other missing cells stay blank. The headline remains the last complete composite, June 2026. The normalization baseline remains fixed through June. Select a pillar to inspect its constituents.</p>
+        <p className="compact-heatmap-instruction">Read each row across time: a shift toward green indicates a rising signal; toward red, a falling signal. Colors use a continuous scale relative to each constituent’s own history. Available constituent observations extend through September 2026; some source values may be carried forward. CapEx and conditional core estimates fill July–September cells and carry an E label. The display stops one quarter after the last complete actual core observation; other missing cells stay blank. The headline uses the approved actual cutoff, June 2026. Available constituents are reweighted within pillars and available pillars share the index equally. The normalization baseline remains fixed through June. Select a pillar to inspect its constituents.</p>
       <div className="heat-table-wrap"><table className="heat-table monthly-heat-table compact-heat-table">
 
         <thead><tr><th rowSpan={2}>Pillar / scoring basis</th>{heatmapQuarters.map(quarter=><th key={quarter} colSpan={3}>{quarter}</th>)}</tr>
           <tr>{heatmapMonths.map((month,index)=><th key={month} className={index%3===0?"quarter-start":""}>{new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US",{month:"short",timeZone:"UTC"})}</th>)}</tr></thead>
         <tbody><tr className={`core-score-row ${compositeSelection==="Official core index"?"selected":""}`}><th><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"}>Core index / estimate<small>Solid history · E = conditional estimate</small></button></th>{heatmapMonths.map((month,index)=>{const score=displayedCoreScore(month);const estimated=month>actualCoreMonth;return <td key={month} style={scoreHeatStyle(score)} className={`${scoreHeatClass(score)} ${index%3===0?"quarter-start":""}`}><button type="button" onClick={()=>{setCompositeSelection("Official core index");setContributionMonth(month>actualCoreMonth?actualCoreMonth:month);}} aria-pressed={compositeSelection==="Official core index"} aria-label={`Official core index, ${month}: ${score??"unavailable"}`} title={`${month} · ${estimated?"Conditional estimate; other pillars held at June scores":"Actual core"} ${score??"unavailable"}`}>{score===null?"":`${score.toFixed(0)}${estimated?" E":""}`}</button></td>})}</tr>{monthlyHeatmap.map(row=><tr key={row.pillar} className={compositeSelection===row.pillar?"selected":""}>
-          <th><button type="button" onClick={()=>selectHeatmapPillar(row.pillar)} aria-pressed={compositeSelection===row.pillar}>{row.pillar}<small>{row.quarterly?"Core 20% · TTM score held":"Core 20% · normalized"}{row.pillar==="Demand"?" · hardware / spending":""}</small></button><Source id={row.source}/></th>
+          <th scope="row"><HeatmapPillarLabel pillar={row.pillar} quarterly={row.quarterly} selected={compositeSelection===row.pillar} onSelect={()=>selectHeatmapPillar(row.pillar)}/><Source id={row.source}/></th>
           {row.monthlyCells.map((cell,index)=><td key={cell.month} style={scoreHeatStyle(cell.value)} className={`${scoreHeatClass(cell.value)} ${index%3===0?"quarter-start":""}`}><button type="button" onClick={()=>{selectHeatmapPillar(row.pillar);setContributionMonth(cell.month);}} aria-label={`${row.pillar}, ${cell.month}: ${cell.value===null?"unavailable":`${cell.value.toFixed(1)} score`}, ${row.quarterly?`${cell.quarter} trailing-four-quarter score held within quarter`:"normalized constituent score"}`} aria-pressed={compositeSelection===row.pillar} title={`${cell.month} · ${row.quarterly?`${cell.quarter} normalized TTM score held`:"Normalized score"} · ${cell.value===null?"unavailable":`${cell.value.toFixed(1)} points`}`}>{cell.value===null?"":`${cell.value.toFixed(0)}${row.quarterly&&cell.month>actualCoreMonth?" E":""}`}</button></td>)}
         </tr>)}</tbody>
       </table></div>
       </div>
-      <CoreHeatmapChart title={compositeSelection} corePoints={heatmapMonths.map(month=>({month,value:atmosphereHistory.find(([date])=>date===month)?.[1]??null}))} points={compositePoints} official={compositeSelection==="Official core index"} quarterly={compositeSelection==="Supply"}/>
+      <CoreHeatmapChart title={compositeSelection} corePoints={heatmapMonths.map(month=>({month,value:atmosphereHistory.find(([date])=>date===month)?.[1]??null}))} points={compositePoints} official={compositeSelection==="Official core index"} quarterly={compositeSelection==="Hyperscalers"}/>
       </div>
 
-      {heatmapPillar==="Demand"&&<DemandHeatmap/>}
+      {heatmapPillar==="Infrastructure"&&<DemandHeatmap/>}
 
-      {compositeSelection==="Supply"&&<SupplyPanel/>}
       <CoreContributions month={contributionMonth} onMonthChange={setContributionMonth} published={legacyAtmosphereHistory.find(([month])=>month===contributionMonth)?.[1]??null}/>
 
       <details className="constituent-history" open><summary>Historical constituent trends · {heatmapPillar}</summary>
-        <div className="constituent-history-heading"><h3>{heatmapPillar} · monthly constituent history</h3><p>{heatmapPillar==="China · 3-company CapEx"?"Supplementary market view · excluded from core index":"Core pillar · 20% weight"} · normalized constituent scores · 50 = historical norm · relative strength, not zero growth</p></div>
+        <div className="constituent-history-heading"><h3>{heatmapPillar} · monthly constituent history</h3><p>{"Core pillar · 25% nominal weight"} · normalized constituent scores · 50 = historical norm · relative strength, not zero growth</p></div>
         <div className="heat-table-wrap"><table className="heat-table monthly-heat-table constituent-heat-table"><thead><tr><th>Underlying signal</th>{heatmapMonths.map(month=><th key={month}>{month.slice(2)}</th>)}</tr></thead><tbody>{constituentHistory.map(row=><tr key={row.ticker}><th>{row.name}<small>{row.ticker}</small></th>{row.cells.map((cell,index)=><td key={cell.month} style={scoreHeatStyle(cell.value)} className={`${scoreHeatClass(cell.value)} ${index%3===0?"quarter-start":""}`} title={`${cell.treatment} · signal ${cell.signal?.toFixed(2)??"n/a"} · ${row.name} · ${cell.month} · ${cell.value===null?"Missing input":`${cell.value.toFixed(1)} score`} · source level ${cell.level??"unavailable"}`}><strong>{cell.value===null?"":cell.value.toFixed(1)}</strong></td>)}</tr>)}</tbody></table></div>
       </details>
-      {heatmapPillar==="Supply"&&<div className="heatmap-detail-wrap"><table><caption>Company detail · supplementary to the combined CapEx signal</caption><thead><tr><th>Company</th><th>2026Q2 CapEx ($B)</th><th>Trailing 4Q YoY growth</th></tr></thead><tbody>{latestCore.companyCapexRows.map(row=><tr key={row.ticker}><td>{row.name}</td><td>{row.level?.toFixed(2)??"n/a"}</td><td>{row.growth===null?"n/a":`${row.growth.toFixed(1)}%`}</td></tr>)}</tbody></table><p>Combined growth = total spending in the latest four quarters ÷ total spending in the preceding four quarters − 1. Company growth rates are not averaged. Consolidated CapEx includes spending beyond AI.</p></div>}
       <div className="core-research-extension"><b>Additional evidence around the core pillars</b><p>Follow the demand and capacity evidence behind the investment thesis.</p><div><a href="#token-activity">Demand: daily and weekly token activity</a><a href="#labs">Monetization: US frontier-lab revenue and run rates</a><a href="#useful-task-economics">Adoption: successful-task affordability</a><a href="#infrastructure">Investment: operational capacity and installed compute</a></div></div>
       <div className="heatmap-drilldown" aria-live="polite">
         <div className="heatmap-drilldown-head"><div><span>SELECTED PILLAR · CONSTITUENTS</span><h3>{heatmapPillar}</h3></div><p>June 2026 · source level and scoring transformation</p></div>
         <div className="heatmap-detail-wrap"><table><thead><tr><th>Constituent</th><th>Ticker</th><th>Latest</th><th>Scoring signal</th><th>Score / supplementary momentum</th></tr></thead><tbody>{heatmapDetails.map(item=><tr key={item.ticker}><td><b>{item.name}</b></td><td><code>{item.ticker}</code></td><td>{item.latest}</td><td className={item.change===null?"muted":item.isTokens?"":item.change>=0?"positive":"negative"}>{item.change===null?"n/a":`${item.change>0?"+":""}${item.change.toFixed(1)}${item.isTokens?"":"%"} ${item.basis}`}</td><td>{item.status}</td></tr>)}</tbody></table></div>
       </div>
+      {heatmapPillar==="Hyperscalers"&&<details className="evidence-data"><summary>Company CapEx breakdown · 2026 Q2</summary><div className="heatmap-detail-wrap"><table><caption>Company detail · supplementary to the combined CapEx signal</caption><thead><tr><th>Company</th><th>2026Q2 CapEx ($B)</th><th>Trailing 4Q YoY growth</th></tr></thead><tbody>{latestCore.companyCapexRows.map(row=><tr key={row.ticker}><td>{row.name}</td><td>{row.level?.toFixed(2)??"n/a"}</td><td>{row.growth===null?"n/a":`${row.growth.toFixed(1)}%`}</td></tr>)}</tbody></table><p>Combined growth = total spending in the latest four quarters ÷ total spending in the preceding four quarters − 1. Company growth rates are not averaged. Consolidated CapEx includes spending beyond AI.</p></div></details>}
+      {compositeSelection==="Hyperscalers"&&<details className="evidence-data"><summary>CapEx and RPO forecasts, hardware prices, and supply-chain financials</summary><SupplyPanel/></details>}
       <div className="current-pulse"><div><span>Latest complete CapEx quarter</span><strong>2026Q2 constituent QoQ</strong></div>{latestCapexPulse.map(c=><div key={c.ticker} className={c.v>=0?"pulse-up":"pulse-down"}><span>{c.ticker}</span><b>{c.v>0?"+":""}{c.v.toFixed(1)}%</b></div>)}</div>
 
       <SectionNotes section="heatmap"/>
+      </div>
+      <div role="tabpanel" id="pulse-panel-weekly" aria-labelledby="pulse-tab-weekly" hidden={pulseTab !== "weekly"}>
+        <WeeklyPulse/>
+      </div>
     </section>
 
     <section className="section" id="pulse">
       <div className="section-head"><div><div className="eyebrow">CORE INDEX · PILLAR DETAIL</div><h2>Demand is strong across the equipment buildout.</h2></div><p>Core pillar scores · supporting demand evidence</p></div>
-      <SectionSummary current={`The revised core index is ${latestCore.score?.toFixed(1)} for June (methodology v2.8). Paid adoption and median spending add evidence of business willingness to pay. Cash generation and capital returns provide the next economic test.`} conclusion="Equipment demand remains broad; the next test is whether the buildout converts into cash generation and higher incremental returns."/>
+      <SectionSummary current={`The revised core index is ${latestCore.score?.toFixed(1)} for June (methodology v3.0). Paid adoption and median spending add evidence of business willingness to pay. Cash generation and capital returns provide the next economic test.`} conclusion="Equipment demand remains broad; the next test is whether the buildout converts into cash generation and higher incremental returns."/>
 
 
       <div className="pillar-layout">
@@ -669,24 +598,20 @@ export default function Home(){
         <aside className="pillar-detail"><div><span className="detail-kicker">SELECTED PILLAR</span><h3>{pillar}</h3><p>{pillars[pillar].note}</p></div><div className="detail-stat"><span>Core breadth</span><strong>{pillars[pillar].breadth}</strong></div></aside>
       </div>
 
-      {pillar==="Demand"&&<p className="compact-heatmap-instruction">DRAM, NAND, TSMC and median spending each carry 5% of the core. Ramp matched and OpenRouter estimated spending growth belong to Adoption, at 10% each. Equipment imports belong exclusively to the separate Imports pillar; their comparison appears in the later Demand research section. Core breadth excludes contextual indicators. Latest observations below may be newer than the June scoring period.</p>}
-      {pillar!=="Supply"&&<div className="signal-table-wrap"><table><thead><tr><th>Underlying signal</th><th>Ticker</th><th>Latest</th><th>YoY</th><th>Role in index</th></tr></thead><tbody>{visibleSeries.map(s=><tr key={s.ticker}><td>{s.name}</td><td><code>{s.ticker}</code></td><td>{s.value}</td><td className={s.yoy===null?"muted":s.yoy>=0?"positive":"negative"}>{s.yoy===null?"n/a":`${s.yoy>0?"+":""}${s.yoy.toFixed(1)}%`}</td><td><span className={s.status.startsWith("Included")?"status included":"status context"}>{s.status}</span></td></tr>)}</tbody></table></div>}
+      {<div className="signal-table-wrap"><table><thead><tr><th>Underlying signal</th><th>Ticker</th><th>Latest</th><th>YoY</th><th>Role in index</th></tr></thead><tbody>{visibleSeries.map(s=><tr key={s.ticker}><td>{s.name}</td><td><code>{s.ticker}</code></td><td>{s.value}</td><td className={s.yoy===null?"muted":s.yoy>=0?"positive":"negative"}>{s.yoy===null?"n/a":`${s.yoy>0?"+":""}${s.yoy.toFixed(1)}%`}</td><td><span className={s.status.startsWith("Included")?"status included":"status context"}>{s.status}</span></td></tr>)}</tbody></table></div>}
 
       <SectionNotes section="pulse"/>
     </section>
 
-    <PillarResearch id="adoption" number="01" pillar="Adoption" title="Volume and price together track nominal spending activity." summary="Ramp matched nominal spending growth and OpenRouter estimated nominal spending growth each contribute 10% of the core. Volume and price changes combine multiplicatively before scoring. OpenRouter uses an external Bloomberg price benchmark, so its spending growth is a rough estimate. The six-month baseline is provisional; business surveys and paid-adoption rates retain the breadth view. Platform growth, model mix and token intensity also affect observed volume." historyFooter={<section className="adoption-observations" aria-label="Business adoption observations"><div><span>Current business AI use</span><strong>{latestCore.contextRows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · zero score weight</small></div><div><span>Expected business AI use</span><strong>{latestCore.contextRows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · zero score weight</small></div>
-      <div><span>Ramp paid business AI adoption</span><strong>{latestCore.contextRows.find(r=>r.ticker==="RAMP_PAID_ADOPTION")?.level?.toFixed(1)}%</strong><small>June 2026 · zero score weight · latest month: {rampSnapshot.monthly.at(-1)?.paidAdoption?.toFixed(1)}%</small></div>
-      <SectionNotes section="adoption"/>
-    </section>}>
-    <EvidenceGroup title="Volume" description="Business-sample and broader routed usage are separate Adoption signals."/>
-    <TokenActivity/>
-    <AdoptionPrices/>
+    <PillarResearch id="adoption" number="01" pillar="Adoption" title="From token usage to dollar spending" summary="Volume shows how much compute is used. Unit cost shows how much of that usage translates into spending." historyFooter={<><AdoptionMetrics label="Business adoption observations"><AdoptionMetric><span>Current business AI use</span><strong>{latestCore.contextRows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · zero score weight</small></AdoptionMetric><AdoptionMetric><span>Expected business AI use</span><strong>{latestCore.contextRows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · zero score weight</small></AdoptionMetric>
+      <AdoptionMetric><span>Ramp paid business AI adoption</span><strong>{latestCore.contextRows.find(r=>r.ticker==="RAMP_PAID_ADOPTION")?.level?.toFixed(1)}%</strong><small>June 2026 · zero score weight · latest month: {rampSnapshot.monthly.at(-1)?.paidAdoption?.toFixed(1)}%</small></AdoptionMetric>
+      </AdoptionMetrics><SectionNotes section="adoption"/>
+    </>}>
+    <AdoptionReadthrough/>
+    <div className="adoption-panel-row"><TokenActivity/><AdoptionPrices/></div>
+    <div className="adoption-panel-row adoption-spending-row"><RampWeeklySpending/><AdoptionSpending/></div>
     <EvidenceGroup title="Task affordability" description="Successful-task costs complement token prices."/>
-    <div className="related-evidence-row">
-
-      <div className="evidence-column"><UsefulTaskEconomics compact/></div>
-    </div>
+    <div className="adoption-task-context"><UsefulTaskEconomics compact/></div>
 
     </PillarResearch>
 
@@ -702,17 +627,18 @@ export default function Home(){
       <p className="section-summary">Read cloud revenue and contracted demand alongside capital commitments, then test cash funding and capital productivity. Forecasts describe the outlook; reported cash flow and consolidated returns provide the funding and payback evidence. Company-wide measures include businesses beyond AI.</p>
       <nav className="pillar-crosslink" aria-label="Hyperscalers reading path"><a href="#hyperscaler-demand">Cloud demand</a> · <a href="#hyperscaler-investment">Capital investment</a> · <a href="#sustainability">Cash funding</a> · <a href="#roic">Capital returns</a></nav>
       <div id="hyperscaler-demand"><HyperscalerDemand/></div><CloudReference/>
-      <div id="hyperscaler-investment"><EvidenceGroup title="Capital commitments" description="Compare historical five-company CapEx with the forward estimates above. Cash CapEx in the funding charts below uses a different, explicitly matched accounting basis."/>
-      <div className="financial-cash-return-row"><><EvidenceCard title="CapEx by company" unit="2026Q2 · USD billions" source="S2" note="Compute proxy follows disclosed or estimated equipment shares." table><table><thead><tr><th>Company</th><th>Total</th><th>Compute proxy</th><th>YoY</th><th>Basis</th></tr></thead><tbody>{constituents.map(c=><tr key={c.ticker}><th>{c.company}</th><td>${c.value.toFixed(1)}B</td><td>${c.proxy.toFixed(1)}B</td><td>+{c.yoy.toFixed(1)}%</td><td>{c.basis}</td></tr>)}</tbody></table></EvidenceCard><div className="evidence-column"><EvidenceCard id="capex" title="Hyperscaler capital expenditure" unit="Quarterly USD billions · company bars and total line" source="S2" note="Stacked bars show company spending; the line shows the five-company total. Company accounting bases differ.">
-      <CapexChart company={company}/>
-    </EvidenceCard>
-    <div className="pillar-controls"><label htmlFor="company">CapEx series </label><select id="company" value={company} onChange={e=>setCompany(e.target.value as Company)}><option>Aggregate</option>{["Microsoft","Alphabet","Meta","Amazon","Oracle"].map(c=><option key={c}>{c}</option>)}</select></div></div></></div></div>
+      <div id="hyperscaler-investment"><EvidenceGroup title="Capital commitments" description="Compare Bloomberg headline CapEx, upcoming fiscal quarter estimates, and the five-company spending trend."/>
+      <HyperscalerCapexLatest/>
+      </div>
+    <section className="hyperscaler-cash-returns" aria-label="Cash generation and capital productivity">
     <EvidenceGroup title="Cash generation and capital productivity" description="Compare cash generation with investment, assess funding headroom, then test whether the expanding capital base earns adequate returns."/>
+    <p className="section-summary">Retained source coverage: cash funding and ROIC through June 2026 for Microsoft, Alphabet, Amazon and Meta; Oracle through March 2026. The latest CapEx workbook does not contain the operating cash flow, NOPAT or invested-capital inputs needed to extend these charts. Cloud revenue and RPO above retain their separately dated source vintage.</p>
     <div className="financial-cash-return-row">
     <InvestmentSustainability compact/>
     <RoicAnalysis compact/>
     </div>
-      <details className="evidence-data"><summary>Usage, investment and returns · supporting comparison</summary><DemandToReturns compact/></details>
+      <details className="evidence-data"><summary>Usage, investment and returns · trends and interpretation</summary><DemandToReturns/></details>
+    </section>
       <details className="evidence-data"><summary>China capital expenditure · supplementary market comparison</summary><ChinaCapexChart company={chinaCompany}/><p>Source S3 · RMB billions · issuer definitions differ.</p><SectionNotes section="capex"/></details>
       <p className="pillar-crosslink"><a href="#utilization">Follow investment into physical infrastructure ↓</a></p>
       <p>Research organization only: existing composite weights are unchanged. Cloud revenue and RPO estimates remain unweighted until fiscal periods and business scopes are reconciled.</p>
@@ -720,17 +646,14 @@ export default function Home(){
 
 
 
-    <PillarResearch id="utilization" number="04" pillar="Infrastructure" history={false} classification="PHYSICAL INFRASTRUCTURE" title="Explore the physical infrastructure stack by product." summary="Orders describe commitments; imports and construction track execution; facility milestones and compute ownership describe capacity; hardware prices indicate market tightness. These stages can diverge. Investment values and ownership do not establish usable capacity or utilization.">
-    <nav className="pillar-crosslink" aria-label="Infrastructure products"><a href="#infra-data-centers">Data Centers</a> · <a href="#infra-power">Power &amp; Electricity</a> · <a href="#infra-compute">Compute &amp; Networking</a> · <a href="#infra-memory">Memory &amp; Storage</a></nav>
-    <div id="infra-data-centers"><EvidenceGroup title="01 · Data Centers" description="Follow construction and leasing into operational IT capacity. Construction expenditure, IT MW and leased capacity are distinct measures."/><ElectricityCapacity part="facilities"/><InfrastructureDeployment compact part="facilities"/></div>
-    <div id="infra-power"><EvidenceGroup title="02 · Power & Electricity" description="Electricity demand and grid forecasts test whether facilities can secure energy. Retail sales are broader than data-center demand; scenarios remain separate from observed capacity."/><ElectricityCapacity part="power"/></div>
-    <div id="infra-compute"><EvidenceGroup title="03 · Compute & Networking" description="Equipment orders and system imports track procurement; owned-compute estimates describe the installed asset base; GPU rents indicate market tightness. Ownership does not establish utilization."/><InfrastructureSignals stage="commitments"/><InfrastructureSignals stage="execution"/><InfrastructureDeployment compact part="compute"/><InfrastructureSignals stage="tightness"/></div>
-    <div id="infra-memory"><EvidenceGroup title="04 · Memory & Storage" description="DRAM and NAND exports track supplier activity; DDR5 and NAND prices indicate pricing conditions. These are broad product markets, not AI-only demand."/><InfrastructureSignals stage="memory"/></div>
-    <details className="evidence-data"><summary>Shared semiconductor and foundry context</summary><InfrastructureSignals stage="shared"/><DemandSupplement/></details>
-    <p>Product groups organize the evidence; existing composite constituents and weights are unchanged. No electrical-equipment shipment or lead-time series has been added.</p>
+    <PillarResearch id="utilization" number="04" pillar="Infrastructure" history={false} classification="PHYSICAL INFRASTRUCTURE" title="From procurement to operating capacity." summary="Track what is being ordered, built, and brought online.">
+      <InfrastructureBrowser/>
+      <details className="evidence-data"><summary>Shared semiconductor and foundry context</summary><InfrastructureSignals stage="shared"/><DemandSupplement/></details>
     </PillarResearch>
 
 
+
+    <PolicyDataCenters/>
 
     <PillarResearch id="financial" number="05" pillar="Funding & recovery" classification="SUPPLEMENTARY RESEARCH" title="Cost recovery and funding dependencies frame the wider investment cycle." summary="Training costs and supplier financing frame the recovery challenge. Cash coverage and consolidated returns now sit with cloud demand and capital commitments in Hyperscalers. Market evidence examines equity performance, credit and bond issuance separately." history={false}>
     <span id="capital-return" className="legacy-section-anchor"/>
@@ -748,6 +671,8 @@ export default function Home(){
 
     <PillarResearch id="market" number="06" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title="Equity returns price the opportunity; credit spreads price financing risk." summary="Market-cap-weighted performance across 36 supply-chain companies tracks market expectations across the value chain, alongside interest rates and non-AI business drivers. Compare sector size and returns with issuer CDS spreads, leverage and covered issuance relative to US IG bond supply. Equity strength can coexist with rising financing pressure; neither establishes realized operating returns. The market evidence supplements the core activity index." history={false}>
     <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
+    <p><a href="#weekly-pulse">View the weekly AI activity pulse ↑</a></p>
+    <SemiconductorMarket/>
     <SupplyChainStockChart/>
     <section className="credit-section" id="credit">
       <EvidenceGroup title="Credit" description="CDS spreads, leverage and bond issuance assess financing risk, balance-sheet capacity and external funding demand."/>
@@ -878,10 +803,10 @@ export default function Home(){
 
     <section className="section methodology" id="methodology">
       <div className="method-title"><div className="eyebrow">METHODOLOGY & DATA DISCLOSURES</div><h2>Signal construction and analytical scope.</h2><p>The core index measures investment momentum. The supplementary overlay adds financial quality and credit conditions. Cash coverage, lab revenue and ROIC provide separate evidence on sustainability and returns.</p></div>
-<SectionNotes section="methodology" source={<><div className="sources"><article id="source-S14"><span>S14</span><div><b>Ramp AI Index — paid adoption and spending</b><p>Saved Ramp public dashboard data, retrieved 13 October 2026 from <a href="https://ramp.com/data/ai-index">Ramp’s public dashboard</a>, through August 2026. Paid adoption is the share of Ramp businesses with observed AI payments, not all U.S. businesses. Median spending is nominal USD per employee per month. Website JSON routes are undocumented; the supported API requires credentials. Provider adoption can overlap. Token volumes come from the separate Ramp TSM sample, aggregated from published model series. Daily rolling-seven-day fields cover a narrower provider sample and are not treated as daily observations. Spend-share and sector/provider breakdowns remain context. Spending calibration has 20 observations through June 2026. Monthly paid adoption/spending end in August, while token weeks run through 27 September. No live refresh is inferred.</p></div></article><article id="source-S1"><span>S1</span><div><b>Indexlist.xlsx — Index Price Value</b><p>Core monthly snapshot through June 2026, with retained Bloomberg data vintage of 16 Sep. The amended workbook supplies NAND exports and TSMC monthly revenue for supplementary demand comparisons through August; September export values carry prior observations. DRAM, NAND and TSMC are core Demand constituents; Ramp spending is added under methodology v2.8.</p></div></article><article id="source-S2"><span>S2</span><div><b>Consolidated U.S. hyperscaler CapEx workbook</b><p>Microsoft, Alphabet, Meta, Amazon and Oracle through calendar 2026Q2; company-specific accounting bases, actual/estimate status and proxy confidence preserved.</p></div></article><article id="source-S3"><span>S3</span><div><b>China cloud CapEx source collection</b><p>Tencent operating CapEx, Alibaba quarterly CapEx and Baidu cash CapEx through 2026Q2. RMB is primary; approximate values, inferred AI shares and issuer-specific definitions remain labeled.</p></div></article><article id="source-S4"><span>S4</span><div><b>Indexlist.xlsx — AI 5yrCDS Value</b><p>Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily observations through 7 Oct 2026, with latest issuer ratings dated 30 Sep 2026. The daily benchmark analysis is refreshed; the supplementary credit adjustment and value-chain signals retain their labeled 16 Sep vintage.</p></div></article><article id="source-S5"><span>S5</span><div><b>Indexlist.xlsx — Supply Chain Financial Value</b><p>Latest reported financial metrics for 36 issuers, including TSMC, SK hynix, Samsung Electronics and Tokyo Electron. Stock observations use Supply Chain Stock Value daily returns and USD market caps through 7 October 2026. Market sector returns use lagged daily cap weights; the treemap uses latest caps. Three missing opening caps use first available proxies; their partial opening return histories are disclosed. Missing interim reports are labeled and receive no freshness penalty.</p></div></article><article id="source-S6"><span>S6</span><div><b>Indexlist.xlsx — Bond Issuance Value</b><p>Issuer-month amounts and issue counts from January 2024 through September 2026, plus monthly US IG corporate issuance through partial October. Both queries use USD amounts. Covered issuers include other countries and ratings, so the displayed ratio measures relative issuance scale rather than a strict US IG market share. January 2026 has no covered records and remains a gap. Latest-month completeness is not certified.</p></div></article><article id="source-S11"><span>S11</span><div><b>Epoch AI — AI chip owners, users and data centers</b><p>Owner-level chip estimates through 2026Q1, year-end 2025 lab-use estimates and 93 facility records through September 2026. H100e, power and workload values are modeled estimates rather than measures of realized utilization or financial return.</p></div></article></div><div className="sources"><article id="source-S9"><span>S9</span><div><b>OpenRouter daily rankings — refreshed 7 October 2026</b><p>Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-07T08:18:10.306Z. The daily API history runs from January 2025 through 6 October 2026, with model-level top-50 rows and an aggregate long-tail bucket. The adoption chart includes Q3 with 92/92 days; Q4 remains partial and is excluded. Historical missing days are excluded from observed-day averages. Financial trend comparisons remain matched through Q2 because Q3 financial observations are unavailable. OpenRouter measures routed adoption, not model quality, provider-direct traffic or revenue. <a href="https://openrouter.ai/docs/api/api-reference/datasets/get-rankings-daily">Dataset methodology</a></p></div></article><article id="source-S10"><span>S10</span><div><b>Epoch AI and sourced disclosures — OpenAI and Anthropic</b><p>Media-reported and investor-disclosed operating observations through September 2026. The analysis separates recognized revenue from ARR, preserves floors and approximate values, and excludes incomparable margin definitions from the headline comparison.</p></div></article><article id="source-S12"><span>S12</span><div><b>Epoch AI — frontier models and machine-learning hardware</b><p>Frontier-model training-cost estimates in constant 2023 dollars and selected accelerator specifications. Models without cost estimates are excluded. <a href="https://epoch.ai/data">Dataset documentation</a></p></div></article><article id="source-S13"><span>S13</span><div><b>Task observations and Epoch AI — cost per successful task</b><p>Model-version prices are combined with benchmark success rates and assumed tokens per attempt. Protocol and model-class differences limit direct comparison.</p></div></article></div></>} methodology={<>      <div className="method-steps">
+<SectionNotes section="methodology" source={<><div className="sources"><article id="source-S14"><span>S14</span><div><b>Ramp AI Index — paid adoption and spending</b><p>Saved Ramp public dashboard data, retrieved 13 October 2026 from <a href="https://ramp.com/data/ai-index">Ramp’s public dashboard</a>, through August 2026. Paid adoption is the share of Ramp businesses with observed AI payments, not all U.S. businesses. Median spending is nominal USD per employee per month. Website JSON routes are undocumented; the supported API requires credentials. Provider adoption can overlap. Token volumes come from the separate Ramp TSM sample, aggregated from published model series. Daily rolling-seven-day fields cover a narrower provider sample and are not treated as daily observations. Spend-share and sector/provider breakdowns remain context. Spending calibration has 20 observations through June 2026. Monthly paid adoption/spending end in August, while token weeks run through 27 September. No live refresh is inferred.</p></div></article><article id="source-S1"><span>S1</span><div><b>Indexlist.xlsx — Index Price Value</b><p>Core monthly snapshot through June 2026, with retained Bloomberg data vintage of 16 Sep. The amended workbook supplies NAND exports and TSMC monthly revenue for supplementary demand comparisons through August; September export values carry prior observations. DRAM, NAND and TSMC are core Demand constituents; Ramp spending is added under methodology v3.0.</p></div></article><article id="source-S2"><span>S2</span><div><b>Consolidated U.S. hyperscaler CapEx workbook</b><p>Microsoft, Alphabet, Meta, Amazon and Oracle through calendar 2026Q2; company-specific accounting bases, actual/estimate status and proxy confidence preserved.</p></div></article><article id="source-S3"><span>S3</span><div><b>China cloud CapEx source collection</b><p>Tencent operating CapEx, Alibaba quarterly CapEx and Baidu cash CapEx through 2026Q2. RMB is primary; approximate values, inferred AI shares and issuer-specific definitions remain labeled.</p></div></article><article id="source-S4"><span>S4</span><div><b>Indexlist.xlsx — AI 5yrCDS Value</b><p>Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily observations through 7 Oct 2026, with latest issuer ratings dated 30 Sep 2026. The daily benchmark analysis is refreshed; the supplementary credit adjustment and value-chain signals retain their labeled 16 Sep vintage.</p></div></article><article id="source-S5"><span>S5</span><div><b>Indexlist.xlsx — Supply Chain Financial Value</b><p>Latest reported financial metrics for 36 issuers, including TSMC, SK hynix, Samsung Electronics and Tokyo Electron. Stock observations use Supply Chain Stock Value daily returns and USD market caps through 7 October 2026. Market sector returns use lagged daily cap weights; the treemap uses latest caps. Three missing opening caps use first available proxies; their partial opening return histories are disclosed. Missing interim reports are labeled and receive no freshness penalty.</p></div></article><article id="source-S6"><span>S6</span><div><b>Indexlist.xlsx — Bond Issuance Value</b><p>Issuer-month amounts and issue counts from January 2024 through September 2026, plus monthly US IG corporate issuance through partial October. Both queries use USD amounts. Covered issuers include other countries and ratings, so the displayed ratio measures relative issuance scale rather than a strict US IG market share. January 2026 has no covered records and remains a gap. Latest-month completeness is not certified.</p></div></article><article id="source-S11"><span>S11</span><div><b>Epoch AI — AI chip owners, users and data centers</b><p>Owner-level chip estimates through 2026Q1, year-end 2025 lab-use estimates and 93 facility records through September 2026. H100e, power and workload values are modeled estimates rather than measures of realized utilization or financial return.</p></div></article></div><div className="sources"><article id="source-S9"><span>S9</span><div><b>OpenRouter daily rankings — refreshed 7 October 2026</b><p>Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-07T08:18:10.306Z. The daily API history runs from January 2025 through 6 October 2026, with model-level top-50 rows and an aggregate long-tail bucket. The adoption chart includes Q3 with 92/92 days; Q4 remains partial and is excluded. Historical missing days are excluded from observed-day averages. Financial trend comparisons remain matched through Q2 because Q3 financial observations are unavailable. OpenRouter measures routed adoption, not model quality, provider-direct traffic or revenue. <a href="https://openrouter.ai/docs/api/api-reference/datasets/get-rankings-daily">Dataset methodology</a></p></div></article><article id="source-S10"><span>S10</span><div><b>Epoch AI and sourced disclosures — OpenAI and Anthropic</b><p>Media-reported and investor-disclosed operating observations through September 2026. The analysis separates recognized revenue from ARR, preserves floors and approximate values, and excludes incomparable margin definitions from the headline comparison.</p></div></article><article id="source-S12"><span>S12</span><div><b>Epoch AI — frontier models and machine-learning hardware</b><p>Frontier-model training-cost estimates in constant 2023 dollars and selected accelerator specifications. Models without cost estimates are excluded. <a href="https://epoch.ai/data">Dataset documentation</a></p></div></article><article id="source-S13"><span>S13</span><div><b>Task observations and Epoch AI — cost per successful task</b><p>Model-version prices are combined with benchmark success rates and assumed tokens per attempt. Protocol and model-class differences limit direct comparison.</p></div></article></div></>} methodology={<>      <div className="method-steps">
         <article><span>01</span><h3>Normalize momentum</h3><p>Each included series is converted to YoY change, then standardized against its own available history. This avoids adding incomparable source-native units.</p></article>
         <article><span>02</span><h3>Score each pillar</h3><p>Signal score = 50 + 15 × z-score, capped at 0–100. Macro series are equally weighted within their pillars. The CapEx pillar scores the growth of combined five-company spending.</p></article>
-        <article><span>03</span><h3>Build the atmosphere</h3><p>Adoption, Demand, Investment, Imports and Supply receive equal 20% pillar weights. Adoption scores nominal spending growth. Supply scores CapEx growth and DDR5/H100 price momentum. Other activity series retain their smoothed annual-growth treatments. A score above 50 indicates a stronger signal than its historical norm.</p></article>
+        <article><span>03</span><h3>Build the atmosphere</h3><p>Adoption, Monetization, Hyperscalers and Infrastructure each have a nominal 25% weight. Adoption scores nominal spending growth. Monetization combines Ramp business spending, consumer card spending and comparable lab revenue updates. Hyperscalers scores CapEx growth. Infrastructure includes equipment, construction and hardware pricing. A score above 50 indicates a stronger signal than its historical norm.</p></article>
         <article><span>04</span><h3>Add satellites separately</h3><p>The adjusted score adds bounded fundamental and credit deltas to the core. Bond issuance stays at zero weight until January 2026 is restored, September is complete and historical normalization is resolved. Nominal token spending growth enters Adoption at 20%, using a provisional six-month baseline. OpenRouter spending is estimated using an external benchmark; Ramp spending is matched within each window.</p></article>
       </div>
 <div className="note-formulas"><b>SUPPLEMENTARY ADJUSTMENT FORMULA</b><p><code>Adjusted = clamp(Core + Fundamental Δ + Credit Δ, 0, 100)</code></p><p><code>Fundamental Δ = 10% × (median Fundamental Composite − 50)</code></p><p><code>Credit score = clamp(50 + 2.5 × CDS Change Signal, 0, 100)</code></p><p><code>Credit Δ = 10% × (Credit score − 50)</code></p><p>Each satellite delta is bounded to ±5 points. Core and satellite weights are not renormalized; missing values are not observed zeros. The adjusted score is withheld below financial/CDS coverage thresholds.</p></div></>} other={      <div className="limitations"><h3>Limits that matter for interpretation</h3><ul><li>Preserve Bloomberg units, seasonal-adjustment flags, release dates and point-in-time vintages.</li><li>Replace PREV-filled observations with explicit freshness and stale-value controls.</li><li>Backfill January 2026 bond issuance before publishing rolling-12-month YoY.</li><li>Add sector-neutral and size-neutral tests to the financial screen; cap extreme CapEx ranks only after sensitivity analysis.</li><li>Run alternative pillar weights, outlier controls and benchmark-relative backtests before integrating satellites.</li><li>Separate actual and forecast atmosphere indices before adding forward quarters.</li><li>A global aggregate requires consistent FX conversion, CapEx definitions, constituent weights and missing-proxy rules.</li></ul></div>}/>

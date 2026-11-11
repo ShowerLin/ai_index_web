@@ -2574,6 +2574,854 @@ export const adoptionPriceSnapshot = {
       "tokens": 71801022246159.0
     }
   ],
+  "rampPublishedWeekly": [
+    {
+      "end": "2025-01-10",
+      "value": 0.9421876917373364,
+      "coverage": 0.9747237271380426,
+      "matchedModels": 21,
+      "totalModels": 41,
+      "spendUsd": 535664.6391689589,
+      "tokens": 568532834664.0
+    },
+    {
+      "end": "2025-01-17",
+      "value": 0.9889181846470443,
+      "coverage": 0.9708044113135814,
+      "matchedModels": 20,
+      "totalModels": 37,
+      "spendUsd": 539384.3678013881,
+      "tokens": 545428708032.0
+    },
+    {
+      "end": "2025-01-24",
+      "value": 1.248204309638532,
+      "coverage": 0.9706675368053805,
+      "matchedModels": 21,
+      "totalModels": 45,
+      "spendUsd": 647290.6091047298,
+      "tokens": 518577450908.0
+    },
+    {
+      "end": "2025-01-31",
+      "value": 1.2322425847085536,
+      "coverage": 0.9741193790945426,
+      "matchedModels": 23,
+      "totalModels": 47,
+      "spendUsd": 684305.2105375497,
+      "tokens": 555333194153.0
+    },
+    {
+      "end": "2025-02-07",
+      "value": 1.1218428718703881,
+      "coverage": 0.9856240920241568,
+      "matchedModels": 25,
+      "totalModels": 47,
+      "spendUsd": 685664.594265183,
+      "tokens": 611194857549.0
+    },
+    {
+      "end": "2025-02-14",
+      "value": 0.9801379328179004,
+      "coverage": 0.9863197385098853,
+      "matchedModels": 25,
+      "totalModels": 47,
+      "spendUsd": 656594.0525910133,
+      "tokens": 669899644332.0
+    },
+    {
+      "end": "2025-02-21",
+      "value": 1.1428320884056804,
+      "coverage": 0.9876768200544533,
+      "matchedModels": 24,
+      "totalModels": 50,
+      "spendUsd": 833747.91086951,
+      "tokens": 729545415576.0
+    },
+    {
+      "end": "2025-02-28",
+      "value": 0.9873611560440465,
+      "coverage": 0.9896490660917249,
+      "matchedModels": 26,
+      "totalModels": 48,
+      "spendUsd": 896199.6004729851,
+      "tokens": 907671519167.0
+    },
+    {
+      "end": "2025-03-07",
+      "value": 1.1969421377045693,
+      "coverage": 0.9880093063737794,
+      "matchedModels": 27,
+      "totalModels": 48,
+      "spendUsd": 1006591.3718232047,
+      "tokens": 840969116313.0
+    },
+    {
+      "end": "2025-03-14",
+      "value": 1.1075812253816566,
+      "coverage": 0.9869297464453002,
+      "matchedModels": 30,
+      "totalModels": 51,
+      "spendUsd": 906824.6157671125,
+      "tokens": 818743217189.0
+    },
+    {
+      "end": "2025-03-21",
+      "value": 1.307912841077516,
+      "coverage": 0.9854108444731998,
+      "matchedModels": 34,
+      "totalModels": 54,
+      "spendUsd": 1047527.5816325368,
+      "tokens": 800915434678.0
+    },
+    {
+      "end": "2025-03-28",
+      "value": 1.3871396204045725,
+      "coverage": 0.9860883813004291,
+      "matchedModels": 34,
+      "totalModels": 56,
+      "spendUsd": 1128877.8915045734,
+      "tokens": 813817062752.0
+    },
+    {
+      "end": "2025-04-04",
+      "value": 1.3653943266038953,
+      "coverage": 0.9890183022850897,
+      "matchedModels": 34,
+      "totalModels": 55,
+      "spendUsd": 1191736.130633514,
+      "tokens": 872814620226.0
+    },
+    {
+      "end": "2025-04-11",
+      "value": 1.4003703734632902,
+      "coverage": 0.9881011892979302,
+      "matchedModels": 34,
+      "totalModels": 57,
+      "spendUsd": 1182617.0080294854,
+      "tokens": 844503018944.0
+    },
+    {
+      "end": "2025-04-18",
+      "value": 1.4280968232703264,
+      "coverage": 0.9867482949440293,
+      "matchedModels": 40,
+      "totalModels": 66,
+      "spendUsd": 1104669.058986054,
+      "tokens": 773525324744.0
+    },
+    {
+      "end": "2025-04-25",
+      "value": 1.3559818147323024,
+      "coverage": 0.9880266042223432,
+      "matchedModels": 40,
+      "totalModels": 66,
+      "spendUsd": 1250174.6630886742,
+      "tokens": 921970080650.0
+    },
+    {
+      "end": "2025-05-02",
+      "value": 1.3203154254050753,
+      "coverage": 0.9901051047958561,
+      "matchedModels": 40,
+      "totalModels": 64,
+      "spendUsd": 1413270.9607407914,
+      "tokens": 1070404036450.0
+    },
+    {
+      "end": "2025-05-09",
+      "value": 1.2856847853202824,
+      "coverage": 0.9895744262096212,
+      "matchedModels": 40,
+      "totalModels": 65,
+      "spendUsd": 1355846.067254494,
+      "tokens": 1054571138070.0
+    },
+    {
+      "end": "2025-05-16",
+      "value": 1.2574996183211171,
+      "coverage": 0.9891116220895801,
+      "matchedModels": 39,
+      "totalModels": 63,
+      "spendUsd": 1390159.61737907,
+      "tokens": 1105495061092.0
+    },
+    {
+      "end": "2025-05-23",
+      "value": 1.1977321635997096,
+      "coverage": 0.9887328860986946,
+      "matchedModels": 42,
+      "totalModels": 66,
+      "spendUsd": 1406274.8868246048,
+      "tokens": 1174114655649.0
+    },
+    {
+      "end": "2025-05-30",
+      "value": 1.2622098407987017,
+      "coverage": 0.9885911093598623,
+      "matchedModels": 41,
+      "totalModels": 66,
+      "spendUsd": 1388780.1345552984,
+      "tokens": 1100276744536.0
+    },
+    {
+      "end": "2025-06-06",
+      "value": 1.2676068815168091,
+      "coverage": 0.9928396963571934,
+      "matchedModels": 44,
+      "totalModels": 71,
+      "spendUsd": 1559394.197992495,
+      "tokens": 1230187545311.0
+    },
+    {
+      "end": "2025-06-13",
+      "value": 1.3047868395777256,
+      "coverage": 0.9894830131821462,
+      "matchedModels": 43,
+      "totalModels": 70,
+      "spendUsd": 1584191.5443723614,
+      "tokens": 1214138199681.0
+    },
+    {
+      "end": "2025-06-20",
+      "value": 1.2011295677718465,
+      "coverage": 0.990556791534871,
+      "matchedModels": 44,
+      "totalModels": 65,
+      "spendUsd": 1597207.892735669,
+      "tokens": 1329754870408.0
+    },
+    {
+      "end": "2025-06-27",
+      "value": 1.1217535922183401,
+      "coverage": 0.9901865466639109,
+      "matchedModels": 47,
+      "totalModels": 73,
+      "spendUsd": 1730304.1666743641,
+      "tokens": 1542499332008.0
+    },
+    {
+      "end": "2025-07-04",
+      "value": 1.1336943100943861,
+      "coverage": 0.9906719273797965,
+      "matchedModels": 46,
+      "totalModels": 69,
+      "spendUsd": 1788167.1391797466,
+      "tokens": 1577292152971.0
+    },
+    {
+      "end": "2025-07-11",
+      "value": 1.1138126862281088,
+      "coverage": 0.9903525051630032,
+      "matchedModels": 48,
+      "totalModels": 75,
+      "spendUsd": 1999838.826922801,
+      "tokens": 1795489359791.0
+    },
+    {
+      "end": "2025-07-18",
+      "value": 1.0612668220573576,
+      "coverage": 0.9920405722966931,
+      "matchedModels": 47,
+      "totalModels": 79,
+      "spendUsd": 2315533.919222952,
+      "tokens": 2181858389518.0
+    },
+    {
+      "end": "2025-07-25",
+      "value": 1.1488420784846267,
+      "coverage": 0.9935188144829089,
+      "matchedModels": 45,
+      "totalModels": 72,
+      "spendUsd": 2464399.438926705,
+      "tokens": 2145115925922.0
+    },
+    {
+      "end": "2025-08-01",
+      "value": 1.046403819841875,
+      "coverage": 0.994998168862859,
+      "matchedModels": 45,
+      "totalModels": 75,
+      "spendUsd": 2164155.2464174437,
+      "tokens": 2068183626035.0
+    },
+    {
+      "end": "2025-08-08",
+      "value": 1.2766600401088377,
+      "coverage": 0.9945028816782212,
+      "matchedModels": 49,
+      "totalModels": 79,
+      "spendUsd": 2484343.622213416,
+      "tokens": 1945971162379.0
+    },
+    {
+      "end": "2025-08-15",
+      "value": 1.3094722514169508,
+      "coverage": 0.9958380924172803,
+      "matchedModels": 49,
+      "totalModels": 72,
+      "spendUsd": 2598969.1855501393,
+      "tokens": 1984745520753.0
+    },
+    {
+      "end": "2025-08-22",
+      "value": 1.1721398816720263,
+      "coverage": 0.9954796465481912,
+      "matchedModels": 51,
+      "totalModels": 73,
+      "spendUsd": 2553657.5887374766,
+      "tokens": 2178628701802.0
+    },
+    {
+      "end": "2025-08-29",
+      "value": 0.9636514394847832,
+      "coverage": 0.9963428564004676,
+      "matchedModels": 53,
+      "totalModels": 75,
+      "spendUsd": 2620876.6392012862,
+      "tokens": 2719735094883.0
+    },
+    {
+      "end": "2025-09-05",
+      "value": 0.9999321311852862,
+      "coverage": 0.9963880243429478,
+      "matchedModels": 52,
+      "totalModels": 74,
+      "spendUsd": 2665430.8078050963,
+      "tokens": 2665611719713.0
+    },
+    {
+      "end": "2025-09-12",
+      "value": 1.0248678267891291,
+      "coverage": 0.996364450470031,
+      "matchedModels": 53,
+      "totalModels": 76,
+      "spendUsd": 2709978.539044639,
+      "tokens": 2644222472604.0
+    },
+    {
+      "end": "2025-09-19",
+      "value": 0.9676319654297232,
+      "coverage": 0.9973963423195706,
+      "matchedModels": 53,
+      "totalModels": 78,
+      "spendUsd": 3383796.261469345,
+      "tokens": 3496986852813.0
+    },
+    {
+      "end": "2025-09-26",
+      "value": 1.0346188665316203,
+      "coverage": 0.9965095886109242,
+      "matchedModels": 56,
+      "totalModels": 82,
+      "spendUsd": 3396284.9905034583,
+      "tokens": 3282643590184.0
+    },
+    {
+      "end": "2025-10-03",
+      "value": 0.9834692302845154,
+      "coverage": 0.9965697956480357,
+      "matchedModels": 59,
+      "totalModels": 77,
+      "spendUsd": 3835997.8644930115,
+      "tokens": 3900475730576.0
+    },
+    {
+      "end": "2025-10-10",
+      "value": 1.0475559978423359,
+      "coverage": 0.9973113968447829,
+      "matchedModels": 66,
+      "totalModels": 85,
+      "spendUsd": 4689535.3288618885,
+      "tokens": 4476644053894.0
+    },
+    {
+      "end": "2025-10-17",
+      "value": 1.0729675316117504,
+      "coverage": 0.9977324708985927,
+      "matchedModels": 72,
+      "totalModels": 87,
+      "spendUsd": 5036629.737725331,
+      "tokens": 4694111973882.0
+    },
+    {
+      "end": "2025-10-24",
+      "value": 1.0215917646606285,
+      "coverage": 0.9976088172464255,
+      "matchedModels": 69,
+      "totalModels": 81,
+      "spendUsd": 4705246.393871646,
+      "tokens": 4605799064399.0
+    },
+    {
+      "end": "2025-10-31",
+      "value": 1.0252144312214662,
+      "coverage": 0.9974457251747346,
+      "matchedModels": 75,
+      "totalModels": 88,
+      "spendUsd": 4928581.372616309,
+      "tokens": 4807366364073.0
+    },
+    {
+      "end": "2025-11-07",
+      "value": 1.0136311137310574,
+      "coverage": 0.997885207525145,
+      "matchedModels": 70,
+      "totalModels": 84,
+      "spendUsd": 5067250.835603476,
+      "tokens": 4999107433622.0
+    },
+    {
+      "end": "2025-11-14",
+      "value": 0.9946573141859021,
+      "coverage": 0.9977882971210612,
+      "matchedModels": 75,
+      "totalModels": 91,
+      "spendUsd": 5093778.755260375,
+      "tokens": 5121139394053.0
+    },
+    {
+      "end": "2025-11-21",
+      "value": 1.0232825964126373,
+      "coverage": 0.9972843399014577,
+      "matchedModels": 72,
+      "totalModels": 92,
+      "spendUsd": 5182531.824545248,
+      "tokens": 5064614450313.0
+    },
+    {
+      "end": "2025-11-28",
+      "value": 1.0370200464246206,
+      "coverage": 0.9972804469047587,
+      "matchedModels": 78,
+      "totalModels": 94,
+      "spendUsd": 4724949.7698301375,
+      "tokens": 4556276212905.0
+    },
+    {
+      "end": "2025-12-05",
+      "value": 1.0304266424628428,
+      "coverage": 0.9979284168854873,
+      "matchedModels": 77,
+      "totalModels": 93,
+      "spendUsd": 5940010.625878343,
+      "tokens": 5764612812884.0
+    },
+    {
+      "end": "2025-12-12",
+      "value": 1.018044110221675,
+      "coverage": 0.9980886344576134,
+      "matchedModels": 87,
+      "totalModels": 108,
+      "spendUsd": 6172910.6708042,
+      "tokens": 6063500204780.0
+    },
+    {
+      "end": "2025-12-19",
+      "value": 0.9692291731144409,
+      "coverage": 0.997924548886053,
+      "matchedModels": 88,
+      "totalModels": 121,
+      "spendUsd": 5486064.07135281,
+      "tokens": 5660234156721.0
+    },
+    {
+      "end": "2025-12-26",
+      "value": 0.9428131451152343,
+      "coverage": 0.9976425384850424,
+      "matchedModels": 86,
+      "totalModels": 106,
+      "spendUsd": 3813192.934956479,
+      "tokens": 4044484269988.0
+    },
+    {
+      "end": "2026-01-02",
+      "value": 0.8376512801818544,
+      "coverage": 0.9962061138916211,
+      "matchedModels": 77,
+      "totalModels": 98,
+      "spendUsd": 3342881.545296832,
+      "tokens": 3990779485911.0
+    },
+    {
+      "end": "2026-01-09",
+      "value": 0.9384017858400685,
+      "coverage": 0.9981878963730922,
+      "matchedModels": 80,
+      "totalModels": 97,
+      "spendUsd": 5398387.79066986,
+      "tokens": 5752746714817.0
+    },
+    {
+      "end": "2026-01-16",
+      "value": 0.9363508140524766,
+      "coverage": 0.9971796306755535,
+      "matchedModels": 85,
+      "totalModels": 108,
+      "spendUsd": 6122095.239004445,
+      "tokens": 6538249497011.0
+    },
+    {
+      "end": "2026-01-23",
+      "value": 0.9577763808533639,
+      "coverage": 0.9976980533513911,
+      "matchedModels": 91,
+      "totalModels": 110,
+      "spendUsd": 6535249.849391866,
+      "tokens": 6823356662407.0
+    },
+    {
+      "end": "2026-01-30",
+      "value": 0.9872006929570306,
+      "coverage": 0.9968501888968978,
+      "matchedModels": 88,
+      "totalModels": 107,
+      "spendUsd": 7928327.978443213,
+      "tokens": 8031120758936.0
+    },
+    {
+      "end": "2026-02-06",
+      "value": 0.9819445683185227,
+      "coverage": 0.9973861157913168,
+      "matchedModels": 99,
+      "totalModels": 123,
+      "spendUsd": 8399541.858533094,
+      "tokens": 8553987800876.0
+    },
+    {
+      "end": "2026-02-13",
+      "value": 1.0339538835409445,
+      "coverage": 0.9979863842191108,
+      "matchedModels": 98,
+      "totalModels": 121,
+      "spendUsd": 9649351.927304123,
+      "tokens": 9332478054300.0
+    },
+    {
+      "end": "2026-02-20",
+      "value": 1.0884389992219663,
+      "coverage": 0.9985810248348437,
+      "matchedModels": 97,
+      "totalModels": 117,
+      "spendUsd": 10226323.315746488,
+      "tokens": 9395403254621.0
+    },
+    {
+      "end": "2026-02-27",
+      "value": 1.1011667570834118,
+      "coverage": 0.9987820261051851,
+      "matchedModels": 106,
+      "totalModels": 124,
+      "spendUsd": 12392889.681668531,
+      "tokens": 11254326015519.0
+    },
+    {
+      "end": "2026-03-06",
+      "value": 1.0608916288060541,
+      "coverage": 0.9988699945666878,
+      "matchedModels": 114,
+      "totalModels": 138,
+      "spendUsd": 13568240.558444234,
+      "tokens": 12789468961796.0
+    },
+    {
+      "end": "2026-03-13",
+      "value": 1.0343420152484637,
+      "coverage": 0.9990260757980532,
+      "matchedModels": 114,
+      "totalModels": 134,
+      "spendUsd": 13965044.061974768,
+      "tokens": 13501379481931.0
+    },
+    {
+      "end": "2026-03-20",
+      "value": 1.0261546137002264,
+      "coverage": 0.9990020228832969,
+      "matchedModels": 125,
+      "totalModels": 150,
+      "spendUsd": 13793725.447950698,
+      "tokens": 13442151176626.0
+    },
+    {
+      "end": "2026-03-27",
+      "value": 0.899097304310423,
+      "coverage": 0.9990320020702832,
+      "matchedModels": 131,
+      "totalModels": 167,
+      "spendUsd": 12615495.38275287,
+      "tokens": 14031290409027.0
+    },
+    {
+      "end": "2026-04-03",
+      "value": 0.8867738177993388,
+      "coverage": 0.9990511032463522,
+      "matchedModels": 127,
+      "totalModels": 152,
+      "spendUsd": 13137096.549270157,
+      "tokens": 14814484015633.0
+    },
+    {
+      "end": "2026-04-10",
+      "value": 0.8518348899922358,
+      "coverage": 0.9975756458182969,
+      "matchedModels": 115,
+      "totalModels": 155,
+      "spendUsd": 13073701.785274664,
+      "tokens": 15347694651711.0
+    },
+    {
+      "end": "2026-04-17",
+      "value": 0.8114451692684364,
+      "coverage": 0.9979756371871257,
+      "matchedModels": 123,
+      "totalModels": 159,
+      "spendUsd": 14076137.629397498,
+      "tokens": 17346997877981.0
+    },
+    {
+      "end": "2026-04-24",
+      "value": 0.7570968826798824,
+      "coverage": 0.9988239140891523,
+      "matchedModels": 125,
+      "totalModels": 157,
+      "spendUsd": 15016323.158976747,
+      "tokens": 19834083989124.0
+    },
+    {
+      "end": "2026-05-01",
+      "value": 0.783809102481309,
+      "coverage": 0.9987321311844376,
+      "matchedModels": 142,
+      "totalModels": 171,
+      "spendUsd": 16598982.01709074,
+      "tokens": 21177327444327.0
+    },
+    {
+      "end": "2026-05-08",
+      "value": 0.746242345485474,
+      "coverage": 0.9986836145988225,
+      "matchedModels": 140,
+      "totalModels": 172,
+      "spendUsd": 16386089.915058173,
+      "tokens": 21958134665218.0
+    },
+    {
+      "end": "2026-05-15",
+      "value": 0.7916798923294487,
+      "coverage": 0.9979256023093191,
+      "matchedModels": 140,
+      "totalModels": 176,
+      "spendUsd": 18440435.127021737,
+      "tokens": 23292792081358.0
+    },
+    {
+      "end": "2026-05-22",
+      "value": 0.7658363404632904,
+      "coverage": 0.99765212758246,
+      "matchedModels": 142,
+      "totalModels": 180,
+      "spendUsd": 18504488.60284903,
+      "tokens": 24162458250094.0
+    },
+    {
+      "end": "2026-05-29",
+      "value": 0.7515460211633476,
+      "coverage": 0.9954978960759209,
+      "matchedModels": 126,
+      "totalModels": 155,
+      "spendUsd": 17480321.810868546,
+      "tokens": 23259150229829.0
+    },
+    {
+      "end": "2026-06-05",
+      "value": 0.7467085281889778,
+      "coverage": 0.9950779486432634,
+      "matchedModels": 129,
+      "totalModels": 164,
+      "spendUsd": 20273118.359835897,
+      "tokens": 27149975652488.0
+    },
+    {
+      "end": "2026-06-12",
+      "value": 0.7800323203265332,
+      "coverage": 0.9945051430194244,
+      "matchedModels": 123,
+      "totalModels": 157,
+      "spendUsd": 21329506.995846253,
+      "tokens": 27344388738812.0
+    },
+    {
+      "end": "2026-06-19",
+      "value": 0.7245009304340153,
+      "coverage": 0.995133851408412,
+      "matchedModels": 128,
+      "totalModels": 165,
+      "spendUsd": 20306494.91394911,
+      "tokens": 28028252360952.0
+    },
+    {
+      "end": "2026-06-26",
+      "value": 0.7275928318308865,
+      "coverage": 0.9938507378935982,
+      "matchedModels": 128,
+      "totalModels": 168,
+      "spendUsd": 21092400.775864605,
+      "tokens": 28989291610788.0
+    },
+    {
+      "end": "2026-07-03",
+      "value": 0.7087864030675244,
+      "coverage": 0.998336808473734,
+      "matchedModels": 163,
+      "totalModels": 198,
+      "spendUsd": 20723626.652310036,
+      "tokens": 29238183129108.0
+    },
+    {
+      "end": "2026-07-10",
+      "value": 0.7439340007870413,
+      "coverage": 0.9984192418389162,
+      "matchedModels": 153,
+      "totalModels": 184,
+      "spendUsd": 25489963.9561539,
+      "tokens": 34263743731550.0
+    },
+    {
+      "end": "2026-07-17",
+      "value": 0.7748842455747313,
+      "coverage": 0.9975627362140869,
+      "matchedModels": 164,
+      "totalModels": 203,
+      "spendUsd": 28712441.989919916,
+      "tokens": 37053846627923.0
+    },
+    {
+      "end": "2026-07-24",
+      "value": 0.7960576854150796,
+      "coverage": 0.9967564632379631,
+      "matchedModels": 197,
+      "totalModels": 235,
+      "spendUsd": 30207003.164976824,
+      "tokens": 37945746543765.0
+    },
+    {
+      "end": "2026-07-31",
+      "value": 0.7645825913609328,
+      "coverage": 0.9971083306321356,
+      "matchedModels": 180,
+      "totalModels": 211,
+      "spendUsd": 34047814.036154464,
+      "tokens": 44531244133548.0
+    },
+    {
+      "end": "2026-08-07",
+      "value": 0.6820024181051388,
+      "coverage": 0.9966632562183295,
+      "matchedModels": 170,
+      "totalModels": 203,
+      "spendUsd": 31469795.980038512,
+      "tokens": 46143232259313.0
+    },
+    {
+      "end": "2026-08-14",
+      "value": 0.6538670164525093,
+      "coverage": 0.996825538157814,
+      "matchedModels": 189,
+      "totalModels": 215,
+      "spendUsd": 31135035.86155222,
+      "tokens": 47616770808340.0
+    },
+    {
+      "end": "2026-08-21",
+      "value": 0.6229416967623856,
+      "coverage": 0.9932387665701036,
+      "matchedModels": 200,
+      "totalModels": 240,
+      "spendUsd": 30168062.085479733,
+      "tokens": 48428387828704.0
+    },
+    {
+      "end": "2026-08-28",
+      "value": 0.573198851820219,
+      "coverage": 0.9870101457636452,
+      "matchedModels": 185,
+      "totalModels": 219,
+      "spendUsd": 29107573.43942499,
+      "tokens": 50780934656433.05
+    },
+    {
+      "end": "2026-09-04",
+      "value": 0.553588473200637,
+      "coverage": 0.9873490243106076,
+      "matchedModels": 203,
+      "totalModels": 258,
+      "spendUsd": 28936906.446408495,
+      "tokens": 52271511867121.0
+    },
+    {
+      "end": "2026-09-11",
+      "value": 0.5705011663109821,
+      "coverage": 0.996682562166991,
+      "matchedModels": 220,
+      "totalModels": 260,
+      "spendUsd": 27512311.24094768,
+      "tokens": 48224811561473.0
+    },
+    {
+      "end": "2026-09-18",
+      "value": 0.574308885348194,
+      "coverage": 0.9921884614856459,
+      "matchedModels": 205,
+      "totalModels": 252,
+      "spendUsd": 32251138.672047213,
+      "tokens": 56156433401677.0
+    },
+    {
+      "end": "2026-09-25",
+      "value": 0.5308526970500218,
+      "coverage": 0.990625465636092,
+      "matchedModels": 222,
+      "totalModels": 276,
+      "spendUsd": 31298034.845361173,
+      "tokens": 58958040562450.0
+    },
+    {
+      "end": "2026-10-02",
+      "value": 0.4652282626629533,
+      "coverage": 0.9909259291058373,
+      "matchedModels": 207,
+      "totalModels": 253,
+      "spendUsd": 29981174.69085522,
+      "tokens": 64444009741033.0
+    },
+    {
+      "end": "2026-10-09",
+      "value": 0.45469534068653616,
+      "coverage": 0.9846036024066204,
+      "matchedModels": 211,
+      "totalModels": 253,
+      "spendUsd": 32675732.128552854,
+      "tokens": 71862913922136.0
+    },
+    {
+      "end": "2026-10-16",
+      "value": 0.44262626976558156,
+      "coverage": 0.9986246839824805,
+      "matchedModels": 199,
+      "totalModels": 236,
+      "spendUsd": 33793593.96263683,
+      "tokens": 76347917579619.0
+    },
+    {
+      "end": "2026-10-23",
+      "value": 0.418308693421455,
+      "coverage": 0.9987287687395867,
+      "matchedModels": 206,
+      "totalModels": 240,
+      "spendUsd": 34078920.84727779,
+      "tokens": 81468354311591.0
+    }
+  ],
   "monthlyScoring": [
     {
       "month": "2024-01",

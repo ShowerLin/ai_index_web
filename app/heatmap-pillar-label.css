@@ -1,0 +1,39 @@
+.heatmap-pillar-info {
+  display: inline-grid;
+  width: 1.2em;
+  height: 1.2em;
+  place-items: center;
+  margin-inline-start: .2em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--teal);
+  font: 700 .7rem/1 system-ui, sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.heatmap-pillar-tooltip {
+  display: none;
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  box-sizing: border-box;
+  width: min(20rem, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  overflow: auto;
+  padding: .75rem .875rem;
+  border: 1px solid var(--line);
+  border-radius: .45rem;
+  background: var(--card);
+  box-shadow: 0 .35rem 1rem rgb(23 46 43 / 18%);
+  color: var(--ink);
+  font: 400 .875rem/1.5 system-ui, sans-serif;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+}
+
+.heatmap-pillar-tooltip:popover-open {
+  display: block;
+}

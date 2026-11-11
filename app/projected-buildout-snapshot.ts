@@ -4,7 +4,7 @@ export const projectedBuildoutSnapshot = {
     "capacityAsOf": "2026-10-20",
     "capexActualThrough": "2026-06-30",
     "capexEstimateThrough": "2027-12-31",
-    "capexWorkbookSha256": "b0ab9fec9c5be23bdf00fd230c9e858d03f4693101f6f09b27fc2961d33cb95c",
+    "capexWorkbookSha256": "2087ba73078d67f788935cd301735baecaf8c97a2b713e63945c2fb2460edc1d",
     "source": "https://epoch.ai/data/ai-data-centers",
     "methodology": "https://epoch.ai/data/data-centers-documentation/methodology",
     "sourceHashes": {

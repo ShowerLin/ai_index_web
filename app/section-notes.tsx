@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { workbookAmendments } from "./workbook-amendments-snapshot";
+import { rampSnapshot } from "./ramp-snapshot";
 
 type Note = { sources: string[]; source: string; methodology: string; other: string; anchor?: string };
 
@@ -16,8 +18,8 @@ const notes: Record<string, Note> = {
     other: "Pillar cards show June normalized scores and average equally to the June core score before rounding. The source table contains separately dated observations; those raw levels and growth rates must not be averaged to reconstruct the score. Token prices remain context rather than a core input.",
   },
   adoption: {
-    sources: ["S1", "S14"], source: "Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption ends August 2026; missing September is retained.",
-    methodology: "Show current use, expected use and Ramp paid adoption as percentages. All three are zero-weight breadth context. Ramp TSM and OpenRouter matched-window token volumes each contribute half of the 20% Adoption pillar. Prices carry zero weight. Ramp is not split at the BTOS wording change.",
+    sources: ["S1", "S14"], source: `Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption through ${rampSnapshot.metadata.through}.`,
+    methodology: "Show current use, expected use and Ramp paid adoption as percentages. All three are zero-weight breadth context. Ramp and OpenRouter matched-window spending growth drive the Adoption pillar. Token volume and price changes are inputs to spending growth. Ramp is not split at the BTOS wording change.",
     other: "Ramp identifies firms with observed AI payments. It does not establish retention, profitability or market-wide utilization. Survey intentions and observed payments are distinct measures.",
   },
   capex: {
@@ -46,7 +48,7 @@ const notes: Record<string, Note> = {
     other: "This is a derived buyer-side price-performance measure; task expenditure is not infrastructure-owner revenue or profit. Benchmark success is a proxy, not production reliability. Model, harness, reasoning and token assumptions limit comparability. MiniMax, DeepSeek and GLM candidates begin in August 2025 because earlier collected observations lack both comparable success and run cost. The shaded frontier/value gap is not an uncertainty interval.",
   },
   conversion: {
-    sources: ["S9", "S1", "S7", "S8"], source: "OpenRouter daily rankings refreshed 7 October 2026 through 6 October. Adoption usage includes Q3; comparisons with reported financials remain through Q2. Workbook token prices and company fundamentals retain their own vintages. Coverage is platform-specific. Macro and price inputs have different frequencies and may contain carried values.",
+    sources: ["S9", "S1", "S7", "S8"], source: "OpenRouter daily rankings. Adoption usage includes Q3; comparisons with reported financials remain through Q2. Workbook token prices and company fundamentals retain their own vintages. Coverage is platform-specific. Macro and price inputs have different frequencies and may contain carried values.",
     methodology: "The trend chart compares platform traffic, four-company cash CapEx and consolidated ROIC from 2025Q1 to 2026Q2. Token pricing appears only in the accompanying interpretation, using a separate June-to-16-September 2026 window. Series use separately labeled axes and different units; line steepness does not compare growth rates.",
     other: "Traffic, lab revenue and hyperscaler returns cover different populations. This comparison cannot attribute revenue or NOPAT to a unit of usage, and does not establish causality. Required evidence is cloud revenue, segment profit and realized model spending; price-index × token volume does not establish revenue. It is excluded from the atmosphere scores.",
   },
@@ -71,13 +73,13 @@ const notes: Record<string, Note> = {
     other: "The screen measures reported financial quality rather than AI-specific profitability. Sector, size, outliers and expectations can affect comparisons. Historical association with stock returns is not validation of predictive timing.",
   },
   credit: {
-    sources: ["S4"], source: "Bloomberg-implied issuer 5Y CDS and IBOXUMAE Curncy daily benchmark observations through 7 October 2026. Latest issuer ratings are dated 30 September 2026. Quotes and comparable issuer coverage limit representativeness.",
+    sources: ["S4"], source: `Bloomberg-implied issuer 5Y CDS through ${workbookAmendments.metadata.creditAsOf}. The IBOXUMAE Curncy benchmark is available through ${workbookAmendments.metadata.creditBenchmarkAsOf}. Latest issuer ratings are dated ${workbookAmendments.metadata.ratingAsOf}. Quotes and comparable issuer coverage limit representativeness.`,
     methodology: "The spread view plots issuer medians; the relative-change view summarizes issuer changes minus the general IG benchmark change since 31 December 2025. Thirty-day issuer comparisons use matched dates. Latest rating groups are retrospective, not historical ratings. Displayed overall, sector and rating charts use median lines with selectable central-50% or minimum–maximum issuer bands and the general IG benchmark. Overall and sector baskets include covered below-IG issuers.",
     other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage uses covered issuers with four consecutive EBITDA quarters. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. Issuer and role coverage are shown; the credit adjustment is separate from the five-pillar core index.",
   },
   financing: {
-    sources: ["S6"], source: "Bloomberg workbook issuer-month bond issuance amount and count through September 2026, plus US investment-grade corporate issuance through partial October. Both queries use USD amounts. December 2025 has no covered records; latest-month completeness is not certified.",
-    methodology: "Sum covered issuer-month amounts into supply-chain sectors. Relative supply = covered issuance / US IG issuance × 100 on matched months. The period ratio divides sums, not average percentages. The numerator includes countries and ratings excluded from the benchmark, so this is not an exact market-share measure. Leave missing numerator months blank and exclude benchmark-only partial October.",
+    sources: ["S6"], source: `Bloomberg workbook issuer-month bond issuance amount and count through ${workbookAmendments.bondMonthly.at(-1)?.month}, with matched US investment-grade corporate issuance through ${workbookAmendments.bondBenchmark.latestMatchedMonth}. Both queries use USD amounts. The most recent month may be partial.`,
+    methodology: "Sum covered issuer-month amounts into supply-chain sectors. Relative supply = covered issuance / US IG issuance × 100 on matched months. The period ratio divides sums, not average percentages. The numerator includes countries and ratings excluded from the benchmark, so this is not an exact market-share measure. Leave missing numerator months blank and exclude benchmark-only months from the ratio.",
     other: "Issuance measures access to funding, not issuer-specific AI use of proceeds or returns. Supply intensity alongside stable leverage can be consistent with absorption pressure, but issuance cannot identify the cause of CDS changes. A partial month cannot be compared directly with a full month. Bond issuance retains zero weight in the supplementary adjustment until coverage and normalization are resolved.",
   },
   methodology: {

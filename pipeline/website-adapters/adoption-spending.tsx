@@ -8,6 +8,25 @@ const names={ramp:'Ramp matched spending',openrouter:'OpenRouter estimate · ext
 const colors={ramp:'#237d67',openrouter:'#315e87'};
 const dollars=(value:number)=>'$'+(value/1e6).toLocaleString('en-US',{maximumFractionDigits:2})+'M';
 
+function RampWeeklySpending() {
+ const rows=data.rampWeekly;
+ const values=rows.map(row=>row.coverage>=.95?row.spendUsd:null);
+ const ceiling=Math.max(1,...values.map(value=>value??0));
+ const first=Date.parse(rows[0].end),last=Date.parse(rows.at(-1)!.end);
+ const x=(date:string)=>85+900*(Date.parse(date)-first)/Math.max(1,last-first);
+ const y=(value:number)=>210-170*value/ceiling;
+ return <div className="research-card">
+  <h4>Ramp matched spending · weekly</h4>
+  <p>USD millions per published week. Weeks below 95% matched token coverage are blank.</p>
+  <svg viewBox="0 0 1050 245" role="img" aria-label="Weekly Ramp matched spending in USD millions">
+   {[0,.25,.5,.75,1].map(f=><g key={f}><line x1="85" x2="985" y1={y(ceiling*f)} y2={y(ceiling*f)} stroke="#d6d7ce"/><text x="75" y={y(ceiling*f)+4} textAnchor="end">{(ceiling*f/1e6).toFixed(1)}</text></g>)}
+   <path d={rows.map((row,i)=>{const value=values[i];return value===null?'':`${i===0||values[i-1]===null?'M':'L'}${x(row.end)},${y(value)}`;}).join(' ')} fill="none" stroke={colors.ramp} strokeWidth="2"/>
+   {rows.map((row,i)=>{const value=values[i];return value===null?null:<circle key={row.end} cx={x(row.end)} cy={y(value)} r="2.5" fill={colors.ramp}><title>{`${row.end} · ${dollars(value)}`}</title></circle>;})}
+   <text x="85" y="234">{rows[0].end}</text><text x="985" y="234" textAnchor="end">{rows.at(-1)!.end}</text>
+  </svg>
+ </div>;
+}
+
 export default function AdoptionSpending(){
  const [view,setView]=useState<View>('usd');
  const [source,setSource]=useState<'both'|Source>('both');
@@ -38,6 +57,7 @@ export default function AdoptionSpending(){
   <div className="eyebrow">CALCULATED NOMINAL SPENDING</div><h2 id="spending-heading">Spending activity</h2>
   <p className="section-summary">Ramp matched spending and the OpenRouter estimate show how volume and unit costs combine. Dollar levels use separate source axes. Switch to a common-base comparison or spending growth to compare relative changes. The two source totals are never added.</p>
   <div className="adoption-observations">{(['ramp','openrouter'] as Source[]).map(s=>{const row=[...rows].reverse().find(r=>amount(r,s)!==null);if(!row)return null;return <div key={s}><span>{names[s]}</span><strong>{dollars(amount(row,s)!)}</strong><small>28 days ending {row.windowEnd} · {value(row,s)===null?'growth unavailable':view==='growth'?value(row,s)!.toFixed(1)+'% window change':s==='ramp'?'matched published sample':'rough benchmark-based estimate'}</small></div>;})}</div>
+  <RampWeeklySpending/>
   <h3 className="adoption-chart-heading">{view==='usd'?'Nominal spending by source':view==='indexed'?'Spending indexed to a common starting month':'Nominal spending growth by source'}</h3>
   <div className="token-controls"><label>Spending view <select aria-label="Spending chart view" value={view} onChange={e=>setView(e.target.value as View)}><option value="indexed">Common base · {baseline.month} = 100</option><option value="usd">Spending · USD millions</option><option value="growth">Spending change · %</option></select></label><label>Source <select aria-label="Spending chart source" value={source} onChange={e=>setSource(e.target.value as typeof source)}><option value="both">Both, separately</option><option value="ramp">Ramp matched spending</option><option value="openrouter">OpenRouter estimate</option></select></label></div>
   <p className="panel-source">{unit} · {dual?'OpenRouter on the left axis; Ramp on the right. Each axis starts at zero; crossings do not mean equal spending.':'Shared scale for the selected series.'} Monthly observations at completed 28-day window endpoints. Hover a point for the amount and date.</p>

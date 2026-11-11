@@ -3,27 +3,8 @@ import ChartLegend from "./chart-legend";
 import SectionNotes from "./section-notes";
 import SectionSummary from "./section-summary";
 
-const stages = [
-  { id: "demand", label: "01 · Demand", value: "615.3T", metric: "30-day tokens · 7 Sep–6 Oct", signal: "Traffic is spread across models", detail: "The largest model accounts for 12.6% of this OpenRouter sample, spreading demand across competing providers." },
-  { id: "price", label: "02 · Price", value: "−44%", metric: "LLM token-price index · Jun to 16 Sep", signal: "Lower prices raise the monetization hurdle", detail: "The index fell from 1.7095 in June to 0.9543. This workbook price benchmark is not realized revenue per token. If realized prices also fall, paid volume and product mix must offset that decline for revenue to grow." },
-  { id: "utilization", label: "03 · Capacity", value: "77.3%", metric: "Cash CapEx / operating cash flow", signal: "The buildout is absorbing more cash", detail: "Four-company cash CapEx reached $510.7B TTM while hardware, memory and data-center activity remained expansionary." },
-  { id: "returns", label: "04 · Returns", value: "5 / 5", metric: "Incremental ROIC below total ROIC", signal: "Incremental returns trail overall returns", detail: "Profit growth per additional dollar of capital trails overall ROIC in all five companies. Earnings realization needs to catch up with the growing capital base." },
-] as const;
-
-const returns = [
-  { ticker: "MSFT", roic: 29.3, incremental: 18.3 }, { ticker: "GOOGL", roic: 28.8, incremental: 16.2 },
-  { ticker: "META", roic: 28.4, incremental: 15.8 }, { ticker: "AMZN", roic: 13.1, incremental: 9.8 },
-  { ticker: "ORCL", roic: 12.8, incremental: 6.8 },
-] as const;
-
-export const trend = [
-  { quarter: "2025Q1", tokensPerDay: 0.134, tokenCoverage: "90 / 90", capex: 71.902, roic: 31.538 },
-  { quarter: "2025Q2", tokensPerDay: 0.306, tokenCoverage: "90 / 91", capex: 88.246, roic: 30.885 },
-  { quarter: "2025Q3", tokensPerDay: 0.525, tokenCoverage: "91 / 92", capex: 97.271, roic: 28.356 },
-  { quarter: "2025Q4", tokensPerDay: 0.814, tokenCoverage: "92 / 92", capex: 118.632, roic: 27.404 },
-  { quarter: "2026Q1", tokensPerDay: 1.836, tokenCoverage: "90 / 90", capex: 129.750, roic: 26.299 },
-  { quarter: "2026Q2", tokensPerDay: 4.488, tokenCoverage: "91 / 91", capex: 165.050, roic: 23.676 },
-] as const;
+import { stages, returns, trend } from "./hyperscaler-reference-data";
+export { trend } from "./hyperscaler-reference-data";
 
 const trendSeries = [
   { key: "tokensPerDay", label: "OpenRouter tokens / day", color: "#1d7f80", format: (value: number) => `${value.toFixed(3)}T` },

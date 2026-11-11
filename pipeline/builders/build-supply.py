@@ -50,7 +50,7 @@ def main():
         limitations=cloud['metadata']['limitations']+['Forecast vintage retrieval time is unknown. As-of date defines the requested horizon, not source freshness.','Single forecast vintage cannot support historical estimate revisions.','No electrical-equipment shipment, order or lead-time inputs added to Supply.']),
         capex=capex,rpo=rpo,
         hardware=[s for s in prices['series'] if s['field'] in ['ISPPDR48 Index','SDH100RT Index','SDB200RT Index']],
-        monthly=[dict(month=m['month'],score=None if any(r['score'] is None for r in m['rows'] if r['pillar']=='Supply') else sum(r['weight']*r['score']/.2 for r in m['rows'] if r['pillar']=='Supply')) for m in revised['months']])
+        monthly=[dict(month=m['month'],score=next(r['score'] for r in m['rows'] if r['ticker']=='HYPERSCALER_TOTAL')) for m in revised['months']])
     write('supply-snapshot.ts','supplySnapshot',payload)
     (BUILD_ROOT/'audits').mkdir(exist_ok=True)
     (BUILD_ROOT/'audits/supply-v2.8.json').write_text(json.dumps(dict(baseline=revised['metadata']['supplyBaseline'],comparison=[dict(month=m['month'],previous=m['previousVersionScore'],score=m['score']) for m in revised['months']]),indent=2)+'\n',encoding='utf-8')

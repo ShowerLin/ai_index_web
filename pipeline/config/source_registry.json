@@ -17,10 +17,11 @@
       "id": "index-price-monthly",
       "paths": [
         "Indexlist.xlsx",
+        "AI_Infra.xlsx",
         "data/reference/index_price_config.json",
         "data/research/tsmc/monthly_backfills.json"
       ],
-      "update_method": "Save refreshed Index Price Value cells; review completed-month cutoff; python pipeline/run.py build --group index-price",
+      "update_method": "Save refreshed AI_Infra Value tabs and remaining Index Price Value cells; review completed-month cutoff; python pipeline/run.py build --group index-price",
       "usage": "Monthly macro and demand history, all 19 cached fields including context-only prices/export series; frozen core calibration; October partial rows excluded from monthly scoring",
       "build_group": "index-price",
       "credential": "Licensed Bloomberg environment for source refresh; none for saved-input rebuild"
