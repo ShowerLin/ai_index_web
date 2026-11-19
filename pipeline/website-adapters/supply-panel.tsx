@@ -1,3 +1,4 @@
+import {coreContributionSnapshot as core} from "./core-contribution-snapshot";
 import {supplySnapshot as data} from "./supply-snapshot";
 import {chainEconomicsSnapshot as chain} from "./chain-economics-snapshot";
 
@@ -15,6 +16,6 @@ export default function SupplyPanel(){
   <div className="signal-table-wrap"><table><thead><tr><th>Scope</th><th>Fiscal quarter</th><th>Estimated RPO</th><th>Estimated YoY</th><th>Source cell</th></tr></thead><tbody>{data.rpo.map(r=><tr key={r.entity+r.period}><th>{r.entity}</th><td>{r.period} E</td><td>{value(r.value)}</td><td>{r.yoy===null?"Unavailable":`${value(r.yoy)}%`}</td><td>{r.sourceCell}</td></tr>)}</tbody></table></div>
   <p><b>RPO growth versus CapEx growth:</b> {data.metadata.rpoGrowthVsCapexStatus}</p>
   <details><summary>Supply-chain financial context · zero additional score weight</summary><p>{chain.metadata.currencyMethod} These are company-wide financials, not physical shipments.</p><div className="signal-table-wrap"><table><thead><tr><th>Company</th><th>TTM end</th><th>Currency</th><th>Revenue · source units</th><th>EBITDA · source units</th></tr></thead><tbody>{Object.entries(chain.companies).map(([ticker,c])=>{const r=c.periods.filter(p=>p.revenue!==null).at(-1);return <tr key={ticker}><th>{ticker}</th><td>{r?.period}</td><td>{c.currency}</td><td>{value(r?.revenue??null)}</td><td>{value(r?.ebitda??null)}</td></tr>})}</tbody></table></div><p>{chain.metadata.shareMethod}</p></details>
-  <details><summary>Sources and interpretation</summary><p>{data.metadata.forwardMethod}</p><p>Hardware: Indexlist.xlsx / Index Price Value. CapEx: Indexlist.xlsx / Supply Chain Financial Value. RPO: AI_Hyperscalers.xlsx / Cloud FA Value. Forecasts and B200 carry zero score weight. Price growth uses a provisional January–June 2026 calibration. Power equipment orders sit in Infrastructure.</p></details>
+  <details><summary>Sources and interpretation</summary><p>{data.metadata.forwardMethod}</p><p>Hardware: Indexlist.xlsx / Index Price Value. CapEx: Indexlist.xlsx / Supply Chain Financial Value. RPO: AI_Hyperscalers.xlsx / Cloud FA Value. Forecasts and B200 carry zero score weight. {core.metadata.supplyMethod} Power equipment orders sit in Infrastructure.</p></details>
  </section>;
 }

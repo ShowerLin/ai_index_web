@@ -1,9 +1,9 @@
 export const hyperscalerFinancialSnapshot = {
   "metadata": {
-    "asOf": "2026-11-10",
+    "asOf": "2026-11-17",
     "source": "AI_Hyperscalers.xlsx",
     "sourceSheet": "Hyperscaler Financial Value",
-    "sourceSha256": "239cdab3e4d684bc468e64daeda8722a54b66fce02480407923a7c5543ebce4e",
+    "sourceSha256": "d8289e7017b723eb65017a7a388ed81b88484090beeb63098e6c126cfb765afc",
     "policyId": "hyperscalers-user-rules-2026-11-03-v2",
     "unit": "USD billions (issuer reporting currency)",
     "coreWeight": 0,
@@ -139,40 +139,40 @@ export const hyperscalerFinancialSnapshot = {
           "periodEnd": "2026-12-31",
           "fiscalPeriod": "2027 Q2",
           "status": "estimate",
-          "value": 45.655212121212124,
-          "yoy": 52.815678542014055,
-          "disclosedAt": "2026-11-02",
+          "value": 47.46164516129032,
+          "yoy": 58.86211394192771,
+          "disclosedAt": "2026-11-16",
           "cell": "E16"
         },
         {
           "periodEnd": "2027-03-31",
           "fiscalPeriod": "2027 Q3",
           "status": "estimate",
-          "value": 51.20015151515151,
-          "yoy": 65.82507939872883,
-          "disclosedAt": "2026-11-02",
+          "value": 52.40854838709677,
+          "yoy": 69.73878866140942,
+          "disclosedAt": "2026-11-16",
           "cell": "E17"
         },
         {
           "periodEnd": "2027-06-30",
           "fiscalPeriod": "2027 Q4",
           "status": "estimate",
-          "value": 54.599242424242426,
-          "yoy": 52.503330607905774,
-          "disclosedAt": "2026-11-02",
+          "value": 55.718322580645165,
+          "yoy": 55.62907820972338,
+          "disclosedAt": "2026-11-16",
           "cell": "E18"
         },
         {
           "periodEnd": "2027-09-30",
           "fiscalPeriod": "2028 Q1",
           "status": "estimate",
-          "value": 54.1805,
-          "yoy": 37.629232605989785,
-          "disclosedAt": "2026-11-02",
+          "value": 55.651862068965514,
+          "yoy": 41.36678453772327,
+          "disclosedAt": "2026-11-16",
           "cell": "E19"
         }
       ],
-      "forwardTotal": 205.63510606060606
+      "forwardTotal": 211.24037819799776
     },
     {
       "ticker": "GOOGL",
@@ -283,40 +283,40 @@ export const hyperscalerFinancialSnapshot = {
           "periodEnd": "2026-12-31",
           "fiscalPeriod": "2026 Q4",
           "status": "estimate",
-          "value": 68.5044,
-          "yoy": 145.96746974973968,
-          "disclosedAt": "2026-11-02",
+          "value": 69.05714285714285,
+          "yoy": 147.95211251711913,
+          "disclosedAt": "2026-11-16",
           "cell": "AI14"
         },
         {
           "periodEnd": "2027-03-31",
           "fiscalPeriod": "2027 Q1",
           "status": "estimate",
-          "value": 71.05854545454545,
-          "yoy": 99.18861202709384,
-          "disclosedAt": "2026-11-02",
+          "value": 71.70885714285714,
+          "yoy": 101.01154101826863,
+          "disclosedAt": "2026-11-10",
           "cell": "AI15"
         },
         {
           "periodEnd": "2027-06-30",
           "fiscalPeriod": "2027 Q2",
           "status": "estimate",
-          "value": 78.68266666666668,
-          "yoy": 75.14617279553617,
-          "disclosedAt": "2026-11-02",
+          "value": 78.88414285714285,
+          "yoy": 75.59465510004198,
+          "disclosedAt": "2026-11-10",
           "cell": "AI16"
         },
         {
           "periodEnd": "2027-09-30",
           "fiscalPeriod": "2027 Q3",
           "status": "estimate",
-          "value": 85.6035,
-          "yoy": 66.68970888910523,
-          "disclosedAt": "2026-11-02",
+          "value": 85.38764285714285,
+          "yoy": 66.2693853707387,
+          "disclosedAt": "2026-11-10",
           "cell": "AI17"
         }
       ],
-      "forwardTotal": 303.8491121212121
+      "forwardTotal": 305.0377857142857
     },
     {
       "ticker": "AMZN",
@@ -427,40 +427,40 @@ export const hyperscalerFinancialSnapshot = {
           "periodEnd": "2026-12-31",
           "fiscalPeriod": "2026 Q4",
           "status": "estimate",
-          "value": 48.16654545454546,
-          "yoy": 21.872742914188194,
-          "disclosedAt": "2026-11-02",
+          "value": 48.609307692307695,
+          "yoy": 22.993036011101896,
+          "disclosedAt": "2026-11-16",
           "cell": "Y14"
         },
         {
           "periodEnd": "2027-03-31",
           "fiscalPeriod": "2027 Q1",
           "status": "estimate",
-          "value": 67.98281818181819,
-          "yoy": 53.79684225463923,
-          "disclosedAt": "2026-11-02",
+          "value": 67.34066666666666,
+          "yoy": 52.3441093741752,
+          "disclosedAt": "2026-11-16",
           "cell": "Y15"
         },
         {
           "periodEnd": "2027-06-30",
           "fiscalPeriod": "2027 Q2",
           "status": "estimate",
-          "value": 77.3228,
-          "yoy": 42.6409386068477,
-          "disclosedAt": "2026-11-02",
+          "value": 77.01345454545455,
+          "yoy": 42.07027476655576,
+          "disclosedAt": "2026-11-16",
           "cell": "Y16"
         },
         {
           "periodEnd": "2027-09-30",
           "fiscalPeriod": "2027 Q3",
           "status": "estimate",
-          "value": 83.1875,
-          "yoy": 7.673539652338235,
-          "disclosedAt": "2026-11-02",
+          "value": 85.20254545454546,
+          "yoy": 10.281708868281303,
+          "disclosedAt": "2026-11-16",
           "cell": "Y17"
         }
       ],
-      "forwardTotal": 276.65966363636363
+      "forwardTotal": 278.1659743589744
     },
     {
       "ticker": "META",
@@ -571,40 +571,40 @@ export const hyperscalerFinancialSnapshot = {
           "periodEnd": "2026-12-31",
           "fiscalPeriod": "2026 Q4",
           "status": "estimate",
-          "value": 56.55696551724138,
-          "yoy": 164.49499844381697,
-          "disclosedAt": "2026-11-04",
+          "value": 56.57590322580645,
+          "yoy": 164.58356276390802,
+          "disclosedAt": "2026-11-16",
           "cell": "O14"
         },
         {
           "periodEnd": "2027-03-31",
           "fiscalPeriod": "2027 Q1",
           "status": "estimate",
-          "value": 48.58907692307692,
-          "yoy": 155.77236891654957,
-          "disclosedAt": "2026-11-04",
+          "value": 48.81696296296296,
+          "yoy": 156.97195853536329,
+          "disclosedAt": "2026-11-13",
           "cell": "O15"
         },
         {
           "periodEnd": "2027-06-30",
           "fiscalPeriod": "2027 Q2",
           "status": "estimate",
-          "value": 54.716307692307694,
-          "yoy": 81.6851762926939,
-          "disclosedAt": "2026-11-04",
+          "value": 54.772814814814815,
+          "yoy": 81.8728078589946,
+          "disclosedAt": "2026-11-13",
           "cell": "O16"
         },
         {
           "periodEnd": "2027-09-30",
           "fiscalPeriod": "2027 Q3",
           "status": "estimate",
-          "value": 57.09048,
-          "yoy": 68.20010606328441,
-          "disclosedAt": "2026-11-04",
+          "value": 57.077076923076916,
+          "yoy": 68.16061788662107,
+          "disclosedAt": "2026-11-13",
           "cell": "O17"
         }
       ],
-      "forwardTotal": 216.952830132626
+      "forwardTotal": 217.24275792666114
     },
     {
       "ticker": "ORCL",
@@ -735,7 +735,7 @@ export const hyperscalerFinancialSnapshot = {
           "status": "estimate",
           "value": 20.122518518518522,
           "yoy": 67.22777793167556,
-          "disclosedAt": "2026-11-03",
+          "disclosedAt": "2026-11-10",
           "cell": "AS16"
         },
         {
@@ -744,7 +744,7 @@ export const hyperscalerFinancialSnapshot = {
           "status": "estimate",
           "value": 21.286185185185186,
           "yoy": 14.226912718997497,
-          "disclosedAt": "2026-11-03",
+          "disclosedAt": "2026-11-10",
           "cell": "AS17"
         },
         {
@@ -753,7 +753,7 @@ export const hyperscalerFinancialSnapshot = {
           "status": "estimate",
           "value": 22.827925925925925,
           "yoy": 38.40978552068106,
-          "disclosedAt": "2026-11-03",
+          "disclosedAt": "2026-11-10",
           "cell": "AS18"
         },
         {

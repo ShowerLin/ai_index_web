@@ -3,11 +3,10 @@ import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {coreContributionSnapshot as snapshot} from '../app/core-contribution-snapshot.ts';
 import {monthlyHeatmapSnapshot as macro} from '../app/monthly-heatmap-snapshot.ts';
-test('current workbook provenance reconciles while the historical normalization source remains versioned',()=>{
- assert.equal(snapshot.metadata.demandSourceSha256,macro.metadata.sourceWorkbookSha256);
- assert.match(snapshot.metadata.sourceSha256,/^[a-f0-9]{64}$/);
+test('revised contribution source matches heatmap and reconciles without reweighting',()=>{
+ assert.equal(snapshot.metadata.sourceSha256,macro.metadata.sourceSha256);
  for(const month of snapshot.months){
-  assert.equal(month.rows.length,18);
+  assert.equal(month.rows.length,14);
   assert.ok(Math.abs(month.rows.reduce((sum,r)=>sum+r.weight,0)-1)<1e-12);
   if(month.score!==null){
    assert.ok(Math.abs(50+month.rows.reduce((sum,r)=>sum+r.contribution,0)-month.score)<1e-10);
@@ -26,9 +25,9 @@ test('monthly impacts reconcile and held quarterly scores do not invent monthly 
 });
 
 test('v2 normalizes adoption levels and smoothed annual activity using disclosed baselines',()=>{
- assert.equal(snapshot.metadata.version,'2.4');
+ assert.equal(snapshot.metadata.version,'2.2');
  const latest=snapshot.months.find(m=>m.month==='2026-06');
- assert.ok(Math.abs(latest.score-69.72510415344189)<1e-10);
+ assert.ok(Math.abs(latest.score-69.30016945142992)<1e-10);
  for(const row of latest.rows){
   assert.ok(Math.abs(row.score-Math.max(0,Math.min(100,50+15*(row.growth-row.baselineMean)/row.baselineStd)))<1e-10);
   if(row.pillar==='Adoption')assert.equal(row.growth,row.level);
@@ -54,14 +53,14 @@ test('CapEx pillar computes YoY from combined spending rather than averaged comp
  assert.ok(Math.abs(latest.rows.find(r=>r.pillar==='Hyperscaler CapEx').growth-latest.companyCapexRows.reduce((sum,r)=>sum+r.growth,0)/5)>1);
 });
 
-test('v2.4 Demand retains total weight with a token allocation and no missing-weight redistribution',()=>{
+test('v2.2 Demand has three equal constituents and no missing-weight redistribution',()=>{
  for(const month of snapshot.months){
   const rows=month.rows.filter(r=>r.pillar==='Demand');
-  assert.deepEqual(rows.map(r=>r.ticker),['KOTCDRAM','KOTCNAND','TSMC_REVENUE','RAMP_MEDIAN_SPEND','OPENROUTER_TOKEN_VOLUME','RAMP_TOKEN_VOLUME']);
-  for(const r of rows)assert.equal(r.weight,r.ticker.endsWith('TOKEN_VOLUME')?.05:.025);
+  assert.deepEqual(rows.map(r=>r.ticker),['KOTCDRAM','KOTCNAND','TSMC_REVENUE']);
+  for(const r of rows)assert.equal(r.weight,.2/3);
   if(rows.some(r=>r.score===null))assert.equal(month.score,null);
  }
- const june=snapshot.months.find(m=>m.month==='2026-06').rows.filter(r=>r.pillar==='Demand'&&!r.ticker.startsWith('RAMP')&&!r.ticker.startsWith('OPENROUTER'));
+ const june=snapshot.months.find(m=>m.month==='2026-06').rows.filter(r=>r.pillar==='Demand');
  assert.ok(Math.abs(june.reduce((s,r)=>s+r.score,0)/3-71.82215666396049)<1e-8);
  assert.equal(june.find(r=>r.ticker==='TSMC_REVENUE').baselineCount,19);
 });

@@ -40,16 +40,20 @@ def main() -> None:
         type=Path,
         default=DATA_ROOT,
     )
-    parser.add_argument("--as-of", default="2026-09-28")
+    parser.add_argument("--as-of", help="Override the accepted data-center release date")
     parser.add_argument(
         "--output",
         type=Path,
         default=BUILD_ROOT / "app" / "infrastructure-snapshot.ts",
     )
     args = parser.parse_args()
-    cutoff = pd.Timestamp(args.as_of)
-
     epoch_root = args.data_root / "epoch_ai"
+    release_path = epoch_root / "data_centers" / "release.json"
+    release_date = "2026-09-28"
+    if release_path.is_file():
+        release_date = json.loads(release_path.read_text(encoding="utf-8"))["publishedDate"]
+    as_of = args.as_of or release_date
+    cutoff = pd.Timestamp(as_of)
     chip_path = epoch_root / "ai_chip_owners" / "cumulative_by_designer.csv"
     center_path = epoch_root / "data_centers" / "data_centers.csv"
     timeline_path = epoch_root / "data_centers" / "data_center_timelines.csv"
@@ -217,7 +221,7 @@ def main() -> None:
 
     payload = {
         "metadata": {
-            "dataCenterAsOf": args.as_of,
+            "dataCenterAsOf": as_of,
             "chipAsOf": chip_as_of.strftime("%Y-%m-%d"),
             "coveredOwners": 5,
             "facilityCount": int(len(centers)),

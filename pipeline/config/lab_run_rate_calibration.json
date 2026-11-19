@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "baselineEnd": "2026-06",
+  "transform": "log(run rate / prior-year disclosed snapshot) at news-date updates; held between disclosures",
+  "workbookSha256": "90a1b3e126e28961403f1dbf3c81215822216113cffd02dd3251d875dcf9f288",
+  "series": {
+    "OpenAI": {
+      "count": 5,
+      "start": "2024-06",
+      "end": "2026-06",
+      "mean": 1.7953451041589361,
+      "std": 0.6451529952439761,
+      "status": "provisional",
+      "observations": {
+        "June 2024 3.4B": 2.8332133440562153,
+        "August 2024 3.6B": 1.2809338454620658,
+        "July 2025 12B": 1.261131218165886,
+        "Dec 2025 19B": 1.6635051337043762,
+        "March 2026 25B": 1.937941979406137
+      }
+    },
+    "Anthropic": {
+      "count": 10,
+      "start": "2025-01",
+      "end": "2026-06",
+      "mean": 2.954072360801435,
+      "std": 0.6484314754100112,
+      "status": "provisional",
+      "observations": {
+        "December 2024 1B": 2.3025850929940432,
+        "March 2025 1.4B": 2.6390573296152553,
+        "May 2025 3B": 3.401197381662154,
+        "July 2025 4B": 3.688879454113934,
+        "Oct 2025 7B": 4.2484952420493585,
+        "end-2025 9B": 2.197224577336222,
+        "Feb 2026 14B": 2.639057329615259,
+        "March 2026 19B": 2.60796674254523,
+        "Anthropic 30B April": 3.0647251450409456,
+        "May 2026 47B": 2.7515353130419484
+      }
+    }
+  }
+}

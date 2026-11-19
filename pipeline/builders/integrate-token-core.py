@@ -10,6 +10,7 @@ import json
 import math
 import statistics
 from pathlib import Path
+from ramp_periods import token_periods
 
 ROOT=BUILD_ROOT
 DATA=DATA_ROOT
@@ -25,15 +26,19 @@ def aggregate(openrouter,ramp):
     for row in openrouter['data']:
         key=(row['date'],row['model_permaslug']);assert key not in seen,('Duplicate OpenRouter record',key)
         seen.add(key);value=int(row['total_tokens']);assert value>=0;daily[row['date']]+=value
+    return dict(daily), ramp_totals(ramp['tokenVolumes'], sunday_only=True)
+
+def ramp_totals(rows, sunday_only=False):
     ramp_weeks=collections.defaultdict(int);seen=set()
-    for row in ramp['tokenVolumes']:
+    for row in rows:
         if row['metric_key']!='token_volume' or row['dimension_type']!='model':continue
         assert row['period_grain']=='weekly'
         start,end=dt.date.fromisoformat(row['period_start']),dt.date.fromisoformat(row['period_end'])
-        assert start.weekday()==0 and end-start==dt.timedelta(days=6)
+        assert end-start==dt.timedelta(days=6)
+        assert not sunday_only or start.weekday()==0
         key=(row['period_start'],row['series_key']);assert key not in seen,('Duplicate Ramp record',key)
         seen.add(key);value=int(row['metric_value']);assert value>=0;ramp_weeks[row['period_end']]+=value
-    return dict(daily),dict(ramp_weeks)
+    return dict(ramp_weeks)
 
 def build_windows(daily,ramp_weeks,months):
     windows=[]
@@ -114,11 +119,20 @@ def main():
     if current['metadata']['version']=='2.3':preserved.write_text('export const coreContributionSnapshot = '+json.dumps(current,indent=2)+' as const;\n')
     base=read_ts(preserved);or_path=OPENROUTER
     openrouter_data=json.loads(or_path.read_text(encoding='utf-8'))
-    daily,ramp=aggregate(openrouter_data,json.loads(args.ramp_input.read_text(encoding='utf-8')))
+    published,matched,matched_path=token_periods(args.ramp_input)
+    daily,ramp=aggregate(openrouter_data,{'tokenVolumes':matched})
     windows=build_windows(daily,ramp,[m['month'] for m in base['months']]);result=integrate(base,windows,args.token_weight)
     hf=frequency_snapshot(daily,ramp,windows)
+    publisher_totals=ramp_totals(published)
+    hf['rampPublishedWeekly']=[
+        dict(end=end,ramp=value/7/1e12,
+             rampWow=ratio(value,publisher_totals.get((dt.date.fromisoformat(end)-dt.timedelta(days=7)).isoformat())))
+        for end,value in sorted(publisher_totals.items())
+    ]
+    hf['metadata'].update(rampThrough=max(publisher_totals),rampMatchedThrough=max(ramp),
+                          rampMatchedSha256=hashlib.sha256(matched_path.read_bytes()).hexdigest())
     hf['metadata'].update(openrouterSha256=hashlib.sha256(or_path.read_bytes()).hexdigest(),rampSha256=hashlib.sha256(args.ramp_input.read_bytes()).hexdigest(),rampRetrieved=json.loads((RAMP/'normalized.json').read_text(encoding='utf-8'))['retrieved_utc'][:10],openrouterAsOf=max(m['as_of'] for m in openrouter_data['meta']),tokenCoreWeight=args.token_weight)
-    result['metadata']['tokenSourceHashes']={s:hf['metadata'][s+'Sha256'] for s in ['openrouter','ramp']}
+    result['metadata']['tokenSourceHashes']={'openrouter':hf['metadata']['openrouterSha256'],'ramp':hf['metadata']['rampMatchedSha256']}
     (ROOT/'app/token-activity-snapshot.ts').write_text('export const tokenActivitySnapshot = '+json.dumps(hf,indent=2)+' as const;\n')
     (ROOT/'app/core-contribution-snapshot.ts').write_text('export const coreContributionSnapshot = '+json.dumps(result,indent=2)+' as const;\n')
     latest=next(m for m in reversed(result['months']) if m['score'] is not None)

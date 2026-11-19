@@ -5,6 +5,8 @@ import json
 import openpyxl
 from paths import DATA_ROOT, BUILD_ROOT
 from supply import integrate
+from monetization_core import integrate_monetization
+from pillar_structure import integrate_structure
 
 def read(name): return json.JSONDecoder().raw_decode((BUILD_ROOT/'app'/name).read_text(encoding='utf-8').split(' = ',1)[1].lstrip())[0]
 def write(name, var, data): (BUILD_ROOT/'app'/name).write_text('export const '+var+' = '+json.dumps(data,indent=2,allow_nan=False)+' as const;\n',encoding='utf-8')
@@ -12,6 +14,13 @@ def write(name, var, data): (BUILD_ROOT/'app'/name).write_text('export const '+v
 def main():
     core, prices, cloud = read('core-contribution-snapshot.ts'), read('index-price-snapshot.ts'), read('cloud-reference-snapshot.ts')
     revised = integrate(core, prices)
+    integrate_monetization(revised)
+    tokens = read('token-activity-snapshot.ts')
+    adoption_prices = read('adoption-price-snapshot.ts')
+    integrate_structure(revised, tokens, adoption_prices.get('rampPublicChart', {}).get('indexed', False))
+    adoption_prices['metadata'].update(spendingCoreWeight=.1, spendingCorePillar='Monetization')
+    write('token-activity-snapshot.ts', 'tokenActivitySnapshot', tokens)
+    write('adoption-price-snapshot.ts', 'adoptionPriceSnapshot', adoption_prices)
     write('core-contribution-snapshot.ts','coreContributionSnapshot',revised)
     # Calendar quarter ends in the saved CapEx table; next four full quarters after the as-of quarter.
     config=json.loads((DATA_ROOT/'data/reference/supply_config.json').read_text(encoding='utf-8'))

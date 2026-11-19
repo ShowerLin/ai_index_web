@@ -13,4 +13,5 @@ for source in (DATA_ROOT/'data/reference').glob('core-v*.ts'):
  if not (REFERENCE/source.name).exists():shutil.copy2(source,REFERENCE/source.name)
 RAMP=DATA_ROOT/'data/raw/ramp/latest'
 OPENROUTER=DATA_ROOT/'data/raw/openrouter/rankings-daily.json'
+OPENROUTER_PRICES=OPENROUTER.parent/'prices'
 FINANCING=DATA_ROOT/'data/research/financing'

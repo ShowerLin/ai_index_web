@@ -1,4 +1,5 @@
-import WeeklyPulseHeatmap, {weeklySignalCount} from "./weekly-pulse-heatmap";
+import WeeklyPulseHeatmap from "./weekly-pulse-heatmap";
+import {weeklySignals, weeklySignalCount} from "./weekly-pulse-signals";
 import {weeklyPulse as rows} from "./weekly-pulse-snapshot";
 import {adoptionPriceSnapshot} from "./adoption-price-snapshot";
 import {tokenActivitySnapshot} from "./token-activity-snapshot";
@@ -40,12 +41,23 @@ function WeeklyChart({title, field, reference}: {
 
 export default function WeeklyPulse() {
   const latest = rows.filter(row => row.pulse !== null).at(-1);
-  const ramp = adoptionPriceSnapshot.rampPublishedWeekly.findLast(row=>row.value!==null&&row.coverage>=.95);
+  const ramp = adoptionPriceSnapshot.rampPublicChart.weekly.findLast(row => row.spendingIndex !== null);
   const market = rows.filter(row => row.xsox_vs_spxt_4w_pct !== null).at(-1);
+  const latestFull = rows.findLast(row => row.signals_available === weeklySignalCount);
   return <section className="research-reference" id="weekly-pulse" aria-labelledby="weekly-pulse-title">
     <h3 id="weekly-pulse-title">Weekly AI activity pulse</h3>
     <p>Higher-frequency reference. Latest activity reading <strong>{latest?.pulse?.toFixed(1) ?? "Unavailable"}</strong> for the week ended {latest?.week_end} ({latest?.signals_available}/{weeklySignalCount} signals). XSOX relative return versus SPXT was <strong>{market?.xsox_vs_spxt_4w_pct?.toFixed(1)}%</strong> over four weeks through {market?.market_close}.</p>
-    {ramp && <p>Ramp’s latest published week ends <strong>{ramp.end}</strong> with <strong>${(ramp.spendUsd/1e6).toFixed(1)}M</strong> in matched-model spending. The scored pulse uses comparable Sunday-ending Ramp weeks through {tokenActivitySnapshot.metadata.rampMatchedThrough}.</p>}
+    {ramp && <p>Ramp’s latest published week ends <strong>{ramp.end}</strong> with a spending index of <strong>{ramp.spendingIndex?.toFixed(1)}</strong>. The scored pulse uses comparable Sunday-ending Ramp weeks through {tokenActivitySnapshot.metadata.rampMatchedThrough}.</p>}
+    <p>Latest week with all signals: <strong>{latestFull?.week_end ?? "Unavailable"}</strong>. See coverage dates for all sections in the <a href="#data-freshness">freshness map</a>.</p>
+    <details>
+      <summary>Latest scored week by signal</summary>
+      <table><thead><tr><th scope="col">Signal</th><th scope="col">Week ending</th></tr></thead>
+        <tbody>{weeklySignals.map(signal => {
+          const week = rows.findLast(row => row[signal.score] !== null)?.week_end;
+          return <tr key={signal.score}><th scope="row">{signal.label}</th><td>{week ? <time dateTime={week}>{week}</time> : "Unavailable"}</td></tr>;
+        })}</tbody>
+      </table>
+    </details>
     <WeeklyPulseHeatmap/>
     <WeeklyChart title="AI activity momentum · 0–100" field="pulse" reference={50}/>
     <WeeklyChart title="XSOX versus SPXT · four-week relative total return" field="xsox_vs_spxt_4w_pct" reference={0}/>

@@ -2,7 +2,7 @@
 export const taskEconomicsSnapshot = {
   "metadata": {
     "source": "Epoch AI \u2014 frontier_ai_models.csv and ml_hardware.csv",
-    "retrievedAt": "2026-11-10T09:08:31.743186+00:00",
+    "retrievedAt": "2026-11-17T02:33:26.962190+00:00",
     "modelDatasetAsOf": "2026-09-03",
     "costObservationAsOf": "2025-07-09",
     "observationCount": 48,
@@ -394,7 +394,7 @@ export const taskEconomicsSnapshot = {
       "model": "Inflection-2",
       "lab": "Inflection AI",
       "organization": "Inflection AI",
-      "trainingCost": 13461144.182562498,
+      "trainingCost": 13459783.783958904,
       "trainingCompute": 1.001e+25,
       "hardware": "NVIDIA H100 SXM5 80GB",
       "confidence": "Confident"
@@ -444,7 +444,7 @@ export const taskEconomicsSnapshot = {
       "model": "Grok-2",
       "lab": "xAI",
       "organization": "xAI",
-      "trainingCost": 31602310.530835517,
+      "trainingCost": 31599116.765243717,
       "trainingCompute": 2.96e+25,
       "hardware": "NVIDIA H100 SXM5 80GB",
       "confidence": "Confident"
@@ -464,7 +464,7 @@ export const taskEconomicsSnapshot = {
       "model": "GPT-4.5",
       "lab": "OpenAI",
       "organization": "OpenAI",
-      "trainingCost": 366010627.6281514,
+      "trainingCost": 365973638.1761425,
       "trainingCompute": 3.8e+26,
       "hardware": "Not disclosed",
       "confidence": "Likely"
@@ -474,7 +474,7 @@ export const taskEconomicsSnapshot = {
       "model": "Llama 4 Behemoth (preview)",
       "lab": "Meta",
       "organization": "Meta AI",
-      "trainingCost": 44588963.624007165,
+      "trainingCost": 44584457.412423134,
       "trainingCompute": 5.18400000000001e+25,
       "hardware": "NVIDIA H100 SXM5 80GB",
       "confidence": "Likely"
@@ -484,7 +484,7 @@ export const taskEconomicsSnapshot = {
       "model": "Grok 4",
       "lab": "xAI",
       "organization": "xAI",
-      "trainingCost": 387842678.08636147,
+      "trainingCost": 387803482.26240134,
       "trainingCompute": 5.0000000000001e+26,
       "hardware": "Not disclosed",
       "confidence": "Speculative"
@@ -551,7 +551,7 @@ export const taskEconomicsSnapshot = {
       "min": 4902644.123383027,
       "p25": 5249979.601331349,
       "median": 9338482.771267269,
-      "p75": 17775713.120759252,
+      "p75": 17774692.821806557,
       "max": 37334304.976625234
     },
     {
@@ -559,18 +559,18 @@ export const taskEconomicsSnapshot = {
       "count": 4,
       "min": 21271017.96222655,
       "p25": 24720999.33074371,
-      "median": 28736651.825542472,
-      "p75": 36923091.386632256,
+      "median": 28735054.942746572,
+      "p75": 36920696.062438406,
       "max": 52885433.95402246
     },
     {
       "year": 2025,
       "count": 4,
-      "min": 44588963.624007165,
-      "p25": 174523900.0510522,
-      "median": 291923086.57744265,
-      "p75": 371468640.2427039,
-      "max": 387842678.08636147
+      "min": 44584457.412423134,
+      "p25": 174522773.49815622,
+      "median": 291904591.8514382,
+      "p75": 371431099.19770724,
+      "max": 387803482.26240134
     }
   ],
   "latest": {
@@ -578,7 +578,7 @@ export const taskEconomicsSnapshot = {
     "model": "Grok 4",
     "lab": "xAI",
     "organization": "xAI",
-    "trainingCost": 387842678.08636147,
+    "trainingCost": 387803482.26240134,
     "trainingCompute": 5.0000000000001e+26,
     "hardware": "Not disclosed",
     "confidence": "Speculative"
@@ -588,7 +588,7 @@ export const taskEconomicsSnapshot = {
     "model": "Grok 4",
     "lab": "xAI",
     "organization": "xAI",
-    "trainingCost": 387842678.08636147,
+    "trainingCost": 387803482.26240134,
     "trainingCompute": 5.0000000000001e+26,
     "hardware": "Not disclosed",
     "confidence": "Speculative"
@@ -669,22 +669,22 @@ export const taskEconomicsSnapshot = {
         "model": "Grok 4",
         "lab": "xAI",
         "date": "2025-07-09",
-        "trainingCost": 387842678.08636147,
+        "trainingCost": 387803482.26240134,
         "revenueRequired": [
-          1292808927,
-          775685356,
-          554060969
+          1292678274,
+          775606965,
+          554004975
         ]
       },
       {
         "model": "GPT-4.5",
         "lab": "OpenAI",
         "date": "2025-02-27",
-        "trainingCost": 366010627.6281514,
+        "trainingCost": 365973638.1761425,
         "revenueRequired": [
-          1220035425,
-          732021255,
-          522872325
+          1219912127,
+          731947276,
+          522819483
         ]
       },
       {
@@ -713,11 +713,11 @@ export const taskEconomicsSnapshot = {
         "model": "Llama 4 Behemoth (preview)",
         "lab": "Meta",
         "date": "2025-04-05",
-        "trainingCost": 44588963.624007165,
+        "trainingCost": 44584457.412423134,
         "revenueRequired": [
-          148629879,
-          89177927,
-          63698519
+          148614858,
+          89168915,
+          63692082
         ]
       }
     ],

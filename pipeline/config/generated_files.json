@@ -11,6 +11,7 @@
   "infrastructure-snapshot.ts",
   "monthly-heatmap-snapshot.ts",
   "openrouter-company-snapshot.ts",
+  "openrouter-model-snapshot.ts",
   "ramp-snapshot.ts",
   "roic-snapshot.ts",
   "supply-chain-stock-snapshot.ts",
@@ -25,5 +26,6 @@
   "adoption-price-snapshot.ts",
   "monetization-snapshot.ts",
   "supply-snapshot.ts",
-  "hyperscaler-financial-snapshot.ts"
+  "hyperscaler-financial-snapshot.ts",
+  "weekly-pulse-snapshot.ts"
 ]

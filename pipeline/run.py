@@ -7,7 +7,9 @@ from validate import validate
 ROOT=Path(os.environ.get('AI_INDEX_DATA_ROOT',Path(__file__).resolve().parents[1])).expanduser().resolve()
 BUILDERS=Path(__file__).resolve().parent/'builders'
 DERIVED=ROOT/'data/derived'
-INDEX_PRICE=['build-index-price.py','build-workbook-amendments.py','build-monthly-heatmap.py','update-demand-core.py','integrate-ramp-core.py','integrate-token-core.py','build-adoption.py','build-affordability.py','build-spending.py','build-cloud-reference.py','build-supply.py','build-core-projection.py','build-projected-buildout.py']
+INDEX_PRICE=['build-index-price.py','build-workbook-amendments.py','build-monthly-heatmap.py','update-demand-core.py','integrate-ramp-core.py','integrate-token-core.py','build-openrouter-models.py','build-adoption.py','build-affordability.py','build-spending.py','build-cloud-reference.py','build-supply.py','build-core-projection.py','build-projected-buildout.py']
+WEEKLY_PULSE = '../prototype_weekly_pulse.py'
+PULSE_BUILDERS = ('refresh-silicon-prices.py', WEEKLY_PULSE)
 GROUPS={
  'index-price':INDEX_PRICE,
  'bloomberg':['build-index-price.py','build-workbook-amendments.py','build-value-chain-financials.py','build-supply-chain-stock.py','build-chain-economics.py','extract-sustainability.py','extract-roic.py','build-monthly-heatmap.py',*INDEX_PRICE[3:]],
@@ -18,10 +20,13 @@ GROUPS={
  'labs':['build-frontier-labs-snapshot.py'],
  'monetization':['build-monetization.py','build-frontier-labs-snapshot.py'],
  'cloud':['build-cloud-reference.py'],
+ 'hyperscalers':['../build_hyperscaler_charts.py','build-cloud-reference.py'],
+ 'pulse':[WEEKLY_PULSE],
  'core':INDEX_PRICE,
  'projection':['build-core-projection.py','build-projected-buildout.py'],
 }
-COLLECTORS={'ramp':'fetch-ramp.py','openrouter':'refresh-openrouter.py','epoch':'download-epoch-datasets.py','pricing':'download-epoch-model-pricing.py','swebench':'download-swebench-results.py'}
+PULSE_INPUTS = ('token-activity-snapshot.ts', 'adoption-price-snapshot.ts', 'monetization-snapshot.ts')
+COLLECTORS={'ramp':'fetch-ramp.py','openrouter':'refresh-openrouter.py','openrouter-pricing':'download-openrouter-pricing.py','epoch':'download-epoch-datasets.py','pricing':'download-epoch-model-pricing.py','swebench':'download-swebench-results.py'}
 stamp=lambda:datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(path,obj):path.write_text(json.dumps(obj,indent=2)+'\n',encoding='utf-8')
@@ -53,13 +58,14 @@ def build(group):
  # The v2.2 -> v2.3 -> v2.4 core chain must run last, in that order.
  if group=='all':
   selected=[s for s in selected if s not in INDEX_PRICE]+INDEX_PRICE
+ selected=[script for script in selected if script not in PULSE_BUILDERS]+list(PULSE_BUILDERS)
  try:
   for script in selected:
    args=[]
    if script=='build-workbook-amendments.py':args=['--input',ROOT/'Indexlist.xlsx']
    elif script=='build-monthly-heatmap.py':args=['--input',inspection]
    elif script=='refresh-openrouter.py':args=['--cached']
-   invoke(script,args,staging,run/(script+'.log'))
+   invoke(script,args,staging,run/(Path(script).name+'.log'))
   files=list((staging/'app').glob('*.ts'))
   for file in files:
    if (DERIVED/'app'/file.name).exists() and sha(file)==sha(DERIVED/'app'/file.name):continue
@@ -71,19 +77,34 @@ def build(group):
   report['validation']=checks
   # A focused rebuild must not hydrate unrelated OneDrive-only archives merely
   # to hash them. These groups read the same explicitly listed source families.
-  source_ids=['bloomberg','index-price-monthly','adoption-price','ramp','openrouter','core-reference','capex','monetization','epoch-projected-buildout'] if group in ('index-price','core','bloomberg','ramp','tokens') else None
+  source_ids=['bloomberg','index-price-monthly','adoption-price','ramp','openrouter','openrouter-pricing','core-reference','capex','hyperscaler-financials','monetization','epoch-projected-buildout','weekly-pulse-workbooks'] if group in ('index-price','core','bloomberg','ramp','tokens') else None
+  if group in ('hyperscalers','cloud','pulse'):
+   source_ids=['weekly-pulse-workbooks','adoption-price']
+   if group!='pulse':source_ids.append('hyperscaler-financials')
   report['inputSourceIds']=source_ids
   report['inputHashes']=input_hashes(source_ids)
   report['builderHashes']={s:sha(BUILDERS/s) for s in selected}
+  report['builderHashes']['silicon_prices.py']=sha(BUILDERS/'silicon_prices.py')
+  if 'integrate-token-core.py' in selected:report['builderHashes']['ramp_periods.py']=sha(BUILDERS/'ramp_periods.py')
+  if 'build-openrouter-models.py' in selected:report['builderHashes']['openrouter_models.py']=sha(BUILDERS/'openrouter_models.py')
   if any(s in selected for s in ('build-frontier-labs-snapshot.py','build-monetization.py')):report['builderHashes']['monetization.py']=sha(BUILDERS/'monetization.py')
-  if 'build-supply.py' in selected:report['builderHashes']['supply.py']=sha(BUILDERS/'supply.py')
-  if 'build-spending.py' in selected:report['builderHashes']['spending.py']=sha(BUILDERS/'spending.py')
+  if 'build-supply.py' in selected:
+   report['builderHashes'].update({name:sha(BUILDERS/name) for name in ('supply.py','monetization_core.py','pillar_structure.py')})
+  if 'build-spending.py' in selected:
+   report['builderHashes'].update({name:sha(BUILDERS/name) for name in ('spending.py','openrouter_pricing.py')})
   if 'build-affordability.py' in selected:report['builderHashes']['affordability.py']=sha(BUILDERS/'affordability.py')
   if any(s in selected for s in ('build-index-price.py','build-workbook-amendments.py','build-monthly-heatmap.py','update-demand-core.py')):
    report['builderHashes']['index_price.py']=sha(BUILDERS/'index_price.py')
    report['pipelineHashes']={s:sha(Path(__file__).parent/s) for s in ('run.py','export_bloomberg.py','validate.py')}
+  if WEEKLY_PULSE in selected:
+   pulse_csv=staging/'weekly-ai-pulse.csv'
+   report['weeklyPulseCsvSha256']=sha(pulse_csv)
+   report['weeklyPulseInputSnapshots']={name:sha(staging/'app'/name) for name in PULSE_INPUTS}
   for file in files:
    temp=DERIVED/'app'/(file.name+'.tmp');shutil.copyfile(file,temp);temp.replace(DERIVED/'app'/file.name)
+  if WEEKLY_PULSE in selected:
+   temp=DERIVED/'weekly-ai-pulse.csv.tmp'
+   shutil.copyfile(pulse_csv,temp);temp.replace(DERIVED/'weekly-ai-pulse.csv')
   if (staging/'audits').exists():shutil.copytree(staging/'audits',DERIVED/'audits',dirs_exist_ok=True)
   shutil.copyfile(inspection,DERIVED/'bloomberg.inspect.ndjson')
   dump(run/'result.json',report);dump(DERIVED/'build-manifest.json',report)
@@ -92,7 +113,7 @@ def build(group):
   dump(run/'result.json',{'status':'failed','error':str(exc),'promoted':False});raise
 
 def build_monetization():
- # This focused group requires no Indexlist read: Bloomberg may hold that file open.
+ # Read the saved Monetization and Anthropic compute evidence.
  run=ROOT/'data/runs'/stamp();run.mkdir(parents=True)
  staging=run/'build';(staging/'app').mkdir(parents=True)
  invoke('build-monetization.py',[],staging,run/'build-monetization.py.log')
@@ -105,12 +126,24 @@ def build_monetization():
   assert len(c['history'])==len({r['date'] for r in c['history']})
   for row in c['history']:
    if row['revenueUsd'] is not None:assert row['revenueStatus'] in ('Reported','Estimate')
- report={'status':'success','group':'monetization','inputHashes':input_hashes(['monetization']),
-  'builderHashes':{s:sha(BUILDERS/s) for s in ['build-monetization.py','monetization.py','build-frontier-labs-snapshot.py']},
+ for name in PULSE_INPUTS:
+  if not (staging/'app'/name).exists():
+   shutil.copy2(DERIVED/'app'/name,staging/'app'/name)
+ for script in PULSE_BUILDERS:
+  invoke(script,[],staging,run/(Path(script).name+'.log'))
+ report={'status':'success','group':'monetization','inputHashes':{**input_hashes(['monetization','weekly-pulse-workbooks','adoption-price']),'Indexlist.xlsx':sha(ROOT/'Indexlist.xlsx'),'data/research/frontier_labs/anthropic-s1.json':sha(ROOT/'data/research/frontier_labs/anthropic-s1.json')},
+  'builderHashes':{s:sha(BUILDERS/s) for s in ['build-monetization.py','monetization.py','build-frontier-labs-snapshot.py','silicon_prices.py',*PULSE_BUILDERS]},
+  'weeklyPulseInputSnapshots':{name:sha(staging/'app'/name) for name in PULSE_INPUTS},
+  'weeklyPulseCsvSha256':sha(staging/'weekly-ai-pulse.csv'),
   'validation':'Source mapping, distinct dates, classification and no unsupported annual multiple',
   'outputHash':sha(file)}
  shutil.copyfile(file,DERIVED/'app'/file.name)
  shutil.copyfile(staging/'app/frontier-labs-snapshot.ts',DERIVED/'app/frontier-labs-snapshot.ts')
+ for relative in ('app/adoption-price-snapshot.ts','app/weekly-pulse-snapshot.ts','weekly-ai-pulse.csv'):
+  target=DERIVED/relative
+  temp=target.with_suffix(target.suffix+'.tmp')
+  shutil.copyfile(staging/relative,temp)
+  temp.replace(target)
  shutil.copytree(staging/'monetization',DERIVED/'monetization',dirs_exist_ok=True)
  dump(run/'result.json',report);dump(DERIVED/'monetization/build-manifest.json',report)
  print(json.dumps({'status':'success','group':'monetization','run':str(run)},indent=2))
@@ -136,7 +169,7 @@ def sync(web):
 def collect(source_name,cached=False,timeout=180):
  if cached and source_name not in ('ramp','openrouter'):raise ValueError('--cached supports Ramp and OpenRouter only')
  run=ROOT/'data/runs'/stamp();run.mkdir(parents=True)
- paths={'ramp':['data/raw/ramp'],'openrouter':['data/raw/openrouter'],'epoch':['epoch_ai/ml_models','epoch_ai/chip_dataset','epoch_ai/benchmark_data'],'pricing':['epoch_ai/model_pricing'],'swebench':['swe_bench']}[source_name]
+ paths={'ramp':['data/raw/ramp'],'openrouter':['data/raw/openrouter'],'openrouter-pricing':['data/raw/openrouter/prices'],'epoch':['epoch_ai/ml_models','epoch_ai/chip_dataset','epoch_ai/benchmark_data'],'pricing':['epoch_ai/model_pricing'],'swebench':['swe_bench']}[source_name]
  candidate=run/'candidate';candidate.mkdir();shutil.copy2(ROOT/'Indexlist.xlsx',candidate/'Indexlist.xlsx')
  for relative in paths:
   source=ROOT/relative;target=candidate/relative;target.parent.mkdir(parents=True,exist_ok=True)

@@ -17,6 +17,32 @@ CONFIG=DATA_ROOT/'data/reference/monetization_config.json'
 def number(value):
     return value if isinstance(value,(int,float)) and not isinstance(value,bool) and math.isfinite(value) else None
 
+def anthropic_filing():
+    filing=json.loads((DATA_ROOT/'data/research/frontier_labs/anthropic-s1.json').read_text(encoding='utf-8'))
+    rows=sorted((r for r in records('Quarterly Revenue') if r['company']=='Anthropic'
+        and r['verificationStatus'].startswith('SEC filing')),key=lambda r:r['periodEnd'])
+    if not rows or len({r['period'] for r in rows})!=len(rows):
+        raise ValueError('Expected one SEC revenue observation per Anthropic quarter')
+    filing['quarterlyRevenue']=[dict(period=r['period'],value=r['value']/1e6) for r in rows]
+    book=openpyxl.load_workbook(SOURCE,read_only=True,data_only=True)
+    try:
+        results={row[0]:row[1:] for row in book['Anthropic IPO Financials'].values if row[0] and row[3] is not None}
+        filing['nineMonthRevenue2026']=results['9M 2026'][0]
+        filing['q3OperatingIncome2026']=results['2026 Q3'][2]
+    finally:
+        book.close()
+    return filing
+
+def anthropic_compute_demand():
+    book=openpyxl.load_workbook(DATA_ROOT/'Indexlist.xlsx',read_only=True,data_only=True)
+    try:
+        rows=list(book['Anthropic Compute Demand'].values)
+        return dict(sourceUrl=rows[1][1], observations=[
+            dict(period=period,metric=metric,usdMillions=value,basis=basis)
+            for period,metric,value,basis in rows[3:] if period])
+    finally:
+        book.close()
+
 def build():
     config=json.loads(CONFIG.read_text(encoding='utf-8'))
     appbook=openpyxl.load_workbook(SOURCE,read_only=True,data_only=True)
@@ -91,7 +117,7 @@ def build():
         'Public Value query text differs from Public Formula; Formula query describes the saved forecast extent.',
         'Source values are saved Bloomberg observations, not independently refreshed figures.']),
         publicCompanies=companies,privateLabs=private,valuationResearch=research,appSpending=appSpending,
-        anthropicFiling=json.loads((DATA_ROOT/'data/research/frontier_labs/anthropic-s1.json').read_text()))
+        anthropicFiling=anthropic_filing(),anthropicComputeDemand=anthropic_compute_demand())
 
 if __name__=='__main__':
     payload=build()

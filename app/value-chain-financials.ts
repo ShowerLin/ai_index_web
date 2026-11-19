@@ -1,7 +1,7 @@
 export const valueChainFinancials = {
   "source": "Indexlist.xlsx",
   "sheet": "Supply Chain Financial Value",
-  "sha256": "2087ba73078d67f788935cd301735baecaf8c97a2b713e63945c2fb2460edc1d",
+  "sha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
   "extractedAt": "2026-10-07",
   "method": "Net debt / sum of four consecutive quarterly EBITDA observations. Withhold nonpositive or incomplete TTM EBITDA. Revenue and CapEx growth compare the same source quarter a year earlier; cash CapEx is expressed as positive spending. Interest coverage and margin remain source-period ratios. Report publication dates are unavailable; retrospective period alignment is not a real-time backtest. Raw amounts retain source currency.",
   "companies": {

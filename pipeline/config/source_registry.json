@@ -4,6 +4,17 @@
   "updated": "2026-10-22",
   "sources": [
     {
+      "id": "weekly-pulse-workbooks",
+      "paths": [
+        "AI_Infra.xlsx",
+        "AI_Benchmark.xlsx"
+      ],
+      "update_method": "Refresh and save the Bloomberg workbook values before the full build",
+      "usage": "Weekly GPU rental and memory prices, plus the semiconductor market comparison",
+      "build_group": "all",
+      "credential": "Licensed Bloomberg environment for source refresh; none for saved-input rebuild"
+    },
+    {
       "id": "bloomberg",
       "paths": [
         "Indexlist.xlsx"
@@ -17,11 +28,10 @@
       "id": "index-price-monthly",
       "paths": [
         "Indexlist.xlsx",
-        "AI_Infra.xlsx",
         "data/reference/index_price_config.json",
         "data/research/tsmc/monthly_backfills.json"
       ],
-      "update_method": "Save refreshed AI_Infra Value tabs and remaining Index Price Value cells; review completed-month cutoff; python pipeline/run.py build --group index-price",
+      "update_method": "Save refreshed Index Price Value cells; review completed-month cutoff; python pipeline/run.py build --group index-price",
       "usage": "Monthly macro and demand history, all 19 cached fields including context-only prices/export series; frozen core calibration; October partial rows excluded from monthly scoring",
       "build_group": "index-price",
       "credential": "Licensed Bloomberg environment for source refresh; none for saved-input rebuild"
@@ -30,7 +40,8 @@
       "id": "ramp",
       "paths": [
         "data/raw/ramp/latest/normalized.json",
-        "data/raw/ramp/latest/dashboard-data.json"
+        "data/raw/ramp/latest/dashboard-data.json",
+        "data/raw/ramp/matched-sunday-token-volumes.json"
       ],
       "update_method": "python pipeline/run.py collect ramp",
       "usage": "Paid adoption, spending, provider/sector breakdowns and weekly tokens",
@@ -45,7 +56,17 @@
       "update_method": "python pipeline/run.py collect openrouter",
       "usage": "Routed traffic and token index inputs",
       "build_group": "tokens",
-      "credential": "OPENROUTER_API_KEY environment variable; never store in OneDrive"
+      "credential": "OPENROUTER_API_KEY environment variable or project .env file"
+    },
+    {
+      "id": "openrouter-pricing",
+      "paths": [
+        "data/raw/openrouter/prices"
+      ],
+      "update_method": "python pipeline/run.py collect openrouter-pricing",
+      "usage": "Dated OpenRouter input/output model prices for routed spending estimates",
+      "build_group": "tokens",
+      "credential": null
     },
     {
       "id": "epoch-models-hardware-benchmarks",
@@ -90,6 +111,17 @@
       "usage": "Compute ownership/use, facilities and capacity conversion",
       "build_group": "infrastructure",
       "credential": null
+    },
+    {
+      "id": "hyperscaler-financials",
+      "paths": [
+        "AI_Hyperscalers.xlsx",
+        "data/derived/hyperscalers/financials.json"
+      ],
+      "update_method": "Accept the saved workbook with pipeline/accept_hyperscalers.py, then build --group hyperscalers",
+      "usage": "Reviewed CapEx levels and cloud financials and RPO",
+      "build_group": "hyperscalers",
+      "credential": "Licensed Bloomberg environment for source refresh"
     },
     {
       "id": "capex",
@@ -143,7 +175,9 @@
         "data/reference/core-v2.5.ts",
         "data/reference/core-v2.6.ts",
         "data/reference/core-v2.7.ts",
-        "data/reference/supply_config.json"
+        "data/reference/supply_config.json",
+        "data/reference/hardware_price_calibration.json",
+        "data/reference/lab_annualized_level_calibration.json"
       ],
       "update_method": "Versioned methodology and new-period review, not routine data collection",
       "usage": "Preserved normalization, historical core bases and accepted cash/ROIC coverage",

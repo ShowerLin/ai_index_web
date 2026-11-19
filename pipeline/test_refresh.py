@@ -69,6 +69,21 @@ class RefreshTests(unittest.TestCase):
         collect.assert_not_called()
         self.assertFalse((self.root / 'data/runs').exists())
 
+    def test_openrouter_key_is_loaded_from_project_settings(self):
+        self.args.sources = ['openrouter']
+        (self.root / '.env').write_text('OPENROUTER_API_KEY="test-key"\n')
+        with patch.dict(refresh.os.environ, {}, clear=True), \
+             patch.object(refresh.pipeline, 'collect') as collect, \
+             patch.object(refresh.pipeline, 'build'), patch.object(refresh.pipeline, 'sync'):
+            refresh.execute(self.args)
+            collect.assert_called_once_with('openrouter', timeout=180)
+            self.assertNotIn('OPENROUTER_API_KEY', refresh.os.environ)
+
+    def test_explicit_openrouter_key_takes_precedence(self):
+        (self.root / '.env').write_text('OPENROUTER_API_KEY="file-key"\n')
+        with patch.dict(refresh.os.environ, {'OPENROUTER_API_KEY': 'environment-key'}, clear=True):
+            self.assertEqual(refresh.openrouter_key(self.root), 'environment-key')
+
     def test_dry_run_has_no_writes(self):
         self.args.dry_run = True
         refresh.execute(self.args)

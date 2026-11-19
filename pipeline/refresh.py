@@ -9,9 +9,11 @@ import sys
 import time
 
 import run as pipeline
+from builders.openrouter_credentials import openrouter_key
 
 SOURCES = tuple(pipeline.COLLECTORS)
 SOURCE_IDS = {'ramp': 'ramp', 'openrouter': 'openrouter',
+              'openrouter-pricing': 'openrouter-pricing',
               'epoch': 'epoch-models-hardware-benchmarks',
               'pricing': 'epoch-pricing', 'swebench': 'swebench'}
 
@@ -34,7 +36,7 @@ def configure(parser):
     parser.add_argument('--source-timeout', type=positive_seconds, default=180,
                         help='Hard timeout in seconds for each collection attempt (default: 180)')
     parser.add_argument('--skip-openrouter', action='store_true',
-                        help='Explicitly reuse saved OpenRouter data even when collecting other sources')
+                        help='Reuse saved OpenRouter token rankings and allow keyless price collection')
 
 
 def plan(args):
@@ -59,8 +61,8 @@ def execute(args):
         print(json.dumps(details, indent=2))
         return
     # Check required credentials and destination before any collector changes inputs.
-    if 'openrouter' in details['collect'] and not os.environ.get('OPENROUTER_API_KEY'):
-        raise ValueError('OPENROUTER_API_KEY is required. Supply it locally or explicitly use --skip-openrouter.')
+    if 'openrouter' in details['collect'] and not openrouter_key(pipeline.ROOT):
+        raise ValueError('Set OPENROUTER_API_KEY in the environment or the project .env file, or use --skip-openrouter.')
     if args.web_root:
         web = Path(details['syncWebRoot'])
         if not (web / 'package.json').is_file() or not (web / 'app/page.tsx').is_file():

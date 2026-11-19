@@ -2,6 +2,8 @@
 import copy
 import hashlib
 import json
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from index_price import load, shift, signal
 from paths import DATA_ROOT, BUILD_ROOT, REFERENCE
 
@@ -33,7 +35,9 @@ def score(row, growth):
 
 
 result = []
-for month in sorted(m for m in obs if '2024-01' <= m <= config['completedMonthThrough']):
+as_of_month = datetime.now(ZoneInfo('Asia/Hong_Kong')).strftime('%Y-%m')
+months = sorted({m for m in obs if '2024-01' <= m < as_of_month} | {as_of_month})
+for month in months:
     original = old_months.get(month)
     item = copy.deepcopy(original or template)
     item['month'] = month
@@ -46,17 +50,18 @@ for month in sorted(m for m in obs if '2024-01' <= m <= config['completedMonthTh
                 score(row, None)
             continue
         field = row['ticker'] + ' Index'
-        row['level'] = obs[month].get(field)
-        growth = row['level'] if row['pillar'] == 'Adoption' else signal(obs, month, field)
+        row['level'] = obs.get(month, {}).get(field) if month < as_of_month else None
+        growth = (row['level'] if row['pillar'] == 'Adoption' else signal(obs, month, field)) if month < as_of_month else None
         prior = obs.get(shift(month, -1), {}).get(field)
-        row['shortMomentum'] = (row['level'] - prior if row['level'] is not None and prior is not None else None) if row['pillar'] == 'Adoption' else signal(obs, month, field, length=3)
+        row['shortMomentum'] = (row['level'] - prior if row['level'] is not None and prior is not None else None) if row['pillar'] == 'Adoption' else signal(obs, month, field, length=3) if month < as_of_month else None
         score(row, growth)
     for offset, s in enumerate(demand['demand']):
         ticker = s['field'].replace(' Index', '').replace('TSMC Monthly Revenue', 'TSMC_REVENUE')
         row = copy.deepcopy(calibration[ticker])
         source = {m: {s['field']: v} for m, v in levels[s['field']].items()}
-        row.update(weight=.2/3, level=levels[s['field']].get(month), shortMomentum=signal(source, month, s['field'], length=3))
-        score(row, signal(source, month, s['field']))
+        row.update(weight=.2/3, level=levels[s['field']].get(month) if month < as_of_month else None,
+                   shortMomentum=signal(source, month, s['field'], length=3) if month < as_of_month else None)
+        score(row, signal(source, month, s['field']) if month < as_of_month else None)
         rows.insert(2 + offset, row)
     if original is None:
         item['companyCapexRows'] = [dict(r, level=None, growth=None) for r in item['companyCapexRows']]
@@ -65,12 +70,13 @@ for month in sorted(m for m in obs if '2024-01' <= m <= config['completedMonthTh
     result.append(item)
 base['months'] = result
 base['metadata'].update(version='2.2', observationWorkbookSha256=workbook_hash, observationInspectionSha256=inspection_hash,
-    observationReviewedAt=config['reviewedAt'], observationThrough=config['completedMonthThrough'],
+    observationReviewedAt=config['reviewedAt'], observationThrough=config['completedMonthThrough'], heatmapThrough=as_of_month,
     baselinePolicy='Frozen v2.1 macro and v2.2 demand means, sample standard deviations and counts. Refresh saved observations and transformed history without recalibration.',
     baselineReferenceHashes={name: hashlib.sha256((REFERENCE/name).read_bytes()).hexdigest() for name in ['core-v2.1.ts', 'core-v2.2.ts']},
     demandSourceSha256=workbook_hash,
-    demandMethod='DRAM, NAND and TSMC TTM YoY, equal thirds of 20% before Ramp/token integration. Frozen v2.2 calibration. TSMC missing levels through July 2024 retain reviewed historical backfills (NT$ millions).',
+    demandMethod='DRAM, NAND and TSMC TTM YoY, equal thirds of 20% before Ramp/token integration. Frozen v2.2 calibration. TSMC fills missing historical levels from reviewed issuer data (NT$ millions).',
     tsmcBackfillMonths=used_backfills, tsmcBackfillSource='data/research/tsmc/monthly_backfills.json',
     tsmcSources=['https://investor.tsmc.com/english/monthly-revenue/2023', 'https://investor.tsmc.com/schinese/monthly-revenue/2024'])
 (BUILD_ROOT/'app/core-contribution-snapshot.ts').write_text('export const coreContributionSnapshot = '+json.dumps(base, indent=2)+' as const;\n', encoding='utf-8')
-print('Refreshed monthly inputs through', config['completedMonthThrough'], 'with frozen calibration; latest complete pre-Ramp score', next(m['score'] for m in reversed(result) if m['score'] is not None))
+latest = next((m['score'] for m in reversed(result) if m['score'] is not None), None)
+print('Refreshed monthly inputs through', config['completedMonthThrough'], 'with frozen calibration; latest complete pre-Ramp score', latest)

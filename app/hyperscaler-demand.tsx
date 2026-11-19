@@ -17,10 +17,6 @@ const metrics = [
   {name: "Remaining performance obligations (RPO)", sourceMetric: "RPO", entity: "rpo", databaseMetric: "cloud_rpo"},
 ] as const;
 
-const shanghaiDate = new Intl.DateTimeFormat("sv-SE", {
-  timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit",
-});
-
 function CloudMetric({metric, today}: {metric: typeof metrics[number]; today: string}) {
   const rows = companies.map(company => {
     const observations = cloud.observations
@@ -28,12 +24,14 @@ function CloudMetric({metric, today}: {metric: typeof metrics[number]; today: st
       .map(row => {
         const fiscalPeriod = `20${row.fiscalPeriod.slice(2)} Q${row.fiscalPeriod[0]}`;
         const periodEnd = "periodEnd" in row && typeof row.periodEnd === "string" ? row.periodEnd : undefined;
-        const change = estimateChange(company.ticker, fiscalPeriod, metric.databaseMetric, row.value);
-        const status = periodEnd && periodEnd < today ? "actual" as const : "estimate" as const;
-        return {fiscalPeriod, periodEnd, value: row.value, revision: change.revision, status};
+        const status = periodEnd && periodEnd <= today ? "actual" as const : "estimate" as const;
+        const change = status === "estimate"
+          ? estimateChange(company.ticker, fiscalPeriod, metric.databaseMetric, row.value)
+          : {value: row.value, revision: undefined};
+        return {fiscalPeriod, periodEnd, ...change, status};
       });
     const quarters = financials.companies.find(row => row.ticker === company.ticker)?.forecasts ?? [];
-    const forecasts = quarters.filter(quarter => quarter.periodEnd >= today).slice(0,4).map(quarter => {
+    const forecasts = quarters.filter(quarter => quarter.periodEnd > today).slice(0,4).map(quarter => {
       const point = observations.find(row => row.periodEnd
         ? row.periodEnd === quarter.periodEnd
         : row.fiscalPeriod === quarter.fiscalPeriod);
@@ -60,9 +58,9 @@ function CloudMetric({metric, today}: {metric: typeof metrics[number]; today: st
 }
 
 export default function HyperscalerDemand() {
-  const today = shanghaiDate.format(new Date());
+  const today = financials.metadata.asOf;
   return <div className={styles.root}>
     {metrics.map(metric => <CloudMetric key={metric.sourceMetric} metric={metric} today={today}/>)}
-    <p className={styles.scope}>Source: {cloud.metadata.source}, {cloud.metadata.sheet}, with revisions measured against saved database captures where available. The charts classify periods ending before {today} (Shanghai time) as actual and shade periods ending on or after that date. The workbook pulls Bloomberg’s estimate field for all periods. Meta has no comparable cloud revenue or RPO series in this dataset.</p>
+    <p className={styles.scope}>Source: {cloud.metadata.source}, {cloud.metadata.sheet}, The chart shades estimates for periods ending after {today}. The workbook pulls Bloomberg’s estimate field for all periods. Meta has no comparable cloud revenue or RPO series in this dataset.</p>
   </div>;
 }

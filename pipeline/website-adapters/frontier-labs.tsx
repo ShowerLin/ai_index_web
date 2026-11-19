@@ -15,12 +15,11 @@ function QuarterlyRevenue({ view }: { view: LabView }) {
   const observations = snapshot.reportedQuarterlyRevenue.filter(row => view === "Both" || row.company === view);
   if (!observations.length) return null;
   return <div className="labs-kpis">{observations.map(row => <article className="lab-card" key={row.id}>
-    <header><span>{row.company} · {row.period}</span><small>Media-reported</small></header>
-    <div className="lab-arr"><span>Quarterly revenue · USD</span><strong>${(row.value / 1e9).toFixed(1)}B</strong>
+    <header><span>{row.company} · {row.period}</span><small>{row.verificationStatus}</small></header>
+    <div className="lab-arr"><span>Quarterly revenue · USD</span><strong>${(row.value / 1e9).toFixed(3)}B</strong>
       <small>Reported {row.reportDate} · <a href={row.sourceUrl} target="_blank" rel="noreferrer">{row.sourceName}</a></small>
     </div>
     <p>{row.note}</p>
-    <small>{row.verificationStatus}</small>
   </article>)}</div>;
 }
 

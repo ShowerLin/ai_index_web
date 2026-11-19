@@ -12,7 +12,7 @@ def main():
  else:(web/'scripts').mkdir()
  for source in (ROOT/'pipeline/website-adapters').iterdir():
   if source.is_file():
-   destination=web/('app' if source.suffix in ('.tsx','.css') else 'scripts')/source.name
+   destination=web/('app' if source.suffix in ('.ts','.tsx','.css') else 'scripts')/source.name
    if destination.exists():
     saved=backup/destination.relative_to(web);saved.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(destination,saved)
    shutil.copy2(source,destination)

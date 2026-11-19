@@ -10,8 +10,8 @@ export const supplySnapshot = {
       "2027Q4"
     ],
     "sourceRetrievedAt": null,
-    "workbookSha256": "2087ba73078d67f788935cd301735baecaf8c97a2b713e63945c2fb2460edc1d",
-    "cloudWorkbookSha256": "239cdab3e4d684bc468e64daeda8722a54b66fce02480407923a7c5543ebce4e",
+    "workbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
+    "cloudWorkbookSha256": "d8289e7017b723eb65017a7a388ed81b88484090beeb63098e6c126cfb765afc",
     "forwardMethod": "CapEx: next four complete calendar quarters after the as-of quarter, raw saved Bloomberg estimates in USD billions. Not a day-exact rolling horizon and not lease-bridged. RPO: native fiscal-period stock estimates, never summed across quarters or issuers.",
     "rpoGrowthVsCapexStatus": "Withheld: RPO fiscal-calendar alignment, comparable scope and matched historical/forward growth bases are not verified. No fabricated historical estimates or revisions.",
     "limitations": [
@@ -322,23 +322,23 @@ export const supplySnapshot = {
     {
       "entity": "Google Cloud RPO",
       "period": "4Q26",
-      "value": 576.576,
+      "value": 582.2933333333334,
       "sourceCell": "K27",
-      "yoy": 399.632582322357
+      "yoy": 404.58694396302724
     },
     {
       "entity": "Google Cloud RPO",
       "period": "1Q27",
-      "value": 612.9726875,
+      "value": 619.63025,
       "sourceCell": "L27",
-      "yoy": 143.6250974138569
+      "yoy": 146.2711358845373
     },
     {
       "entity": "Google Cloud RPO",
       "period": "2Q27",
-      "value": 645.095433375,
+      "value": 656.7939111666667,
       "sourceCell": "M27",
-      "yoy": 31.355239611490337
+      "yoy": 33.73730011589453
     },
     {
       "entity": "Google Cloud RPO",
@@ -352,7 +352,7 @@ export const supplySnapshot = {
       "period": "4Q27",
       "value": 738.6931811709252,
       "sourceCell": "O27",
-      "yoy": 28.117226726559053
+      "yoy": 26.859288761264377
     },
     {
       "entity": "MSFT Commerical RPO",
@@ -406,23 +406,23 @@ export const supplySnapshot = {
     {
       "entity": "MSFT Commerical RPO",
       "period": "2Q27",
-      "value": 681.3333333333334,
+      "value": 679.0,
       "sourceCell": "M33",
-      "yoy": 69.48590381426203
+      "yoy": 68.90547263681593
     },
     {
       "entity": "MSFT Commerical RPO",
       "period": "3Q27",
-      "value": 695.8426666666667,
+      "value": 693.5093333333334,
       "sourceCell": "N33",
-      "yoy": 9.581522309711277
+      "yoy": 9.21406824146982
     },
     {
       "entity": "MSFT Commerical RPO",
       "period": "4Q27",
-      "value": 716.0133333333333,
+      "value": 713.68,
       "sourceCell": "O33",
-      "yoy": 12.40397697540554
+      "yoy": 12.037676609105175
     },
     {
       "entity": "Oracle RPO",
@@ -434,14 +434,14 @@ export const supplySnapshot = {
     {
       "entity": "Oracle RPO",
       "period": "3Q25",
-      "value": 104.42436000000001,
+      "value": 78.33832000000001,
       "sourceCell": "C37",
       "yoy": null
     },
     {
       "entity": "Oracle RPO",
       "period": "4Q25",
-      "value": 127.81156200000001,
+      "value": 106.52595166666667,
       "sourceCell": "D37",
       "yoy": null
     },
@@ -455,23 +455,23 @@ export const supplySnapshot = {
     {
       "entity": "Oracle RPO",
       "period": "2Q26",
-      "value": 519.376895,
+      "value": 432.8303125,
       "sourceCell": "F37",
-      "yoy": 500.782990167727
+      "yoy": 400.67126951995374
     },
     {
       "entity": "Oracle RPO",
       "period": "3Q26",
-      "value": 537.7923385224748,
+      "value": 460.98343301926406,
       "sourceCell": "G37",
-      "yoy": 415.00659283185917
+      "yoy": 488.4520283550426
     },
     {
       "entity": "Oracle RPO",
       "period": "4Q26",
-      "value": 589.5112629666665,
+      "value": 525.0096539714286,
       "sourceCell": "H37",
-      "yoy": 361.2346909324733
+      "yoy": 392.84671552548156
     },
     {
       "entity": "Oracle RPO",
@@ -485,21 +485,21 @@ export const supplySnapshot = {
       "period": "2Q27",
       "value": 680.8792635,
       "sourceCell": "J37",
-      "yoy": 31.09540875898995
+      "yoy": 57.30859041902245
     },
     {
       "entity": "Oracle RPO",
       "period": "3Q27",
       "value": 695.3191635000001,
       "sourceCell": "K37",
-      "yoy": 29.29138511164233
+      "yoy": 50.833872476919
     },
     {
       "entity": "Oracle RPO",
       "period": "4Q27",
       "value": 692.86946175,
       "sourceCell": "L37",
-      "yoy": 17.53286243645149
+      "yoy": 31.97270878902856
     },
     {
       "entity": "Oracle RPO",
@@ -864,8 +864,8 @@ export const supplySnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 53.119998931884766,
-          "yoy": 84.06098035996108,
+          "level": 52.91999816894531,
+          "yoy": 83.36797702337253,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -3861,7 +3861,35 @@ export const supplySnapshot = {
         },
         {
           "date": "2026-11-05",
-          "value": 53.119998931884766
+          "value": 53.12
+        },
+        {
+          "date": "2026-11-06",
+          "value": 53.12
+        },
+        {
+          "date": "2026-11-09",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-10",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-11",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-12",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-13",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-16",
+          "value": 52.91999816894531
         }
       ]
     },
@@ -4205,8 +4233,8 @@ export const supplySnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 2.96,
-          "yoy": 51.020408163265294,
+          "level": 3.1,
+          "yoy": 58.163265306122454,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -7359,6 +7387,50 @@ export const supplySnapshot = {
         {
           "date": "2026-11-04",
           "value": 2.96
+        },
+        {
+          "date": "2026-11-05",
+          "value": 2.97
+        },
+        {
+          "date": "2026-11-06",
+          "value": 2.99
+        },
+        {
+          "date": "2026-11-07",
+          "value": 3.04
+        },
+        {
+          "date": "2026-11-08",
+          "value": 3.0
+        },
+        {
+          "date": "2026-11-09",
+          "value": 3.01
+        },
+        {
+          "date": "2026-11-10",
+          "value": 3.06
+        },
+        {
+          "date": "2026-11-11",
+          "value": 3.06
+        },
+        {
+          "date": "2026-11-12",
+          "value": 3.06
+        },
+        {
+          "date": "2026-11-13",
+          "value": 3.1
+        },
+        {
+          "date": "2026-11-14",
+          "value": 3.13
+        },
+        {
+          "date": "2026-11-15",
+          "value": 3.1
         }
       ]
     },
@@ -7702,8 +7774,8 @@ export const supplySnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 6.53,
-          "yoy": 41.95652173913045,
+          "level": 6.87,
+          "yoy": 49.34782608695654,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -9532,6 +9604,50 @@ export const supplySnapshot = {
         {
           "date": "2026-11-04",
           "value": 6.53
+        },
+        {
+          "date": "2026-11-05",
+          "value": 6.7
+        },
+        {
+          "date": "2026-11-06",
+          "value": 6.58
+        },
+        {
+          "date": "2026-11-07",
+          "value": 6.8
+        },
+        {
+          "date": "2026-11-08",
+          "value": 6.81
+        },
+        {
+          "date": "2026-11-09",
+          "value": 6.84
+        },
+        {
+          "date": "2026-11-10",
+          "value": 6.97
+        },
+        {
+          "date": "2026-11-11",
+          "value": 6.84
+        },
+        {
+          "date": "2026-11-12",
+          "value": 6.97
+        },
+        {
+          "date": "2026-11-13",
+          "value": 6.87
+        },
+        {
+          "date": "2026-11-14",
+          "value": 7.03
+        },
+        {
+          "date": "2026-11-15",
+          "value": 6.87
         }
       ]
     }
@@ -9667,6 +9783,10 @@ export const supplySnapshot = {
     },
     {
       "month": "2026-09",
+      "score": null
+    },
+    {
+      "month": "2026-10",
       "score": null
     },
     {

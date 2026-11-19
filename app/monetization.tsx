@@ -1,4 +1,9 @@
+import AdoptionSpending, { AdoptionReadthrough, RampWeeklySpending } from "./adoption-spending";
+import AdoptionPrices from "./adoption-prices";
+import RampDemand from "./ramp-demand";
 "use client";
+import { pillarCommentary } from "./research-commentary";
+import ResearchCommentary from "./research-commentary-panel";
 import {useState} from 'react';
 import {monetizationSnapshot as data} from './monetization-snapshot';
 import styles from './monetization.module.css';
@@ -58,7 +63,16 @@ export default function Monetization(){
  const [selected,setSelected]=useState(0);const c=data.publicCompanies[selected];
  const [revenueView,setRevenueView]=useState('runRate');
  const [labView,setLabView]=useState<'Both'|'OpenAI'|'Anthropic'>('Both');
- return <PillarResearch id="monetization" number="03" pillar="Monetization" history={false} classification="CORE PILLAR · 25% NOMINAL WEIGHT" title="US frontier-lab revenue tracks the conversion of AI activity into commercial scale." summary="OpenAI and Anthropic anchor the initial Monetization coverage. Follow their reported revenue run rates, recognized revenue and dated funding valuations to assess commercial growth. Sparse disclosures and different observation dates limit comparability; margins and cash generation are needed to assess how much revenue becomes profit. Chinese model companies provide supplementary market context. Nominal core weights are 15% for Ramp business spending, 5% for consumer card spending and 5% shared by eligible lab revenue updates.">
+ return <PillarResearch id="monetization" number="02" pillar="Monetization" history={false} classification="CORE PILLAR · 25% NOMINAL WEIGHT" title={pillarCommentary.monetization.title} summary={pillarCommentary.monetization.summary}>
+ <ResearchCommentary section="monetization"/>
+  <div id="business-paid-demand">
+    <EvidenceGroup title="Business paid-demand" description="Ramp median AI spending, matched model spending and OpenRouter estimated routed spending each carry 5% nominal core weight. Ramp measures sampled business payments; OpenRouter provides a routed-spending proxy across mixed use cases."/>
+    <AdoptionReadthrough/>
+    <div className="adoption-panel-row adoption-spending-row"><RampWeeklySpending/><AdoptionSpending/></div>
+    <span id="imports" aria-hidden="true"/>
+    <details className="evidence-data" id="demand"><summary>Business spending intensity</summary><RampDemand/></details>
+    <EvidenceGroup title="Token pricing" description="Bloomberg SDLLMTK tracks the token price benchmark. OpenRouter model-weighted prices use the saved model catalog and routed token mix. Pricing provides context for paid-demand estimates."/><div className="adoption-panel-row adoption-usage-row"><AdoptionPrices/></div>
+  </div>
  <span id="model-monetization" aria-hidden="true"/>
  <EvidenceGroup title="US frontier labs" description="OpenAI and Anthropic are the primary coverage. Annualized revenue run rates and recognized revenue remain distinct."/>
  <div className={`pillar-controls ${styles.fullWidth}`}><label htmlFor="monetization-lab">Frontier lab </label><select id="monetization-lab" value={labView} onChange={e=>setLabView(e.target.value as typeof labView)}><option>Both</option><option>OpenAI</option><option>Anthropic</option></select></div>
@@ -81,7 +95,7 @@ export default function Monetization(){
       </EvidenceCard>
  <EvidenceGroup title="U.S. consumer card spending" description="High-frequency consumer monetization evidence · saved Bloomberg observations, separate from company revenue."/>
  <EvidenceCard title="OpenAI and Anthropic observed consumer spending" unit="Weekly USD · observed transactions in a U.S. consumer panel" source="S18" wide legend={<ChartLegend items={[{label:'OpenAI',color:'#1d7f80'},{label:'Anthropic',color:'#d88952'}]}/>} note="The chart shows each lab separately. The core scores combined spending growth with a 5% nominal weight."><AppSpendingPlot/></EvidenceCard>
- <p id="source-S18" className={`${styles.note} ${styles.fullWidth}`}>S18 · Bloomberg observed_sales, per=w; saved in AI_Monetization.xlsx / App Revenue Value and App Revenue Formula. Coverage: {data.appSpending.history[0].date}–{data.appSpending.history.at(-1)!.date}. {data.appSpending.basis} Not an iOS / Google Play revenue series. Excludes business spending, non-U.S. accounts and non-card payments; no receipt-level information. Transactions must be mappable to the selected company or brand. The core uses the last complete weekly observation each month and compares four weeks with the previous four.</p>
+ <p id="source-S18" className={`${styles.note} ${styles.fullWidth}`}>S18 · Bloomberg observed_sales, per=w; saved in AI_Monetization.xlsx / App Revenue Value and App Revenue Formula. Coverage: {data.appSpending.history[0].date}–{data.appSpending.history.at(-1)!.date}. {data.appSpending.basis} Not an iOS / Google Play revenue series. Excludes business spending, non-U.S. accounts and non-card payments; no receipt-level information. Transactions must be mappable to the selected company or brand. The core uses the latest available complete four-week window and compares it with the preceding four weeks. Its nominal core weight is 5%.</p>
  <div className={styles.twoCharts}>
  <EvidenceCard title="Valuation history" unit="USD billions · dated observations" source="S16" legend={<ChartLegend items={[{label:'OpenAI',color:'#1d7f80'},{label:'Anthropic',color:'#d88952'}]}/>} note="Hollow dots: rumors / IPO targets; solid: historical financing observations. Bases differ."><LabPlot view={labView} valuation/></EvidenceCard>
  <EvidenceCard title="Valuation / revenue run rate" unit="Indicative multiple · latest collected run rate" source="S16" note="Dark: completed; pale: latest rumor. Dates and accounting bases differ; not forward P/S."><MultiplePlot view={labView}/></EvidenceCard>
@@ -99,7 +113,3 @@ export default function Monetization(){
  </div>
  </PillarResearch>;
 }
-
-
-
-

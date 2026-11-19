@@ -1,9 +1,11 @@
 """Build chart-only CapEx inputs from accepted hyperscaler financials; no core changes."""
 import argparse
 import json
+import os
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get('AI_INDEX_DATA_ROOT', Path(__file__).resolve().parents[1]))
+BUILD = Path(os.environ.get('AI_INDEX_BUILD_ROOT', ROOT / 'data/derived'))
 NAMES = {'MSFT': 'Microsoft', 'GOOGL': 'Alphabet', 'AMZN': 'Amazon', 'META': 'Meta', 'ORCL': 'Oracle'}
 
 
@@ -41,7 +43,7 @@ def build(data):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--input', type=Path, default=ROOT / 'data/derived/hyperscalers/financials.json')
-    p.add_argument('--output', type=Path, default=ROOT / 'data/derived/app/hyperscaler-financial-snapshot.ts')
+    p.add_argument('--output', type=Path, default=BUILD / 'app/hyperscaler-financial-snapshot.ts')
     args = p.parse_args()
     result = build(json.loads(args.input.read_text(encoding='utf-8')))
     args.output.parent.mkdir(parents=True, exist_ok=True)

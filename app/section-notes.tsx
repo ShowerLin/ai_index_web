@@ -19,7 +19,7 @@ const notes: Record<string, Note> = {
   },
   adoption: {
     sources: ["S1", "S14"], source: `Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption through ${rampSnapshot.metadata.through}.`,
-    methodology: "Show current use, expected use and Ramp paid adoption as percentages. All three are zero-weight breadth context. Ramp and OpenRouter matched-window spending growth drive the Adoption pillar. Token volume and price changes are inputs to spending growth. Ramp is not split at the BTOS wording change.",
+    methodology: "Current use, expected use and Ramp paid adoption receive 4.1667% nominal core weight each. OpenRouter and Ramp token volumes receive 6.25% each, using separate log-volume scores. Spending growth enters Monetization business paid demand. The BTOS wording change splits the survey lines; Ramp retains its own source history.",
     other: "Ramp identifies firms with observed AI payments. It does not establish retention, profitability or market-wide utilization. Survey intentions and observed payments are distinct measures.",
   },
   capex: {

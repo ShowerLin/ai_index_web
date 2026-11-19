@@ -2,7 +2,7 @@ export const coreProjectionSnapshot = {
   "metadata": {
     "source": "Indexlist.xlsx",
     "sheet": "Supply Chain Financial Value",
-    "workbookSha256": "2087ba73078d67f788935cd301735baecaf8c97a2b713e63945c2fb2460edc1d",
+    "workbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
     "actualThrough": "2026-06-30",
     "estimateThrough": "2027-12-31",
     "anchorMonth": "2026-06",
@@ -14,7 +14,7 @@ export const coreProjectionSnapshot = {
       "Oracle": 0.8156716421920397
     },
     "method": "Conditional composite: June 2026 composite + 25% \u00d7 (projected CapEx score \u2212 June CapEx score). The other three pillars are held at their June scores. CapEx uses five-company TTM total YoY growth and unchanged June baseline. Each company headline estimate is multiplied by its June approved-core CapEx / June source headline CapEx ratio to bridge accounting bases. This fixed-ratio bridge is an assumption, not a Bloomberg forecast of lease-inclusive spending. Quarter scores held across constituent months; retrospective period alignment.",
-    "reportedCapexAsOf": "2026-11-10",
+    "reportedCapexAsOf": "2026-11-17",
     "sourceRetrievedAt": null
   },
   "quarters": [
@@ -31,7 +31,7 @@ export const coreProjectionSnapshot = {
         "total": 209.5252135177421,
         "growth": 74.7878212285556,
         "capexScore": 57.97990980960883,
-        "composite": 59.64359990991567
+        "composite": 64.86448681653366
       },
       "total": 230.13982803518732,
       "companies": {
@@ -65,7 +65,7 @@ export const coreProjectionSnapshot = {
       },
       "growth": 79.77968191950897,
       "capexScore": 72.67496394279101,
-      "composite": 63.31736344321122,
+      "composite": 68.5382503498292,
       "supplyScore": 72.67496394279101
     },
     {
@@ -103,7 +103,7 @@ export const coreProjectionSnapshot = {
       },
       "growth": 82.85501960793256,
       "capexScore": 81.72815204379327,
-      "composite": 65.58066046846179,
+      "composite": 70.80154737507976,
       "supplyScore": 81.72815204379327
     },
     {
@@ -141,7 +141,7 @@ export const coreProjectionSnapshot = {
       },
       "growth": 79.35100891534506,
       "capexScore": 71.41303509669186,
-      "composite": 63.001881231686426,
+      "composite": 68.22276813830442,
       "supplyScore": 71.41303509669186
     },
     {
@@ -179,7 +179,7 @@ export const coreProjectionSnapshot = {
       },
       "growth": 69.52738585008153,
       "capexScore": 42.49422472411027,
-      "composite": 55.772178638541035,
+      "composite": 60.99306554515901,
       "supplyScore": 42.49422472411027
     },
     {
@@ -217,7 +217,7 @@ export const coreProjectionSnapshot = {
       },
       "growth": 53.01903420688694,
       "capexScore": 0,
-      "composite": 45.14862245751347,
+      "composite": 50.369509364131446,
       "supplyScore": 0
     },
     {
@@ -255,122 +255,122 @@ export const coreProjectionSnapshot = {
       },
       "growth": 40.074019350602974,
       "capexScore": 0,
-      "composite": 45.14862245751347,
+      "composite": 50.369509364131446,
       "supplyScore": 0
     }
   ],
   "months": [
     {
       "month": "2026-06",
-      "value": 61.16741833611824,
+      "value": 66.38830524273622,
       "capexScore": 64.0751835144191,
       "supplyScore": 64.0751835144191
     },
     {
       "month": "2026-07",
-      "value": 59.64359990991567,
+      "value": 64.86448681653366,
       "capexScore": 57.97990980960883,
       "supplyScore": 57.97990980960883
     },
     {
       "month": "2026-08",
-      "value": 59.64359990991567,
+      "value": 64.86448681653366,
       "capexScore": 57.97990980960883,
       "supplyScore": 57.97990980960883
     },
     {
       "month": "2026-09",
-      "value": 59.64359990991567,
+      "value": 64.86448681653366,
       "capexScore": 57.97990980960883,
       "supplyScore": 57.97990980960883
     },
     {
       "month": "2026-10",
-      "value": 65.58066046846179,
+      "value": 70.80154737507976,
       "capexScore": 81.72815204379327,
       "supplyScore": 81.72815204379327
     },
     {
       "month": "2026-11",
-      "value": 65.58066046846179,
+      "value": 70.80154737507976,
       "capexScore": 81.72815204379327,
       "supplyScore": 81.72815204379327
     },
     {
       "month": "2026-12",
-      "value": 65.58066046846179,
+      "value": 70.80154737507976,
       "capexScore": 81.72815204379327,
       "supplyScore": 81.72815204379327
     },
     {
       "month": "2027-01",
-      "value": 63.001881231686426,
+      "value": 68.22276813830442,
       "capexScore": 71.41303509669186,
       "supplyScore": 71.41303509669186
     },
     {
       "month": "2027-02",
-      "value": 63.001881231686426,
+      "value": 68.22276813830442,
       "capexScore": 71.41303509669186,
       "supplyScore": 71.41303509669186
     },
     {
       "month": "2027-03",
-      "value": 63.001881231686426,
+      "value": 68.22276813830442,
       "capexScore": 71.41303509669186,
       "supplyScore": 71.41303509669186
     },
     {
       "month": "2027-04",
-      "value": 55.772178638541035,
+      "value": 60.99306554515901,
       "capexScore": 42.49422472411027,
       "supplyScore": 42.49422472411027
     },
     {
       "month": "2027-05",
-      "value": 55.772178638541035,
+      "value": 60.99306554515901,
       "capexScore": 42.49422472411027,
       "supplyScore": 42.49422472411027
     },
     {
       "month": "2027-06",
-      "value": 55.772178638541035,
+      "value": 60.99306554515901,
       "capexScore": 42.49422472411027,
       "supplyScore": 42.49422472411027
     },
     {
       "month": "2027-07",
-      "value": 45.14862245751347,
+      "value": 50.369509364131446,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-08",
-      "value": 45.14862245751347,
+      "value": 50.369509364131446,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-09",
-      "value": 45.14862245751347,
+      "value": 50.369509364131446,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-10",
-      "value": 45.14862245751347,
+      "value": 50.369509364131446,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-11",
-      "value": 45.14862245751347,
+      "value": 50.369509364131446,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-12",
-      "value": 45.14862245751347,
+      "value": 50.369509364131446,
       "capexScore": 0,
       "supplyScore": 0
     }

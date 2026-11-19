@@ -70,20 +70,21 @@ for name,kind,members in groups:
  if not members:continue
  base=statistics.mean(baseline['values'][t] for t in members);cells=[]
  for r in daily:
-  vals=[r['values'].get(t) for t in members];complete=all(v is not None for v in vals) and r['benchmark'] is not None
+  vals=[r['values'].get(t) for t in members];complete=all(v is not None for v in vals)
+  matched=complete and r['benchmark'] is not None
   level=statistics.mean(vals) if complete else None
-  relative_values=[r['values'][t]-baseline['values'][t]-(r['benchmark']-baseline['benchmark']) for t in members] if complete else []
+  relative_values=[r['values'][t]-baseline['values'][t]-(r['benchmark']-baseline['benchmark']) for t in members] if matched else []
   distribution={key:fn(vals) if complete else None for key,fn in [('q25',lambda v:percentile(v,.25)),('q75',lambda v:percentile(v,.75))]}
-  distribution.update({key:fn(relative_values) if complete else None for key,fn in [('relativeMedian',statistics.median),('relativeMin',min),('relativeMax',max),('relativeQ25',lambda v:percentile(v,.25)),('relativeQ75',lambda v:percentile(v,.75))]})
-  cells.append({**distribution,'date':r['date'],'spread':level,'median':statistics.median(vals) if complete else None,'minimum':min(vals) if complete else None,'maximum':max(vals) if complete else None,'benchmark':r['benchmark'],'relativeChange':(level-base)-(r['benchmark']-baseline['benchmark']) if complete else None,'coverage':sum(v is not None for v in vals),'count':len(members)})
+  distribution.update({key:fn(relative_values) if matched else None for key,fn in [('relativeMedian',statistics.median),('relativeMin',min),('relativeMax',max),('relativeQ25',lambda v:percentile(v,.25)),('relativeQ75',lambda v:percentile(v,.75))]})
+  cells.append({**distribution,'date':r['date'],'spread':level,'median':statistics.median(vals) if complete else None,'minimum':min(vals) if complete else None,'maximum':max(vals) if complete else None,'benchmark':r['benchmark'],'relativeChange':(level-base)-(r['benchmark']-baseline['benchmark']) if matched else None,'coverage':sum(v is not None for v in vals),'count':len(members)})
  credit.append({'name':name,'kind':kind,'members':members,'cells':cells})
 issuer_credit=[]
 for t in issuers:
- last=next((r for r in reversed(daily) if r['values'].get(t) is not None and r['benchmark'] is not None),None)
+ last=next((r for r in reversed(daily) if r['values'].get(t) is not None),None)
  if not last:continue
  date=datetime.date.fromisoformat(last['date']);cut=date-datetime.timedelta(days=30)
  prior=next((r for r in reversed(daily) if r['date']<=cut.isoformat() and r['values'].get(t) is not None and r['benchmark'] is not None),None)
- issuer_credit.append({'ticker':t,'sector':sector.get(t,'Unclassified'),'rating':rating_sources.get(t,{}),'date':last['date'],'spread':last['values'][t],'benchmark':last['benchmark'],'excess30d':(last['values'][t]-prior['values'][t])-(last['benchmark']-prior['benchmark']) if prior else None})
+ issuer_credit.append({'ticker':t,'sector':sector.get(t,'Unclassified'),'rating':rating_sources.get(t,{}),'date':last['date'],'spread':last['values'][t],'benchmark':last['benchmark'],'excess30d':(last['values'][t]-prior['values'][t])-(last['benchmark']-prior['benchmark']) if prior and last['benchmark'] is not None else None})
 bond_sheet=list(w['Bond Issuance Value'].values)
 benchmark_month_col=next(i for i,h in enumerate(bond_sheet[0]) if h=='#US_IG_ISSUANCE')
 benchmark={}
@@ -109,11 +110,12 @@ latest=months[-1];start=shift(latest,-11);window=[r for r in bonds if start<=r['
 monthly_by_month={r['month']:r for r in monthly}
 bond_market=[{'month':m,'usIgAmount':benchmark.get(m),'coveredAmount':monthly_by_month.get(m,{}).get('amount'),'relativeSupplyPct':monthly_by_month[m]['amount']/benchmark[m]*100 if m in monthly_by_month and m in benchmark else None} for m in sorted(set(months)|set(benchmark))]
 matched=[r for r in bond_market if start<=r['month']<=latest and r['relativeSupplyPct'] is not None]
-bond_benchmark={'monthly':bond_market,'latestMatchedMonth':max(r['month'] for r in bond_market if r['relativeSupplyPct'] is not None),'benchmarkAsOf':max(benchmark),'matchedWindowRatio':sum(r['coveredAmount'] for r in matched)/sum(r['usIgAmount'] for r in matched)*100,'matchedMonths':len(matched),'numeratorScope':'All recorded covered-company bonds, across countries and ratings. Includes non-US and below-IG issuers. AI use of proceeds is not identified.','denominatorScope':'US country-of-risk, investment-grade corporate bonds, amounts converted to USD in the source BQL query.','interpretation':'Relative issuance scale, not a strict share of US IG issuance. The numerator query lacks the denominator country-of-risk and issue-level IG filters. Missing covered months remain null; October has benchmark-only month-to-date data.'}
+bond_benchmark={'monthly':bond_market,'latestMatchedMonth':max(r['month'] for r in bond_market if r['relativeSupplyPct'] is not None),'benchmarkAsOf':max(benchmark),'matchedWindowRatio':sum(r['coveredAmount'] for r in matched)/sum(r['usIgAmount'] for r in matched)*100,'matchedMonths':len(matched),'numeratorScope':'All recorded covered-company bonds, across countries and ratings. Includes non-US and below-IG issuers. AI use of proceeds is not identified.','denominatorScope':'US country-of-risk, investment-grade corporate bonds, amounts converted to USD in the source BQL query.','interpretation':'Relative issuance scale, not a strict share of US IG issuance. The numerator query lacks the denominator country-of-risk and issue-level IG filters. Missing covered months remain null. The latest available month may be partial.'}
 sector_totals=[{'sector':s,'amount':sum(r['amount'] for r in window if r['sector']==s),'issues':sum(r['issues'] or 0 for r in window if r['sector']==s),'issuers':sorted(set(r['issuer'] for r in window if r['sector']==s))} for s in bond_sectors]
 sector_totals.sort(key=lambda r:-r['amount'])
 issuer_totals=[{'issuer':t,'sector':sector.get(t,'Unclassified'),'amount':sum(r['amount'] for r in window if r['issuer']==t)} for t in sorted(set(r['issuer'] for r in window))];issuer_totals.sort(key=lambda r:-r['amount'])
 result={'metadata':{'source':'Indexlist.xlsx','sha256':index_hash,'indexPriceCompletedThrough':index_config['completedMonthThrough'],'indexPriceReviewedAt':index_config['reviewedAt'],'creditAsOf':daily[-1]['date'],'creditBaseline':baseline['date'],'ratingAsOf':'2026-09-30','bondWindow':start+' through '+latest,'bondMissingMonths':[shift(start,i) for i in range(12) if shift(start,i) not in months],'limitations':'Supplementary indicators do not alter core weights. CDS uses Bloomberg implied issuer spreads versus the workbook IG benchmark, not a rating-matched index. Fixed groups use latest ratings retrospectively; no historical rating adjustment. Sector baskets include covered issuers across ratings, including below IG. Calendar-day values can carry prior observations. Bond amounts follow the existing USD-equivalent workbook convention; no new FX conversion. Absent issuer-month entries are no recorded issuance, not independently verified zeros. Unknown issuers remain unclassified.'},'demand':demand,'credit':credit,'creditIssuers':issuer_credit,'bondRows':bonds,'bondMonthly':monthly,'bondSectors':sector_totals,'bondIssuers':issuer_totals}
 result['bondBenchmark']=bond_benchmark
+result['metadata']['creditBenchmarkAsOf']=max(r['date'] for r in daily if r['benchmark'] is not None)
 root=BUILD_ROOT;(root/'app/workbook-amendments-snapshot.ts').write_text('export const workbookAmendments = '+json.dumps(result,indent=2)+' as const;\n')
 print(json.dumps({'demandSeries':len(demand),'creditDays':len(daily),'creditGroups':len(credit),'bondRecords':len(bonds),'bondWindow':result['metadata']['bondWindow'],'missingBondMonths':result['metadata']['bondMissingMonths'],'largestSector':sector_totals[0]},indent=2))

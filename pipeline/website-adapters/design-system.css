@@ -73,3 +73,29 @@ body { font-family: var(--font-body); }
 .infra-overview h4 button { font: inherit; text-align: left; text-decoration: underline; text-underline-offset: 4px; }
 #top .pulse-frequency-tabs button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--card); }
 #infra-evidence .infrastructure-stage-signals { margin-bottom: 14px; }
+.data-freshness-scroll { overflow-x: auto; }
+.data-freshness table { width: 100%; border-collapse: collapse; }
+.data-freshness th, .data-freshness td {
+  padding: .55rem .75rem;
+  border-bottom: 1px solid #dce3e0;
+  text-align: left;
+  vertical-align: top;
+}
+.data-freshness time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+#top details.evidence-data {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+  padding: 0 14px;
+}
+#top details.evidence-data > summary {
+  padding: 10px 0;
+  cursor: pointer;
+}
+#top details.evidence-data[open] > summary {
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+#top details.evidence-data[open] { padding-bottom: 14px; }
+#top .hyperscaler-cash-returns { margin-block: 28px 20px; }
+#top .evidence-group + .section-summary { margin-top: 10px; }

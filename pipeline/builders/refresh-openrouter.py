@@ -1,11 +1,15 @@
-from paths import DATA_ROOT, BUILD_ROOT, REFERENCE, RAMP, OPENROUTER
-"""Fetch public OpenRouter rankings in quarterly windows; never store API keys."""
-import collections, datetime as dt, getpass, json, os, pathlib, sys, time, urllib.parse, urllib.request
+"""Fetch public OpenRouter rankings in quarterly windows."""
+import collections, datetime as dt, json, sys, time, urllib.parse, urllib.request
+from pathlib import Path
+
+from openrouter_credentials import openrouter_key
+from paths import DATA_ROOT, BUILD_ROOT, OPENROUTER
 
 ROOT = BUILD_ROOT
 ENDPOINT = 'https://openrouter.ai/api/v1/datasets/rankings-daily'
-key = None if "--cached" in sys.argv else os.environ.get('OPENROUTER_API_KEY') or None
-if '--cached' not in sys.argv and not key: raise SystemExit('Set OPENROUTER_API_KEY in the local environment; no credential is stored in OneDrive.')
+key = None if "--cached" in sys.argv else openrouter_key(Path.cwd())
+if '--cached' not in sys.argv and not key:
+    raise SystemExit('Set OPENROUTER_API_KEY in the environment or the project .env file.')
 end = dt.datetime.now(dt.timezone.utc).date() - dt.timedelta(days=1)
 start = dt.date(2025, 1, 1)
 cached = json.loads((OPENROUTER).read_text(encoding='utf-8')) if "--cached" in sys.argv else None

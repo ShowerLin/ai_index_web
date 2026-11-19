@@ -17,10 +17,11 @@ OUT=DATA_ROOT/'data/raw/ramp/archive'/stamp_path
 OUT.mkdir(parents=True,exist_ok=False)
 PAGE = 'https://ramp.com/data/ai-index'
 
-def fetch(url):
+def fetch(url, *, optional=False):
     print(f'Fetching {url}',flush=True)
     response=requests.get(url,headers={'User-Agent':'AI-Index-research/1.0'},timeout=(15,45))
-    if response.status_code not in (401,403):response.raise_for_status()
+    if response.status_code not in (401,403) and not (optional and response.status_code == 404):
+        response.raise_for_status()
     print(f'Received {response.status_code}: {len(response.content):,} bytes',flush=True)
     return response.content,response.status_code
 
@@ -54,10 +55,18 @@ else:
         except (ValueError, IndexError):
             pass
     assert len(found) == 1
-    data = found[0]
+    # The embedded React payload uses this marker for missing values.
+    def normalize_missing(value):
+        if isinstance(value, dict):
+            return {key: normalize_missing(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [normalize_missing(item) for item in value]
+        return None if value == '$undefined' else value
+
+    data = normalize_missing(found[0])
 # Ramp moved large chart datasets out of the initial payload in October 2026.
 version = data.get('filterModeBundleVersion') or data['dataVersion']
-for dataset in ['tokenVolumes', 'tokenPrices', 'modelShareCurated']:
+for dataset in ['tokenVolumes', 'tokenPrices']:
     if dataset not in data:
         if args.cached:
             raise ValueError(f'Cached payload is missing {dataset}')
@@ -73,16 +82,22 @@ urls = {
     'documented': 'https://api.ramp.com/v1/public/ai-index/adoption?months=120',
 }
 if args.cached:
-    responses={key:((RAMP/f'{key}-response.json').read_bytes(),200 if key!='documented' else 401) for key in urls}
+    prior = json.loads((RAMP/'normalized.json').read_text(encoding='utf-8'))
+    saved_status = dict((source[0], source[2]) for source in prior['sources'])
+    responses = {
+        key: ((RAMP/f'{key}-response.json').read_bytes(), saved_status[source])
+        for key, source in [('spend', 'R2'), ('model', 'R3'), ('documented', 'R4')]
+    }
 else:
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-        responses = dict(zip(urls, pool.map(fetch, urls.values())))
+        pending = {key: pool.submit(fetch, url, optional=key == 'model') for key, url in urls.items()}
+        responses = {key: future.result() for key, future in pending.items()}
 for key, (body, code) in responses.items():
     (OUT / f'{key}-response.json').write_bytes(body)
-    if key != 'documented':
+    if key == 'spend' or (key == 'model' and code != 404):
         assert code == 200, (key, code)
 spend_filter = json.loads(responses['spend'][0])
-model_filter = json.loads(responses['model'][0])
+model_filter = json.loads(responses['model'][0]) if responses['model'][1] == 200 else []
 dims = ['business_office_state', 'fte_segment', 'naics_sector', 'company_financing_status']
 all_spend = {r['my_date']: r for r in spend_filter if all(r[d] == 'ALL' for d in dims)}
 default_spend = {r['date_month']: r for r in data['spendPerEmployee']}
@@ -112,7 +127,7 @@ for r in data['spendPerEmployeeCurated']:
             notes='Legacy winsorized measure is distinct from a top-cohort median.' if field.startswith('p99_') else '')
 for r in data['spendShareData']['sector']:
     add(r['my_date'], 'AI share of business spend', 'Sector', r['naics_sector'], 'AI share of observed payment volume', r['ai_share_of_tpv'], 'fraction', 'ai_share_of_tpv', notes='Ramp payment-volume denominator. Missing values remain blank.')
-for r in data['modelBreakdown']:
+for r in data.get('modelBreakdown', []):
     add(r['date_month'], 'Model spend share', 'Provider/model', r['ai_provider'] + ' / ' + r['model_label'], 'Model spend share', r['model_share'], 'fraction', 'model_share', notes=r['model_spend_type'] + '. Dashboard Overall series; filter ALL is a separate source.')
 # Include single-dimension filter cohorts, preserving the full joint-filter archive outside the workbook.
 for r in spend_filter:
@@ -134,9 +149,11 @@ for row in monthly:
         assert 0 <= row[9] <= 1
 stamp = json.loads((RAMP/'normalized.json').read_text(encoding='utf-8'))['retrieved_utc'] if args.cached else datetime.datetime.now(datetime.timezone.utc).isoformat()
 sources = [
-    ['R1', 'Public dashboard payload', 200, PAGE, 'Adoption, spend per employee, spend share, provider/model and sector series.'],
+    ['R1', 'Public dashboard payload', 200, PAGE, 'Adoption, spend per employee, spend share, provider and sector series, and token charts.'],
     ['R2', 'Undocumented website JSON', responses['spend'][1], urls['spend'], 'Spend per employee with state, size, sector and financing filters.'],
-    ['R3', 'Undocumented website JSON', responses['model'][1], urls['model'], 'Provider/model spend-share joint filters. Full response archived; default model series in detail table.'],
+    ['R3', 'Undocumented website JSON', responses['model'][1], urls['model'],
+     'Provider/model spend-share joint filters. Full response archived.' if responses['model'][1] == 200
+     else 'Ramp no longer serves the model-spend filter at this route. Historical responses remain archived.'],
     ['R4', 'Documented API requires key', responses['documented'][1], urls['documented'], 'No documented API data retrieved. No credentials supplied.'],
 ]
 payload = {'retrieved_utc': stamp, 'version': version, 'monthly': monthly, 'records': records, 'sources': sources,

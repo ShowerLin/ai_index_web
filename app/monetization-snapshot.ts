@@ -1,7 +1,7 @@
 export const monetizationSnapshot = {
   "metadata": {
     "source": "AI_Monetization.xlsx",
-    "workbookSha256": "3201aab7decdf40eab5f29407d55c9c1737066a18beef7ff6c366c3e4c1104ea",
+    "workbookSha256": "90a1b3e126e28961403f1dbf3c81215822216113cffd02dd3251d875dcf9f288",
     "currency": "USD",
     "sourceUnit": "USD",
     "coreWeight": 0,
@@ -550,264 +550,489 @@ export const monetizationSnapshot = {
   "appSpending": {
     "history": [
       {
+        "date": "2025-01-05",
+        "openai": 356652.45,
+        "anthropic": 23165.95
+      },
+      {
+        "date": "2025-01-12",
+        "openai": 453535.07,
+        "anthropic": 30285.6
+      },
+      {
+        "date": "2025-01-19",
+        "openai": 434424.45,
+        "anthropic": 35139.04
+      },
+      {
+        "date": "2025-01-26",
+        "openai": 430717.18,
+        "anthropic": 29916.38
+      },
+      {
+        "date": "2025-02-02",
+        "openai": 403418.72,
+        "anthropic": 29331.4
+      },
+      {
+        "date": "2025-02-09",
+        "openai": 522482.07,
+        "anthropic": 46602
+      },
+      {
+        "date": "2025-02-16",
+        "openai": 537556.48,
+        "anthropic": 39986.89
+      },
+      {
+        "date": "2025-02-23",
+        "openai": 487836,
+        "anthropic": 30421.1
+      },
+      {
+        "date": "2025-03-02",
+        "openai": 630369.75,
+        "anthropic": 75540.82
+      },
+      {
+        "date": "2025-03-09",
+        "openai": 543211.73,
+        "anthropic": 40921.59
+      },
+      {
+        "date": "2025-03-16",
+        "openai": 580536.5,
+        "anthropic": 56547.95
+      },
+      {
+        "date": "2025-03-23",
+        "openai": 517110.87,
+        "anthropic": 43940.45
+      },
+      {
+        "date": "2025-03-30",
+        "openai": 514955.59,
+        "anthropic": 42131.12
+      },
+      {
+        "date": "2025-04-06",
+        "openai": 592659.24,
+        "anthropic": 44239.17
+      },
+      {
+        "date": "2025-04-13",
+        "openai": 673241.38,
+        "anthropic": 47750.5
+      },
+      {
+        "date": "2025-04-20",
+        "openai": 648247.93,
+        "anthropic": 46499.81
+      },
+      {
+        "date": "2025-04-27",
+        "openai": 639863.32,
+        "anthropic": 46934.6
+      },
+      {
+        "date": "2025-05-04",
+        "openai": 694363.8,
+        "anthropic": 42882.9
+      },
+      {
+        "date": "2025-05-11",
+        "openai": 692520.56,
+        "anthropic": 61007.24
+      },
+      {
+        "date": "2025-05-18",
+        "openai": 713669.24,
+        "anthropic": 45824.7
+      },
+      {
+        "date": "2025-05-25",
+        "openai": 657187.16,
+        "anthropic": 48060.67
+      },
+      {
+        "date": "2025-06-01",
+        "openai": 653521.49,
+        "anthropic": 70399.04
+      },
+      {
+        "date": "2025-06-08",
+        "openai": 823287.68,
+        "anthropic": 54269.69
+      },
+      {
+        "date": "2025-06-15",
+        "openai": 850341.99,
+        "anthropic": 64583.73
+      },
+      {
+        "date": "2025-06-22",
+        "openai": 785319.38,
+        "anthropic": 52304.81
+      },
+      {
+        "date": "2025-06-29",
+        "openai": 790515.76,
+        "anthropic": 76534.69
+      },
+      {
+        "date": "2025-07-06",
+        "openai": 846058.84,
+        "anthropic": 73184.43
+      },
+      {
+        "date": "2025-07-13",
+        "openai": 896202.64,
+        "anthropic": 77472.46
+      },
+      {
+        "date": "2025-07-20",
+        "openai": 868037.02,
+        "anthropic": 80401.35
+      },
+      {
+        "date": "2025-07-27",
+        "openai": 857579.01,
+        "anthropic": 76075.69
+      },
+      {
+        "date": "2025-08-03",
+        "openai": 814022.22,
+        "anthropic": 72751.53
+      },
+      {
+        "date": "2025-08-10",
+        "openai": 991345.48,
+        "anthropic": 77707.44
+      },
+      {
+        "date": "2025-08-17",
+        "openai": 992598.21,
+        "anthropic": 80893.76
+      },
+      {
+        "date": "2025-08-24",
+        "openai": 970575.18,
+        "anthropic": 82540.64
+      },
+      {
+        "date": "2025-08-31",
+        "openai": 885819.87,
+        "anthropic": 103949.97
+      },
+      {
+        "date": "2025-09-07",
+        "openai": 983342.73,
+        "anthropic": 89881.35
+      },
+      {
+        "date": "2025-09-14",
+        "openai": 1093758.65,
+        "anthropic": 89159.16
+      },
+      {
+        "date": "2025-09-21",
+        "openai": 1042456.89,
+        "anthropic": 88854.75
+      },
+      {
+        "date": "2025-09-28",
+        "openai": 1056382.2,
+        "anthropic": 115581.65
+      },
+      {
+        "date": "2025-10-05",
+        "openai": 1155415.06,
+        "anthropic": 104075.36
+      },
+      {
         "date": "2025-10-12",
-        "openai": 1175593.86,
-        "anthropic": 108367.2
+        "openai": 1179455.76,
+        "anthropic": 108046.61
       },
       {
         "date": "2025-10-19",
-        "openai": 1161884.11,
-        "anthropic": 97959.05
+        "openai": 1163970.33,
+        "anthropic": 97585.83
       },
       {
         "date": "2025-10-26",
-        "openai": 1131924.42,
-        "anthropic": 97691.66
+        "openai": 1135884.18,
+        "anthropic": 98199.43
       },
       {
         "date": "2025-11-02",
-        "openai": 1052421.09,
-        "anthropic": 110445.1
+        "openai": 1058336.21,
+        "anthropic": 111145.64
       },
       {
         "date": "2025-11-09",
-        "openai": 1196345.71,
-        "anthropic": 120305.54
+        "openai": 1203949.75,
+        "anthropic": 120799.73
       },
       {
         "date": "2025-11-16",
-        "openai": 1278138.73,
-        "anthropic": 101170.78
+        "openai": 1283042.12,
+        "anthropic": 100716.59
       },
       {
         "date": "2025-11-23",
-        "openai": 1239219.5,
-        "anthropic": 111758.33
+        "openai": 1243785.8,
+        "anthropic": 112724.12
       },
       {
         "date": "2025-11-30",
-        "openai": 1491180.52,
-        "anthropic": 119428.01
+        "openai": 1497451.12,
+        "anthropic": 120772.01
       },
       {
         "date": "2025-12-07",
-        "openai": 1272371,
-        "anthropic": 125141.56
+        "openai": 1280121.85,
+        "anthropic": 125627.91
       },
       {
         "date": "2025-12-14",
-        "openai": 1324750.91,
-        "anthropic": 121230.68
+        "openai": 1331742.86,
+        "anthropic": 121676.7
       },
       {
         "date": "2025-12-21",
-        "openai": 1160211.82,
-        "anthropic": 114656.95
+        "openai": 1163709.52,
+        "anthropic": 115073.24
       },
       {
         "date": "2025-12-28",
-        "openai": 1121686.92,
-        "anthropic": 107420.42
+        "openai": 1125863.08,
+        "anthropic": 102654.92
       },
       {
         "date": "2026-01-04",
-        "openai": 1123752.77,
-        "anthropic": 122002.89
+        "openai": 1129183.98,
+        "anthropic": 122989.87
       },
       {
         "date": "2026-01-11",
-        "openai": 1333737.05,
-        "anthropic": 172270.12
+        "openai": 1341062.62,
+        "anthropic": 170962.38
       },
       {
         "date": "2026-01-18",
-        "openai": 1315880.32,
-        "anthropic": 159092.22
+        "openai": 1318449.77,
+        "anthropic": 159805.45
       },
       {
         "date": "2026-01-25",
-        "openai": 1212957.75,
-        "anthropic": 171073.04
+        "openai": 1217542.05,
+        "anthropic": 170846.86
       },
       {
         "date": "2026-02-01",
-        "openai": 1175361.25,
-        "anthropic": 187788.3
+        "openai": 1177782.28,
+        "anthropic": 187527.77
       },
       {
         "date": "2026-02-08",
-        "openai": 1365909.41,
-        "anthropic": 244983.65
+        "openai": 1370676.93,
+        "anthropic": 245865.8
       },
       {
         "date": "2026-02-15",
-        "openai": 1460987.25,
-        "anthropic": 268332.14
+        "openai": 1465407.11,
+        "anthropic": 269672.53
       },
       {
         "date": "2026-02-22",
-        "openai": 1330209.05,
-        "anthropic": 307534.86
+        "openai": 1333179.69,
+        "anthropic": 307565.96
       },
       {
         "date": "2026-03-01",
-        "openai": 1705196.03,
-        "anthropic": 402889.81
+        "openai": 1709246.4,
+        "anthropic": 401480.96
       },
       {
         "date": "2026-03-08",
-        "openai": 1488458.68,
-        "anthropic": 379351.15
+        "openai": 1494171.65,
+        "anthropic": 381130.2
       },
       {
         "date": "2026-03-15",
-        "openai": 1519114.14,
-        "anthropic": 392612.46
+        "openai": 1523587.11,
+        "anthropic": 391418.23
       },
       {
         "date": "2026-03-22",
-        "openai": 1359255.4,
-        "anthropic": 439196.81
+        "openai": 1362396.64,
+        "anthropic": 440712.49
       },
       {
         "date": "2026-03-29",
-        "openai": 1294996.31,
-        "anthropic": 567372.76
+        "openai": 1297836.81,
+        "anthropic": 570451.67
       },
       {
         "date": "2026-04-05",
-        "openai": 1378710.61,
-        "anthropic": 587420.89
+        "openai": 1380812.6,
+        "anthropic": 588973.04
       },
       {
         "date": "2026-04-12",
-        "openai": 1531620.35,
-        "anthropic": 669478.6
+        "openai": 1533202.19,
+        "anthropic": 669734.35
       },
       {
         "date": "2026-04-19",
-        "openai": 1457840.14,
-        "anthropic": 736650.17
+        "openai": 1463178.49,
+        "anthropic": 741183.79
       },
       {
         "date": "2026-04-26",
-        "openai": 1419036.29,
-        "anthropic": 745532.57
+        "openai": 1426650.18,
+        "anthropic": 752565.57
       },
       {
         "date": "2026-05-03",
-        "openai": 1504534.07,
-        "anthropic": 838022.06
+        "openai": 1509814.73,
+        "anthropic": 840822.5
       },
       {
         "date": "2026-05-10",
-        "openai": 1575436.72,
-        "anthropic": 903306.38
+        "openai": 1577400.33,
+        "anthropic": 912296.29
       },
       {
         "date": "2026-05-17",
-        "openai": 1544476.18,
-        "anthropic": 961028.68
+        "openai": 1547272.47,
+        "anthropic": 965982.8
       },
       {
         "date": "2026-05-24",
-        "openai": 1478154.59,
-        "anthropic": 962433.12
+        "openai": 1482478.35,
+        "anthropic": 970959.8
       },
       {
         "date": "2026-05-31",
-        "openai": 1341468.41,
-        "anthropic": 639431.72
+        "openai": 1342986.52,
+        "anthropic": 640331.67
       },
       {
         "date": "2026-06-07",
-        "openai": 1545535.37,
-        "anthropic": 829991
+        "openai": 1551830.6,
+        "anthropic": 836856.56
       },
       {
         "date": "2026-06-14",
-        "openai": 1659416.8,
-        "anthropic": 908002.61
+        "openai": 1660676.89,
+        "anthropic": 913030.68
       },
       {
         "date": "2026-06-21",
-        "openai": 1520197.2,
-        "anthropic": 732638.57
+        "openai": 1529974.48,
+        "anthropic": 739358.14
       },
       {
         "date": "2026-06-28",
-        "openai": 1536543.76,
-        "anthropic": 888445.67
+        "openai": 1551312.81,
+        "anthropic": 898668.63
       },
       {
         "date": "2026-07-05",
-        "openai": 1690632.22,
-        "anthropic": 1108156.38
+        "openai": 1703876.62,
+        "anthropic": 1120247.42
       },
       {
         "date": "2026-07-12",
-        "openai": 1834433.96,
-        "anthropic": 1255116.69
+        "openai": 1844306.14,
+        "anthropic": 1265304.48
       },
       {
         "date": "2026-07-19",
-        "openai": 1809840.96,
-        "anthropic": 1098135.77
+        "openai": 1824581.81,
+        "anthropic": 1123773.93
       },
       {
         "date": "2026-07-26",
-        "openai": 1806729.24,
-        "anthropic": 992851.39
+        "openai": 1828480.87,
+        "anthropic": 1002731.5
       },
       {
         "date": "2026-08-02",
-        "openai": 1785944.89,
-        "anthropic": 973832.08
+        "openai": 1806420.76,
+        "anthropic": 985854.51
       },
       {
         "date": "2026-08-09",
-        "openai": 2346128.35,
-        "anthropic": 1053515.79
+        "openai": 2373431.7,
+        "anthropic": 1064808.81
       },
       {
         "date": "2026-08-16",
-        "openai": 2161436.13,
-        "anthropic": 1052516.12
+        "openai": 2177235.76,
+        "anthropic": 1068046.89
       },
       {
         "date": "2026-08-23",
-        "openai": 2023413.97,
-        "anthropic": 1094458.76
+        "openai": 2044346.01,
+        "anthropic": 1102609.02
       },
       {
         "date": "2026-08-30",
-        "openai": 2056776.95,
-        "anthropic": 1050867.59
+        "openai": 2090684.44,
+        "anthropic": 1071524.93
       },
       {
         "date": "2026-09-06",
-        "openai": 2309867.06,
-        "anthropic": 981261.29
+        "openai": 2349809.82,
+        "anthropic": 1003714.96
       },
       {
         "date": "2026-09-13",
-        "openai": 2606804.45,
-        "anthropic": 1060063.74
+        "openai": 2649484.37,
+        "anthropic": 1080648.82
       },
       {
         "date": "2026-09-20",
-        "openai": 2621803.36,
-        "anthropic": 1099625.34
+        "openai": 2676002.41,
+        "anthropic": 1122533.2
       },
       {
         "date": "2026-09-27",
-        "openai": 2483894.58,
-        "anthropic": 1096573.12
+        "openai": 2553316.9,
+        "anthropic": 1125225.53
       },
       {
         "date": "2026-10-04",
-        "openai": 2780251.33,
-        "anthropic": 1123790.22
+        "openai": 2849815,
+        "anthropic": 1153633.64
+      },
+      {
+        "date": "2026-10-11",
+        "openai": 2708443.56,
+        "anthropic": 1322917.31
+      },
+      {
+        "date": "2026-10-18",
+        "openai": 2688151.86,
+        "anthropic": 1251856.35
+      },
+      {
+        "date": "2026-10-25",
+        "openai": 2624616.15,
+        "anthropic": 1203769.41
+      },
+      {
+        "date": "2026-11-01",
+        "openai": 2643760.09,
+        "anthropic": 1199197.79
+      },
+      {
+        "date": "2026-11-08",
+        "openai": 3158941.42,
+        "anthropic": 1320452.03
       }
     ],
     "field": "observed_sales",

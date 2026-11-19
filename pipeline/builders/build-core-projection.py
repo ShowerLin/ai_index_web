@@ -26,6 +26,8 @@ for rownum,row in enumerate(data[2:],3):
         if not isinstance(v,(int,float)) or not math.isfinite(v) or v>=0:raise ValueError(f'Missing/invalid estimate: {q} {ticker}: {v}')
         raw[q][companies[ticker]]={'value':-v/1e9,'cell':f'{openpyxl.utils.get_column_letter(col+1)}{rownum}'}
 factors={name:history['2026Q2'][name]/raw['2026Q2'][name]['value'] for name in companies.values()}
+financials=json.loads((DATA_ROOT/'data/derived/hyperscalers/financials.json').read_text())
+first_projection=min(q for q in raw if q>'2026Q2')
 quarters=[]
 for q in sorted(raw):
     if q=='2026Q2':continue
@@ -36,16 +38,36 @@ for q in sorted(raw):
     growth=(sum(totals[4:])/sum(totals[:4])-1)*100
     score=max(0,min(100,50+15*(growth-cap['baselineMean'])/cap['baselineStd']))
     composite=anchor['score']+cap['effectiveWeight']*(score-cap['score'])
-    quarters.append(dict(quarter=q,total=sum(history[q].values()),companies=history[q],rawEstimates=raw[q],growth=growth,capexScore=score,composite=composite))
+    available=None
+    if q==first_projection:
+        quarter_end=f'{q[:4]}-{("03-31","06-30","09-30","12-31")[quarter-1]}'
+        actuals={}
+        for record in financials['records']:
+            ticker=record['ticker']
+            value=record['values']['capex_raw']
+            if (record['periodEnd']==quarter_end and record['observedIndexEligible']
+                and ticker in companies and isinstance(value,(int,float)) and math.isfinite(value) and value<0):
+                if ticker in actuals:raise ValueError(f'Duplicate released CapEx: {q} {ticker}')
+                actuals[ticker]=-value/1e9
+        if actuals:
+            bridged={companies[t]:value*factors[companies[t]] for t,value in actuals.items()}
+            earlier=[sum(history[k][name] for name in bridged) for k in window[:-1]]
+            matched_growth=((sum(earlier[4:])+sum(bridged.values()))/sum(earlier[:4])-1)*100
+            matched_score=max(0,min(100,50+15*(matched_growth-cap['baselineMean'])/cap['baselineStd']))
+            available=dict(tickers=list(actuals),expected=len(companies),total=sum(bridged.values()),
+                growth=matched_growth,capexScore=matched_score,
+                composite=anchor['score']+cap['effectiveWeight']*(matched_score-cap['score']))
+    quarters.append(dict(quarter=q,availableEstimate=available,total=sum(history[q].values()),companies=history[q],rawEstimates=raw[q],growth=growth,capexScore=score,composite=composite))
 assert len(quarters)==6
 supply_anchor=cap['score']
 for q in quarters:q['supplyScore']=q['capexScore']
 months=[dict(month='2026-06',value=anchor['score'],capexScore=cap['score'],supplyScore=supply_anchor)]
 for q in quarters:
     for month in range((int(q['quarter'][-1])-1)*3+1,int(q['quarter'][-1])*3+1):
-        months.append(dict(month=f"{q['quarter'][:4]}-{month:02}",value=q['composite'],capexScore=q['capexScore'],supplyScore=q['supplyScore']))
+        estimate=q['availableEstimate'] or q
+        months.append(dict(month=f"{q['quarter'][:4]}-{month:02}",value=estimate['composite'],capexScore=estimate['capexScore'],supplyScore=estimate['capexScore']))
 payload=dict(metadata=dict(source='Indexlist.xlsx',sheet=sheet.title,workbookSha256=hashlib.sha256((DATA_ROOT/'Indexlist.xlsx').read_bytes()).hexdigest(),actualThrough='2026-06-30',estimateThrough='2027-12-31',anchorMonth=anchor['month'],bridgeFactors=factors,
     method='Conditional composite: June 2026 composite + 25% × (projected CapEx score − June CapEx score). The other three pillars are held at their June scores. CapEx uses five-company TTM total YoY growth and unchanged June baseline. Each company headline estimate is multiplied by its June approved-core CapEx / June source headline CapEx ratio to bridge accounting bases. This fixed-ratio bridge is an assumption, not a Bloomberg forecast of lease-inclusive spending. Quarter scores held across constituent months; retrospective period alignment.',
-    sourceRetrievedAt=None),quarters=quarters,months=months)
+    reportedCapexAsOf=financials['asOf'],sourceRetrievedAt=None),quarters=quarters,months=months)
 (BUILD_ROOT/'app/core-projection-snapshot.ts').write_text('export const coreProjectionSnapshot = '+json.dumps(payload,indent=2)+' as const;\n',encoding='utf-8')
 print('Projected through',months[-1]['month'],'conditional score',months[-1]['value'])

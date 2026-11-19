@@ -45,7 +45,7 @@ def main() -> None:
         if not start <= end <= reported:
             raise ValueError("Invalid quarterly revenue dates")
     payload["metadata"]["quarterlySource"] = "AI_Monetization.xlsx / Quarterly Revenue"
-    payload["metadata"]["quarterlyReviewedOn"] = "2026-10-15"
+    payload["metadata"]["quarterlyReviewedOn"] = "2026-11-05"
     payload["reportedQuarterlyRevenue"] = sorted(quarterly["observations"], key=lambda row: (row["periodEnd"], row["reportDate"]))
 
     for lab in LABS:

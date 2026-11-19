@@ -48,9 +48,25 @@ class SupplyTests(unittest.TestCase):
                 if c['month']>'2026-06' and c['level'] is not None:c['level']*=2
         self.assertEqual(self.new['metadata']['supplyBaseline'],integrate(self.old,prices)['metadata']['supplyBaseline'])
 
+    def test_hardware_calibrations_are_independent(self):
+        prices = copy.deepcopy(self.prices)
+        h100 = next(s for s in prices['series'] if s['field'] == 'SDH100RT Index')
+        for cell in h100['cells']:
+            if cell['level'] is not None and cell['month'] >= '2026-01':
+                cell['level'] *= 2
+        changed = integrate(self.old, prices)
+        for original, updated in zip(self.new['months'], changed['months']):
+            ddr5 = next(r for r in original['rows'] if r['ticker'] == 'ISPPDR48')
+            self.assertEqual(ddr5, next(r for r in updated['rows'] if r['ticker'] == 'ISPPDR48'))
+        june = next(m for m in self.new['months'] if m['month'] == '2026-06')
+        ddr5 = next(r for r in june['rows'] if r['ticker'] == 'ISPPDR48')
+        self.assertEqual(ddr5['baselineCount'], 21)
+        self.assertAlmostEqual(ddr5['score'], 50 + 15 * (ddr5['scoringSignal'] - ddr5['baselineMean']) / ddr5['baselineStd'])
+        self.assertAlmostEqual(ddr5['growth'], 752.290076, places=4)
+
     def test_forecasts_stay_out_of_score_and_projection_identity(self):
         self.assertEqual({r['ticker'] for r in self.new['months'][-1]['rows'] if r['pillar']=='Hyperscalers'},{'HYPERSCALER_TOTAL'})
-        p=load(ROOT/'data/derived/app/core-projection-snapshot.ts'); anchor=next(m for m in self.new['months'] if m['month']==p['metadata']['anchorMonth'])
+        p=load(ROOT/'data/derived/app/core-projection-snapshot.ts'); published=load(ROOT/'data/derived/app/core-contribution-snapshot.ts'); anchor=next(m for m in published['months'] if m['month']==p['metadata']['anchorMonth'])
         cap=next(r for r in anchor['rows'] if r['ticker']=='HYPERSCALER_TOTAL')
         for q in p['quarters']:self.assertAlmostEqual(q['composite'],anchor['score']+cap['effectiveWeight']*(q['capexScore']-cap['score']))
 

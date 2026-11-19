@@ -1,16 +1,18 @@
 """Build a retrospective weekly AI activity pulse and separate market comparison."""
 import csv
 import json
+import os
 import statistics
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import openpyxl
 
-ROOT = Path(__file__).resolve().parents[1]
-DERIVED = ROOT / 'data/derived'
-sys.path.insert(0, str(ROOT / 'pipeline/builders'))
+ROOT = Path(os.environ.get('AI_INDEX_DATA_ROOT', Path(__file__).resolve().parents[1]))
+DERIVED = Path(os.environ.get('AI_INDEX_BUILD_ROOT', ROOT / 'data/derived'))
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'builders'))
 from index_price import read_infrastructure
 
 HARDWARE = {
@@ -21,7 +23,7 @@ HARDWARE = {
 }
 
 
-def hardware_weeks():
+def hardware_weeks(completed_through):
     prices = read_infrastructure(ROOT / 'AI_Infra.xlsx')
     result = {}
     for name, field in HARDWARE.items():
@@ -30,9 +32,8 @@ def hardware_weeks():
             if day.weekday() < 5:
                 end = day + timedelta(days=6 - day.weekday())
                 buckets.setdefault(end, []).append(value)
-        latest = max(prices[field])
         result[name] = {end: statistics.mean(values) for end, values in buckets.items()
-                        if end <= latest and len(values) >= 4}
+                        if end <= completed_through and len(values) >= 4}
     return result
 
 
@@ -60,6 +61,8 @@ def market_levels():
 
 
 def main():
+    today = datetime.now(ZoneInfo('Asia/Hong_Kong')).date()
+    completed_through = today - timedelta(days=today.weekday() + 1)
     tokens = snapshot('token-activity-snapshot.ts')['weekly']
     prices = snapshot('adoption-price-snapshot.ts')
     ramp = prices['rampWeekly']
@@ -75,17 +78,22 @@ def main():
     usage = {date.fromisoformat(r['end']): r['openrouter'] for r in tokens if r['openrouterDays'] == 7}
     spending = {date.fromisoformat(r['end']): r['spendUsd'] for r in ramp
                 if r['value'] is not None and r['coverage'] >= .95}
-    card_source = json.loads((DERIVED / 'monetization/snapshot.json').read_text(encoding='utf-8'))
+    card_source = snapshot('monetization-snapshot.ts')
     card_spending = {date.fromisoformat(r['date']): r['openai'] + r['anthropic']
                      for r in card_source['appSpending']['history']
                      if r['openai'] is not None and r['anthropic'] is not None}
-    hardware = hardware_weeks()
+    hardware = hardware_weeks(completed_through)
     levels = market_levels()
     trading_dates = sorted(levels)
     end = min(usage.keys() | spending.keys())
     last_market = trading_dates[-1]
-    last_completed_market_week = last_market - timedelta(days=last_market.weekday() + 1)
-    last = max(max(usage.keys() | spending.keys() | card_spending.keys() | weekly_price.keys() | set().union(*(weeks.keys() for weeks in hardware.values()))), last_completed_market_week)
+    last_market_week = last_market + timedelta(days=6 - last_market.weekday())
+    if last_market.weekday() < 4:
+        last_market_week -= timedelta(weeks=1)
+    last = min(completed_through, max(
+        usage.keys() | spending.keys() | card_spending.keys() | weekly_price.keys()
+        | set().union(*(weeks.keys() for weeks in hardware.values())) | {last_market_week},
+    ))
     rows = []
     while end <= last:
         recent = next((d for d in reversed(trading_dates) if d <= end), None)
@@ -141,8 +149,8 @@ def main():
     (DERIVED / 'app/weekly-pulse-snapshot.ts').write_text(
         'export const weeklyPulse = ' + json.dumps(rows, indent=2, allow_nan=False) + ';\n', encoding='utf-8')
     print('Matched 2025 calibration weeks:', len(baseline_rows))
-    print('Latest full-coverage week:', next(r for r in reversed(rows) if r['signals_available'] == len(fields)))
-    print('Latest operating reading:', next(r for r in reversed(rows) if r['pulse'] is not None))
+    print('Latest full-coverage week:', next((r for r in reversed(rows) if r['signals_available'] == len(fields)), None))
+    print('Latest operating reading:', next((r for r in reversed(rows) if r['pulse'] is not None), None))
     print('Latest market week:', rows[-1])
 
 

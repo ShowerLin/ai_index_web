@@ -1,0 +1,24 @@
+{
+  "reviewedAt": "2026-10-20",
+  "completedMonthThrough": "2026-09",
+  "baselineEnd": "2026-06",
+  "headerAliases": {
+    "TSMC Revenue": "TSMC Monthly Revenue"
+  },
+  "note": "Completed calendar rows are eligible inputs, not independently verified release dates. Bloomberg fill=PREV can repeat prior observations. October is partial and excluded from monthly scoring; source rows remain available as context. Preserve calibrated baseline parameters when refreshing observations.",
+  "requiredCoreFields": [
+    "BTOS0700 Index",
+    "BTOS2400 Index",
+    "KOTCDRAM Index",
+    "KOTCNAND Index",
+    "TSMC Monthly Revenue",
+    "DGNOCOEQ Index",
+    "DGNOITIN Index",
+    "DGNOTGOP Index",
+    "CNSTPRDA Index",
+    "IPNEHITC Index",
+    "USIMTELE Index",
+    "USIMSEMI Index",
+    "USIMCOMP Index"
+  ]
+}

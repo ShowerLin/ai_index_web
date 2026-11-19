@@ -1,6 +1,26 @@
 # Shared data pipeline and research changes
 
-Last reviewed: 20 October 2026. This guide describes the current local implementation. Its presence in a working tree does not mean it has been committed or pushed.
+Last reviewed: 19 November 2026. The current dashboard uses methodology v3.4. Dated October sections below describe earlier versions; the current section takes precedence.
+
+## Current dashboard — 19 November 2026
+
+The application renders accepted, versioned TypeScript snapshots. Its normal build and page refresh do not require MySQL or company-network access. The optional `build:mysql` command exports one complete database run at build time; refreshing database rows does not change an already-built website. Rebuild and restart/deploy to install a new accepted data run. Source collection, saved-input builds, local synchronization, GitHub pushes and hosted publication remain separate actions.
+
+Methodology v3.4 has four pillars with 25% nominal weight each:
+
+- Adoption uses three breadth rates (BTOS current use, BTOS expected use and Ramp paid adoption), sharing 12.5% nominal core weight, and separate OpenRouter and Ramp token-volume signals at 6.25% each.
+- Monetization uses business paid demand (Ramp median spending, Ramp matched spending growth and OpenRouter estimated spending growth, each 5%), consumer card spending (5%) and absolute annualized OpenAI/Anthropic revenue levels (sharing 5%). Lab news dates and revenue definitions are retained; available observations carry forward with provenance. Lab calibration is provisional.
+- Hyperscalers uses the company-aligned trailing-four-quarter CapEx signal. Infrastructure retains its physical-demand and equipment constituents. DDR5 and H100 each use their own frozen hardware-price calibration.
+
+The headline remains the latest approved four-pillar month, June 2026. Later available-pillar composites are provisional and identify their coverage. The conditional CapEx composite holds Adoption, Monetization and Infrastructure at their June scores: June core + 0.25 × (conditional Hyperscalers score − June Hyperscalers score). It is a separate scenario, not an actual refreshed reading for all four pillars. Forecast descriptions follow the selected pillar.
+
+Adoption places the Ramp token-volume index beside OpenRouter model volumes. OpenRouter uses stacked bars, absolute/percentage views, daily or complete-week ranges and model rankings. The daily feed names its top 50 models and supplies an aggregate Other row. Unnamed activity remains in Other; missing source days stay gaps, and incomplete weeks are withheld. Model-level allocations reconcile to the existing aggregate token signal without creating an extra score weight. Run `build --group core` or `build --group tokens` to regenerate `openrouter-model-snapshot.ts`, then sync the accepted output.
+
+Monetization contains the spending and token-pricing panels. Nominal spending uses independent OpenRouter USD and Ramp index axes. Bloomberg token prices and OpenRouter model-weighted catalog prices are pricing context rather than extra core constituents. The Adoption analyst review precedes its rate chart.
+
+The frozen configuration files are mirrored under `pipeline/config/`; source collectors/builders and UI installation adapters are mirrored under `pipeline/`. Raw workbooks, downloaded source archives, credentials and dependencies remain outside Git. The offline dashboard export is `index.html`; the interactive application is under `app/`.
+
+Synchronizing on November 19 does not refresh observation dates. The accepted OpenRouter model dataset currently ends on November 16 and Ramp's published token week ends November 1. Read each panel's own source date for other datasets.
 
 ## Storage and ownership
 
@@ -40,7 +60,7 @@ Other local work includes electricity/data-center capacity research. It is a sup
 
 The machine-readable source registry and generated-file allowlist are `data/source_registry.json` and `data/generated_files.json` in shared storage. Bloomberg retrieval timestamps were not reliably recorded; workbook modification or local build time must not be presented as a new source refresh.
 
-## Core projection definitions
+## Historical core projection definitions — v2.4, superseded
 
 The actual core has five 20% pillars and retains methodology v2.4, its June 2026 normalization baseline and missing-data rules. Latest complete actual score: June 2026, approximately 69.7251.
 

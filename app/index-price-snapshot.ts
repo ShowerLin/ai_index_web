@@ -2,9 +2,9 @@ export const indexPriceSnapshot = {
   "metadata": {
     "source": "Indexlist.xlsx",
     "sheet": "Index Price Value",
-    "workbookSha256": "2087ba73078d67f788935cd301735baecaf8c97a2b713e63945c2fb2460edc1d",
-    "inspectionSha256": "3bc4ec2bd4db0a16a6c25d3edd091a4c02499b60b95d6b1e6b11e853e898432b",
-    "infrastructureSha256": "8d6f06337af39fa989a36888d8a7c96d67c1772194f47eac769d95bde486bec6",
+    "workbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
+    "inspectionSha256": "e67942f33b29c1fbd6da0479778534589ada3191d22f90e33901d0fc63f23c56",
+    "infrastructureSha256": "4a1ac70022d0da7b55b07ecbdfeb6c7d376c8bce23dd86ce54f62ea98802e755",
     "reviewedAt": "2026-10-20",
     "completedMonthThrough": "2026-09",
     "gridThrough": "2026-11",
@@ -349,16 +349,16 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 23.8,
-          "yoy": 138.0,
-          "unchangedFromPrevious": true,
+          "level": 24.6,
+          "yoy": 146.0,
+          "unchangedFromPrevious": false,
           "partial": true
         },
         {
           "month": "2026-11",
-          "level": null,
-          "yoy": null,
-          "unchangedFromPrevious": false,
+          "level": 24.6,
+          "yoy": 42.19653179190752,
+          "unchangedFromPrevious": true,
           "partial": true
         }
       ],
@@ -697,16 +697,16 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 27.6,
-          "yoy": 97.14285714285715,
-          "unchangedFromPrevious": true,
+          "level": 28.6,
+          "yoy": 104.28571428571432,
+          "unchangedFromPrevious": false,
           "partial": true
         },
         {
           "month": "2026-11",
-          "level": null,
-          "yoy": null,
-          "unchangedFromPrevious": false,
+          "level": 28.6,
+          "yoy": 35.54502369668246,
+          "unchangedFromPrevious": true,
           "partial": true
         }
       ],
@@ -1045,14 +1045,14 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 0.9432,
+          "level": 0.8856,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": true
         },
         {
           "month": "2026-11",
-          "level": null,
+          "level": 0.8028,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": true
@@ -1400,8 +1400,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 53.119998931884766,
-          "yoy": 84.06098035996108,
+          "level": 52.91999816894531,
+          "yoy": 83.36797702337253,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -4397,7 +4397,35 @@ export const indexPriceSnapshot = {
         },
         {
           "date": "2026-11-05",
-          "value": 53.119998931884766
+          "value": 53.12
+        },
+        {
+          "date": "2026-11-06",
+          "value": 53.12
+        },
+        {
+          "date": "2026-11-09",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-10",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-11",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-12",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-13",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-16",
+          "value": 52.91999816894531
         }
       ]
     },
@@ -4741,8 +4769,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 18.350000381469727,
-          "yoy": 104.79911140033175,
+          "level": 17.079999923706055,
+          "yoy": 90.62499914850505,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -8458,7 +8486,35 @@ export const indexPriceSnapshot = {
         },
         {
           "date": "2026-11-05",
-          "value": 18.350000381469727
+          "value": 18.35
+        },
+        {
+          "date": "2026-11-06",
+          "value": 18.35
+        },
+        {
+          "date": "2026-11-09",
+          "value": 18.35
+        },
+        {
+          "date": "2026-11-10",
+          "value": 18.35
+        },
+        {
+          "date": "2026-11-11",
+          "value": 17.53
+        },
+        {
+          "date": "2026-11-12",
+          "value": 17.37
+        },
+        {
+          "date": "2026-11-13",
+          "value": 17.22
+        },
+        {
+          "date": "2026-11-16",
+          "value": 17.079999923706055
         }
       ]
     },
@@ -8802,8 +8858,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 2.96,
-          "yoy": 51.020408163265294,
+          "level": 3.1,
+          "yoy": 58.163265306122454,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -11956,6 +12012,50 @@ export const indexPriceSnapshot = {
         {
           "date": "2026-11-04",
           "value": 2.96
+        },
+        {
+          "date": "2026-11-05",
+          "value": 2.97
+        },
+        {
+          "date": "2026-11-06",
+          "value": 2.99
+        },
+        {
+          "date": "2026-11-07",
+          "value": 3.04
+        },
+        {
+          "date": "2026-11-08",
+          "value": 3.0
+        },
+        {
+          "date": "2026-11-09",
+          "value": 3.01
+        },
+        {
+          "date": "2026-11-10",
+          "value": 3.06
+        },
+        {
+          "date": "2026-11-11",
+          "value": 3.06
+        },
+        {
+          "date": "2026-11-12",
+          "value": 3.06
+        },
+        {
+          "date": "2026-11-13",
+          "value": 3.1
+        },
+        {
+          "date": "2026-11-14",
+          "value": 3.13
+        },
+        {
+          "date": "2026-11-15",
+          "value": 3.1
         }
       ]
     },
@@ -12299,8 +12399,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 6.53,
-          "yoy": 41.95652173913045,
+          "level": 6.87,
+          "yoy": 49.34782608695654,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -14129,6 +14229,50 @@ export const indexPriceSnapshot = {
         {
           "date": "2026-11-04",
           "value": 6.53
+        },
+        {
+          "date": "2026-11-05",
+          "value": 6.7
+        },
+        {
+          "date": "2026-11-06",
+          "value": 6.58
+        },
+        {
+          "date": "2026-11-07",
+          "value": 6.8
+        },
+        {
+          "date": "2026-11-08",
+          "value": 6.81
+        },
+        {
+          "date": "2026-11-09",
+          "value": 6.84
+        },
+        {
+          "date": "2026-11-10",
+          "value": 6.97
+        },
+        {
+          "date": "2026-11-11",
+          "value": 6.84
+        },
+        {
+          "date": "2026-11-12",
+          "value": 6.97
+        },
+        {
+          "date": "2026-11-13",
+          "value": 6.87
+        },
+        {
+          "date": "2026-11-14",
+          "value": 7.03
+        },
+        {
+          "date": "2026-11-15",
+          "value": 6.87
         }
       ]
     },
@@ -14465,8 +14609,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": null,
-          "yoy": null,
+          "level": 337.7,
+          "yoy": 595.2597627899278,
           "unchangedFromPrevious": false,
           "partial": true
         },
@@ -14813,8 +14957,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": null,
-          "yoy": null,
+          "level": 29.7,
+          "yoy": 341.3551066419001,
           "unchangedFromPrevious": false,
           "partial": true
         },
@@ -15161,16 +15305,16 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 246.78,
-          "yoy": 143.78148770127433,
-          "unchangedFromPrevious": true,
+          "level": 263.03,
+          "yoy": 159.83404129210706,
+          "unchangedFromPrevious": false,
           "partial": true
         },
         {
           "month": "2026-11",
-          "level": null,
-          "yoy": null,
-          "unchangedFromPrevious": false,
+          "level": 263.03,
+          "yoy": 138.94440406976742,
+          "unchangedFromPrevious": true,
           "partial": true
         }
       ],
@@ -16191,30 +16335,30 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-08",
-          "level": 5719.0,
-          "yoy": 23.921993499458296,
+          "level": 5715.0,
+          "yoy": 23.8353196099675,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-09",
-          "level": 5719.0,
-          "yoy": 24.705625817706057,
-          "unchangedFromPrevious": true,
+          "level": 5624.0,
+          "yoy": 22.634103794156136,
+          "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-10",
-          "level": 5719.0,
-          "yoy": 11.070110701107016,
+          "level": 5624.0,
+          "yoy": 9.225092250922518,
           "unchangedFromPrevious": true,
           "partial": true
         },
         {
           "month": "2026-11",
-          "level": null,
-          "yoy": null,
-          "unchangedFromPrevious": false,
+          "level": 5624.0,
+          "yoy": 16.850197382090172,
+          "unchangedFromPrevious": true,
           "partial": true
         }
       ],
@@ -16532,37 +16676,37 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-07",
-          "level": 79007.0,
-          "yoy": 65.25203932231751,
+          "level": 80718.0,
+          "yoy": 68.83078853796276,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-08",
-          "level": 84950.0,
-          "yoy": 73.18356030335154,
+          "level": 88815.0,
+          "yoy": 81.06295360026094,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-09",
-          "level": 84950.0,
-          "yoy": 67.55424063116371,
-          "unchangedFromPrevious": true,
+          "level": 96462.0,
+          "yoy": 90.26035502958581,
+          "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-10",
-          "level": 84950.0,
-          "yoy": 56.561002580169564,
+          "level": 96462.0,
+          "yoy": 77.77736822705492,
           "unchangedFromPrevious": true,
           "partial": true
         },
         {
           "month": "2026-11",
-          "level": null,
-          "yoy": null,
-          "unchangedFromPrevious": false,
+          "level": 96462.0,
+          "yoy": 81.85622985125276,
+          "unchangedFromPrevious": true,
           "partial": true
         }
       ],
@@ -18111,7 +18255,7 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2024-08",
-          "level": 250866.0,
+          "level": null,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
@@ -18196,7 +18340,7 @@ export const indexPriceSnapshot = {
         {
           "month": "2025-08",
           "level": 335771.691,
-          "yoy": 33.84503719116978,
+          "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
@@ -18293,8 +18437,8 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": null,
-          "yoy": null,
+          "level": 586890.319,
+          "yoy": 59.70975760070092,
           "unchangedFromPrevious": false,
           "partial": true
         },
