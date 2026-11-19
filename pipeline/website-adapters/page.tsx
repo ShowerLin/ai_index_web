@@ -57,7 +57,7 @@ import {tokenActivitySnapshot} from "./token-activity-snapshot";
 import {infrastructureSnapshot} from "./infrastructure-snapshot";
 import {coreContributionSnapshot as coreScores} from "./core-contribution-snapshot";
 import CoreHeatmapChart from "./core-heatmap-chart";
-import HeatmapPillarLabel from "./heatmap-pillar-label";
+import HeatmapPillarLabel, { HeatmapInfoLabel } from "./heatmap-pillar-label";
 import { monthlyHeatmapSnapshot } from "./monthly-heatmap-snapshot";
 import { edgeRoutes, mapHeight, mapX, nodeHeight, nodePositions, nodeWidth } from "./chain-map-layout";
 
@@ -77,10 +77,20 @@ const coreByPillar = Object.fromEntries(corePillarNames.map(name=>{
   return [name,weight ? rows.reduce((sum,r)=>sum+(r.score??0)*r.effectiveWeight,0)/weight : 0];
 }));
 
-const pillars = Object.fromEntries(corePillarNames.map(name=>{
-  const members=latestCore.rows.filter(r=>r.pillar===name);
-  return [name,{score:Number(coreByPillar[name].toFixed(1)),change:"Methodology v3.4",breadth:`${members.filter(r=>r.score!==null&&r.score>50).length} / ${members.length} above norm`,tone:coreByPillar[name]>50?"Above historical norm":"Below historical norm",note:name==="Monetization"?"Business paid demand, consumer spending and absolute annualized lab revenue levels.":"Scores use constituent-specific treatments and a fixed historical baseline through June 2026."}];
-}));
+function constituentMethod(row: {treatment: string; scoringMethod?: string}) {
+  if (row.scoringMethod) return row.scoringMethod;
+  const treatment = row.treatment;
+  if (treatment.toLowerCase().includes("adoption level")) return "Raw Z-score";
+  if (treatment.includes("trailing 4Q")) return "4Q CapEx YoY Z-score";
+  if (treatment.startsWith("TTM")) return "12M total YoY Z-score";
+  if (treatment.startsWith("12M average")) return "12M avg YoY Z-score";
+  if (treatment.startsWith("3M-average")) return "3M avg YoY Z-score";
+  if (treatment.startsWith("Monthly price YoY")) return "12M log price change Z-score";
+  if (treatment.startsWith("Absolute annualized revenue")) return "Log Ann revenue Z-score";
+  if (treatment.startsWith("Nominal spending change")) return "28D spend growth Z-score";
+  if (treatment.includes("four-week spending window")) return "4W spend growth Z-score";
+  return treatment;
+}
 
 const heatmap = corePillarNames.map(pillar=>({pillar,source:pillar==="Hyperscalers"?"S2" as const:"S1" as const}));
 type HeatmapPillar = Pillar;
@@ -124,11 +134,6 @@ const adjustedAtmosphereScore=fundamentalOverlayReady&&creditOverlayReady?clampS
 
 const satelliteOverlay = {
   core:coreAtmosphereScore,
-  fundamentalScore:fundamentalSnapshot.median,
-  fundamentalDelta:fundamentalOverlayDelta,
-  creditScore:normalizedCreditScore,
-  creditDelta:creditOverlayDelta,
-  financingDelta:financingOverlayDelta,
   adjusted:adjustedAtmosphereScore,
   ready:fundamentalOverlayReady&&creditOverlayReady,
 } as const;
@@ -396,7 +401,7 @@ export default function Home(){
       if (location.hash === "#weekly-pulse") {
         setPulseTab("weekly");
         requestAnimationFrame(() => document.getElementById("heatmap")?.scrollIntoView());
-      } else if (location.hash === "#heatmap") {
+      } else if (location.hash === "#heatmap" || location.hash === "#pulse") {
         setPulseTab("monthly");
       }
     };
@@ -405,9 +410,7 @@ export default function Home(){
     return () => window.removeEventListener("hashchange", syncPulseTab);
   }, []);
   const [contributionMonth,setContributionMonth]=useState<string>(actualCoreMonth);
-  const [pillar,setPillar]=useState<Pillar>("Infrastructure");
   const [compositeSelection,setCompositeSelection]=useState<HeatmapPillar | "Official core index">("Official core index");
-  const [heatmapPillar,setHeatmapPillar]=useState<HeatmapPillar>("Infrastructure");
   const [capexCountry,setCapexCountry]=useState<CapexCountry>("United States");
   const [chinaCompany,setChinaCompany]=useState<ChinaCompany>("All companies");
   const [priceMetric,setPriceMetric]=useState<PriceMetric>("change1m");
@@ -416,6 +419,7 @@ export default function Home(){
   const [selectedChainNodeId,setSelectedChainNodeId]=useState<ChainNodeId>("platforms");
   const [priceRows,setPriceRows]=useState<Record<string,PriceRow>>(()=>snapshotPriceRows());
   const [priceStatus,setPriceStatus]=useState("Indexlist.xlsx snapshot");
+  const heatmapPillar = compositeSelection === "Official core index" ? undefined : compositeSelection;
   const selectedCoreMonth=coreScores.months.find(row=>row.month===contributionMonth)??latestCore;
   const heatmapDetails = selectedCoreMonth.rows
     .filter(row => row.pillar === heatmapPillar)
@@ -424,6 +428,7 @@ export default function Home(){
       const isRate = ["BTOS0700", "BTOS2400", "RAMP_PAID_ADOPTION"].includes(row.ticker);
       const indexedTokens = isTokens && "unit" in row && row.unit === "Publisher index/day";
       const isRunRate = row.ticker.endsWith("_REVENUE_RUN_RATE");
+      const isLogScore = isRunRate || row.treatment.includes("log price ratio");
       const sourceDate = "observationDate" in row ? row.observationDate : null;
       const sourceLabel = isRunRate ? "news" : isRate || row.ticker === "RAMP_MEDIAN_SPEND" ? "source month ending" : "window ending";
       const carried = "carriedForward" in row && row.carriedForward;
@@ -432,14 +437,15 @@ export default function Home(){
         const unit = isRate ? " pp" : "%";
         momentumDetail = `; short momentum ${row.shortMomentum.toFixed(2)}${unit}`;
       }
-      if (isTokens) momentumDetail = "; matched completed 4W window";
+      if (isTokens) momentumDetail = "; growth percentile";
       return {
         name: row.name,
         ticker: row.ticker,
         isTokens,
         isRunRate,
         latest: row.level === null ? "n/a" : isRunRate ? `$${(row.level / 1e9).toFixed(2)}B annualized` : `${row.level.toFixed(2)}${isTokens ? indexedTokens ? " publisher-index/day" : "T/day" : isRate ? "%" : ""}`,
-        change: row.growth,
+        change: isLogScore && "scoringSignal" in row ? row.scoringSignal : row.growth,
+        signalUnit: isLogScore ? "" : "%",
         basis: row.treatment,
         status: `Score ${row.score?.toFixed(1) ?? "n/a"}; ${(row.effectiveWeight * 100).toFixed(2)}% effective weight${momentumDetail}${sourceDate ? ` · ${sourceLabel} ${sourceDate}${carried ? " · carried forward" : ""}` : ""}`,
       };
@@ -448,13 +454,15 @@ export default function Home(){
     .map(row => ({
       name: row.name,
       ticker: row.ticker,
+      method: constituentMethod(row),
+      treatment: row.treatment,
       cells: heatmapMonths.map(month => {
         const point = coreScores.months.find(d => d.month === month)?.rows.find(r => r.ticker === row.ticker);
         const revenueLevel = row.ticker.endsWith("_REVENUE_RUN_RATE");
         const signalValue = revenueLevel ? point?.level : point?.growth;
         const tokenVolume = row.ticker.endsWith("TOKEN_VOLUME");
         const signalLabel = signalValue == null ? "Unavailable" : revenueLevel
-          ? `$${(signalValue / 1e9).toFixed(2)}B annualized` : tokenVolume ? `Log volume ${signalValue.toFixed(2)}` : `${signalValue.toFixed(2)}%`;
+          ? `$${(signalValue / 1e9).toFixed(2)}B Ann` : tokenVolume ? `${signalValue.toFixed(2)}% MoM · 3M avg` : `${signalValue.toFixed(2)}%`;
         return {
           month,
           level: point?.level ?? null,
@@ -468,14 +476,12 @@ export default function Home(){
         };
       }),
     }));
-  function selectHeatmapPillar(name: HeatmapPillar) { setHeatmapPillar(name); setCompositeSelection(name); }
   const compositePoints = heatmapMonths.map((month,index) => {
     if (compositeSelection === "Official core index") return {month,value:displayedCoreScore(month),low:null,high:null};
     const values=constituentHistory.map(row=>row.cells[index].value as number|null).filter((value):value is number=>value!==null);
     const cell = monthlyHeatmap.find(row=>row.pillar===compositeSelection)?.monthlyCells[index];
     return {month,value:cell?.value??null,estimated:cell?.estimated,low:values.length?Math.min(...values):null,high:values.length?Math.max(...values):null};
   });
-  const visibleSeries=latestCore.rows.filter(r=>r.pillar===pillar).map(r=>({name:r.name,ticker:r.ticker,value:r.level?.toFixed(2)??"n/a",yoy:r.growth,status:`${(r.effectiveWeight*100).toFixed(2)}% effective weight`}));
   const chainStats=useMemo(()=>industryChain.map(node=>{
     const values=node.companies.map(c=>priceRows[c.ticker]?.[priceMetric] ?? null).filter((value):value is number=>value!==null);
     const fundamentalValues=node.companies.map(c=>priceRows[c.ticker]?.fundamentalComposite ?? null).filter((value):value is number=>value!==null);
@@ -579,25 +585,9 @@ export default function Home(){
         <li><a href="#financial"><span>05</span><div><b>Funding & recovery</b><small>Training costs and financing dependencies frame recovery.</small></div></a></li>
         <li><a href="#market"><span>06</span><div><b>Market</b><small>Equity returns, credit spreads and financing demand.</small></div></a></li>
       </ol>
-      <p className="guide-orientation"><a href="#chain">Explore the industry value chain.</a> <a href="#heatmap">Track the core index and momentum heatmap.</a> <a href="#hyperscalers">Assess cloud demand, cash generation and returns.</a> <a href="#data-freshness">Check data freshness by section.</a></p>
+      <p className="guide-orientation"><a href="#chain">Explore the industry value chain.</a> <a href="#heatmap">Track the core index and momentum heatmap.</a> <a href="#hyperscalers">Assess cloud demand, cash generation and returns.</a></p>
     </section>
 
-    <section className="snapshot" aria-label="Headline indicators">
-      <article><span>Core activity score</span><strong>{formatIndex(coreAtmosphereScore)}</strong><small>{actualCoreMonth} · latest approved four-pillar score</small></article>
-      <article><span>June activity breadth</span><strong>Broad</strong><small>pillar scores relative to historical norms</small></article>
-      <article><span>Five-company headline CapEx</span><strong>$230.4B</strong><small className="up">2026 Q3 · +117.8% YoY · fiscal period ends</small></article>
-      <article><span>Core pillars above historical norm</span><strong>{Object.values(coreByPillar).filter(v=>v>50).length} / 4</strong><small>methodology v3.4 · June pillar scores</small></article>
-    </section>
-
-    <details className="overlay-disclosure"><summary>View supplementary financial and credit adjustment · excluded from the four-pillar core</summary><section className="overlay-bridge" aria-label="Supplementary satellite overlay bridge">
-      <article><span>Core atmosphere</span><strong>{satelliteOverlay.core.toFixed(1)}</strong><small>Last complete comparable month · June</small></article>
-      <article><span>Fundamentals overlay</span><strong className={satelliteOverlay.fundamentalDelta>=0?"positive":"negative"}>{satelliteOverlay.fundamentalDelta>=0?"+":""}{satelliteOverlay.fundamentalDelta.toFixed(1)}</strong><small>Median score {satelliteOverlay.fundamentalScore.toFixed(1)} · 32 issuers</small></article>
-      <article><span>Credit overlay</span><strong className={satelliteOverlay.creditDelta>=0?"positive":"negative"}>{satelliteOverlay.creditDelta>=0?"+":""}{satelliteOverlay.creditDelta.toFixed(1)}</strong><small>Normalized score {satelliteOverlay.creditScore.toFixed(1)} · 25 issuers</small></article>
-      <article><span>Bond issuance</span><strong>0.0</strong><small>Separate funding signal · latest coverage incomplete</small></article>
-      <article className="adjusted-card"><span>Adjusted view</span><strong>{formatIndex(satelliteOverlay.adjusted)}</strong><small>{satelliteOverlay.ready?"Core plus financial and credit signals":"Unavailable with current coverage"}</small></article>
-    </section></details>
-
-    <DataFreshness/>
     <section className="heatmap-overview" id="heatmap" aria-label="AI activity pulse">
       <div className="pulse-frequency-tabs" role="tablist" aria-label="Pulse frequency" onKeyDown={event => {
         if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
@@ -610,17 +600,17 @@ export default function Home(){
       </div>
       <div role="tabpanel" id="pulse-panel-monthly" aria-labelledby="pulse-tab-monthly" hidden={pulseTab !== "monthly"}>
       <div className="heatmap-head"><div><div className="eyebrow">MONTHLY CONSTITUENT SCORE HEATMAP</div><h2 id="heatmap-title">Adoption breadth and usage alongside paid demand and revenue scale</h2><p>{heatmapMonths[0]} to {heatmapEnd} · each constituent compared with its own history · 50 = historical norm · relative strength, not zero growth</p></div><div className="heat-legend continuous-legend" aria-label="Continuous heatmap legend"><div className="continuous-scale"><i/><span>0 · Below norm</span><span>50 · Norm</span><span>100 · Above norm</span></div><span><i className="heat-na"/>Unavailable</span></div></div>
-      <SectionSummary current={`Methodology v3.4 puts the June core score at ${latestCore.score?.toFixed(1)}. Adoption scores ${coreByPillar.Adoption.toFixed(1)} and Infrastructure ${coreByPillar.Infrastructure.toFixed(1)}. Adoption scores adoption rates and token volumes. Monetization scores business paid demand, consumer spending and absolute annualized lab revenue levels. Available pillars share the index equally.`} conclusion="The buildout remains broad. The next test is whether paid usage, cash generation and incremental returns justify the expanding capital base."/>
-      <div className="core-heatmap-workbench">
+      <SectionSummary current={`Methodology v${coreScores.metadata.version} puts the June core score at ${latestCore.score?.toFixed(1)}. Adoption scores ${coreByPillar.Adoption.toFixed(1)} and Infrastructure ${coreByPillar.Infrastructure.toFixed(1)}. Adoption scores adoption rates and token-volume growth percentiles. Monetization scores business paid demand, consumer spending and absolute annualized lab revenue levels. Available pillars share the index equally.`} conclusion="The buildout remains broad. The next test is whether paid usage, cash generation and incremental returns justify the expanding capital base."/>
+      <div className="core-heatmap-workbench" id="pulse">
       <div className="compact-heatmap-panel">
         <p className="compact-heatmap-instruction">Read each row across time: a shift toward green indicates a rising signal; toward red, a falling signal. Colors use a continuous scale relative to each constituent’s own history. Completed monthly workbook inputs run through {monthlyHeatmapSnapshot.metadata.completedMonthThrough}. The heatmap shows available pillar scores through {heatmapEnd}. P marks a provisional composite after {actualCoreMonth}, based on the pillars with data. E marks a Hyperscalers estimate based on the five-company CapEx scenario. The headline uses the last approved four-pillar month. Available constituents are reweighted within pillars and available pillars share the index equally. The normalization baseline remains fixed through June. Select a pillar to inspect its constituents.</p>
       <div className="heat-table-wrap"><table className="heat-table monthly-heat-table compact-heat-table">
 
         <thead><tr><th rowSpan={2}>Pillar / scoring basis</th>{heatmapQuarters.map(quarter=><th key={quarter} colSpan={heatmapMonths.filter(month=>calendarQuarter(month)===quarter).length}>{quarter}</th>)}</tr>
-          <tr>{heatmapMonths.map((month,index)=><th key={month} className={Number(month.slice(5))%3===1?"quarter-start":""}>{new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US",{month:"short",timeZone:"UTC"})}</th>)}</tr></thead>
-        <tbody><tr className={`core-score-row ${compositeSelection==="Official core index"?"selected":""}`}><th><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"}>Core index<small>P = available pillars, provisional</small></button></th>{heatmapMonths.map((month,index)=>{const score=displayedCoreScore(month);const provisional=month>actualCoreMonth;return <td key={month} style={scoreHeatStyle(score)} className={`${scoreHeatClass(score)} ${Number(month.slice(5))%3===1?"quarter-start":""}`}><button type="button" onClick={()=>{setCompositeSelection("Official core index");setContributionMonth(month);}} aria-pressed={compositeSelection==="Official core index"} aria-label={`${provisional?"Provisional core score":"Official core index"}, ${month}: ${score??"unavailable"}`} title={`${month} · ${provisional?`Available-pillar score (${coreByMonth.get(month)?.availablePillars ?? 0}/4 pillars)`:"Actual core"} ${score??"unavailable"}`}>{score===null?"":`${score.toFixed(0)}${provisional?" P":""}`}</button></td>})}</tr>{monthlyHeatmap.map(row=><tr key={row.pillar} className={compositeSelection===row.pillar?"selected":""}>
-          <th scope="row"><HeatmapPillarLabel pillar={row.pillar} quarterly={row.quarterly} selected={compositeSelection===row.pillar} onSelect={()=>selectHeatmapPillar(row.pillar)}/><Source id={row.source}/></th>
-          {row.monthlyCells.map((cell,index)=><td key={cell.month} style={scoreHeatStyle(cell.value)} className={`${scoreHeatClass(cell.value)} ${Number(cell.month.slice(5))%3===1?"quarter-start":""}`}><button type="button" onClick={()=>{selectHeatmapPillar(row.pillar);setContributionMonth(cell.month);}} aria-label={`${row.pillar}, ${cell.month}: ${cell.value===null?"unavailable":`${cell.value.toFixed(1)} score`}, ${row.quarterly?`${cell.quarter} trailing-four-quarter score held within quarter`:"normalized constituent score"}`} aria-pressed={compositeSelection===row.pillar} title={`${cell.month} · ${row.quarterly?`${cell.quarter} normalized TTM score held`:"Normalized score"} · ${cell.value===null?"unavailable":`${cell.value.toFixed(1)} points`}`}>{cell.value===null?"":`${cell.value.toFixed(cell.estimated ? 1 : 0)}${cell.estimated?" E":""}`}</button></td>)}
+          <tr>{heatmapMonths.map(month=><th key={month}>{new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US",{month:"short",timeZone:"UTC"})}</th>)}</tr></thead>
+        <tbody><tr className={`core-score-row ${compositeSelection==="Official core index"?"selected":""}`}><th><button type="button" onClick={()=>setCompositeSelection("Official core index")} aria-pressed={compositeSelection==="Official core index"}>Core index<small>P = available pillars, provisional</small></button></th>{heatmapMonths.map((month,index)=>{const score=displayedCoreScore(month);const provisional=month>actualCoreMonth;return <td key={month} style={scoreHeatStyle(score)} className={scoreHeatClass(score)}><button type="button" onClick={()=>{setCompositeSelection("Official core index");setContributionMonth(month);}} aria-pressed={compositeSelection==="Official core index"} aria-label={`${provisional?"Provisional core score":"Official core index"}, ${month}: ${score??"unavailable"}`} title={`${month} · ${provisional?`Available-pillar score (${coreByMonth.get(month)?.availablePillars ?? 0}/4 pillars)`:"Actual core"} ${score??"unavailable"}`}>{score===null?"":`${score.toFixed(0)}${provisional?" P":""}`}</button></td>})}</tr>{monthlyHeatmap.map(row=><tr key={row.pillar} className={compositeSelection===row.pillar?"selected":""}>
+          <th scope="row"><HeatmapPillarLabel pillar={row.pillar} quarterly={row.quarterly} selected={compositeSelection===row.pillar} onSelect={()=>setCompositeSelection(row.pillar)}/><Source id={row.source}/></th>
+          {row.monthlyCells.map((cell,index)=><td key={cell.month} style={scoreHeatStyle(cell.value)} className={scoreHeatClass(cell.value)}><button type="button" onClick={()=>{setCompositeSelection(row.pillar);setContributionMonth(cell.month);}} aria-label={`${row.pillar}, ${cell.month}: ${cell.value===null?"unavailable":`${cell.value.toFixed(1)} score`}, ${row.quarterly?`${cell.quarter} trailing-four-quarter score held within quarter`:"normalized constituent score"}`} aria-pressed={compositeSelection===row.pillar} title={`${cell.month} · ${row.quarterly?`${cell.quarter} normalized TTM score held`:"Normalized score"} · ${cell.value===null?"unavailable":`${cell.value.toFixed(1)} points`}`}>{cell.value===null?"":`${cell.value.toFixed(cell.estimated ? 1 : 0)}${cell.estimated?" E":""}`}</button></td>)}
         </tr>)}</tbody>
       </table></div>
       </div>
@@ -629,21 +619,28 @@ export default function Home(){
 
       {heatmapPillar==="Infrastructure"&&<DemandHeatmap/>}
 
-      <CoreContributions month={contributionMonth} onMonthChange={setContributionMonth} published={legacyAtmosphereHistory.find(([month])=>month===contributionMonth)?.[1]??null}/>
+      <CoreContributions month={contributionMonth} onMonthChange={setContributionMonth} pillar={heatmapPillar}/>
 
-      <details className="constituent-history" open><summary>Historical constituent trends · {heatmapPillar}</summary>
-        <div className="constituent-history-heading"><h3>{heatmapPillar} · monthly constituent history</h3><p>{"Core pillar · 25% nominal weight"} · normalized constituent scores · 50 = historical norm · relative strength, not zero growth</p></div>
-        <div className="heat-table-wrap"><table className="heat-table monthly-heat-table constituent-heat-table"><thead><tr><th>Underlying signal</th>{heatmapMonths.map(month=><th key={month}>{month.slice(2)}</th>)}</tr></thead><tbody>{constituentHistory.map(row=><tr key={row.ticker}><th>{row.name}<small>{row.ticker}</small></th>{row.cells.map((cell,index)=><td key={cell.month} style={scoreHeatStyle(cell.value)} className={`${scoreHeatClass(cell.value)} ${Number(cell.month.slice(5))%3===1?"quarter-start":""}`} title={`${cell.treatment} · signal ${cell.signalLabel} · ${row.name} · ${cell.month} · ${cell.value===null?"Missing input":`${cell.value.toFixed(1)} score`} · source level ${cell.level??"unavailable"}${cell.observationDate ? ` · ${cell.sourceLabel} ${cell.observationDate}${cell.sourceBasis ? ` · ${cell.sourceBasis}` : ""}${cell.carriedForward ? " · carried forward" : ""}` : ""}`}><strong>{cell.value===null?"":cell.value.toFixed(1)}{cell.value!==null&&cell.carriedForward&&<sup>†</sup>}</strong></td>)}</tr>)}</tbody></table></div>
-        {heatmapPillar === "Adoption" && <p>Adoption breadth and token usage each receive half the pillar weight. The three rates share 12.5% nominal core weight, while OpenRouter and Ramp token volumes share 12.5%. † Latest complete source reading carried forward. Ramp token activity uses an indexed publisher feed; source populations are kept separate.</p>}
+      {heatmapPillar && <details className="constituent-history" open><summary>Historical constituent trends · {heatmapPillar}</summary>
+        <div className="constituent-history-heading"><h3>{heatmapPillar} · monthly constituent history</h3><p>{"Core pillar · 25% nominal weight"} · normalized constituent scores · 50 = historical norm · relative strength, not zero growth. Row labels show the latest scored input date.</p></div>
+        <div className="heat-table-wrap"><table className="heat-table monthly-heat-table constituent-heat-table"><thead><tr><th>Underlying signal</th>{heatmapMonths.map(month=><th key={month}>{month.slice(2)}</th>)}</tr></thead><tbody>{constituentHistory.map(row => {
+          const latest = row.cells.findLast(cell => cell.value !== null && (cell.observationDate || !cell.carriedForward));
+          const date = latest?.observationDate ?? latest?.month;
+          return <tr key={row.ticker}><th scope="row"><HeatmapInfoLabel
+          label={row.name} subtitle={<>{row.ticker}{date && <> · <time dateTime={date}>{date}</time></>}</>} className="constituent-method-trigger"
+          description={row.treatment} heading={row.method === row.treatment ? undefined : row.method}
+        /></th>{row.cells.map((cell,index)=><td key={cell.month} style={scoreHeatStyle(cell.value)} className={scoreHeatClass(cell.value)} title={`${cell.treatment} · signal ${cell.signalLabel} · ${row.name} · ${cell.month} · ${cell.value===null?"Missing input":`${cell.value.toFixed(1)} score`} · source level ${cell.level??"unavailable"}${cell.observationDate ? ` · ${cell.sourceLabel} ${cell.observationDate}${cell.sourceBasis ? ` · ${cell.sourceBasis}` : ""}${cell.carriedForward ? " · carried forward" : ""}` : ""}`}><strong>{cell.value===null?"":cell.value.toFixed(1)}{cell.value!==null&&cell.carriedForward&&<sup>†</sup>}</strong></td>)}</tr>;
+        })}</tbody></table></div>
+        {heatmapPillar === "Adoption" && <p>Adoption breadth and token usage each receive half the pillar weight. The three rates share 12.5% nominal core weight, while OpenRouter and Ramp token volumes share 12.5%. Each token score ranks the month-over-month growth of the trailing three-month average against its own baseline through June 2026. † Latest complete source reading carried forward. Ramp token activity uses an indexed publisher feed; source populations are kept separate.</p>}
         {heatmapPillar === "Monetization" && <p>† Latest available source observation carried forward. Hover a cell for its source date and revenue definition. Lab scores use absolute annualized revenue levels on a log scale, with independent frozen level baselines through June 2026. Revenue growth is context. Business paid demand combines Ramp median spending with Ramp matched and OpenRouter estimated spending growth. Latest complete spending observations carry forward with their source dates; consumer spending uses its latest complete four-week window. Available lab signals share 5% nominal core weight, with missing weights redistributed under the core coverage policy. Lab calibration remains provisional.</p>}
-      </details>
+      </details>}
       <div className="core-research-extension"><b>Additional evidence around the core pillars</b><p>Follow the demand and capacity evidence behind the investment thesis.</p><div><a href="#token-activity">Demand: daily and weekly token activity</a><a href="#labs">Monetization: US frontier-lab revenue and run rates</a><a href="#useful-task-economics">Adoption: successful-task affordability</a><a href="#infrastructure">Investment: operational capacity and installed compute</a></div></div>
-      <div className="heatmap-drilldown" aria-live="polite">
+      {heatmapPillar && <div className="heatmap-drilldown" aria-live="polite">
         <div className="heatmap-drilldown-head"><div><span>SELECTED PILLAR · CONSTITUENTS</span><h3>{heatmapPillar}</h3></div><p>{selectedCoreMonth.month} · source level and scoring transformation</p></div>
-        <div className="heatmap-detail-wrap"><table><thead><tr><th>Constituent</th><th>Ticker</th><th>Source level</th><th>Scoring signal</th><th>Score / supplementary momentum</th></tr></thead><tbody>{heatmapDetails.map(item=><tr key={item.ticker}><td><b>{item.name}</b></td><td><code>{item.ticker}</code></td><td>{item.latest}</td><td className={item.isRunRate?"":item.change===null?"muted":item.isTokens?"":item.change>=0?"positive":"negative"}>{item.isRunRate?`${item.latest} · ${item.basis}`:item.change===null?"n/a":`${item.change>0?"+":""}${item.change.toFixed(1)}${item.isTokens?"":"%"} ${item.basis}`}</td><td>{item.status}</td></tr>)}</tbody></table></div>
-      </div>
+        <div className="heatmap-detail-wrap"><table><thead><tr><th>Constituent</th><th>Ticker</th><th>Source level</th><th>Scoring signal</th><th>Score / supplementary momentum</th></tr></thead><tbody>{heatmapDetails.map(item=><tr key={item.ticker}><td><b>{item.name}</b></td><td><code>{item.ticker}</code></td><td>{item.latest}</td><td className={item.isRunRate?"":item.change===null?"muted":item.isTokens?"":item.change>=0?"positive":"negative"}>{item.isRunRate?`${item.latest} · ${item.basis}`:item.change===null?"n/a":`${item.change>0?"+":""}${item.change.toFixed(1)}${item.signalUnit} · ${item.basis}`}</td><td>{item.status}</td></tr>)}</tbody></table></div>
+      </div>}
       {heatmapPillar==="Hyperscalers"&&<details className="evidence-data"><summary>Last approved company CapEx breakdown · 2026 Q2</summary><div className="heatmap-detail-wrap"><table><caption>Company detail · supplementary to the combined CapEx signal</caption><thead><tr><th>Company</th><th>2026Q2 CapEx ($B)</th><th>Trailing 4Q YoY growth</th></tr></thead><tbody>{latestCore.companyCapexRows.map(row=><tr key={row.ticker}><td>{row.name}</td><td>{row.level?.toFixed(2)??"n/a"}</td><td>{row.growth===null?"n/a":`${row.growth.toFixed(1)}%`}</td></tr>)}</tbody></table><p>Combined growth = total spending in the latest four quarters ÷ total spending in the preceding four quarters − 1. Company growth rates are not averaged. Consolidated CapEx includes spending beyond AI.</p></div></details>}
-      {compositeSelection==="Hyperscalers"&&<details className="evidence-data"><summary>CapEx and RPO forecasts, hardware prices, and supply-chain financials</summary><SupplyPanel/></details>}
+      {heatmapPillar==="Hyperscalers"&&<details className="evidence-data"><summary>CapEx and RPO forecasts, hardware prices, and supply-chain financials</summary><SupplyPanel/></details>}
       <div className="current-pulse"><div><span>Latest complete CapEx quarter</span><strong>2026Q2 constituent QoQ</strong></div>{latestCapexPulse.map(c=><div key={c.ticker} className={c.v>=0?"pulse-up":"pulse-down"}><span>{c.ticker}</span><b>{c.v>0?"+":""}{c.v.toFixed(1)}%</b></div>)}</div>
 
       <SectionNotes section="heatmap"/>
@@ -653,28 +650,12 @@ export default function Home(){
       </div>
     </section>
 
-    <section className="section" id="pulse">
-      <div className="section-head"><div><div className="eyebrow">CORE INDEX · PILLAR DETAIL</div><h2>The historical core is above norm; current momentum is uneven.</h2></div><p>Core pillar scores · supporting demand evidence</p></div>
-      <SectionSummary current={`The revised core index is ${latestCore.score?.toFixed(1)} for June (methodology v3.4). Adoption rates and token activity track breadth and usage. Spending in Monetization tracks paid demand. Cash generation and capital returns provide the next economic test.`} conclusion="The June core is a historical reference. Current spending, rental pricing and credit indicators have different dates and show uneven momentum."/>
-
-
-      <div className="pillar-layout">
-        <div className="pillar-grid" role="list" aria-label="Atmosphere pillars">{(Object.keys(pillars) as Pillar[]).map(name=><button key={name} className={`pillar-card ${pillar===name?"selected":""}`} onClick={()=>setPillar(name)} aria-pressed={pillar===name}>
-          <div className="pillar-top"><span>{name}</span><strong>{pillars[name].score}</strong></div><div className="score-track"><i style={{width:`${pillars[name].score}%`}}/></div><div className="pillar-bottom"><b>{pillars[name].tone}</b><span>{pillars[name].change}</span></div>
-        </button>)}</div>
-        <aside className="pillar-detail"><div><span className="detail-kicker">SELECTED PILLAR</span><h3>{pillar}</h3><p>{pillars[pillar].note}</p></div><div className="detail-stat"><span>Core breadth</span><strong>{pillars[pillar].breadth}</strong></div></aside>
-      </div>
-
-      {<div className="signal-table-wrap"><table><thead><tr><th>Underlying signal</th><th>Ticker</th><th>Latest</th><th>YoY</th><th>Role in index</th></tr></thead><tbody>{visibleSeries.map(s=><tr key={s.ticker}><td>{s.name}</td><td><code>{s.ticker}</code></td><td>{s.value}</td><td className={s.yoy===null?"muted":s.yoy>=0?"positive":"negative"}>{s.yoy===null?"n/a":`${s.yoy>0?"+":""}${s.yoy.toFixed(1)}%`}</td><td><span className={s.status.startsWith("Included")?"status included":"status context"}>{s.status}</span></td></tr>)}</tbody></table></div>}
-
-      <SectionNotes section="pulse"/>
-    </section>
-
     <PillarResearch id="adoption" number="01" pillar="Adoption" title={pillarCommentary.adoption.title} summary={pillarCommentary.adoption.summary} review={<ResearchCommentary section="adoption"/>} historyFooter={<><AdoptionMetrics label="Business adoption observations"><AdoptionMetric><span>Current business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS0700")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS0700 · scored adoption breadth</small></AdoptionMetric><AdoptionMetric><span>Expected business AI use</span><strong>{latestCore.rows.find(r=>r.ticker==="BTOS2400")?.level?.toFixed(1)}%</strong><small>June 2026 · BTOS2400 · scored adoption breadth</small></AdoptionMetric>
       <AdoptionMetric><span>Ramp paid business AI adoption</span><strong>{rampSnapshot.monthly.at(-1)?.paidAdoption?.toFixed(1)}%</strong><small>{rampSnapshot.metadata.through} · scored paid-adoption breadth</small></AdoptionMetric>
       </AdoptionMetrics><SectionNotes section="adoption"/>
     </>}>
-    <EvidenceGroup title="Token activity" description="OpenRouter routed traffic and Ramp sampled usage each contribute 6.25% nominal core weight, using independent log-volume scores."/>
+    <DataFreshness section="adoption"/>
+    <EvidenceGroup title="Token activity" description="OpenRouter routed traffic and Ramp sampled usage each contribute 6.25% nominal core weight, using separate percentiles of three-month moving-average growth."/>
     <div className="adoption-volume-comparison"><TokenActivity rampOnly/><OpenRouterModelVolume/></div>
     <EvidenceGroup title="Task affordability" description="Successful-task costs complement token prices."/>
     <div className="adoption-task-context"><UsefulTaskEconomics compact/></div>
@@ -689,6 +670,7 @@ export default function Home(){
       <p className="chapter-lead">{pillarCommentary.hyperscalers.title}</p>
       <p className="section-summary">{pillarCommentary.hyperscalers.summary}</p>
       <ResearchCommentary section="hyperscalers"/>
+      <DataFreshness section="hyperscalers"/>
       <nav className="pillar-crosslink" aria-label="Hyperscalers reading path"><a href="#hyperscaler-demand">Cloud demand</a> · <a href="#hyperscaler-investment">Capital investment</a> · <a href="#sustainability">Cash funding</a> · <a href="#roic">Capital returns</a></nav>
       <div id="hyperscaler-demand"><HyperscalerDemand/></div><CloudReference/>
       <div id="hyperscaler-investment"><EvidenceGroup title="Capital commitments" description="Compare Bloomberg headline CapEx, upcoming fiscal quarter estimates, and the five-company spending trend."/>
@@ -712,6 +694,7 @@ export default function Home(){
 
     <PillarResearch id="utilization" number="04" pillar="Infrastructure" history={false} classification="PHYSICAL INFRASTRUCTURE" title={pillarCommentary.infrastructure.title} summary={pillarCommentary.infrastructure.summary}>
       <ResearchCommentary section="infrastructure"/>
+      <DataFreshness section="utilization"/>
       <InfrastructureBrowser/>
       <details className="evidence-data"><summary>Shared semiconductor and foundry context</summary><InfrastructureSignals stage="shared"/><DemandSupplement/></details>
     </PillarResearch>
@@ -722,6 +705,7 @@ export default function Home(){
 
     <PillarResearch id="financial" number="05" pillar="Funding & recovery" classification="SUPPLEMENTARY RESEARCH" title={pillarCommentary.funding.title} summary={pillarCommentary.funding.summary} history={false}>
     <ResearchCommentary section="funding"/>
+    <DataFreshness section="financial"/>
     <span id="capital-return" className="legacy-section-anchor"/>
     <p className="pillar-crosslink"><a href="#hyperscalers">Review cloud demand, investment, cash generation and returns ↑</a></p>
     <EvidenceGroup title="Cost escalation and monetization pressure" description="Estimated training costs set a recovery hurdle; usage, cash CapEx and consolidated ROIC test whether activity and returns move together. Read with task affordability in Adoption and US frontier-lab revenue in Monetization. Lower buyer costs can stimulate use, but do not establish lower realized revenue per token or lower margins."/>
@@ -737,6 +721,7 @@ export default function Home(){
 
     <PillarResearch id="market" number="06" pillar="Market" classification="EQUITY & CREDIT · SUPPLEMENTARY RESEARCH" title={pillarCommentary.market.title} summary={pillarCommentary.market.summary} history={false}>
     <ResearchCommentary section="market"/>
+    <DataFreshness section="market"/>
     <EvidenceGroup title="Equity performance" description="Compare market-cap-weighted sector returns and latest market capitalization, then examine credit conditions and financing demand."/>
     <p><a href="#weekly-pulse">View the weekly AI activity pulse ↑</a></p>
     <SemiconductorMarket/>
@@ -874,7 +859,7 @@ export default function Home(){
         <article><span>01</span><h3>Normalize momentum</h3><p>Each included series is converted to YoY change, then standardized against its own available history. This avoids adding incomparable source-native units.</p></article>
         <article><span>02</span><h3>Score each pillar</h3><p>Signal score = 50 + 15 × z-score, capped at 0–100. Macro series are equally weighted within their pillars. The CapEx pillar scores the growth of combined five-company spending.</p></article>
         <article><span>03</span><h3>Build the atmosphere</h3><p>Adoption, Monetization, Hyperscalers and Infrastructure each have a nominal 25% weight. Adoption combines adoption-rate breadth and token-volume usage. Monetization combines business paid demand, consumer spending and absolute annualized lab revenue levels. Hyperscalers scores CapEx growth. Infrastructure includes equipment, construction and hardware pricing. A score above 50 indicates a stronger signal than its historical norm.</p></article>
-        <article><span>04</span><h3>Add satellites separately</h3><p>The adjusted score adds bounded fundamental and credit deltas to the core. Bond issuance stays at zero weight while coverage and historical normalization are under review. Ramp matched spending growth and OpenRouter estimated routed-spending growth enter Monetization business paid demand at 5% nominal core weight each, using provisional six-month calibrations. OpenRouter spending adds catalog-priced model traffic and a daily blended-rate estimate for unresolved tokens. Ramp spending uses matched model spending within each window.</p></article>
+        <article><span>04</span><h3>Add satellites separately</h3><p>The adjusted score adds bounded fundamental and credit deltas to the core. Bond issuance stays at zero weight while coverage and historical normalization are under review. Ramp matched spending growth and OpenRouter estimated routed-spending growth enter Monetization business paid demand at 5% nominal core weight each, using provisional three-month calibrations. OpenRouter spending adds catalog-priced model traffic and a daily blended-rate estimate for unresolved tokens. Ramp spending uses matched model spending within each window.</p></article>
       </div>
 <div className="note-formulas"><b>SUPPLEMENTARY ADJUSTMENT FORMULA</b><p><code>Adjusted = clamp(Core + Fundamental Δ + Credit Δ, 0, 100)</code></p><p><code>Fundamental Δ = 10% × (median Fundamental Composite − 50)</code></p><p><code>Credit score = clamp(50 + 2.5 × CDS Change Signal, 0, 100)</code></p><p><code>Credit Δ = 10% × (Credit score − 50)</code></p><p>Each satellite delta is bounded to ±5 points. Core and satellite weights are not renormalized; missing values are not observed zeros. The adjusted score is withheld below financial/CDS coverage thresholds.</p></div></>} other={      <div className="limitations"><h3>Limits that matter for interpretation</h3><ul><li>Preserve Bloomberg units, seasonal-adjustment flags, release dates and point-in-time vintages.</li><li>Replace PREV-filled observations with explicit freshness and stale-value controls.</li><li>Backfill January 2026 bond issuance before publishing rolling-12-month YoY.</li><li>Add sector-neutral and size-neutral tests to the financial screen; cap extreme CapEx ranks only after sensitivity analysis.</li><li>Run alternative pillar weights, outlier controls and benchmark-relative backtests before integrating satellites.</li><li>Separate actual and forecast atmosphere indices before adding forward quarters.</li><li>A global aggregate requires consistent FX conversion, CapEx definitions, constituent weights and missing-proxy rules.</li></ul></div>}/>
     </section>

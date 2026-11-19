@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, type ReactNode } from "react";
 import "./heatmap-pillar-label.css";
 
 const descriptions = {
-  Adoption: "How fast AI usage is turning into spending. The score combines changes in token volume and unit cost using Ramp business usage and OpenRouter traffic.",
-  Monetization: "How much customers pay for AI and how much model developers earn. The score tracks business spending, consumer card spending on OpenAI and Anthropic, and reported lab revenue.",
+  Adoption: "Adoption weights breadth and usage equally. Breadth uses current and expected business AI use and Ramp paid adoption rates. Usage scores OpenRouter and Ramp separately by ranking month-over-month growth in their 3M average token volumes against each source’s history through June 2026.",
+  Monetization: "Nominal pillar weights are 60% business paid demand, 20% U.S. consumer card spending growth, and 20% log annualized lab revenue levels. Business paid demand uses Ramp median spend per employee, Ramp matched spending growth, and estimated OpenRouter spending growth. The consumer and lab signals cover OpenAI and Anthropic.",
   Hyperscalers: "How fast Microsoft, Alphabet, Amazon, Meta, and Oracle are growing capital spending. The score compares their combined spending over the latest four quarters with the preceding four.",
   Infrastructure: "How strongly demand for AI equipment and facilities is growing. The score uses signals such as equipment orders and imports, memory and GPU prices, and data-center construction.",
 };
@@ -34,6 +34,26 @@ export default function HeatmapPillarLabel({ pillar, quarterly, selected, onSele
   selected: boolean;
   onSelect: () => void;
 }) {
+  return <HeatmapInfoLabel
+    label={pillar}
+    subtitle={quarterly ? "Core 25% · TTM score held" : "Core 25% · normalized"}
+    description={descriptions[pillar]}
+    selected={selected}
+    onSelect={onSelect}
+  />;
+}
+
+export function HeatmapInfoLabel({
+  label, subtitle, description, heading, className, selected, onSelect,
+}: {
+  label: string;
+  subtitle: ReactNode;
+  description: string;
+  heading?: string;
+  className?: string;
+  selected?: boolean;
+  onSelect?: () => void;
+}) {
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null);
   const tooltip = useRef<HTMLSpanElement>(null);
@@ -41,7 +61,7 @@ export default function HeatmapPillarLabel({ pillar, quarterly, selected, onSele
 
   useEffect(() => {
     if (!tooltip.current?.showPopover) {
-      trigger.current?.setAttribute("title", descriptions[pillar]);
+      trigger.current?.setAttribute("title", [heading, description].filter(Boolean).join(". "));
       return;
     }
     function reposition() {
@@ -56,7 +76,7 @@ export default function HeatmapPillarLabel({ pillar, quarterly, selected, onSele
       window.removeEventListener("resize", reposition);
       window.removeEventListener("scroll", reposition, true);
     };
-  }, [pillar]);
+  }, [description, heading]);
 
   function show() {
     window.clearTimeout(closeTimer.current);
@@ -78,16 +98,17 @@ export default function HeatmapPillarLabel({ pillar, quarterly, selected, onSele
     <button
       type="button"
       ref={trigger}
+      className={className}
       aria-pressed={selected}
       aria-describedby={id}
       onPointerEnter={event => { if (event.pointerType !== "touch") show(); }}
       onPointerLeave={scheduleClose}
       onFocus={event => { if (event.currentTarget.matches(":focus-visible")) show(); }}
       onBlur={scheduleClose}
-      onClick={() => { onSelect(); show(); }}
+      onClick={() => { onSelect?.(); show(); }}
     >
-      {pillar} <span className="heatmap-pillar-info" aria-hidden="true">i</span>
-      <small>{quarterly ? "Core 25% · TTM score held" : "Core 25% · normalized"}</small>
+      {label} <span className="heatmap-pillar-info" aria-hidden="true">i</span>
+      <small>{subtitle}</small>
     </button>
     <span
       id={id}
@@ -98,7 +119,8 @@ export default function HeatmapPillarLabel({ pillar, quarterly, selected, onSele
       onPointerEnter={() => window.clearTimeout(closeTimer.current)}
       onPointerLeave={scheduleClose}
     >
-      {descriptions[pillar]}
+      {heading && <strong className="heatmap-tooltip-heading">{heading}</strong>}
+      {description}
     </span>
   </>;
 }

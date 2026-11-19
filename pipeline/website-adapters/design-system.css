@@ -73,15 +73,38 @@ body { font-family: var(--font-body); }
 .infra-overview h4 button { font: inherit; text-align: left; text-decoration: underline; text-underline-offset: 4px; }
 #top .pulse-frequency-tabs button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--card); }
 #infra-evidence .infrastructure-stage-signals { margin-bottom: 14px; }
-.data-freshness-scroll { overflow-x: auto; }
-.data-freshness table { width: 100%; border-collapse: collapse; }
-.data-freshness th, .data-freshness td {
-  padding: .55rem .75rem;
-  border-bottom: 1px solid #dce3e0;
-  text-align: left;
-  vertical-align: top;
+#top .section-coverage {
+  grid-column: 1 / -1;
+  margin-block: 8px;
+  color: var(--muted);
+  font-size: var(--text-small);
 }
-.data-freshness time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+#top .section-coverage > summary {
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 700;
+}
+.section-coverage dl {
+  width: fit-content;
+  max-width: 100%;
+  margin: 6px 0 0;
+  padding: 6px 12px;
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card);
+}
+.section-coverage dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 16px;
+  padding-block: 2px;
+}
+.section-coverage dd { margin: 0; color: var(--ink); }
+.section-coverage time, .constituent-method-trigger time {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
 #top details.evidence-data {
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -99,3 +122,56 @@ body { font-family: var(--font-body); }
 #top details.evidence-data[open] { padding-bottom: 14px; }
 #top .hyperscaler-cash-returns { margin-block: 28px 20px; }
 #top .evidence-group + .section-summary { margin-top: 10px; }
+
+#top .constituent-history .constituent-method-trigger {
+  min-height: 0;
+  padding: 0;
+  cursor: pointer;
+}
+#top .constituent-history .constituent-method-trigger small {
+  margin-top: .2rem;
+}
+.heatmap-tooltip-heading {
+  display: block;
+  margin-bottom: .25rem;
+  color: #176466;
+}
+
+
+.composite-event-marker {
+  cursor: pointer;
+}
+.composite-event-marker:hover circle,
+.composite-event-marker:focus-visible circle {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+
+.composite-event-chart {
+  position: relative;
+}
+.composite-event-chart svg {
+  display: block;
+}
+.composite-event-tooltip {
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  width: min(18rem, 100%);
+  padding: .65rem .8rem;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  border-radius: .35rem;
+  background: var(--card);
+  box-shadow: 0 .35rem .9rem rgb(23 46 43 / 16%);
+  color: var(--ink);
+  font: .8rem/1.45 system-ui, sans-serif;
+}
+.composite-event-tooltip > * {
+  display: block;
+}
+.composite-event-tooltip small {
+  color: var(--muted);
+  margin-bottom: .3rem;
+}

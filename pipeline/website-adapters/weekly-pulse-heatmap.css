@@ -8,12 +8,25 @@
 .weekly-heat-table { width:100%; border-collapse:separate; border-spacing:3px; font-variant-numeric:tabular-nums; }
 .weekly-heat-table caption { text-align:left; font-size:12px; padding:8px 0; }
 .weekly-heat-table th { font-size:11px; font-weight:600; text-align:center; padding:8px 4px; white-space:nowrap; }
-.weekly-heat-table th span { display:block; font-weight:400; color:var(--muted); }
+.weekly-heat-table thead th > span { display:block; font-weight:400; color:var(--muted); }
 .weekly-heat-table th:first-child { min-width:190px; text-align:left; position:sticky; left:0; z-index:1; background:var(--card); }
 .weekly-heat-table th small { display:block; font-size:10px; font-weight:400; color:var(--muted); }
 .weekly-heat-table td { padding:0; text-align:center; }
-#top .weekly-heat-table button { display:block; width:100%; min-width:48px; min-height:48px; border:0; font-size:14px; font-variant-numeric:tabular-nums; }
-.weekly-heat-table button[aria-pressed="true"] { box-shadow:inset 0 0 0 2px var(--ink); }
+#top .weekly-heat-table td button { display:block; width:100%; min-width:48px; min-height:48px; border:0; font-size:14px; font-variant-numeric:tabular-nums; }
+.weekly-heat-table td button[aria-pressed="true"] { box-shadow:inset 0 0 0 2px var(--ink); }
+#top .weekly-heat-table .weekly-row-label {
+  display:block;
+  width:100%;
+  padding:3px 4px;
+  font-size:12px;
+  font-weight:700;
+  text-align:left;
+  white-space:normal;
+  cursor:pointer;
+}
+#top .weekly-heat-table .weekly-row-label[aria-pressed="true"] { color:var(--teal); }
+#top .weekly-constituent .weekly-row-label { padding-inline-start:14px; }
+.weekly-constituent time { white-space:nowrap; }
 .weekly-coverage td { font-size:11px; color:var(--muted); }
 .weekly-calculation { border-top:1px solid var(--line); margin-top:20px; padding-top:20px; }
 .weekly-calculation-table { width:100%; border-collapse:collapse; min-width:580px; font-variant-numeric:tabular-nums; }

@@ -13,6 +13,7 @@ import EvidenceCard from './evidence-card';
 import EvidenceGroup from './evidence-group';
 import ChartLegend from './chart-legend';
 import SectionNotes from './section-notes';
+import DataFreshness from './data-freshness';
 
 const money=(v:number|null,scale=1e6)=>v===null?'Unavailable':(v/scale).toLocaleString('en-US',{maximumFractionDigits:1});
 function Trend({rows,metric}:{rows:readonly {date:string;revenueUsd:number|null;marketCapUsd:number|null;revenueStatus:string|null}[];metric:'revenueUsd'|'marketCapUsd'}){
@@ -65,6 +66,7 @@ export default function Monetization(){
  const [labView,setLabView]=useState<'Both'|'OpenAI'|'Anthropic'>('Both');
  return <PillarResearch id="monetization" number="02" pillar="Monetization" history={false} classification="CORE PILLAR · 25% NOMINAL WEIGHT" title={pillarCommentary.monetization.title} summary={pillarCommentary.monetization.summary}>
  <ResearchCommentary section="monetization"/>
+ <DataFreshness section="monetization"/>
   <div id="business-paid-demand">
     <EvidenceGroup title="Business paid-demand" description="Ramp median AI spending, matched model spending and OpenRouter estimated routed spending each carry 5% nominal core weight. Ramp measures sampled business payments; OpenRouter provides a routed-spending proxy across mixed use cases."/>
     <AdoptionReadthrough/>

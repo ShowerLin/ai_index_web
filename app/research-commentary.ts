@@ -12,7 +12,7 @@ export const pillarCommentary = {
     "title": "Adoption breadth and token activity track how widely AI is used.",
     "summary": "Ramp paid adoption reached 56.8% of sampled businesses in October, up 1.0 percentage point from revised September. Current and expected business-use surveys measure breadth, while OpenRouter and Ramp token activity measure usage in their respective samples.",
     "paragraphs": [
-      "The Adoption score now combines three adoption-rate signals with two token-volume signals. Breadth and usage each receive half of the pillar weight. The existing rate-level and separate log-volume calibrations are retained through June 2026.",
+      "The Adoption score now combines three adoption-rate signals with two token-volume signals. Breadth and usage each receive half of the pillar weight. The breadth signals use rate levels. The token signals rank three-month moving-average growth against separate baselines through June 2026.",
       "OpenRouter routed traffic and Ramp sampled business activity cover different populations. Their volumes are normalized separately. The latest complete source readings carry forward with their dates, so a held reading is visible when the next monthly observation is unavailable."
     ],
     "watch": "Watch current use, expected use and observed paid adoption together with sustained token activity. Compare usage breadth with the business paid-demand evidence in Monetization to assess how usage translates into spending.",

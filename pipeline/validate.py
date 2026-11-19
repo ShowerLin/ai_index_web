@@ -21,8 +21,8 @@ def validate(root,build):
    periods=[r['period'] for r in c['quarters']]
    assert periods==sorted(set(periods)),(name,c['ticker'],'duplicate or unsorted quarters')
  core=load_ts(build/'app/core-contribution-snapshot.ts')
- assert core['metadata']['version']in ('2.9','3.0','3.1','3.2','3.3','3.4')
- structured=core['metadata']['version']=='3.4'
+ assert core['metadata']['version']in ('2.9','3.0','3.1','3.2','3.3','3.4','3.5')
+ structured=core['metadata']['version'] in ('3.4','3.5')
  spending_tickers={'RAMP_MATCHED_SPENDING','OPENROUTER_SPENDING_PROXY'}
  adoption_tickers={'BTOS0700','BTOS2400','RAMP_PAID_ADOPTION','OPENROUTER_TOKEN_VOLUME','RAMP_TOKEN_VOLUME'} if structured else spending_tickers
  for month in core['months']:
