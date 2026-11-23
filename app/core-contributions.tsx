@@ -75,16 +75,31 @@ export default function CoreContributions({month, onMonthChange, pillar}: {
         <div><dt>{pillar} score</dt><dd>{now.score?.toFixed(2) ?? "n/a"}</dd></div>
         <div><dt>Previous month</dt><dd>{prior?.score?.toFixed(2) ?? "n/a"}</dd></div>
       </dl> : <dl>
-        <div><dt>Previous v2.7 score</dt><dd>{current.previousVersionScore?.toFixed(2) ?? "n/a"}</dd></div>
+        <div><dt>Reference v{snapshot.metadata.comparisonVersion} score</dt><dd>{current.previousVersionScore?.toFixed(2) ?? "n/a"}</dd></div>
         <div><dt>Revised core score</dt><dd>{current.score?.toFixed(2) ?? "n/a"}</dd></div>
-        <div><dt>Methodology change</dt><dd>{residual === null ? "n/a" : format(residual)}</dd></div>
+        <div><dt>Difference versus reference</dt><dd>{residual === null ? "n/a" : format(residual)}</dd></div>
       </dl>}
       <p className="contribution-reconciliation">{complete
         ? mode === "level"
           ? `50 ${sum >= 0 ? "+" : "−"} ${Math.abs(sum).toFixed(2)} = ${now.score!.toFixed(2)} ${unit}.`
           : `Contributions sum to ${format(sum)} ${unit} of monthly change.`
         : mode === "level" ? "A scored observation is required for attribution." : "Both months need a score for attribution."}</p>
-      <details><summary>Calculation and coverage</summary><table className="core-treatment-table"><thead><tr><th>Constituents</th><th>Scoring signal</th></tr></thead><tbody><tr><td>Adoption breadth</td><td>Current business use, expected use and Ramp paid adoption levels; 4.1667% nominal core weight each</td></tr><tr><td>Ramp median AI spend per employee</td><td>YoY growth of the trailing three-month average median</td></tr><tr><td>OpenRouter and Ramp token volume</td><td>Percentile rank of month-over-month growth in the trailing three-month average. Each source carries 6.25% nominal core weight in Adoption.</td></tr><tr><td>Monetization business paid demand</td><td>Ramp median spending, Ramp matched spending growth and OpenRouter estimated routed-spending growth; 5% nominal core weight each. Spending-growth calibration remains provisional</td></tr><tr><td>Exports, orders, imports</td><td>TTM total YoY growth</td></tr><tr><td>Construction, industrial production</td><td>12M average YoY growth</td></tr><tr><td>Supply</td><td>Five-company CapEx TTM YoY growth (10%); DDR5 and H100 price momentum uses independently calibrated log YoY ratios (5% each). Forecasts and supplier financials are context.</td></tr></tbody></table><p>{snapshot.metadata.method}</p><p>{snapshot.metadata.supplyMethod}</p><p>{snapshot.metadata.demandMethod} <a href="https://investor.tsmc.com/english/monthly-revenue/2023">TSMC 2023</a> · <a href="https://investor.tsmc.com/schinese/monthly-revenue/2024">TSMC 2024</a></p><p>{snapshot.metadata.tokenMethod} The spending-growth baselines contain six observations each, January–June 2026; calibration is provisional.</p><p>{snapshot.metadata.rampMethod} Spending prices, mix and sample composition affect interpretation; 20 calibration observations limit robustness.</p><p>Token-volume scores are growth percentiles, with 50 at the median rank. Other constituent scores are rescaled z-scores, with 50 at the baseline mean. Composite changes describe strengthening or weakening relative to that baseline. Financial tightening is assessed separately through credit and funding indicators.</p><p>The card-spending baseline is January–June 2026. Nominal pillar weights are 25% each. {snapshot.metadata.adoptionMethod} {snapshot.metadata.monetizationMethod} Missing weights are redistributed within each pillar, then across available pillars.</p><p>{snapshot.metadata.labRevenueMethod} Frozen level baselines use {snapshot.metadata.labRunRateBaseline.OpenAI.count} OpenAI disclosures and {snapshot.metadata.labRunRateBaseline.Anthropic.count} Anthropic disclosures.</p><p>Short momentum: contextual adoption-rate changes in percentage points, and three-month-average YoY growth for monthly activity, are supplementary. Level contribution uses the effective weight multiplied by the score minus 50. Core attribution sums constituent contributions by pillar. Within a selected pillar, constituent weights are normalized to that pillar. Monthly impact is the change in contribution, including weight changes. The CapEx component changes at quarter boundaries; hardware prices change monthly.</p></details>
+      <details>
+        <summary>Calculation and coverage</summary>
+        <table className="core-treatment-table">
+          <thead><tr><th>Pillar</th><th>Scoring signals</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Adoption</th><td>Current and expected business AI use and Ramp paid adoption use rate levels. OpenRouter and Ramp token volumes use separate percentiles of month-over-month growth in the trailing three-month average.</td></tr>
+            <tr><th scope="row">Monetization</th><td>Business paid demand uses YoY growth in the three-month average of Ramp median spend per employee and 28-day spending growth from Ramp and OpenRouter. Consumer card spending compares the latest four weeks with the prior four. Frontier labs use log annualized revenue levels.</td></tr>
+            <tr><th scope="row">Hyperscalers</th><td>YoY growth in the combined five-company trailing-four-quarter CapEx total.</td></tr>
+            <tr><th scope="row">Infrastructure</th><td>Trailing-12-month total YoY growth for exports, TSMC revenue, equipment orders and imports. Twelve-month average YoY growth for construction and high-tech production. Log YoY price ratios for DDR5 and H100.</td></tr>
+          </tbody>
+        </table>
+        <p>{snapshot.metadata.method}</p>
+        <p>{snapshot.metadata.tokenMethod} A score of 50 represents the median rank for token-volume growth and the baseline mean for the z-scored signals.</p>
+        <p>The matched Ramp and OpenRouter spending-growth baselines each contain six observations from January through June 2026. The consumer card baseline covers the same months. Lab calibration uses {snapshot.metadata.labRunRateBaseline.OpenAI.count} OpenAI disclosures and {snapshot.metadata.labRunRateBaseline.Anthropic.count} Anthropic disclosures. These calibrations are provisional.</p>
+        <p>Level contribution is effective weight multiplied by the score’s difference from 50. Core attribution sums contributions by pillar. Within a selected pillar, effective weights are expressed as shares of that pillar. Monthly impact is the change in contribution, including weight changes.</p>
+      </details>
     </div><div className="contribution-ranking">
       <div className="contribution-key">
         <span><i className="support"/>Supports {supports}</span><span><i className="drag"/>Drags {supports}</span>

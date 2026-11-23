@@ -4,55 +4,38 @@ Heading roles: H1 page thesis; H2 chapter; H3 analytical group; H4 chart or tabl
 
 ```text
 Overview
-Core index and pillar detail
+Core index
+  Monthly heatmap, attribution and selected-pillar constituents
+  Weekly pulse and selected weekly signals
 01 Adoption
-  Business adoption
-    Business AI adoption and survey observations
-  Usage and affordability
-    OpenRouter token consumption
-    Cost per successful task
-02 Demand
-  Equipment imports
-    Imports constituent momentum
-  Hardware demand
-    Memory exports and foundry revenue
-  Lab monetization
-    Frontier-lab revenue run rates
-03 Investment
-  Commitments and spending
-    Investment constituent momentum | CapEx by company
-    Hyperscaler capital expenditure (same row as momentum and company table)
-    China CapEx comparison (expandable)
-  Delivered capacity
-    Operational capacity, owner comparison and capacity per CapEx
-    Owned compute, owner comparison and compute per CapEx
-04 Financial
-  Cash generation and capital productivity
-    Cash generation and investment
-    Cash absorption and funding headroom
-    Hyperscaler capital returns
-  Funding dependencies
-    Circular financing network and loops
-    Funding-dependent demand sensitivity
-  Cost escalation and monetization pressure
-    Frontier-model training costs | Token consumption, CapEx and ROIC
-05 Market
-  Equity performance
-    Sector performance and sector size / return
-  Credit conditions and financing
-    Credit pressure versus IG
-    Financial leverage distributions
-    AI financing in the broader bond market
-Industry context (standalone supporting section)
+  Business AI use and Ramp paid adoption
+  OpenRouter and Ramp token activity
+  Cost per successful task
+02 Monetization
+  Business paid demand and token pricing
+  Frontier-lab revenue and valuations
+  U.S. consumer card spending
+  China market comparison
+03 Hyperscalers
+  Cloud demand, RPO and estimate revisions
+  Capital commitments and CapEx estimates
+  Cash funding and capital returns
+04 Infrastructure
+  Facilities, electricity, compute, networking and memory
+  Shared semiconductor and foundry context
+Policy and permitting
+05 Funding & recovery
+  Training economics and financing dependencies
+06 Market
+  Equity performance, credit and bond financing
+Industry context
   Revenue and EBITDA distribution
-  Existing industry relationship map (expandable)
+  Industry relationship map
 Methodology and data disclosures
 ```
 
-The industry context is linked from navigation and from funding dependencies. Financial and Market remain supplementary research rather than new core-index pillars. Data, formulas, source vintages and index weights are unchanged by this layout update.
+Adoption, Monetization, Hyperscalers and Infrastructure each have 25% nominal weight. Funding & recovery, Market, policy and the industry comparison provide supplementary research.
 
-Desktop layout: usage and task-cost charts share a two-column row; hardware demand and lab monetization share another row with their own H3 headings. Cash generation, absorption and returns share a three-column row with expandable details beneath. Rows stack on smaller screens.
+The monthly heatmap leads with pillar scores. Selecting a pillar opens its constituent history, source dates and selected-month values. The weekly pulse expands available signals under the relevant pillar and uses weekly coverage to determine contribution weights.
 
-Adoption desktop layout: Business adoption occupies the left column; Usage and affordability spans the right two chart columns on the same row. Survey figures and coverage stay beneath Business adoption.
-
-Demand: equipment imports, hardware demand and lab monetization share one desktop row. Financial pairs training costs with usage/CapEx/ROIC to examine cost recovery, without claiming realized revenue per token. Market Credit contains CDS spreads, leverage and AI bond issuance without outer subsection frames.
+Adoption pairs the Ramp and OpenRouter volume charts on desktop. Infrastructure can be browsed by area or data type. Chart grids stack on smaller screens.

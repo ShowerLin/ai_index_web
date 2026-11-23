@@ -123,6 +123,17 @@ body { font-family: var(--font-body); }
 #top .hyperscaler-cash-returns { margin-block: 28px 20px; }
 #top .evidence-group + .section-summary { margin-top: 10px; }
 
+#top .compact-heat-table {
+  --month-column: 27px;
+  --estimate-column: 6ch;
+  min-width: max(1200px, calc(156px + var(--heatmap-months) * (var(--month-column) + 3px) + var(--heatmap-estimate-months) * (var(--estimate-column) - var(--month-column))));
+}
+.compact-heat-table .heatmap-estimate-column { width: var(--estimate-column); }
+.compact-heat-table td sup {
+  margin-inline-start: 1px;
+  font-size: .55em;
+}
+
 #top .constituent-history .constituent-method-trigger {
   min-height: 0;
   padding: 0;

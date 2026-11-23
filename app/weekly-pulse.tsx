@@ -62,7 +62,7 @@ export default function WeeklyPulse() {
   const latestFull = rows.findLast(row => row.signals_available === weeklySignalCount);
   return <section className="research-reference" id="weekly-pulse" aria-labelledby="weekly-pulse-title">
     <h3 id="weekly-pulse-title">Weekly AI activity pulse</h3>
-    <p>Higher-frequency reference. Latest activity reading <strong>{latest?.pulse?.toFixed(1) ?? "Unavailable"}</strong> for the week ended {latest?.week_end} ({latest?.signals_available}/{weeklySignalCount} signals). XSOX relative return versus SPXT was <strong>{market?.xsox_vs_spxt_4w_pct?.toFixed(1)}%</strong> over four weeks through {market?.market_close}.</p>
+    <p>The weekly pulse applies its own four-week scoring windows and gives equal weight to available signals. Latest activity reading <strong>{latest?.pulse?.toFixed(1) ?? "Unavailable"}</strong> for the week ended {latest?.week_end} ({latest?.signals_available}/{weeklySignalCount} signals). XSOX relative return versus SPXT was <strong>{market?.xsox_vs_spxt_4w_pct?.toFixed(1)}%</strong> over four weeks through {market?.market_close}.</p>
     {ramp && <p>Ramp’s latest published week ends <strong>{ramp.end}</strong> with a spending index of <strong>{ramp.spendingIndex?.toFixed(1)}</strong>. The scored pulse uses comparable Sunday-ending Ramp weeks through {tokenActivitySnapshot.metadata.rampMatchedThrough}.</p>}
     <p>Latest week with all signals: <strong>{latestFull?.week_end ?? "Unavailable"}</strong>.</p>
     <WeeklyPulseHeatmap/>

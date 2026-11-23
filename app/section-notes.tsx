@@ -1,19 +1,20 @@
 import type { ReactNode } from "react";
 import { workbookAmendments } from "./workbook-amendments-snapshot";
 import { rampSnapshot } from "./ramp-snapshot";
+import { coreContributionSnapshot } from "./core-contribution-snapshot";
 
 type Note = { sources: string[]; source: string; methodology: string; other: string; anchor?: string };
 
 const notes: Record<string, Note> = {
   heatmap: {
-    sources: ["S1", "S2", "S3", "S9", "S14"],
-    source: "Saved Bloomberg monthly workbook observations and U.S./China CapEx collections. Macro inputs may contain prior-value fills; CapEx accounting definitions vary. These are cached observations rather than a live feed.",
-    methodology: "Methodology v2.5: Adoption uses only separate Ramp and OpenRouter token volumes (10% core weight each); survey and paid-adoption levels and token prices are zero-weight context; 3M-average median AI spend per employee YoY growth; natural log of matched four-week OpenRouter and Ramp token volume; TTM YoY growth for exports, orders and imports; 12M-average YoY growth for construction and high-tech production; trailing-four-quarter YoY growth for company CapEx. Normalize against each transformed series’ fixed history through June 2026 using sample standard deviation, and clip 50 + 15 × z to 0–100. Equal weights within five 20% pillars. Heatmap and attribution use these same scores.",
-    other: "The core line uses a fixed 0–100 left axis; selected growth uses the right axis. The range is not a confidence interval. Revised complete core history begins February 2025 and ends June 2026, with June–July 2025 withheld because OpenRouter days are missing; earlier periods lack full trailing windows. The baseline is retrospective, not a real-time backtest. Quarterly scores are held within quarter. Nominal price effects remain. OpenRouter and Ramp token volume contribute separate core signals, with a provisional 15-observation calibration. Lab revenue, task cost and installed capacity remain supplementary. Historical quarterly alignment does not imply the data was published at the quarter’s start. China is supplementary.",
+    sources: ["S1", "S2", "S9", "S10", "S14", "S18"],
+    source: "The core uses saved Bloomberg macro and CapEx inputs, BTOS surveys, Ramp business data, OpenRouter rankings and prices, U.S. consumer card spending, and reported frontier-lab revenue run rates. Coverage and observation dates differ by signal.",
+    methodology: `Methodology v${coreContributionSnapshot.metadata.version} assigns 25% nominal weight to each of four pillars. Adoption combines rate levels and token-volume growth percentiles. Monetization combines business spending, consumer card spending growth and log annualized lab revenue levels. Hyperscalers scores combined trailing-four-quarter CapEx growth. Infrastructure combines physical activity and hardware pricing. Token scores use separate historical percentiles. Other scores use 50 + 15 × z-score, bounded to 0–100. Available constituents share the pillar’s weight in proportion to their nominal weights, and available pillars share the core weight equally.`,
+    other: "The chart shades the range of observed constituent scores. Quarterly Hyperscalers scores repeat across their quarter’s months. E identifies estimates from the five-company CapEx scenario. Later core scores use the available observed pillars and are provisional. Carried-forward readings retain their source dates. The fixed calibration through June 2026 makes this a retrospective series.",
   },
   adoption: {
-    sources: ["S1", "S14"], source: `Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption through ${rampSnapshot.metadata.through}.`,
-    methodology: "Current use, expected use and Ramp paid adoption receive 4.1667% nominal core weight each. OpenRouter and Ramp token volumes receive 6.25% each, using separate percentiles of three-month moving-average growth. Spending growth enters Monetization business paid demand. The BTOS wording change splits the survey lines; Ramp retains its own source history.",
+    sources: ["S1", "S9", "S14"], source: `Cached BTOS0700/BTOS2400 surveys and Ramp observed AI payments. Ramp’s platform sample differs from the survey population. Paid adoption through ${rampSnapshot.metadata.through}.`,
+    methodology: "Current use, expected use and Ramp paid adoption receive 4.1667% nominal core weight each. OpenRouter and Ramp token volumes receive 6.25% each, using separate percentiles of month-over-month growth in each source’s trailing three-month average. Spending growth enters Monetization business paid demand. The BTOS wording change splits the survey lines; Ramp retains its own source history.",
     other: "Ramp identifies firms with observed AI payments. It does not establish retention, profitability or market-wide utilization. Survey intentions and observed payments are distinct measures.",
   },
   capex: {
@@ -69,7 +70,7 @@ const notes: Record<string, Note> = {
   credit: {
     sources: ["S4"], source: `Bloomberg-implied issuer 5Y CDS through ${workbookAmendments.metadata.creditAsOf}. The IBOXUMAE Curncy benchmark is available through ${workbookAmendments.metadata.creditBenchmarkAsOf}. Latest issuer ratings are dated ${workbookAmendments.metadata.ratingAsOf}. Quotes and comparable issuer coverage limit representativeness.`,
     methodology: "The spread view plots issuer medians; the relative-change view summarizes issuer changes minus the general IG benchmark change since 31 December 2025. Thirty-day issuer comparisons use matched dates. Latest rating groups are retrospective, not historical ratings. Displayed overall, sector and rating charts use median lines with selectable central-50% or minimum–maximum issuer bands and the general IG benchmark. Overall and sector baskets include covered below-IG issuers.",
-    other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage uses covered issuers with four consecutive EBITDA quarters. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. Issuer and role coverage are shown; the credit adjustment is separate from the five-pillar core index.",
+    other: "Credit spreads reflect market-implied risk and financing conditions rather than observed defaults or AI project returns. Quarterly leverage uses covered issuers with four consecutive EBITDA quarters. Rates, issuer mix, equity volatility and event risk may also move CDS; role comparisons do not establish causality. The credit adjustment contributes to the supplementary adjusted score. Issuer and role coverage are shown.",
   },
   financing: {
     sources: ["S6"], source: `Bloomberg workbook issuer-month bond issuance amount and count through ${workbookAmendments.bondMonthly.at(-1)?.month}, with matched US investment-grade corporate issuance through ${workbookAmendments.bondBenchmark.latestMatchedMonth}. Both queries use USD amounts. The most recent month may be partial.`,
@@ -78,7 +79,7 @@ const notes: Record<string, Note> = {
   },
   methodology: {
     sources: [], source: "The source register records workbook sheets, company collections, periods and modeled datasets. Cached, estimated and carried observations have different evidence limits.",
-    methodology: "Keep the five-pillar core, supplementary fundamental/credit adjustment and separate return analyses distinct. Do not renormalize missing weights or treat missing values as observed zero. Preserve source units, dates and revision vintages.",
+    methodology: "The four-pillar core reallocates missing weight within pillars and then across available pillars. The supplementary adjustment uses its fixed fundamental and credit multipliers and requires both coverage thresholds.",
     other: "Resolve stale-value controls, incomplete bond history, accounting/FX definitions and robustness tests before changing weights or introducing forward estimates. Current strength in one dimension does not establish profitability across the full investment cycle.",
   },
 };

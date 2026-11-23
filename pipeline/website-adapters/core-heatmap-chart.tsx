@@ -41,7 +41,7 @@ export default function CoreHeatmapChart({ title, points: historicalPoints, core
   const coverage = projection.quarters.find(q => q.quarter === displayQuarter)?.availableEstimate;
   const projectionEnd = displayedProjection.at(-1);
   const pillarDescriptions: Record<string, string> = {
-    Adoption: "Adoption combines current and expected business AI use, Ramp paid adoption and two independently normalized token-volume signals. Breadth and usage each receive half the pillar weight.",
+    Adoption: "Adoption splits its weight equally between three adoption-rate levels and two token-growth signals. OpenRouter and Ramp each use percentile ranks of month-over-month growth in their trailing three-month average.",
     Monetization: "Monetization combines business paid demand, consumer card spending and absolute annualized lab revenue levels. Business paid demand covers Ramp spending intensity, Ramp matched spending growth and OpenRouter estimated routed-spending growth. Source dates identify latest available observations.",
     Infrastructure: "Infrastructure combines supplier sales, equipment orders and imports, construction, industrial activity, and independently calibrated DDR5 and H100 price momentum.",
     Hyperscalers: "Hyperscalers tracks trailing-four-quarter CapEx growth across the five covered companies. Quarterly scores are held across the months of each quarter.",

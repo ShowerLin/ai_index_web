@@ -113,7 +113,7 @@ The dashboard follows **Capability → Adoption → Utilization → Monetization
 The industry map, financial quality and credit indicators provide supporting context. This reorganization does not add data or turn existing assumptions into observed utilization or AI-specific returns.
 
 
-The main heatmap uses methodology-v2 normalized scores from July 2025 through June 2026. The pinned core line, pillar composites, constituent values and ranking all use the same generated score snapshot. Score colors refer to historical norm 50; they do not color raw growth. Selected pillar min–max shading uses actual normalized constituent scores on a shared 0–100 scale. See the treatment table and baseline limitations below.
+The October 2026 v2 heatmap showed normalized scores from July 2025 through June 2026. The pinned core line, pillar composites, constituent values and ranking all use the same generated score snapshot. Score colors refer to historical norm 50; they do not color raw growth. Selected pillar min–max shading uses actual normalized constituent scores on a shared 0–100 scale. See the treatment table and baseline limitations below.
 
 China remains supplementary under Investment rather than being mixed into the normalized core heatmap. Macro short-term growth charts remain clearly labeled supplementary momentum and do not determine heatmap colors. Core pillar detail immediately follows the heatmap. Raw quarter-end alignment is retrospective and does not imply publication at the quarter's start.
 
@@ -125,7 +125,7 @@ The editorial layout leads each analytical section with observations and investm
 
 Blue and white define the interface and ordinary chart series. Positive signals use green; negative momentum uses yellow for mild declines above −3%, orange for declines above −10%, and red for declines of −10% or worse. Exact zero and missing observations are neutral, with missing values still labeled unavailable. Core scores use their existing 50-neutral scale rather than growth thresholds. Categorical series colors do not imply investment direction. Signed values, accessible labels and legends supplement color.
 
-## Pillar-centered research structure
+## Historical research structure (October 2026)
 
 The main research reading order is Adoption, Demand, Investment, Imports and Financial. Investment brings together equipment orders/construction and hyperscaler CapEx, capacity and training costs. Financial groups cash absorption, incremental cash coverage, ROIC, the usage/returns comparison, financial resilience, credit/leverage and bond issuance. Financial is a supplementary research chapter, not an additional index weight. The official five pillars (Adoption, Demand, Investment, Imports, Hyperscaler CapEx) retain their separate 20% weights in the score and heatmap. Do not substitute chip-user capacity estimates for token consumption or infer market-wide utilization from routed traffic.
 
@@ -223,6 +223,6 @@ Generation order: existing core/hardware stage → `scripts/integrate-ramp-core.
 
 ## Current refresh and spending methodology
 
-The accepted composite is [v2.7 nominal spending growth](docs/data-changes/ADOPTION_V2_7_2026-10-21.md). [Refresh instructions](docs/data-changes/AUTOMATED_REFRESH.md) cover collection, validation and website sync. The Adoption spending chart supports indexed, dollar and growth views.
+The [current v3.5 methodology](docs/DATA_PIPELINE.md) uses four equally weighted pillars. Adoption includes breadth rates and source-specific token-growth percentiles. Monetization includes business spending, consumer card spending growth and annualized frontier-lab revenue levels. Its spending panel provides indexed, native-level and growth views. [Refresh instructions](docs/data-changes/AUTOMATED_REFRESH.md) cover collection, validation and website sync.
 
 Pipeline fixture-based tests require the provisioned private data root via `AI_INDEX_DATA_ROOT`; workbooks, credentials, raw research inputs and run logs remain outside this repository.
