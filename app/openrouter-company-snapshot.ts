@@ -1,6 +1,6 @@
 export const companyTokens = {
-  "through": "2026-11-16",
-  "asOf": "2026-11-17T03:31:47.946Z",
+  "through": "2026-11-22",
+  "asOf": "2026-11-23T02:10:49.451Z",
   "source": "https://openrouter.ai/api/v1/datasets/rankings-daily",
   "authors": [
     {
@@ -171,20 +171,20 @@ export const companyTokens = {
   "partialRows": [
     {
       "quarter": "2026Q4",
-      "days": 47,
+      "days": 53,
       "expectedDays": 92,
       "complete": false,
-      "total": 26.867085450818106,
+      "total": 29.160369700122754,
       "values": {
-        "deepseek": 8.989461226368702,
-        "openai": 2.1828344306836382,
-        "google": 0.7463579167110851,
-        "anthropic": 1.7211095561065108,
-        "tencent": 1.9448062141159574,
-        "z-ai": 2.5474095817152977,
-        "xiaomi": 1.137774362139298,
-        "minimax": 0.7699030077977872,
-        "other": 6.82742915517983
+        "deepseek": 9.367942278029151,
+        "openai": 2.172981007567736,
+        "google": 0.7779359943760566,
+        "anthropic": 1.7343985202154342,
+        "tencent": 3.852903649357717,
+        "z-ai": 2.5342599815112266,
+        "xiaomi": 1.0803216278125094,
+        "minimax": 0.7581383359763962,
+        "other": 6.8814883052765285
       }
     }
   ],

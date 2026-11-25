@@ -36,8 +36,12 @@ def ramp_totals(rows, sunday_only=False):
         start,end=dt.date.fromisoformat(row['period_start']),dt.date.fromisoformat(row['period_end'])
         assert end-start==dt.timedelta(days=6)
         assert not sunday_only or start.weekday()==0
-        key=(row['period_start'],row['series_key']);assert key not in seen,('Duplicate Ramp record',key)
-        seen.add(key);value=int(row['metric_value']);assert value>=0;ramp_weeks[row['period_end']]+=value
+        key=(row['period_start'],row.get('model_maker'),row['series_key'])
+        assert key not in seen, ('Duplicate Ramp record', key)
+        value=row['metric_value']
+        assert math.isfinite(value) and value>=0
+        seen.add(key)
+        ramp_weeks[row['period_end']]+=value
     return dict(ramp_weeks)
 
 def build_windows(daily,ramp_weeks,months):

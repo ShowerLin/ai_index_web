@@ -2,7 +2,7 @@
 export const taskEconomicsSnapshot = {
   "metadata": {
     "source": "Epoch AI \u2014 frontier_ai_models.csv and ml_hardware.csv",
-    "retrievedAt": "2026-11-17T02:33:26.962190+00:00",
+    "retrievedAt": "2026-11-23T02:10:54.506908+00:00",
     "modelDatasetAsOf": "2026-09-03",
     "costObservationAsOf": "2025-07-09",
     "observationCount": 48,

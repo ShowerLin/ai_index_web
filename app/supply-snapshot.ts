@@ -10,8 +10,8 @@ export const supplySnapshot = {
       "2027Q4"
     ],
     "sourceRetrievedAt": null,
-    "workbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
-    "cloudWorkbookSha256": "d8289e7017b723eb65017a7a388ed81b88484090beeb63098e6c126cfb765afc",
+    "workbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
+    "cloudWorkbookSha256": "2257605b89d67b560bd1c5ee25d42442add23af5ab77ba81af3940e1b78c4b03",
     "forwardMethod": "CapEx: next four complete calendar quarters after the as-of quarter, raw saved Bloomberg estimates in USD billions. Not a day-exact rolling horizon and not lease-bridged. RPO: native fiscal-period stock estimates, never summed across quarters or issuers.",
     "rpoGrowthVsCapexStatus": "Withheld: RPO fiscal-calendar alignment, comparable scope and matched historical/forward growth bases are not verified. No fabricated historical estimates or revisions.",
     "limitations": [
@@ -31,130 +31,130 @@ export const supplySnapshot = {
       "quarters": [
         {
           "quarter": "2027Q1",
-          "value": 48.851733333333335,
-          "cell": "C13"
+          "value": 51.14625,
+          "cell": "C12"
         },
         {
           "quarter": "2027Q2",
-          "value": 50.983,
-          "cell": "C14"
+          "value": 54.46371875,
+          "cell": "C13"
         },
         {
           "quarter": "2027Q3",
-          "value": 52.47036666666666,
-          "cell": "C15"
+          "value": 54.176566666666666,
+          "cell": "C14"
         },
         {
           "quarter": "2027Q4",
-          "value": 54.0968,
-          "cell": "C16"
+          "value": 56.57893333333334,
+          "cell": "C15"
         }
       ],
-      "forward12m": 206.4019
+      "forward12m": 216.36546875
     },
     {
       "ticker": "GOOGL",
       "quarters": [
         {
           "quarter": "2027Q1",
-          "value": 69.33652,
-          "cell": "AL13"
+          "value": 71.573,
+          "cell": "AL12"
         },
         {
           "quarter": "2027Q2",
-          "value": 76.46652,
-          "cell": "AL14"
+          "value": 78.57967741935484,
+          "cell": "AL13"
         },
         {
           "quarter": "2027Q3",
-          "value": 83.26648,
-          "cell": "AL15"
+          "value": 85.04248387096774,
+          "cell": "AL14"
         },
         {
           "quarter": "2027Q4",
-          "value": 90.36132,
-          "cell": "AL16"
+          "value": 94.26616129032259,
+          "cell": "AL15"
         }
       ],
-      "forward12m": 319.43084
+      "forward12m": 329.4613225806452
     },
     {
       "ticker": "AMZN",
       "quarters": [
         {
           "quarter": "2027Q1",
-          "value": 63.5022,
-          "cell": "AE13"
+          "value": 67.50930769230769,
+          "cell": "AE12"
         },
         {
           "quarter": "2027Q2",
-          "value": 71.19278571428572,
-          "cell": "AE14"
+          "value": 76.9695,
+          "cell": "AE13"
         },
         {
           "quarter": "2027Q3",
-          "value": 74.00285714285715,
-          "cell": "AE15"
+          "value": 84.82675,
+          "cell": "AE14"
         },
         {
           "quarter": "2027Q4",
-          "value": 81.562,
-          "cell": "AE16"
+          "value": 87.61258333333333,
+          "cell": "AE15"
         }
       ],
-      "forward12m": 290.25984285714287
+      "forward12m": 316.91814102564103
     },
     {
       "ticker": "META",
       "quarters": [
         {
           "quarter": "2027Q1",
-          "value": 46.041464285714284,
-          "cell": "AS13"
+          "value": 48.64796551724138,
+          "cell": "AS12"
         },
         {
           "quarter": "2027Q2",
-          "value": 51.21946428571429,
-          "cell": "AS14"
+          "value": 54.377931034482756,
+          "cell": "AS13"
         },
         {
           "quarter": "2027Q3",
-          "value": 56.126464285714285,
-          "cell": "AS15"
+          "value": 56.751571428571424,
+          "cell": "AS14"
         },
         {
           "quarter": "2027Q4",
-          "value": 62.34075,
-          "cell": "AS16"
+          "value": 65.53717857142857,
+          "cell": "AS15"
         }
       ],
-      "forward12m": 215.72814285714287
+      "forward12m": 225.31464655172414
     },
     {
       "ticker": "ORCL",
       "quarters": [
         {
           "quarter": "2027Q1",
-          "value": 21.667850074321812,
-          "cell": "AZ13"
+          "value": 21.64629547325103,
+          "cell": "AZ12"
         },
         {
           "quarter": "2027Q2",
-          "value": 23.42173779264214,
-          "cell": "AZ14"
+          "value": 23.625004397373964,
+          "cell": "AZ13"
         },
         {
           "quarter": "2027Q3",
-          "value": 25.469949727663643,
-          "cell": "AZ15"
+          "value": 25.87709658568856,
+          "cell": "AZ14"
         },
         {
           "quarter": "2027Q4",
-          "value": 25.799287032967033,
-          "cell": "AZ16"
+          "value": 25.295793322062554,
+          "cell": "AZ15"
         }
       ],
-      "forward12m": 96.35882462759463
+      "forward12m": 96.44418977837611
     }
   ],
   "rpo": [
@@ -322,37 +322,37 @@ export const supplySnapshot = {
     {
       "entity": "Google Cloud RPO",
       "period": "4Q26",
-      "value": 582.2933333333334,
+      "value": 587.8286666666667,
       "sourceCell": "K27",
-      "yoy": 404.58694396302724
+      "yoy": 409.3835932986712
     },
     {
       "entity": "Google Cloud RPO",
       "period": "1Q27",
-      "value": 619.63025,
+      "value": 633.9830233333333,
       "sourceCell": "L27",
-      "yoy": 146.2711358845373
+      "yoy": 151.97562463713336
     },
     {
       "entity": "Google Cloud RPO",
       "period": "2Q27",
-      "value": 656.7939111666667,
+      "value": 683.8758373000001,
       "sourceCell": "M27",
-      "yoy": 33.73730011589453
+      "yoy": 39.251760011810056
     },
     {
       "entity": "Google Cloud RPO",
       "period": "3Q27",
-      "value": 696.8441108783334,
+      "value": 738.9531655476666,
       "sourceCell": "N27",
-      "yoy": 27.766124846139096
+      "yoy": 35.48680534274773
     },
     {
       "entity": "Google Cloud RPO",
       "period": "4Q27",
-      "value": 738.6931811709252,
+      "value": 798.4570306185785,
       "sourceCell": "O27",
-      "yoy": 26.859288761264377
+      "yoy": 35.83159105633589
     },
     {
       "entity": "MSFT Commerical RPO",
@@ -455,16 +455,16 @@ export const supplySnapshot = {
     {
       "entity": "Oracle RPO",
       "period": "2Q26",
-      "value": 432.8303125,
+      "value": 449.04741249999995,
       "sourceCell": "F37",
-      "yoy": 400.67126951995374
+      "yoy": 419.43020532099473
     },
     {
       "entity": "Oracle RPO",
       "period": "3Q26",
-      "value": 460.98343301926406,
+      "value": 479.53629016212125,
       "sourceCell": "G37",
-      "yoy": 488.4520283550426
+      "yoy": 512.1350191861674
     },
     {
       "entity": "Oracle RPO",
@@ -485,14 +485,14 @@ export const supplySnapshot = {
       "period": "2Q27",
       "value": 680.8792635,
       "sourceCell": "J37",
-      "yoy": 57.30859041902245
+      "yoy": 51.627477310093624
     },
     {
       "entity": "Oracle RPO",
       "period": "3Q27",
       "value": 695.3191635000001,
       "sourceCell": "K37",
-      "yoy": 50.833872476919
+      "yoy": 44.998236372251846
     },
     {
       "entity": "Oracle RPO",

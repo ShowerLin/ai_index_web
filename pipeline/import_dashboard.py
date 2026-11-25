@@ -12,7 +12,7 @@ from import_sources import ROOT, connect_database
 
 SECTIONS = {
     "pulse": "core-contribution core-projection monthly-heatmap weekly-pulse",
-    "adoption": "adoption-price openrouter-company ramp token-activity useful-task core-contribution monthly-heatmap",
+    "adoption": "adoption-price openrouter-company openrouter-model ramp token-activity useful-task core-contribution monthly-heatmap",
     "monetization": "monetization frontier-labs",
     "hyperscalers": "hyperscaler-financial cloud-reference core-projection sustainability roic",
     "infrastructure": "infrastructure capacity-yields electricity-capacity projected-buildout index-price supply",

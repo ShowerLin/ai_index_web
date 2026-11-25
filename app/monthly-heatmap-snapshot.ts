@@ -1,8 +1,8 @@
 export const monthlyHeatmapSnapshot = {
   "metadata": {
     "source": "Indexlist.xlsx \u2014 Index Price Value (saved inspection)",
-    "sourceSha256": "e67942f33b29c1fbd6da0479778534589ada3191d22f90e33901d0fc63f23c56",
-    "sourceWorkbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
+    "sourceSha256": "f47c2265cd938406b409d627da254c338e928c339f22e009590de61193b1e2ad",
+    "sourceWorkbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
     "method": "Equal-weight mean of constituent month-over-month percentage changes; incomplete pillars withheld. Token price excluded from Demand.",
     "reviewedAt": "2026-10-20",
     "completedMonthThrough": "2026-09",

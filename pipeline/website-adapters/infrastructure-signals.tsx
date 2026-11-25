@@ -1,9 +1,20 @@
 "use client";
 import {useState} from 'react';
 import {indexPriceSnapshot as data} from './index-price-snapshot';
-const groups={commitments:[{title:'Equipment orders',fields:['DGNOCOEQ Index','DGNOITIN Index']}],execution:[{title:'Equipment imports',fields:['USIMTELE Index','USIMCOMP Index']}],tightness:[{title:'GPU rental prices',fields:['SDH100RT Index','SDB200RT Index']}],memoryPrices:[{title:'Memory and storage prices',fields:['ISPPDR48 Index','ISPPN512 Index']}],memoryExports:[{title:'Memory exports',fields:['KOTCDRAM Index','KOTCNAND Index']}],shared:[{title:'Broad semiconductor activity',fields:['USIMSEMI Index','IPNEHITC Index']}]};
+const groups={
+ commitments:[{title:'Equipment orders',fields:['DGNOCOEQ Index','DGNOITIN Index']}],
+ execution:[{
+  title:'U.S. equipment and semiconductor imports',
+  fields:['USIMTELE Index','USIMSEMI Index','USIMCOMP Index'],
+  scoringNote:'Infrastructure scores trailing-12-month total YoY growth for all three import series.',
+ }],
+ tightness:[{title:'GPU rental prices',fields:['SDH100RT Index','SDB200RT Index']}],
+ memoryPrices:[{title:'Memory and storage prices',fields:['ISPPDR48 Index','ISPPN512 Index']}],
+ memoryExports:[{title:'Memory exports',fields:['KOTCDRAM Index','KOTCNAND Index']}],
+ shared:[{title:'High-tech industry activity',fields:['IPNEHITC Index']}],
+};
 const colors=['#237d67','#bd7738','#747cae'];
-type Group={title:string;fields:string[]};
+type Group={title:string;fields:string[];scoringNote?:string};
 function GroupChart({group}:{group:Group}){
  const series=data.series.filter(s=>group.fields.includes(s.field));
  const hasDaily=series.some(s=>s.daily.length>0);
@@ -20,6 +31,7 @@ function GroupChart({group}:{group:Group}){
  const x=(date:string)=>75+(Date.parse(date)-first)*680/Math.max(1,last-first),y=(v:number)=>190-(v-min)/(max-min)*150;
  return <article className="evidence-card"><div style={{display:'flex',justifyContent:'space-between',gap:16,flexWrap:'wrap'}}><h4>{group.title}</h4><label>Compare <select value={mode} onChange={e=>setMode(e.target.value as typeof mode)} aria-label={`${group.title} comparison basis`}>{hasDaily&&<option value="daily">Daily saved prices</option>}<option value="yoy">YoY growth (%)</option><option value="indexed">Indexed levels (100)</option></select></label></div>
  <p>{daily?'Daily saved prices in source units. Dates follow the workbook.':mode==='yoy'?'Common axis: year-over-year change (%)':`Common axis: ${base??'unavailable'} = 100 for every series`}{!daily&&". Completed monthly observations · gaps remain visible."}</p>
+ {group.scoringNote&&<p>{group.scoringNote}</p>}
  <div style={{display:'flex',gap:18,flexWrap:'wrap'}}>{observations.map((s,j)=><span key={s.field} style={{color:colors[j],fontSize:12}}>━ {s.name}</span>)}</div>
  <svg viewBox="0 0 820 235" role="img" aria-label={`${group.title}, ${daily?'daily prices':mode==='yoy'?'year-over-year growth':'indexed levels'} on a common scale`} style={{width:'100%',maxHeight:300}}>
  {[0,.25,.5,.75,1].map(f=><g key={f}><line x1="70" x2="760" y1={y(min+(max-min)*f)} y2={y(min+(max-min)*f)} stroke="#d6d7ce"/><text x="60" y={y(min+(max-min)*f)+4} textAnchor="end" fontSize="11">{(min+(max-min)*f).toFixed(1)}{mode==='yoy'?'%':''}</text></g>)}

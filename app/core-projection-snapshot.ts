@@ -2,7 +2,7 @@ export const coreProjectionSnapshot = {
   "metadata": {
     "source": "Indexlist.xlsx",
     "sheet": "Supply Chain Financial Value",
-    "workbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
+    "workbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
     "actualThrough": "2026-06-30",
     "estimateThrough": "2027-12-31",
     "anchorMonth": "2026-06",
@@ -14,7 +14,7 @@ export const coreProjectionSnapshot = {
       "Oracle": 0.8156716421920397
     },
     "method": "Conditional composite: June 2026 composite + 25% \u00d7 (projected CapEx score \u2212 June CapEx score). The other three pillars are held at their June scores. CapEx uses five-company TTM total YoY growth and unchanged June baseline. Each company headline estimate is multiplied by its June approved-core CapEx / June source headline CapEx ratio to bridge accounting bases. This fixed-ratio bridge is an assumption, not a Bloomberg forecast of lease-inclusive spending. Quarter scores held across constituent months; retrospective period alignment.",
-    "reportedCapexAsOf": "2026-11-17",
+    "reportedCapexAsOf": "2026-11-24",
     "sourceRetrievedAt": null
   },
   "quarters": [
@@ -31,346 +31,346 @@ export const coreProjectionSnapshot = {
         "total": 209.5252135177421,
         "growth": 74.7878212285556,
         "capexScore": 57.97990980960883,
-        "composite": 63.339968745992536
+        "composite": 60.98548795266121
       },
-      "total": 230.13982803518732,
+      "total": 230.60187930265104,
       "companies": {
-        "Microsoft": 51.90035193564605,
-        "Alphabet": 55.7105,
-        "Amazon": 59.143490999315766,
-        "Meta": 42.27689726592529,
-        "Oracle": 21.108587834300206
+        "Microsoft": 45.0825931512206,
+        "Alphabet": 51.355,
+        "Amazon": 78.06140586260331,
+        "Meta": 35.02621450391818,
+        "Oracle": 21.076665784908958
       },
       "rawEstimates": {
         "Microsoft": {
-          "value": 45.3204,
-          "cell": "C11"
+          "value": 39.367,
+          "cell": "C10"
         },
         "Alphabet": {
-          "value": 55.7105,
-          "cell": "AL11"
+          "value": 51.355,
+          "cell": "AL10"
         },
         "Amazon": {
-          "value": 58.535545454545456,
-          "cell": "AE11"
+          "value": 77.259,
+          "cell": "AE10"
         },
         "Meta": {
-          "value": 40.968242424242426,
-          "cell": "AS11"
+          "value": 33.942,
+          "cell": "AS10"
         },
         "Oracle": {
-          "value": 25.878781046712486,
-          "cell": "AZ11"
+          "value": 25.83964513988427,
+          "cell": "AZ10"
         }
       },
-      "growth": 79.77968191950897,
-      "capexScore": 72.67496394279101,
-      "composite": 67.01373227928808,
-      "supplyScore": 72.67496394279101
+      "growth": 79.89707299355973,
+      "capexScore": 73.0205401306551,
+      "composite": 64.74564553292278,
+      "supplyScore": 73.0205401306551
     },
     {
       "quarter": "2026Q4",
       "availableEstimate": null,
-      "total": 252.58906502403786,
+      "total": 246.007240571303,
       "companies": {
-        "Microsoft": 53.225028396923825,
-        "Alphabet": 65.44748571428572,
-        "Amazon": 65.4926861427939,
-        "Meta": 51.36046742293435,
-        "Oracle": 17.063397347100075
+        "Microsoft": 53.00836370873135,
+        "Alphabet": 68.96068421052632,
+        "Amazon": 49.09667266824085,
+        "Meta": 57.95872298094427,
+        "Oracle": 16.9827970028602
       },
       "rawEstimates": {
         "Microsoft": {
-          "value": 46.477133333333335,
-          "cell": "C12"
+          "value": 46.2879375,
+          "cell": "C11"
         },
         "Alphabet": {
-          "value": 65.44748571428572,
-          "cell": "AL12"
+          "value": 68.96068421052632,
+          "cell": "AL11"
         },
         "Amazon": {
-          "value": 64.8194761904762,
-          "cell": "AE12"
+          "value": 48.592,
+          "cell": "AE11"
         },
         "Meta": {
-          "value": 49.77063636363636,
-          "cell": "AS12"
+          "value": 56.16464705882353,
+          "cell": "AS11"
         },
         "Oracle": {
-          "value": 20.919444129801818,
-          "cell": "AZ12"
+          "value": 20.82062943517388,
+          "cell": "AZ11"
         }
       },
-      "growth": 82.85501960793256,
-      "capexScore": 81.72815204379327,
-      "composite": 69.27702930453864,
-      "supplyScore": 81.72815204379327
+      "growth": 81.49234466131242,
+      "capexScore": 77.7167055419299,
+      "composite": 65.91968688574147,
+      "supplyScore": 77.7167055419299
     },
     {
       "quarter": "2027Q1",
       "availableEstimate": null,
-      "total": 254.62866395287074,
+      "total": 266.21370039232613,
       "companies": {
-        "Microsoft": 55.94439044373685,
-        "Alphabet": 69.33652,
-        "Amazon": 64.16172882600354,
-        "Meta": 47.512173830237366,
-        "Oracle": 17.673850852892983
+        "Microsoft": 58.57204206468912,
+        "Alphabet": 71.573,
+        "Amazon": 68.21045402183043,
+        "Meta": 50.20193492976583,
+        "Oracle": 17.656269376040783
       },
       "rawEstimates": {
         "Microsoft": {
-          "value": 48.851733333333335,
-          "cell": "C13"
+          "value": 51.14625,
+          "cell": "C12"
         },
         "Alphabet": {
-          "value": 69.33652,
-          "cell": "AL13"
+          "value": 71.573,
+          "cell": "AL12"
         },
         "Amazon": {
-          "value": 63.5022,
-          "cell": "AE13"
+          "value": 67.50930769230769,
+          "cell": "AE12"
         },
         "Meta": {
-          "value": 46.041464285714284,
-          "cell": "AS13"
+          "value": 48.64796551724138,
+          "cell": "AS12"
         },
         "Oracle": {
-          "value": 21.667850074321812,
-          "cell": "AZ13"
+          "value": 21.64629547325103,
+          "cell": "AZ12"
         }
       },
-      "growth": 79.35100891534506,
-      "capexScore": 71.41303509669186,
-      "composite": 66.6982500677633,
-      "supplyScore": 71.41303509669186
+      "growth": 80.40996323702385,
+      "capexScore": 74.53038793264709,
+      "composite": 65.12310748342077,
+      "supplyScore": 74.53038793264709
     },
     {
       "quarter": "2027Q2",
       "availableEstimate": null,
-      "total": 278.7438213791134,
+      "total": 294.1049218469045,
       "companies": {
-        "Microsoft": 58.38509021842355,
-        "Alphabet": 76.46652,
-        "Amazon": 71.93218835517162,
-        "Meta": 52.855575477202436,
-        "Oracle": 19.104447328315775
+        "Microsoft": 62.371165542427796,
+        "Alphabet": 78.57967741935484,
+        "Amazon": 77.76889913850354,
+        "Meta": 56.11493361301816,
+        "Oracle": 19.27024613360018
       },
       "rawEstimates": {
         "Microsoft": {
-          "value": 50.983,
-          "cell": "C14"
+          "value": 54.46371875,
+          "cell": "C13"
         },
         "Alphabet": {
-          "value": 76.46652,
-          "cell": "AL14"
+          "value": 78.57967741935484,
+          "cell": "AL13"
         },
         "Amazon": {
-          "value": 71.19278571428572,
-          "cell": "AE14"
+          "value": 76.9695,
+          "cell": "AE13"
         },
         "Meta": {
-          "value": 51.21946428571429,
-          "cell": "AS14"
+          "value": 54.377931034482756,
+          "cell": "AS13"
         },
         "Oracle": {
-          "value": 23.42173779264214,
-          "cell": "AZ14"
+          "value": 23.625004397373964,
+          "cell": "AZ13"
         }
       },
-      "growth": 69.52738585008153,
-      "capexScore": 42.49422472411027,
-      "composite": 59.46854747461789,
-      "supplyScore": 42.49422472411027
+      "growth": 73.00207752320918,
+      "capexScore": 52.72303225579167,
+      "composite": 59.67126856420692,
+      "supplyScore": 52.72303225579167
     },
     {
       "quarter": "2027Q3",
       "availableEstimate": null,
-      "total": 296.82076502746145,
+      "total": 312.464169808424,
       "companies": {
-        "Microsoft": 60.088403813567204,
-        "Alphabet": 83.26648,
-        "Amazon": 74.77144496331591,
-        "Meta": 57.91932052966624,
-        "Oracle": 20.775115720912098
+        "Microsoft": 62.04232258905461,
+        "Alphabet": 85.04248387096774,
+        "Amazon": 85.70775391547373,
+        "Meta": 58.56439556571731,
+        "Oracle": 21.10721386721061
       },
       "rawEstimates": {
         "Microsoft": {
-          "value": 52.47036666666666,
-          "cell": "C15"
+          "value": 54.176566666666666,
+          "cell": "C14"
         },
         "Alphabet": {
-          "value": 83.26648,
-          "cell": "AL15"
+          "value": 85.04248387096774,
+          "cell": "AL14"
         },
         "Amazon": {
-          "value": 74.00285714285715,
-          "cell": "AE15"
+          "value": 84.82675,
+          "cell": "AE14"
         },
         "Meta": {
-          "value": 56.126464285714285,
-          "cell": "AS15"
+          "value": 56.751571428571424,
+          "cell": "AS14"
         },
         "Oracle": {
-          "value": 25.469949727663643,
-          "cell": "AZ15"
+          "value": 25.87709658568856,
+          "cell": "AZ14"
         }
       },
-      "growth": 53.01903420688694,
-      "capexScore": 0,
-      "composite": 48.844991293590326,
-      "supplyScore": 0
+      "growth": 58.00448022118794,
+      "capexScore": 8.573061360113932,
+      "composite": 48.633775840287484,
+      "supplyScore": 8.573061360113932
     },
     {
       "quarter": "2027Q4",
       "availableEstimate": null,
-      "total": 320.0972482318516,
+      "total": 335.84586863951813,
       "companies": {
-        "Microsoft": 61.95097480587677,
-        "Alphabet": 90.36132,
-        "Amazon": 82.40909648022432,
-        "Meta": 64.33211012418647,
-        "Oracle": 21.043746821564014
+        "Microsoft": 64.79348267322123,
+        "Alphabet": 94.26616129032259,
+        "Amazon": 88.52252069344009,
+        "Meta": 67.63064270297706,
+        "Oracle": 20.633061279557193
       },
       "rawEstimates": {
         "Microsoft": {
-          "value": 54.0968,
-          "cell": "C16"
+          "value": 56.57893333333334,
+          "cell": "C15"
         },
         "Alphabet": {
-          "value": 90.36132,
-          "cell": "AL16"
+          "value": 94.26616129032259,
+          "cell": "AL15"
         },
         "Amazon": {
-          "value": 81.562,
-          "cell": "AE16"
+          "value": 87.61258333333333,
+          "cell": "AE15"
         },
         "Meta": {
-          "value": 62.34075,
-          "cell": "AS16"
+          "value": 65.53717857142857,
+          "cell": "AS15"
         },
         "Oracle": {
-          "value": 25.799287032967033,
-          "cell": "AZ16"
+          "value": 25.295793322062554,
+          "cell": "AZ15"
         }
       },
-      "growth": 40.074019350602974,
+      "growth": 48.2830540895778,
       "capexScore": 0,
-      "composite": 48.844991293590326,
+      "composite": 46.490510500259006,
       "supplyScore": 0
     }
   ],
   "months": [
     {
       "month": "2026-06",
-      "value": 64.8637871721951,
+      "value": 62.509306378863776,
       "capexScore": 64.0751835144191,
       "supplyScore": 64.0751835144191
     },
     {
       "month": "2026-07",
-      "value": 63.339968745992536,
+      "value": 60.98548795266121,
       "capexScore": 57.97990980960883,
       "supplyScore": 57.97990980960883
     },
     {
       "month": "2026-08",
-      "value": 63.339968745992536,
+      "value": 60.98548795266121,
       "capexScore": 57.97990980960883,
       "supplyScore": 57.97990980960883
     },
     {
       "month": "2026-09",
-      "value": 63.339968745992536,
+      "value": 60.98548795266121,
       "capexScore": 57.97990980960883,
       "supplyScore": 57.97990980960883
     },
     {
       "month": "2026-10",
-      "value": 69.27702930453864,
-      "capexScore": 81.72815204379327,
-      "supplyScore": 81.72815204379327
+      "value": 65.91968688574147,
+      "capexScore": 77.7167055419299,
+      "supplyScore": 77.7167055419299
     },
     {
       "month": "2026-11",
-      "value": 69.27702930453864,
-      "capexScore": 81.72815204379327,
-      "supplyScore": 81.72815204379327
+      "value": 65.91968688574147,
+      "capexScore": 77.7167055419299,
+      "supplyScore": 77.7167055419299
     },
     {
       "month": "2026-12",
-      "value": 69.27702930453864,
-      "capexScore": 81.72815204379327,
-      "supplyScore": 81.72815204379327
+      "value": 65.91968688574147,
+      "capexScore": 77.7167055419299,
+      "supplyScore": 77.7167055419299
     },
     {
       "month": "2027-01",
-      "value": 66.6982500677633,
-      "capexScore": 71.41303509669186,
-      "supplyScore": 71.41303509669186
+      "value": 65.12310748342077,
+      "capexScore": 74.53038793264709,
+      "supplyScore": 74.53038793264709
     },
     {
       "month": "2027-02",
-      "value": 66.6982500677633,
-      "capexScore": 71.41303509669186,
-      "supplyScore": 71.41303509669186
+      "value": 65.12310748342077,
+      "capexScore": 74.53038793264709,
+      "supplyScore": 74.53038793264709
     },
     {
       "month": "2027-03",
-      "value": 66.6982500677633,
-      "capexScore": 71.41303509669186,
-      "supplyScore": 71.41303509669186
+      "value": 65.12310748342077,
+      "capexScore": 74.53038793264709,
+      "supplyScore": 74.53038793264709
     },
     {
       "month": "2027-04",
-      "value": 59.46854747461789,
-      "capexScore": 42.49422472411027,
-      "supplyScore": 42.49422472411027
+      "value": 59.67126856420692,
+      "capexScore": 52.72303225579167,
+      "supplyScore": 52.72303225579167
     },
     {
       "month": "2027-05",
-      "value": 59.46854747461789,
-      "capexScore": 42.49422472411027,
-      "supplyScore": 42.49422472411027
+      "value": 59.67126856420692,
+      "capexScore": 52.72303225579167,
+      "supplyScore": 52.72303225579167
     },
     {
       "month": "2027-06",
-      "value": 59.46854747461789,
-      "capexScore": 42.49422472411027,
-      "supplyScore": 42.49422472411027
+      "value": 59.67126856420692,
+      "capexScore": 52.72303225579167,
+      "supplyScore": 52.72303225579167
     },
     {
       "month": "2027-07",
-      "value": 48.844991293590326,
-      "capexScore": 0,
-      "supplyScore": 0
+      "value": 48.633775840287484,
+      "capexScore": 8.573061360113932,
+      "supplyScore": 8.573061360113932
     },
     {
       "month": "2027-08",
-      "value": 48.844991293590326,
-      "capexScore": 0,
-      "supplyScore": 0
+      "value": 48.633775840287484,
+      "capexScore": 8.573061360113932,
+      "supplyScore": 8.573061360113932
     },
     {
       "month": "2027-09",
-      "value": 48.844991293590326,
-      "capexScore": 0,
-      "supplyScore": 0
+      "value": 48.633775840287484,
+      "capexScore": 8.573061360113932,
+      "supplyScore": 8.573061360113932
     },
     {
       "month": "2027-10",
-      "value": 48.844991293590326,
+      "value": 46.490510500259006,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-11",
-      "value": 48.844991293590326,
+      "value": 46.490510500259006,
       "capexScore": 0,
       "supplyScore": 0
     },
     {
       "month": "2027-12",
-      "value": 48.844991293590326,
+      "value": 46.490510500259006,
       "capexScore": 0,
       "supplyScore": 0
     }

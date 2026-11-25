@@ -15,7 +15,8 @@ def weekly_effective_cost(rows):
     for r in rows:
         if r['dimension_type']!='model' or r['metric_key'] not in ('token_spend','token_volume'):continue
         assert r['period_grain']=='weekly'
-        item=weeks[r['period_end']].setdefault(r['series_key'],{})
+        key=(r.get('model_maker'),r['series_key'])
+        item=weeks[r['period_end']].setdefault(key,{})
         assert r['metric_key'] not in item
         value=float(r['metric_value']);assert math.isfinite(value) and value>=0
         item[r['metric_key']]=value

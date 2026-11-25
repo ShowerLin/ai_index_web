@@ -2854,5 +2854,61 @@ export const semiconductorMarket = [
   {
     "date": "2026-11-03",
     "relativeReturn": 57.84515884981658
+  },
+  {
+    "date": "2026-11-04",
+    "relativeReturn": 50.52433539059842
+  },
+  {
+    "date": "2026-11-05",
+    "relativeReturn": 38.10620219911005
+  },
+  {
+    "date": "2026-11-06",
+    "relativeReturn": 43.453969760037836
+  },
+  {
+    "date": "2026-11-09",
+    "relativeReturn": 49.772658286511316
+  },
+  {
+    "date": "2026-11-10",
+    "relativeReturn": 49.80196231488851
+  },
+  {
+    "date": "2026-11-11",
+    "relativeReturn": 56.23381671567742
+  },
+  {
+    "date": "2026-11-12",
+    "relativeReturn": 55.923714091178354
+  },
+  {
+    "date": "2026-11-13",
+    "relativeReturn": 51.16899688453971
+  },
+  {
+    "date": "2026-11-16",
+    "relativeReturn": 45.976248443930714
+  },
+  {
+    "date": "2026-11-17",
+    "relativeReturn": 47.98161920080886
+  },
+  {
+    "date": "2026-11-18",
+    "relativeReturn": 48.4623220771047
+  },
+  {
+    "date": "2026-11-19",
+    "relativeReturn": 47.850657331097146
+  },
+  {
+    "date": "2026-11-20",
+    "relativeReturn": 37.04126689468412
+  },
+  {
+    "date": "2026-11-23",
+    "relativeReturn": 49.22824162551682
   }
 ];

@@ -3,8 +3,8 @@ export const adoptionPriceSnapshot = {
     "workbook": "AI_Aoption.xlsx",
     "sheet": "Value",
     "ticker": "SDLLMTK Index",
-    "workbookSha256": "3d95b8a5bc755456e31e0fa10b4df4320a087c86ca646d9c72d6c2d1d19ef2f2",
-    "through": "2026-11-17",
+    "workbookSha256": "ae2c8876c7287d480ae89362a27c48f9e51bbf4551ebe26535f879db950a9f70",
+    "through": "2026-11-24",
     "unit": "USD per million tokens",
     "coreWeight": 0,
     "siliconMethod": "Saved daily Bloomberg px_last with fill=PREV. Carried dates are not independently verified fresh quotes. Monthly values are arithmetic calendar-day averages, not the old monthly sampled endpoints. Partial months excluded from completed-month comparisons.",
@@ -14,8 +14,8 @@ export const adoptionPriceSnapshot = {
     "scoringMethod": "OpenRouter blends catalog input and output rates by assumed token shares. Unresolved tokens use the same day\u2019s token-weighted catalog-matched rate. Each day uses the latest saved catalog available that day, with the first saved catalog used for earlier dates. Ramp effective price is matched spending divided by matched tokens.",
     "baseline": {
       "ramp": {
-        "mean": 27.693169524987777,
-        "std": 24.54727837814648,
+        "mean": 20.715696379463733,
+        "std": 28.872081077250144,
         "count": 6,
         "start": "2026-01",
         "end": "2026-06",
@@ -35,7 +35,7 @@ export const adoptionPriceSnapshot = {
       "source": "https://openrouter.ai/api/v1/models",
       "outputShare": 0.2,
       "firstVintage": "2026-11-17",
-      "latestVintage": "2026-11-17"
+      "latestVintage": "2026-11-23"
     },
     "spendingCorePillar": "Monetization"
   },
@@ -1792,13 +1792,48 @@ export const adoptionPriceSnapshot = {
     },
     {
       "date": "2026-11-16",
-      "value": 0.8028,
+      "value": 0.7927,
       "cell": "B1419"
     },
     {
       "date": "2026-11-17",
-      "value": 0.8028,
+      "value": 0.7938,
       "cell": "B1420"
+    },
+    {
+      "date": "2026-11-18",
+      "value": 0.7566,
+      "cell": "B1421"
+    },
+    {
+      "date": "2026-11-19",
+      "value": 0.7051,
+      "cell": "B1422"
+    },
+    {
+      "date": "2026-11-20",
+      "value": 0.6793,
+      "cell": "B1423"
+    },
+    {
+      "date": "2026-11-21",
+      "value": 0.6472,
+      "cell": "B1424"
+    },
+    {
+      "date": "2026-11-22",
+      "value": 0.632,
+      "cell": "B1425"
+    },
+    {
+      "date": "2026-11-23",
+      "value": 0.632,
+      "cell": "B1426"
+    },
+    {
+      "date": "2026-11-24",
+      "value": 0.632,
+      "cell": "B1427"
     }
   ],
   "siliconMonthly": [
@@ -1892,1725 +1927,1761 @@ export const adoptionPriceSnapshot = {
     },
     {
       "month": "2026-11",
-      "value": 0.831735294117647,
-      "days": 17,
+      "value": 0.783525,
+      "days": 24,
       "expectedDays": 30,
       "complete": false,
-      "endValue": 0.8028
+      "endValue": 0.632
     }
   ],
   "rampWeekly": [
     {
       "end": "2025-01-12",
-      "value": 3338577.3085129666,
-      "coverage": 0.9696650325370325,
-      "matchedModels": 16,
-      "totalModels": 21,
-      "spendUsd": 5.294420318288201,
-      "tokens": 1.5858312775289258
+      "value": 3043444.2433145037,
+      "coverage": 0.9881387102963984,
+      "matchedModels": 21,
+      "totalModels": 40,
+      "spendUsd": 9.79188837538544,
+      "tokens": 3.2173707130975573
     },
     {
       "end": "2025-01-19",
-      "value": 3536159.8124182867,
-      "coverage": 0.9703782727013968,
-      "matchedModels": 16,
-      "totalModels": 21,
-      "spendUsd": 5.783129236268923,
-      "tokens": 1.6354264351853467
+      "value": 3176603.0397573654,
+      "coverage": 0.9892079166962151,
+      "matchedModels": 20,
+      "totalModels": 39,
+      "spendUsd": 11.188734804867634,
+      "tokens": 3.522232606603011
     },
     {
       "end": "2025-01-26",
-      "value": 4382970.677602199,
-      "coverage": 0.9695948091158189,
-      "matchedModels": 16,
-      "totalModels": 23,
-      "spendUsd": 6.9064833744971725,
-      "tokens": 1.5757539537717185
+      "value": 3283103.996507373,
+      "coverage": 0.9896764756656655,
+      "matchedModels": 21,
+      "totalModels": 45,
+      "spendUsd": 11.954689539113625,
+      "tokens": 3.6412765333755024
     },
     {
       "end": "2025-02-02",
-      "value": 4149248.3823827044,
-      "coverage": 0.9757292693295366,
-      "matchedModels": 18,
-      "totalModels": 24,
-      "spendUsd": 7.306035717577292,
-      "tokens": 1.7608094392704936
+      "value": 3261793.2910119654,
+      "coverage": 0.9906553213808263,
+      "matchedModels": 23,
+      "totalModels": 47,
+      "spendUsd": 11.68954942157442,
+      "tokens": 3.583779957419606
     },
     {
       "end": "2025-02-09",
-      "value": 3562273.9865379706,
-      "coverage": 0.9861190130959492,
-      "matchedModels": 19,
-      "totalModels": 22,
-      "spendUsd": 6.854295340398323,
-      "tokens": 1.9241347988114004
+      "value": 2987733.64980653,
+      "coverage": 0.9937368431302054,
+      "matchedModels": 26,
+      "totalModels": 48,
+      "spendUsd": 10.420848962627398,
+      "tokens": 3.4878774964770356
     },
     {
       "end": "2025-02-16",
-      "value": 3364302.4777998324,
-      "coverage": 0.9873084406983748,
-      "matchedModels": 18,
-      "totalModels": 22,
-      "spendUsd": 7.485970794970939,
-      "tokens": 2.2251182360590156
+      "value": 3088167.585923721,
+      "coverage": 0.9933351397764684,
+      "matchedModels": 23,
+      "totalModels": 45,
+      "spendUsd": 11.413981047630378,
+      "tokens": 3.696036801777476
     },
     {
       "end": "2025-02-23",
-      "value": 3866127.172020329,
-      "coverage": 0.9873272624720499,
-      "matchedModels": 19,
-      "totalModels": 24,
-      "spendUsd": 8.669237694401277,
-      "tokens": 2.2423570950127276
+      "value": 3047306.7764052185,
+      "coverage": 0.9936659420148329,
+      "matchedModels": 24,
+      "totalModels": 50,
+      "spendUsd": 11.295276461242027,
+      "tokens": 3.706642386220988
     },
     {
       "end": "2025-03-02",
-      "value": 3388899.6163097396,
-      "coverage": 0.9898743167292012,
-      "matchedModels": 20,
-      "totalModels": 25,
-      "spendUsd": 9.734530942794565,
-      "tokens": 2.87247544776636
+      "value": 2874150.6326397466,
+      "coverage": 0.9952271281812779,
+      "matchedModels": 26,
+      "totalModels": 48,
+      "spendUsd": 14.13074398722802,
+      "tokens": 4.916493877097082
     },
     {
       "end": "2025-03-09",
-      "value": 4015253.8510314953,
-      "coverage": 0.9881879111392701,
-      "matchedModels": 20,
-      "totalModels": 24,
-      "spendUsd": 10.333567169321302,
-      "tokens": 2.573577550188183
+      "value": 3415739.772131478,
+      "coverage": 0.9954476549819865,
+      "matchedModels": 27,
+      "totalModels": 48,
+      "spendUsd": 18.664750535377067,
+      "tokens": 5.464336214269026
     },
     {
       "end": "2025-03-16",
-      "value": 3833949.759418728,
-      "coverage": 0.9855756789096318,
-      "matchedModels": 22,
-      "totalModels": 27,
-      "spendUsd": 9.724646240872831,
-      "tokens": 2.536456357306884
+      "value": 3447279.4506298485,
+      "coverage": 0.9955210357920473,
+      "matchedModels": 31,
+      "totalModels": 52,
+      "spendUsd": 20.7089587049436,
+      "tokens": 6.007333899536311
     },
     {
       "end": "2025-03-23",
-      "value": 4381761.944380987,
-      "coverage": 0.9852413577259306,
-      "matchedModels": 24,
-      "totalModels": 30,
-      "spendUsd": 11.289708187756377,
-      "tokens": 2.576522488227342
+      "value": 3797071.2070152317,
+      "coverage": 0.9951016824651961,
+      "matchedModels": 33,
+      "totalModels": 57,
+      "spendUsd": 21.866348983197263,
+      "tokens": 5.758740827087562
     },
     {
       "end": "2025-03-30",
-      "value": 4704868.5862032715,
-      "coverage": 0.9859642904699006,
-      "matchedModels": 24,
-      "totalModels": 28,
-      "spendUsd": 12.016389095696832,
-      "tokens": 2.5540328864729887
+      "value": 3535317.2222911376,
+      "coverage": 0.9950388907212747,
+      "matchedModels": 34,
+      "totalModels": 57,
+      "spendUsd": 18.955320259622333,
+      "tokens": 5.361702802821732
     },
     {
       "end": "2025-04-06",
-      "value": 4476949.20399326,
-      "coverage": 0.9900790142223326,
-      "matchedModels": 25,
-      "totalModels": 30,
-      "spendUsd": 12.744478013499863,
-      "tokens": 2.846688097808279
+      "value": 3125151.3593504946,
+      "coverage": 0.9956133268483109,
+      "matchedModels": 34,
+      "totalModels": 55,
+      "spendUsd": 16.721687478757126,
+      "tokens": 5.3506808330180915
     },
     {
       "end": "2025-04-13",
-      "value": 4682328.571984938,
-      "coverage": 0.98860823059887,
-      "matchedModels": 25,
-      "totalModels": 28,
-      "spendUsd": 12.23957330533593,
-      "tokens": 2.613992827963228
+      "value": 2984480.9040165856,
+      "coverage": 0.9954860262998291,
+      "matchedModels": 34,
+      "totalModels": 59,
+      "spendUsd": 16.387579151731813,
+      "tokens": 5.490931146410426
     },
     {
       "end": "2025-04-20",
-      "value": 4612610.217275173,
-      "coverage": 0.9867744972853003,
-      "matchedModels": 30,
-      "totalModels": 35,
-      "spendUsd": 11.733366048882715,
-      "tokens": 2.5437584136068656
+      "value": 3135789.366947363,
+      "coverage": 0.9963152296234055,
+      "matchedModels": 40,
+      "totalModels": 64,
+      "spendUsd": 21.187794929409876,
+      "tokens": 6.756765984583916
     },
     {
       "end": "2025-04-27",
-      "value": 4278991.764407933,
-      "coverage": 0.9896772553758383,
-      "matchedModels": 30,
-      "totalModels": 34,
-      "spendUsd": 14.382331546131454,
-      "tokens": 3.3611496207498495
+      "value": 3153688.8932303153,
+      "coverage": 0.9967108652908847,
+      "matchedModels": 41,
+      "totalModels": 65,
+      "spendUsd": 26.14781326317564,
+      "tokens": 8.291183483350034
     },
     {
       "end": "2025-05-04",
-      "value": 4329812.182689325,
-      "coverage": 0.9893522527620756,
-      "matchedModels": 30,
-      "totalModels": 34,
-      "spendUsd": 14.078878020555369,
-      "tokens": 3.25161402539422
+      "value": 3078469.4502899335,
+      "coverage": 0.9964846599287769,
+      "matchedModels": 40,
+      "totalModels": 64,
+      "spendUsd": 22.802743818943426,
+      "tokens": 7.4071691102199635
     },
     {
       "end": "2025-05-11",
-      "value": 4116684.1950723575,
-      "coverage": 0.9894916146197441,
-      "matchedModels": 29,
-      "totalModels": 33,
-      "spendUsd": 13.980906162746674,
-      "tokens": 3.396157076970277
+      "value": 2768155.5156156267,
+      "coverage": 0.9968549568625101,
+      "matchedModels": 40,
+      "totalModels": 63,
+      "spendUsd": 23.4070534670282,
+      "tokens": 8.455830366099415
     },
     {
       "end": "2025-05-18",
-      "value": 4086923.872738814,
-      "coverage": 0.9886828578466944,
-      "matchedModels": 31,
-      "totalModels": 37,
-      "spendUsd": 14.742161063779454,
-      "tokens": 3.6071533316572717
+      "value": 2745285.270955446,
+      "coverage": 0.9964675725631919,
+      "matchedModels": 39,
+      "totalModels": 61,
+      "spendUsd": 23.499980202636614,
+      "tokens": 8.560123223353717
     },
     {
       "end": "2025-05-25",
-      "value": 3872028.7751083304,
-      "coverage": 0.9887726651665931,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 14.816919991701575,
-      "tokens": 3.8266554440280554
+      "value": 2598399.3009020016,
+      "coverage": 0.996546477564843,
+      "matchedModels": 42,
+      "totalModels": 67,
+      "spendUsd": 24.028671164536146,
+      "tokens": 9.247489851230677
     },
     {
       "end": "2025-06-01",
-      "value": 4061576.394663793,
-      "coverage": 0.989823892767321,
-      "matchedModels": 32,
-      "totalModels": 38,
-      "spendUsd": 15.033975421726618,
-      "tokens": 3.701512408206492
+      "value": 2752215.801005004,
+      "coverage": 0.9965528872530656,
+      "matchedModels": 41,
+      "totalModels": 67,
+      "spendUsd": 22.25089575400758,
+      "tokens": 8.084720589817994
     },
     {
       "end": "2025-06-08",
-      "value": 4064929.903546286,
-      "coverage": 0.9917426258181761,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 16.20026912933837,
-      "tokens": 3.985374782282246
+      "value": 3424017.373940197,
+      "coverage": 0.995175576907315,
+      "matchedModels": 44,
+      "totalModels": 71,
+      "spendUsd": 17.23528469830867,
+      "tokens": 5.03364405492929
     },
     {
       "end": "2025-06-15",
-      "value": 4255604.767323094,
-      "coverage": 0.9896877930777189,
-      "matchedModels": 34,
-      "totalModels": 39,
-      "spendUsd": 16.99110534780702,
-      "tokens": 3.9926417693377445
+      "value": 3743786.43425153,
+      "coverage": 0.9930761733402934,
+      "matchedModels": 43,
+      "totalModels": 70,
+      "spendUsd": 16.436118680335298,
+      "tokens": 4.390239392387045
     },
     {
       "end": "2025-06-22",
-      "value": 3823089.23355367,
-      "coverage": 0.9904650765276583,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 17.398938133653242,
-      "tokens": 4.551015440850811
+      "value": 3296936.5264186636,
+      "coverage": 0.993455702859222,
+      "matchedModels": 44,
+      "totalModels": 68,
+      "spendUsd": 16.157594255550308,
+      "tokens": 4.900790211178766
     },
     {
       "end": "2025-06-29",
-      "value": 3564163.43818801,
-      "coverage": 0.9900152730115426,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 18.35118543149206,
-      "tokens": 5.148805813692327
+      "value": 3122002.4757124856,
+      "coverage": 0.9928924728439346,
+      "matchedModels": 47,
+      "totalModels": 72,
+      "spendUsd": 16.63195637939047,
+      "tokens": 5.327336063561199
     },
     {
       "end": "2025-07-06",
-      "value": 3714487.910167488,
-      "coverage": 0.9903716953267716,
-      "matchedModels": 35,
-      "totalModels": 40,
-      "spendUsd": 18.745517966794793,
-      "tokens": 5.04659549852985
+      "value": 3244850.254373685,
+      "coverage": 0.9931153094731748,
+      "matchedModels": 46,
+      "totalModels": 70,
+      "spendUsd": 16.883413499178946,
+      "tokens": 5.20314103136872
     },
     {
       "end": "2025-07-13",
-      "value": 3312788.0234838915,
-      "coverage": 0.9907178363333873,
-      "matchedModels": 35,
-      "totalModels": 42,
-      "spendUsd": 21.549959820808386,
-      "tokens": 6.505082627697194
+      "value": 2996240.0082308496,
+      "coverage": 0.993082458405082,
+      "matchedModels": 48,
+      "totalModels": 75,
+      "spendUsd": 19.243619367096613,
+      "tokens": 6.422589416813488
     },
     {
       "end": "2025-07-20",
-      "value": 3725153.177814191,
-      "coverage": 0.9919786082848195,
-      "matchedModels": 35,
-      "totalModels": 44,
-      "spendUsd": 25.797288885592188,
-      "tokens": 6.925161907229079
+      "value": 3138557.415450593,
+      "coverage": 0.9947880740962283,
+      "matchedModels": 46,
+      "totalModels": 79,
+      "spendUsd": 24.186560284192826,
+      "tokens": 7.7062666322834925
     },
     {
       "end": "2025-07-27",
-      "value": 3548319.3482292783,
-      "coverage": 0.9941094586630944,
-      "matchedModels": 34,
-      "totalModels": 40,
-      "spendUsd": 24.280483131859445,
-      "tokens": 6.842812258140226
+      "value": 2923129.3495294857,
+      "coverage": 0.9968747186983944,
+      "matchedModels": 45,
+      "totalModels": 74,
+      "spendUsd": 27.03563559639829,
+      "tokens": 9.24886734853181
     },
     {
       "end": "2025-08-03",
-      "value": 3491810.297741055,
-      "coverage": 0.994907724380801,
-      "matchedModels": 32,
-      "totalModels": 38,
-      "spendUsd": 23.335602328736357,
-      "tokens": 6.682952491386138
+      "value": 2959821.6433836347,
+      "coverage": 0.9966729324340338,
+      "matchedModels": 45,
+      "totalModels": 74,
+      "spendUsd": 24.982539563412708,
+      "tokens": 8.44055574066718
     },
     {
       "end": "2025-08-10",
-      "value": 4247242.783948294,
-      "coverage": 0.9956506260565708,
-      "matchedModels": 36,
-      "totalModels": 42,
-      "spendUsd": 26.58938616323368,
-      "tokens": 6.260387624584021
+      "value": 3306982.2629196495,
+      "coverage": 0.9974104216122293,
+      "matchedModels": 49,
+      "totalModels": 78,
+      "spendUsd": 28.83698952872313,
+      "tokens": 8.720031507899197
     },
     {
       "end": "2025-08-17",
-      "value": 3997190.317831348,
-      "coverage": 0.9957408190186431,
-      "matchedModels": 36,
-      "totalModels": 42,
-      "spendUsd": 26.729606764377653,
-      "tokens": 6.6870988466918035
+      "value": 3060511.874725459,
+      "coverage": 0.9978885096898583,
+      "matchedModels": 49,
+      "totalModels": 72,
+      "spendUsd": 30.370870072896004,
+      "tokens": 9.923460949035004
     },
     {
       "end": "2025-08-24",
-      "value": 3610639.2665482205,
-      "coverage": 0.9956170858510034,
-      "matchedModels": 36,
-      "totalModels": 41,
-      "spendUsd": 27.05527487328137,
-      "tokens": 7.493209062434608
+      "value": 2889614.4194721873,
+      "coverage": 0.9977172334201682,
+      "matchedModels": 51,
+      "totalModels": 74,
+      "spendUsd": 30.856329650659152,
+      "tokens": 10.678355369051392
     },
     {
       "end": "2025-08-31",
-      "value": 3064325.3354197857,
-      "coverage": 0.996412338106735,
-      "matchedModels": 39,
-      "totalModels": 47,
-      "spendUsd": 27.44052242183089,
-      "tokens": 8.954833256329744
+      "value": 2647571.4609053098,
+      "coverage": 0.9979256020977153,
+      "matchedModels": 54,
+      "totalModels": 76,
+      "spendUsd": 30.581270236879508,
+      "tokens": 11.550687370841564
     },
     {
       "end": "2025-09-07",
-      "value": 3242566.2188888406,
-      "coverage": 0.9964217192213147,
-      "matchedModels": 39,
-      "totalModels": 45,
-      "spendUsd": 28.520355636519113,
-      "tokens": 8.795612398100058
+      "value": 2748808.8559504678,
+      "coverage": 0.9978418636439923,
+      "matchedModels": 52,
+      "totalModels": 75,
+      "spendUsd": 29.357297662850147,
+      "tokens": 10.68000694166097
     },
     {
       "end": "2025-09-14",
-      "value": 3188836.6820392343,
-      "coverage": 0.9966311676974516,
-      "matchedModels": 40,
-      "totalModels": 45,
-      "spendUsd": 29.37265869135614,
-      "tokens": 9.211089064797314
+      "value": 2685958.8201606157,
+      "coverage": 0.9974614919625275,
+      "matchedModels": 53,
+      "totalModels": 77,
+      "spendUsd": 28.50903215597175,
+      "tokens": 10.614098750131603
     },
     {
       "end": "2025-09-21",
-      "value": 3141767.9318263787,
-      "coverage": 0.9972794162740088,
-      "matchedModels": 40,
-      "totalModels": 44,
-      "spendUsd": 35.25430952946045,
-      "tokens": 11.221169193412178
+      "value": 2576910.0329544153,
+      "coverage": 0.9982581452889171,
+      "matchedModels": 53,
+      "totalModels": 79,
+      "spendUsd": 33.17974697789107,
+      "tokens": 12.875787882998244
     },
     {
       "end": "2025-09-28",
-      "value": 3304831.6106780022,
-      "coverage": 0.996173075896281,
-      "matchedModels": 40,
-      "totalModels": 45,
-      "spendUsd": 36.2449392481522,
-      "tokens": 10.967257493859535
+      "value": 2457113.2800454404,
+      "coverage": 0.9978171081211743,
+      "matchedModels": 56,
+      "totalModels": 82,
+      "spendUsd": 34.668705417146754,
+      "tokens": 14.109526694880593
     },
     {
       "end": "2025-10-05",
-      "value": 3206801.7674366855,
-      "coverage": 0.9970885288891811,
-      "matchedModels": 41,
-      "totalModels": 46,
-      "spendUsd": 43.48125622832768,
-      "tokens": 13.55907205423672
+      "value": 2466585.492065614,
+      "coverage": 0.9982340119485612,
+      "matchedModels": 59,
+      "totalModels": 78,
+      "spendUsd": 42.9553874768852,
+      "tokens": 17.414919375412644
     },
     {
       "end": "2025-10-12",
-      "value": 3362439.190052772,
-      "coverage": 0.9977137373153309,
-      "matchedModels": 42,
-      "totalModels": 46,
-      "spendUsd": 50.881890014559076,
-      "tokens": 15.132434265305035
+      "value": 2566253.766355802,
+      "coverage": 0.9985379687761888,
+      "matchedModels": 67,
+      "totalModels": 86,
+      "spendUsd": 49.679847945903006,
+      "tokens": 19.358899184958887
     },
     {
       "end": "2025-10-19",
-      "value": 3310726.038787492,
-      "coverage": 0.997751737292797,
-      "matchedModels": 45,
-      "totalModels": 48,
-      "spendUsd": 50.79562628165757,
-      "tokens": 15.342745272955526
+      "value": 2509682.566156815,
+      "coverage": 0.998789591860927,
+      "matchedModels": 71,
+      "totalModels": 86,
+      "spendUsd": 53.3601233429798,
+      "tokens": 21.261702201921278
     },
     {
       "end": "2025-10-26",
-      "value": 3282522.5587562947,
-      "coverage": 0.9973580752106791,
-      "matchedModels": 46,
-      "totalModels": 48,
-      "spendUsd": 49.61384274848874,
-      "tokens": 15.114547382512669
+      "value": 2520981.8742430294,
+      "coverage": 0.9986429077137344,
+      "matchedModels": 70,
+      "totalModels": 82,
+      "spendUsd": 55.045142256155025,
+      "tokens": 21.834802867308724
     },
     {
       "end": "2025-11-02",
-      "value": 3251655.3245435925,
-      "coverage": 0.9976825147562651,
-      "matchedModels": 45,
-      "totalModels": 47,
-      "spendUsd": 51.31446172665771,
-      "tokens": 15.781027386062295
+      "value": 2505138.801980062,
+      "coverage": 0.9987991726349581,
+      "matchedModels": 76,
+      "totalModels": 89,
+      "spendUsd": 56.1394048548402,
+      "tokens": 22.409698341053044
     },
     {
       "end": "2025-11-09",
-      "value": 3200956.7280154172,
-      "coverage": 0.9979304122286715,
-      "matchedModels": 46,
-      "totalModels": 50,
-      "spendUsd": 54.40257977610877,
-      "tokens": 16.99572484062857
+      "value": 2552526.0551538174,
+      "coverage": 0.9989135680421624,
+      "matchedModels": 75,
+      "totalModels": 91,
+      "spendUsd": 60.725645384999254,
+      "tokens": 23.79041156598101
     },
     {
       "end": "2025-11-16",
-      "value": 3190244.329483796,
-      "coverage": 0.9977251918844293,
-      "matchedModels": 51,
-      "totalModels": 55,
-      "spendUsd": 53.462958673843346,
-      "tokens": 16.758264619341563
+      "value": 2402560.910435919,
+      "coverage": 0.9987239189936233,
+      "matchedModels": 80,
+      "totalModels": 96,
+      "spendUsd": 59.45268228755875,
+      "tokens": 24.745546316564223
     },
     {
       "end": "2025-11-23",
-      "value": 3300306.1690542586,
-      "coverage": 0.9975643739019955,
-      "matchedModels": 53,
-      "totalModels": 58,
-      "spendUsd": 54.36357251152654,
-      "tokens": 16.472281578380063
+      "value": 2377372.25243064,
+      "coverage": 0.9984507666652452,
+      "matchedModels": 78,
+      "totalModels": 98,
+      "spendUsd": 61.136368726353865,
+      "tokens": 25.715942744703806
     },
     {
       "end": "2025-11-30",
-      "value": 3313121.32638253,
-      "coverage": 0.9975144034147679,
-      "matchedModels": 51,
-      "totalModels": 53,
-      "spendUsd": 51.18656852296877,
-      "tokens": 15.449651093477286
+      "value": 2446782.2010502764,
+      "coverage": 0.9986463543018143,
+      "matchedModels": 84,
+      "totalModels": 99,
+      "spendUsd": 60.545960199918596,
+      "tokens": 24.745136765311344
     },
     {
       "end": "2025-12-07",
-      "value": 3255867.032472688,
-      "coverage": 0.9980173067455573,
-      "matchedModels": 53,
-      "totalModels": 56,
-      "spendUsd": 63.734999072676565,
-      "tokens": 19.575430580244745
+      "value": 2519592.849233856,
+      "coverage": 0.9988248073104382,
+      "matchedModels": 83,
+      "totalModels": 101,
+      "spendUsd": 71.8922796121668,
+      "tokens": 28.533292446050325
     },
     {
       "end": "2025-12-14",
-      "value": 3255980.7321066945,
-      "coverage": 0.997890633581851,
-      "matchedModels": 55,
-      "totalModels": 59,
-      "spendUsd": 63.465364026204306,
-      "tokens": 19.491934764964274
+      "value": 2545669.2983372216,
+      "coverage": 0.9988621842981362,
+      "matchedModels": 94,
+      "totalModels": 116,
+      "spendUsd": 73.41813872534425,
+      "tokens": 28.840407029027475
     },
     {
       "end": "2025-12-21",
-      "value": 3081459.807223879,
-      "coverage": 0.9979699720270201,
-      "matchedModels": 56,
-      "totalModels": 59,
-      "spendUsd": 57.339410413222915,
-      "tokens": 18.607872242500747
+      "value": 2489528.9608924137,
+      "coverage": 0.9988558992805574,
+      "matchedModels": 96,
+      "totalModels": 129,
+      "spendUsd": 72.33776723925867,
+      "tokens": 29.0568088885891
     },
     {
       "end": "2025-12-28",
-      "value": 2904095.008140614,
-      "coverage": 0.9974469061155707,
-      "matchedModels": 48,
-      "totalModels": 53,
-      "spendUsd": 37.80812535991324,
-      "tokens": 13.018900984276133
+      "value": 2406033.0998059874,
+      "coverage": 0.9985349223148702,
+      "matchedModels": 92,
+      "totalModels": 109,
+      "spendUsd": 48.5867324440117,
+      "tokens": 20.193709075710363
     },
     {
       "end": "2026-01-04",
-      "value": 2769469.110562752,
-      "coverage": 0.9973300857572548,
-      "matchedModels": 47,
-      "totalModels": 51,
-      "spendUsd": 36.223181443107386,
-      "tokens": 13.079467579166064
+      "value": 2324413.676108699,
+      "coverage": 0.9977474988751953,
+      "matchedModels": 87,
+      "totalModels": 109,
+      "spendUsd": 43.68387101351875,
+      "tokens": 18.793501114934895
     },
     {
       "end": "2026-01-11",
-      "value": 2991644.8833282785,
-      "coverage": 0.9982927604424302,
-      "matchedModels": 52,
-      "totalModels": 55,
-      "spendUsd": 58.61753932760724,
-      "tokens": 19.593749129206067
+      "value": 2474446.808669959,
+      "coverage": 0.9988999455203544,
+      "matchedModels": 92,
+      "totalModels": 109,
+      "spendUsd": 65.52992578020248,
+      "tokens": 26.482656871264687
     },
     {
       "end": "2026-01-18",
-      "value": 3007408.024089762,
-      "coverage": 0.9982751472426423,
-      "matchedModels": 51,
-      "totalModels": 55,
-      "spendUsd": 65.46651901818755,
-      "tokens": 21.76841934775445
+      "value": 2506841.5246885275,
+      "coverage": 0.998279388814896,
+      "matchedModels": 92,
+      "totalModels": 116,
+      "spendUsd": 72.13786609423505,
+      "tokens": 28.77639666639801
     },
     {
       "end": "2026-01-25",
-      "value": 3081853.3234430104,
-      "coverage": 0.9984699308435553,
-      "matchedModels": 53,
-      "totalModels": 56,
-      "spendUsd": 72.97321337109281,
-      "tokens": 23.67835380613377
+      "value": 2559238.098633433,
+      "coverage": 0.9985448300895733,
+      "matchedModels": 97,
+      "totalModels": 116,
+      "spendUsd": 79.65812410870127,
+      "tokens": 31.125718295314783
     },
     {
       "end": "2026-02-01",
-      "value": 3134529.1286729085,
-      "coverage": 0.9987038917409158,
-      "matchedModels": 56,
-      "totalModels": 58,
-      "spendUsd": 82.57760752485892,
-      "tokens": 26.34450156148987
+      "value": 2627020.069977809,
+      "coverage": 0.9980954428648136,
+      "matchedModels": 98,
+      "totalModels": 119,
+      "spendUsd": 87.45502141801465,
+      "tokens": 33.29057985413617
     },
     {
       "end": "2026-02-08",
-      "value": 3155161.483035826,
-      "coverage": 0.998371826880195,
-      "matchedModels": 55,
-      "totalModels": 61,
-      "spendUsd": 91.05169538607453,
-      "tokens": 28.85801436016093
+      "value": 2725995.8022014815,
+      "coverage": 0.9985443960905214,
+      "matchedModels": 107,
+      "totalModels": 134,
+      "spendUsd": 101.05065827972383,
+      "tokens": 37.06926408254794
     },
     {
       "end": "2026-02-15",
-      "value": 3397803.9400604693,
-      "coverage": 0.9981427325228717,
-      "matchedModels": 57,
-      "totalModels": 61,
-      "spendUsd": 104.32936028066086,
-      "tokens": 30.704938283991794
+      "value": 3188689.2768733115,
+      "coverage": 0.998676612233099,
+      "matchedModels": 102,
+      "totalModels": 127,
+      "spendUsd": 124.10662619142505,
+      "tokens": 38.9208905024194
     },
     {
       "end": "2026-02-22",
-      "value": 3483370.5457572127,
-      "coverage": 0.9988881392187363,
-      "matchedModels": 58,
-      "totalModels": 62,
-      "spendUsd": 108.8089633161676,
-      "tokens": 31.236689260262086
+      "value": 3210716.994240662,
+      "coverage": 0.9992157480752176,
+      "matchedModels": 103,
+      "totalModels": 124,
+      "spendUsd": 128.94191842276925,
+      "tokens": 40.159851725973795
     },
     {
       "end": "2026-03-01",
-      "value": 3519372.278918062,
-      "coverage": 0.9989311235297834,
-      "matchedModels": 58,
-      "totalModels": 63,
-      "spendUsd": 133.65998903449847,
-      "tokens": 37.97836046932458
+      "value": 3449606.788523598,
+      "coverage": 0.9991301556004136,
+      "matchedModels": 114,
+      "totalModels": 132,
+      "spendUsd": 159.39663349635055,
+      "tokens": 46.20718918650172
     },
     {
       "end": "2026-03-08",
-      "value": 3319488.1213521403,
-      "coverage": 0.9990275332400539,
-      "matchedModels": 61,
-      "totalModels": 64,
-      "spendUsd": 142.58572673897933,
-      "tokens": 42.95413073534341
+      "value": 3374194.772792616,
+      "coverage": 0.9992751555605749,
+      "matchedModels": 120,
+      "totalModels": 150,
+      "spendUsd": 159.94682989060524,
+      "tokens": 47.4029629766236
     },
     {
       "end": "2026-03-15",
-      "value": 3416277.6831262372,
-      "coverage": 0.9990482261711578,
-      "matchedModels": 61,
-      "totalModels": 64,
-      "spendUsd": 150.2996727662156,
-      "tokens": 43.99515692432715
+      "value": 3186896.9520075745,
+      "coverage": 0.9990700973437293,
+      "matchedModels": 117,
+      "totalModels": 145,
+      "spendUsd": 158.29123672197835,
+      "tokens": 49.669392862628754
     },
     {
       "end": "2026-03-22",
-      "value": 3131020.46127564,
-      "coverage": 0.998994041312145,
-      "matchedModels": 68,
-      "totalModels": 73,
-      "spendUsd": 137.11364102030254,
-      "tokens": 43.79199775795771
+      "value": 2822168.119841556,
+      "coverage": 0.9951494752836906,
+      "matchedModels": 133,
+      "totalModels": 562,
+      "spendUsd": 137.72295496337384,
+      "tokens": 48.8004077415154
     },
     {
       "end": "2026-03-29",
-      "value": 2857027.999161485,
-      "coverage": 0.999061089426712,
-      "matchedModels": 63,
-      "totalModels": 68,
-      "spendUsd": 134.97821593524452,
-      "tokens": 47.24427481104825
+      "value": 2598428.6419738787,
+      "coverage": 0.9917522817637118,
+      "matchedModels": 134,
+      "totalModels": 579,
+      "spendUsd": 131.84094000986917,
+      "tokens": 50.73871873183983
     },
     {
       "end": "2026-04-05",
-      "value": 2813350.066874207,
-      "coverage": 0.9990969751882982,
-      "matchedModels": 63,
-      "totalModels": 70,
-      "spendUsd": 135.89853138767995,
-      "tokens": 48.30487787062739
+      "value": 2552623.14456544,
+      "coverage": 0.9907623485497521,
+      "matchedModels": 134,
+      "totalModels": 358,
+      "spendUsd": 132.7397539381448,
+      "tokens": 52.00131254029763
     },
     {
       "end": "2026-04-12",
-      "value": 2691235.6595982932,
-      "coverage": 0.9987975506152438,
-      "matchedModels": 63,
-      "totalModels": 67,
-      "spendUsd": 138.6710309739316,
-      "tokens": 51.52690009860761
+      "value": 2462623.7088277675,
+      "coverage": 0.9940612174954362,
+      "matchedModels": 120,
+      "totalModels": 189,
+      "spendUsd": 136.24171821799072,
+      "tokens": 55.323806771454784
     },
     {
       "end": "2026-04-19",
-      "value": 2516874.4853711915,
-      "coverage": 0.9983929947806869,
-      "matchedModels": 64,
-      "totalModels": 69,
-      "spendUsd": 147.114157155496,
-      "tokens": 58.45112976851504
+      "value": 2339515.5518157533,
+      "coverage": 0.9985490753482653,
+      "matchedModels": 129,
+      "totalModels": 170,
+      "spendUsd": 143.03468374265162,
+      "tokens": 61.13859069311979
     },
     {
       "end": "2026-04-26",
-      "value": 2426425.3603969933,
-      "coverage": 0.9988761501932975,
-      "matchedModels": 65,
-      "totalModels": 70,
-      "spendUsd": 161.95178560248766,
-      "tokens": 66.74501027140202
+      "value": 2226795.271513949,
+      "coverage": 0.9990653048756579,
+      "matchedModels": 131,
+      "totalModels": 162,
+      "spendUsd": 155.83408833862472,
+      "tokens": 69.9813271260795
     },
     {
       "end": "2026-05-03",
-      "value": 2439535.7318133377,
-      "coverage": 0.9988510936364654,
-      "matchedModels": 68,
-      "totalModels": 72,
-      "spendUsd": 170.16575581551564,
-      "tokens": 69.75333609441715
+      "value": 2307019.227826369,
+      "coverage": 0.9990954788184923,
+      "matchedModels": 150,
+      "totalModels": 180,
+      "spendUsd": 165.3884452057705,
+      "tokens": 71.68923570766961
     },
     {
       "end": "2026-05-10",
-      "value": 2393740.803329315,
-      "coverage": 0.9987900364628516,
-      "matchedModels": 73,
-      "totalModels": 78,
-      "spendUsd": 174.86485211526758,
-      "tokens": 73.05087161987556
+      "value": 2382144.6769082034,
+      "coverage": 0.9988511214620315,
+      "matchedModels": 143,
+      "totalModels": 179,
+      "spendUsd": 174.83806136433705,
+      "tokens": 73.39523206090915
     },
     {
       "end": "2026-05-17",
-      "value": 2508361.627309417,
-      "coverage": 0.9982755601017513,
-      "matchedModels": 71,
-      "totalModels": 77,
-      "spendUsd": 194.86200155841132,
-      "tokens": 77.68497151163535
+      "value": 2501374.7191741364,
+      "coverage": 0.9971619802227777,
+      "matchedModels": 146,
+      "totalModels": 187,
+      "spendUsd": 191.07991320377425,
+      "tokens": 76.38995938475861
     },
     {
       "end": "2026-05-24",
-      "value": 2378803.1857958212,
-      "coverage": 0.9987106082715769,
-      "matchedModels": 76,
-      "totalModels": 81,
-      "spendUsd": 193.97884005357548,
-      "tokens": 81.54472013988011
+      "value": 2463308.942784417,
+      "coverage": 0.9974555335474159,
+      "matchedModels": 149,
+      "totalModels": 189,
+      "spendUsd": 190.12778081952288,
+      "tokens": 77.1838958229132
     },
     {
       "end": "2026-05-31",
-      "value": 2389785.81172465,
-      "coverage": 0.9985882939651043,
-      "matchedModels": 74,
-      "totalModels": 79,
-      "spendUsd": 187.90394232064992,
-      "tokens": 78.62794288875797
+      "value": 2462794.4206985296,
+      "coverage": 0.996671375856648,
+      "matchedModels": 132,
+      "totalModels": 165,
+      "spendUsd": 176.67077963833188,
+      "tokens": 71.73590217417426
     },
     {
       "end": "2026-06-07",
-      "value": 2364185.437163463,
-      "coverage": 0.9963454916305611,
-      "matchedModels": 73,
-      "totalModels": 79,
-      "spendUsd": 217.3471629426408,
-      "tokens": 91.93321282082373
+      "value": 2323031.1565029123,
+      "coverage": 0.994761984398656,
+      "matchedModels": 137,
+      "totalModels": 176,
+      "spendUsd": 177.5984666572548,
+      "tokens": 76.45117723027498
     },
     {
       "end": "2026-06-14",
-      "value": 2432991.5169617864,
-      "coverage": 0.9983326100160068,
-      "matchedModels": 73,
-      "totalModels": 81,
-      "spendUsd": 222.61426975606153,
-      "tokens": 91.49816931299969
+      "value": 2356983.1391278924,
+      "coverage": 0.9956129045725406,
+      "matchedModels": 132,
+      "totalModels": 169,
+      "spendUsd": 181.85444935246326,
+      "tokens": 77.15560045107122
     },
     {
       "end": "2026-06-21",
-      "value": 2324491.7756579467,
-      "coverage": 0.9983509438277772,
-      "matchedModels": 76,
-      "totalModels": 83,
-      "spendUsd": 211.7009633684161,
-      "tokens": 91.07408577881253
+      "value": 2351807.9244436002,
+      "coverage": 0.995772023658921,
+      "matchedModels": 132,
+      "totalModels": 169,
+      "spendUsd": 174.20129370010363,
+      "tokens": 74.07122490299324
     },
     {
       "end": "2026-06-28",
-      "value": 2204787.4543817034,
-      "coverage": 0.9986283014434973,
-      "matchedModels": 72,
-      "totalModels": 78,
-      "spendUsd": 229.8796440140819,
-      "tokens": 104.26385707031694
+      "value": 2425015.8420090745,
+      "coverage": 0.9946654438244925,
+      "matchedModels": 134,
+      "totalModels": 173,
+      "spendUsd": 186.78943058333746,
+      "tokens": 77.02606611781404
     },
     {
       "end": "2026-07-05",
-      "value": 2325376.522063178,
-      "coverage": 0.9983055457936578,
-      "matchedModels": 75,
-      "totalModels": 83,
-      "spendUsd": 214.73756618310978,
-      "tokens": 92.34528866429984
+      "value": 2272119.7892225897,
+      "coverage": 0.9985210750907684,
+      "matchedModels": 174,
+      "totalModels": 203,
+      "spendUsd": 176.94118262487152,
+      "tokens": 77.87493576006057
     },
     {
       "end": "2026-07-12",
-      "value": 2409685.44211173,
-      "coverage": 0.9984326626453146,
-      "matchedModels": 79,
-      "totalModels": 87,
-      "spendUsd": 289.39516141755865,
-      "tokens": 120.09665509036189
+      "value": 2310694.370732518,
+      "coverage": 0.998601753397398,
+      "matchedModels": 154,
+      "totalModels": 186,
+      "spendUsd": 233.76115866021084,
+      "tokens": 101.16489727981886
     },
     {
       "end": "2026-07-19",
-      "value": 2420913.6496566967,
-      "coverage": 0.9978994175327673,
-      "matchedModels": 84,
-      "totalModels": 94,
-      "spendUsd": 295.6105060717275,
-      "tokens": 122.10700126113431
+      "value": 2344592.9389325944,
+      "coverage": 0.9974052965630301,
+      "matchedModels": 168,
+      "totalModels": 204,
+      "spendUsd": 241.91367274228023,
+      "tokens": 103.17939149488971
     },
     {
       "end": "2026-07-26",
-      "value": 2527514.869806931,
-      "coverage": 0.9964801814693883,
-      "matchedModels": 98,
-      "totalModels": 107,
-      "spendUsd": 329.00242931082863,
-      "tokens": 130.16834569046873
+      "value": 2429822.14007122,
+      "coverage": 0.9970822926369288,
+      "matchedModels": 206,
+      "totalModels": 240,
+      "spendUsd": 265.78215333766684,
+      "tokens": 109.38337788373126
     },
     {
       "end": "2026-08-02",
-      "value": 2311698.54033374,
-      "coverage": 0.9969968183441271,
-      "matchedModels": 96,
-      "totalModels": 103,
-      "spendUsd": 346.5961593805769,
-      "tokens": 149.9313830645664
+      "value": 2235881.6905772053,
+      "coverage": 0.9973881764776501,
+      "matchedModels": 184,
+      "totalModels": 219,
+      "spendUsd": 278.5638917230222,
+      "tokens": 124.58793902065068
     },
     {
       "end": "2026-08-09",
-      "value": 2154918.26063245,
-      "coverage": 0.9967751014441022,
-      "matchedModels": 89,
-      "totalModels": 97,
-      "spendUsd": 336.0721522481547,
-      "tokens": 155.9558700614103
+      "value": 2026920.5647908528,
+      "coverage": 0.9972857493324653,
+      "matchedModels": 197,
+      "totalModels": 225,
+      "spendUsd": 269.4524119607776,
+      "tokens": 132.93683859218282
     },
     {
       "end": "2026-08-16",
-      "value": 2026542.3839021253,
-      "coverage": 0.996834167358059,
-      "matchedModels": 98,
-      "totalModels": 105,
-      "spendUsd": 323.28682712197775,
-      "tokens": 159.52630928916776
+      "value": 1899019.9166701068,
+      "coverage": 0.9972907068942821,
+      "matchedModels": 196,
+      "totalModels": 222,
+      "spendUsd": 260.8799378351017,
+      "tokens": 137.3760936075644
     },
     {
       "end": "2026-08-23",
-      "value": 1927586.6921513672,
-      "coverage": 0.9969777615642925,
-      "matchedModels": 105,
-      "totalModels": 110,
-      "spendUsd": 317.48144687050495,
-      "tokens": 164.7041080762837
+      "value": 1791231.2772546122,
+      "coverage": 0.99231947528921,
+      "matchedModels": 202,
+      "totalModels": 238,
+      "spendUsd": 258.2484703242281,
+      "tokens": 144.17371648402704
     },
     {
       "end": "2026-08-30",
-      "value": 1783514.099835156,
-      "coverage": 0.996236424908667,
-      "matchedModels": 100,
-      "totalModels": 107,
-      "spendUsd": 304.46015558642193,
-      "tokens": 170.7080171749481
+      "value": 1643015.5913355788,
+      "coverage": 0.9893861867583306,
+      "matchedModels": 199,
+      "totalModels": 233,
+      "spendUsd": 247.98604317870178,
+      "tokens": 150.9334692174882
     },
     {
       "end": "2026-09-06",
-      "value": 1764277.8557943734,
-      "coverage": 0.9971349563763573,
-      "matchedModels": 108,
-      "totalModels": 114,
-      "spendUsd": 310.26959819169605,
-      "tokens": 175.8620940418684
+      "value": 1621227.2811173573,
+      "coverage": 0.9907973359565002,
+      "matchedModels": 227,
+      "totalModels": 272,
+      "spendUsd": 256.6269488766193,
+      "tokens": 158.2917780039766
     },
     {
       "end": "2026-09-13",
-      "value": 1784208.657099128,
-      "coverage": 0.9973800986698083,
-      "matchedModels": 106,
-      "totalModels": 114,
-      "spendUsd": 292.4957657581234,
-      "tokens": 163.9358516697707
+      "value": 1649488.2589755754,
+      "coverage": 0.9969065029736097,
+      "matchedModels": 211,
+      "totalModels": 247,
+      "spendUsd": 247.61177007783067,
+      "tokens": 150.1142968011251
     },
     {
       "end": "2026-09-20",
-      "value": 1786238.6216983201,
-      "coverage": 0.997416065360553,
-      "matchedModels": 108,
-      "totalModels": 114,
-      "spendUsd": 341.8451207087801,
-      "tokens": 191.3770739005523
+      "value": 1656561.57912155,
+      "coverage": 0.9924943161533359,
+      "matchedModels": 214,
+      "totalModels": 257,
+      "spendUsd": 286.41089616632576,
+      "tokens": 172.89480800237152
     },
     {
       "end": "2026-09-27",
-      "value": 1634036.7192600402,
-      "coverage": 0.9964338865812178,
-      "matchedModels": 113,
-      "totalModels": 119,
-      "spendUsd": 332.2278600195384,
-      "tokens": 203.3172548105192
+      "value": 1489044.2272109264,
+      "coverage": 0.9932835819451742,
+      "matchedModels": 230,
+      "totalModels": 275,
+      "spendUsd": 269.85907978092496,
+      "tokens": 181.2297276665771
     },
     {
       "end": "2026-10-04",
-      "value": 1431580.2967245595,
-      "coverage": 0.9978897165165812,
-      "matchedModels": 108,
-      "totalModels": 114,
-      "spendUsd": 314.9603480181585,
-      "tokens": 220.008859257692
+      "value": 1312456.6540518156,
+      "coverage": 0.9876947443943722,
+      "matchedModels": 214,
+      "totalModels": 256,
+      "spendUsd": 256.00948703238157,
+      "tokens": 195.06128925631882
     },
     {
       "end": "2026-10-11",
-      "value": 1355612.7291970218,
-      "coverage": 0.9984133738303677,
-      "matchedModels": 112,
-      "totalModels": 118,
-      "spendUsd": 319.70454825757616,
-      "tokens": 235.8376705764254
+      "value": 1242921.9632415946,
+      "coverage": 0.9909451547750475,
+      "matchedModels": 225,
+      "totalModels": 260,
+      "spendUsd": 259.34213635036076,
+      "tokens": 208.65520444580864
     },
     {
       "end": "2026-10-18",
-      "value": 1263065.350616185,
-      "coverage": 0.9985996932676401,
-      "matchedModels": 111,
-      "totalModels": 115,
-      "spendUsd": 309.9573845765072,
-      "tokens": 245.40090853200493
+      "value": 1162446.5843132967,
+      "coverage": 0.9984040167048108,
+      "matchedModels": 209,
+      "totalModels": 247,
+      "spendUsd": 251.80266966716763,
+      "tokens": 216.61440023579016
     },
     {
       "end": "2026-10-25",
-      "value": 1185450.302792384,
-      "coverage": 0.9979983760453712,
-      "matchedModels": 109,
-      "totalModels": 116,
-      "spendUsd": 306.4745614974794,
-      "tokens": 258.53007989922827
+      "value": 1126374.9131664361,
+      "coverage": 0.9986671126679014,
+      "matchedModels": 218,
+      "totalModels": 253,
+      "spendUsd": 257.2340202754762,
+      "tokens": 228.37335710216283
     },
     {
       "end": "2026-11-01",
-      "value": 1224663.7275796651,
-      "coverage": 0.9992474532409447,
-      "matchedModels": 104,
-      "totalModels": 108,
-      "spendUsd": 348.1578531420917,
-      "tokens": 284.28853186512276
+      "value": 1194878.280304112,
+      "coverage": 0.9989579992845957,
+      "matchedModels": 212,
+      "totalModels": 247,
+      "spendUsd": 300.80096261724424,
+      "tokens": 251.74192850897455
+    },
+    {
+      "end": "2026-11-08",
+      "value": 1030269.5574083817,
+      "coverage": 0.9892064625229241,
+      "matchedModels": 223,
+      "totalModels": 256,
+      "spendUsd": 277.7617970736093,
+      "tokens": 269.6010913612864
+    },
+    {
+      "end": "2026-11-15",
+      "value": 1028829.3718275112,
+      "coverage": 0.9928872145095905,
+      "matchedModels": 225,
+      "totalModels": 263,
+      "spendUsd": 281.9000344817196,
+      "tokens": 274.00076455921953
     }
   ],
   "rampPublishedWeekly": [
     {
       "end": "2025-01-12",
-      "value": 3338577.3085129666,
-      "coverage": 0.9696650325370325,
-      "matchedModels": 16,
-      "totalModels": 21,
-      "spendUsd": 5.294420318288201,
-      "tokens": 1.5858312775289258
+      "value": 3043444.2433145037,
+      "coverage": 0.9881387102963984,
+      "matchedModels": 21,
+      "totalModels": 40,
+      "spendUsd": 9.79188837538544,
+      "tokens": 3.2173707130975573
     },
     {
       "end": "2025-01-19",
-      "value": 3536159.8124182867,
-      "coverage": 0.9703782727013968,
-      "matchedModels": 16,
-      "totalModels": 21,
-      "spendUsd": 5.783129236268923,
-      "tokens": 1.6354264351853467
+      "value": 3176603.0397573654,
+      "coverage": 0.9892079166962151,
+      "matchedModels": 20,
+      "totalModels": 39,
+      "spendUsd": 11.188734804867634,
+      "tokens": 3.522232606603011
     },
     {
       "end": "2025-01-26",
-      "value": 4382970.677602199,
-      "coverage": 0.9695948091158189,
-      "matchedModels": 16,
-      "totalModels": 23,
-      "spendUsd": 6.9064833744971725,
-      "tokens": 1.5757539537717185
+      "value": 3283103.996507373,
+      "coverage": 0.9896764756656655,
+      "matchedModels": 21,
+      "totalModels": 45,
+      "spendUsd": 11.954689539113625,
+      "tokens": 3.6412765333755024
     },
     {
       "end": "2025-02-02",
-      "value": 4149248.3823827044,
-      "coverage": 0.9757292693295366,
-      "matchedModels": 18,
-      "totalModels": 24,
-      "spendUsd": 7.306035717577292,
-      "tokens": 1.7608094392704936
+      "value": 3261793.2910119654,
+      "coverage": 0.9906553213808263,
+      "matchedModels": 23,
+      "totalModels": 47,
+      "spendUsd": 11.68954942157442,
+      "tokens": 3.583779957419606
     },
     {
       "end": "2025-02-09",
-      "value": 3562273.9865379706,
-      "coverage": 0.9861190130959492,
-      "matchedModels": 19,
-      "totalModels": 22,
-      "spendUsd": 6.854295340398323,
-      "tokens": 1.9241347988114004
+      "value": 2987733.64980653,
+      "coverage": 0.9937368431302054,
+      "matchedModels": 26,
+      "totalModels": 48,
+      "spendUsd": 10.420848962627398,
+      "tokens": 3.4878774964770356
     },
     {
       "end": "2025-02-16",
-      "value": 3364302.4777998324,
-      "coverage": 0.9873084406983748,
-      "matchedModels": 18,
-      "totalModels": 22,
-      "spendUsd": 7.485970794970939,
-      "tokens": 2.2251182360590156
+      "value": 3088167.585923721,
+      "coverage": 0.9933351397764684,
+      "matchedModels": 23,
+      "totalModels": 45,
+      "spendUsd": 11.413981047630378,
+      "tokens": 3.696036801777476
     },
     {
       "end": "2025-02-23",
-      "value": 3866127.172020329,
-      "coverage": 0.9873272624720499,
-      "matchedModels": 19,
-      "totalModels": 24,
-      "spendUsd": 8.669237694401277,
-      "tokens": 2.2423570950127276
+      "value": 3047306.7764052185,
+      "coverage": 0.9936659420148329,
+      "matchedModels": 24,
+      "totalModels": 50,
+      "spendUsd": 11.295276461242027,
+      "tokens": 3.706642386220988
     },
     {
       "end": "2025-03-02",
-      "value": 3388899.6163097396,
-      "coverage": 0.9898743167292012,
-      "matchedModels": 20,
-      "totalModels": 25,
-      "spendUsd": 9.734530942794565,
-      "tokens": 2.87247544776636
+      "value": 2874150.6326397466,
+      "coverage": 0.9952271281812779,
+      "matchedModels": 26,
+      "totalModels": 48,
+      "spendUsd": 14.13074398722802,
+      "tokens": 4.916493877097082
     },
     {
       "end": "2025-03-09",
-      "value": 4015253.8510314953,
-      "coverage": 0.9881879111392701,
-      "matchedModels": 20,
-      "totalModels": 24,
-      "spendUsd": 10.333567169321302,
-      "tokens": 2.573577550188183
+      "value": 3415739.772131478,
+      "coverage": 0.9954476549819865,
+      "matchedModels": 27,
+      "totalModels": 48,
+      "spendUsd": 18.664750535377067,
+      "tokens": 5.464336214269026
     },
     {
       "end": "2025-03-16",
-      "value": 3833949.759418728,
-      "coverage": 0.9855756789096318,
-      "matchedModels": 22,
-      "totalModels": 27,
-      "spendUsd": 9.724646240872831,
-      "tokens": 2.536456357306884
+      "value": 3447279.4506298485,
+      "coverage": 0.9955210357920473,
+      "matchedModels": 31,
+      "totalModels": 52,
+      "spendUsd": 20.7089587049436,
+      "tokens": 6.007333899536311
     },
     {
       "end": "2025-03-23",
-      "value": 4381761.944380987,
-      "coverage": 0.9852413577259306,
-      "matchedModels": 24,
-      "totalModels": 30,
-      "spendUsd": 11.289708187756377,
-      "tokens": 2.576522488227342
+      "value": 3797071.2070152317,
+      "coverage": 0.9951016824651961,
+      "matchedModels": 33,
+      "totalModels": 57,
+      "spendUsd": 21.866348983197263,
+      "tokens": 5.758740827087562
     },
     {
       "end": "2025-03-30",
-      "value": 4704868.5862032715,
-      "coverage": 0.9859642904699006,
-      "matchedModels": 24,
-      "totalModels": 28,
-      "spendUsd": 12.016389095696832,
-      "tokens": 2.5540328864729887
+      "value": 3535317.2222911376,
+      "coverage": 0.9950388907212747,
+      "matchedModels": 34,
+      "totalModels": 57,
+      "spendUsd": 18.955320259622333,
+      "tokens": 5.361702802821732
     },
     {
       "end": "2025-04-06",
-      "value": 4476949.20399326,
-      "coverage": 0.9900790142223326,
-      "matchedModels": 25,
-      "totalModels": 30,
-      "spendUsd": 12.744478013499863,
-      "tokens": 2.846688097808279
+      "value": 3125151.3593504946,
+      "coverage": 0.9956133268483109,
+      "matchedModels": 34,
+      "totalModels": 55,
+      "spendUsd": 16.721687478757126,
+      "tokens": 5.3506808330180915
     },
     {
       "end": "2025-04-13",
-      "value": 4682328.571984938,
-      "coverage": 0.98860823059887,
-      "matchedModels": 25,
-      "totalModels": 28,
-      "spendUsd": 12.23957330533593,
-      "tokens": 2.613992827963228
+      "value": 2984480.9040165856,
+      "coverage": 0.9954860262998291,
+      "matchedModels": 34,
+      "totalModels": 59,
+      "spendUsd": 16.387579151731813,
+      "tokens": 5.490931146410426
     },
     {
       "end": "2025-04-20",
-      "value": 4612610.217275173,
-      "coverage": 0.9867744972853003,
-      "matchedModels": 30,
-      "totalModels": 35,
-      "spendUsd": 11.733366048882715,
-      "tokens": 2.5437584136068656
+      "value": 3135789.366947363,
+      "coverage": 0.9963152296234055,
+      "matchedModels": 40,
+      "totalModels": 64,
+      "spendUsd": 21.187794929409876,
+      "tokens": 6.756765984583916
     },
     {
       "end": "2025-04-27",
-      "value": 4278991.764407933,
-      "coverage": 0.9896772553758383,
-      "matchedModels": 30,
-      "totalModels": 34,
-      "spendUsd": 14.382331546131454,
-      "tokens": 3.3611496207498495
+      "value": 3153688.8932303153,
+      "coverage": 0.9967108652908847,
+      "matchedModels": 41,
+      "totalModels": 65,
+      "spendUsd": 26.14781326317564,
+      "tokens": 8.291183483350034
     },
     {
       "end": "2025-05-04",
-      "value": 4329812.182689325,
-      "coverage": 0.9893522527620756,
-      "matchedModels": 30,
-      "totalModels": 34,
-      "spendUsd": 14.078878020555369,
-      "tokens": 3.25161402539422
+      "value": 3078469.4502899335,
+      "coverage": 0.9964846599287769,
+      "matchedModels": 40,
+      "totalModels": 64,
+      "spendUsd": 22.802743818943426,
+      "tokens": 7.4071691102199635
     },
     {
       "end": "2025-05-11",
-      "value": 4116684.1950723575,
-      "coverage": 0.9894916146197441,
-      "matchedModels": 29,
-      "totalModels": 33,
-      "spendUsd": 13.980906162746674,
-      "tokens": 3.396157076970277
+      "value": 2768155.5156156267,
+      "coverage": 0.9968549568625101,
+      "matchedModels": 40,
+      "totalModels": 63,
+      "spendUsd": 23.4070534670282,
+      "tokens": 8.455830366099415
     },
     {
       "end": "2025-05-18",
-      "value": 4086923.872738814,
-      "coverage": 0.9886828578466944,
-      "matchedModels": 31,
-      "totalModels": 37,
-      "spendUsd": 14.742161063779454,
-      "tokens": 3.6071533316572717
+      "value": 2745285.270955446,
+      "coverage": 0.9964675725631919,
+      "matchedModels": 39,
+      "totalModels": 61,
+      "spendUsd": 23.499980202636614,
+      "tokens": 8.560123223353717
     },
     {
       "end": "2025-05-25",
-      "value": 3872028.7751083304,
-      "coverage": 0.9887726651665931,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 14.816919991701575,
-      "tokens": 3.8266554440280554
+      "value": 2598399.3009020016,
+      "coverage": 0.996546477564843,
+      "matchedModels": 42,
+      "totalModels": 67,
+      "spendUsd": 24.028671164536146,
+      "tokens": 9.247489851230677
     },
     {
       "end": "2025-06-01",
-      "value": 4061576.394663793,
-      "coverage": 0.989823892767321,
-      "matchedModels": 32,
-      "totalModels": 38,
-      "spendUsd": 15.033975421726618,
-      "tokens": 3.701512408206492
+      "value": 2752215.801005004,
+      "coverage": 0.9965528872530656,
+      "matchedModels": 41,
+      "totalModels": 67,
+      "spendUsd": 22.25089575400758,
+      "tokens": 8.084720589817994
     },
     {
       "end": "2025-06-08",
-      "value": 4064929.903546286,
-      "coverage": 0.9917426258181761,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 16.20026912933837,
-      "tokens": 3.985374782282246
+      "value": 3424017.373940197,
+      "coverage": 0.995175576907315,
+      "matchedModels": 44,
+      "totalModels": 71,
+      "spendUsd": 17.23528469830867,
+      "tokens": 5.03364405492929
     },
     {
       "end": "2025-06-15",
-      "value": 4255604.767323094,
-      "coverage": 0.9896877930777189,
-      "matchedModels": 34,
-      "totalModels": 39,
-      "spendUsd": 16.99110534780702,
-      "tokens": 3.9926417693377445
+      "value": 3743786.43425153,
+      "coverage": 0.9930761733402934,
+      "matchedModels": 43,
+      "totalModels": 70,
+      "spendUsd": 16.436118680335298,
+      "tokens": 4.390239392387045
     },
     {
       "end": "2025-06-22",
-      "value": 3823089.23355367,
-      "coverage": 0.9904650765276583,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 17.398938133653242,
-      "tokens": 4.551015440850811
+      "value": 3296936.5264186636,
+      "coverage": 0.993455702859222,
+      "matchedModels": 44,
+      "totalModels": 68,
+      "spendUsd": 16.157594255550308,
+      "tokens": 4.900790211178766
     },
     {
       "end": "2025-06-29",
-      "value": 3564163.43818801,
-      "coverage": 0.9900152730115426,
-      "matchedModels": 33,
-      "totalModels": 39,
-      "spendUsd": 18.35118543149206,
-      "tokens": 5.148805813692327
+      "value": 3122002.4757124856,
+      "coverage": 0.9928924728439346,
+      "matchedModels": 47,
+      "totalModels": 72,
+      "spendUsd": 16.63195637939047,
+      "tokens": 5.327336063561199
     },
     {
       "end": "2025-07-06",
-      "value": 3714487.910167488,
-      "coverage": 0.9903716953267716,
-      "matchedModels": 35,
-      "totalModels": 40,
-      "spendUsd": 18.745517966794793,
-      "tokens": 5.04659549852985
+      "value": 3244850.254373685,
+      "coverage": 0.9931153094731748,
+      "matchedModels": 46,
+      "totalModels": 70,
+      "spendUsd": 16.883413499178946,
+      "tokens": 5.20314103136872
     },
     {
       "end": "2025-07-13",
-      "value": 3312788.0234838915,
-      "coverage": 0.9907178363333873,
-      "matchedModels": 35,
-      "totalModels": 42,
-      "spendUsd": 21.549959820808386,
-      "tokens": 6.505082627697194
+      "value": 2996240.0082308496,
+      "coverage": 0.993082458405082,
+      "matchedModels": 48,
+      "totalModels": 75,
+      "spendUsd": 19.243619367096613,
+      "tokens": 6.422589416813488
     },
     {
       "end": "2025-07-20",
-      "value": 3725153.177814191,
-      "coverage": 0.9919786082848195,
-      "matchedModels": 35,
-      "totalModels": 44,
-      "spendUsd": 25.797288885592188,
-      "tokens": 6.925161907229079
+      "value": 3138557.415450593,
+      "coverage": 0.9947880740962283,
+      "matchedModels": 46,
+      "totalModels": 79,
+      "spendUsd": 24.186560284192826,
+      "tokens": 7.7062666322834925
     },
     {
       "end": "2025-07-27",
-      "value": 3548319.3482292783,
-      "coverage": 0.9941094586630944,
-      "matchedModels": 34,
-      "totalModels": 40,
-      "spendUsd": 24.280483131859445,
-      "tokens": 6.842812258140226
+      "value": 2923129.3495294857,
+      "coverage": 0.9968747186983944,
+      "matchedModels": 45,
+      "totalModels": 74,
+      "spendUsd": 27.03563559639829,
+      "tokens": 9.24886734853181
     },
     {
       "end": "2025-08-03",
-      "value": 3491810.297741055,
-      "coverage": 0.994907724380801,
-      "matchedModels": 32,
-      "totalModels": 38,
-      "spendUsd": 23.335602328736357,
-      "tokens": 6.682952491386138
+      "value": 2959821.6433836347,
+      "coverage": 0.9966729324340338,
+      "matchedModels": 45,
+      "totalModels": 74,
+      "spendUsd": 24.982539563412708,
+      "tokens": 8.44055574066718
     },
     {
       "end": "2025-08-10",
-      "value": 4247242.783948294,
-      "coverage": 0.9956506260565708,
-      "matchedModels": 36,
-      "totalModels": 42,
-      "spendUsd": 26.58938616323368,
-      "tokens": 6.260387624584021
+      "value": 3306982.2629196495,
+      "coverage": 0.9974104216122293,
+      "matchedModels": 49,
+      "totalModels": 78,
+      "spendUsd": 28.83698952872313,
+      "tokens": 8.720031507899197
     },
     {
       "end": "2025-08-17",
-      "value": 3997190.317831348,
-      "coverage": 0.9957408190186431,
-      "matchedModels": 36,
-      "totalModels": 42,
-      "spendUsd": 26.729606764377653,
-      "tokens": 6.6870988466918035
+      "value": 3060511.874725459,
+      "coverage": 0.9978885096898583,
+      "matchedModels": 49,
+      "totalModels": 72,
+      "spendUsd": 30.370870072896004,
+      "tokens": 9.923460949035004
     },
     {
       "end": "2025-08-24",
-      "value": 3610639.2665482205,
-      "coverage": 0.9956170858510034,
-      "matchedModels": 36,
-      "totalModels": 41,
-      "spendUsd": 27.05527487328137,
-      "tokens": 7.493209062434608
+      "value": 2889614.4194721873,
+      "coverage": 0.9977172334201682,
+      "matchedModels": 51,
+      "totalModels": 74,
+      "spendUsd": 30.856329650659152,
+      "tokens": 10.678355369051392
     },
     {
       "end": "2025-08-31",
-      "value": 3064325.3354197857,
-      "coverage": 0.996412338106735,
-      "matchedModels": 39,
-      "totalModels": 47,
-      "spendUsd": 27.44052242183089,
-      "tokens": 8.954833256329744
+      "value": 2647571.4609053098,
+      "coverage": 0.9979256020977153,
+      "matchedModels": 54,
+      "totalModels": 76,
+      "spendUsd": 30.581270236879508,
+      "tokens": 11.550687370841564
     },
     {
       "end": "2025-09-07",
-      "value": 3242566.2188888406,
-      "coverage": 0.9964217192213147,
-      "matchedModels": 39,
-      "totalModels": 45,
-      "spendUsd": 28.520355636519113,
-      "tokens": 8.795612398100058
+      "value": 2748808.8559504678,
+      "coverage": 0.9978418636439923,
+      "matchedModels": 52,
+      "totalModels": 75,
+      "spendUsd": 29.357297662850147,
+      "tokens": 10.68000694166097
     },
     {
       "end": "2025-09-14",
-      "value": 3188836.6820392343,
-      "coverage": 0.9966311676974516,
-      "matchedModels": 40,
-      "totalModels": 45,
-      "spendUsd": 29.37265869135614,
-      "tokens": 9.211089064797314
+      "value": 2685958.8201606157,
+      "coverage": 0.9974614919625275,
+      "matchedModels": 53,
+      "totalModels": 77,
+      "spendUsd": 28.50903215597175,
+      "tokens": 10.614098750131603
     },
     {
       "end": "2025-09-21",
-      "value": 3141767.9318263787,
-      "coverage": 0.9972794162740088,
-      "matchedModels": 40,
-      "totalModels": 44,
-      "spendUsd": 35.25430952946045,
-      "tokens": 11.221169193412178
+      "value": 2576910.0329544153,
+      "coverage": 0.9982581452889171,
+      "matchedModels": 53,
+      "totalModels": 79,
+      "spendUsd": 33.17974697789107,
+      "tokens": 12.875787882998244
     },
     {
       "end": "2025-09-28",
-      "value": 3304831.6106780022,
-      "coverage": 0.996173075896281,
-      "matchedModels": 40,
-      "totalModels": 45,
-      "spendUsd": 36.2449392481522,
-      "tokens": 10.967257493859535
+      "value": 2457113.2800454404,
+      "coverage": 0.9978171081211743,
+      "matchedModels": 56,
+      "totalModels": 82,
+      "spendUsd": 34.668705417146754,
+      "tokens": 14.109526694880593
     },
     {
       "end": "2025-10-05",
-      "value": 3206801.7674366855,
-      "coverage": 0.9970885288891811,
-      "matchedModels": 41,
-      "totalModels": 46,
-      "spendUsd": 43.48125622832768,
-      "tokens": 13.55907205423672
+      "value": 2466585.492065614,
+      "coverage": 0.9982340119485612,
+      "matchedModels": 59,
+      "totalModels": 78,
+      "spendUsd": 42.9553874768852,
+      "tokens": 17.414919375412644
     },
     {
       "end": "2025-10-12",
-      "value": 3362439.190052772,
-      "coverage": 0.9977137373153309,
-      "matchedModels": 42,
-      "totalModels": 46,
-      "spendUsd": 50.881890014559076,
-      "tokens": 15.132434265305035
+      "value": 2566253.766355802,
+      "coverage": 0.9985379687761888,
+      "matchedModels": 67,
+      "totalModels": 86,
+      "spendUsd": 49.679847945903006,
+      "tokens": 19.358899184958887
     },
     {
       "end": "2025-10-19",
-      "value": 3310726.038787492,
-      "coverage": 0.997751737292797,
-      "matchedModels": 45,
-      "totalModels": 48,
-      "spendUsd": 50.79562628165757,
-      "tokens": 15.342745272955526
+      "value": 2509682.566156815,
+      "coverage": 0.998789591860927,
+      "matchedModels": 71,
+      "totalModels": 86,
+      "spendUsd": 53.3601233429798,
+      "tokens": 21.261702201921278
     },
     {
       "end": "2025-10-26",
-      "value": 3282522.5587562947,
-      "coverage": 0.9973580752106791,
-      "matchedModels": 46,
-      "totalModels": 48,
-      "spendUsd": 49.61384274848874,
-      "tokens": 15.114547382512669
+      "value": 2520981.8742430294,
+      "coverage": 0.9986429077137344,
+      "matchedModels": 70,
+      "totalModels": 82,
+      "spendUsd": 55.045142256155025,
+      "tokens": 21.834802867308724
     },
     {
       "end": "2025-11-02",
-      "value": 3251655.3245435925,
-      "coverage": 0.9976825147562651,
-      "matchedModels": 45,
-      "totalModels": 47,
-      "spendUsd": 51.31446172665771,
-      "tokens": 15.781027386062295
+      "value": 2505138.801980062,
+      "coverage": 0.9987991726349581,
+      "matchedModels": 76,
+      "totalModels": 89,
+      "spendUsd": 56.1394048548402,
+      "tokens": 22.409698341053044
     },
     {
       "end": "2025-11-09",
-      "value": 3200956.7280154172,
-      "coverage": 0.9979304122286715,
-      "matchedModels": 46,
-      "totalModels": 50,
-      "spendUsd": 54.40257977610877,
-      "tokens": 16.99572484062857
+      "value": 2552526.0551538174,
+      "coverage": 0.9989135680421624,
+      "matchedModels": 75,
+      "totalModels": 91,
+      "spendUsd": 60.725645384999254,
+      "tokens": 23.79041156598101
     },
     {
       "end": "2025-11-16",
-      "value": 3190244.329483796,
-      "coverage": 0.9977251918844293,
-      "matchedModels": 51,
-      "totalModels": 55,
-      "spendUsd": 53.462958673843346,
-      "tokens": 16.758264619341563
+      "value": 2402560.910435919,
+      "coverage": 0.9987239189936233,
+      "matchedModels": 80,
+      "totalModels": 96,
+      "spendUsd": 59.45268228755875,
+      "tokens": 24.745546316564223
     },
     {
       "end": "2025-11-23",
-      "value": 3300306.1690542586,
-      "coverage": 0.9975643739019955,
-      "matchedModels": 53,
-      "totalModels": 58,
-      "spendUsd": 54.36357251152654,
-      "tokens": 16.472281578380063
+      "value": 2377372.25243064,
+      "coverage": 0.9984507666652452,
+      "matchedModels": 78,
+      "totalModels": 98,
+      "spendUsd": 61.136368726353865,
+      "tokens": 25.715942744703806
     },
     {
       "end": "2025-11-30",
-      "value": 3313121.32638253,
-      "coverage": 0.9975144034147679,
-      "matchedModels": 51,
-      "totalModels": 53,
-      "spendUsd": 51.18656852296877,
-      "tokens": 15.449651093477286
+      "value": 2446782.2010502764,
+      "coverage": 0.9986463543018143,
+      "matchedModels": 84,
+      "totalModels": 99,
+      "spendUsd": 60.545960199918596,
+      "tokens": 24.745136765311344
     },
     {
       "end": "2025-12-07",
-      "value": 3255867.032472688,
-      "coverage": 0.9980173067455573,
-      "matchedModels": 53,
-      "totalModels": 56,
-      "spendUsd": 63.734999072676565,
-      "tokens": 19.575430580244745
+      "value": 2519592.849233856,
+      "coverage": 0.9988248073104382,
+      "matchedModels": 83,
+      "totalModels": 101,
+      "spendUsd": 71.8922796121668,
+      "tokens": 28.533292446050325
     },
     {
       "end": "2025-12-14",
-      "value": 3255980.7321066945,
-      "coverage": 0.997890633581851,
-      "matchedModels": 55,
-      "totalModels": 59,
-      "spendUsd": 63.465364026204306,
-      "tokens": 19.491934764964274
+      "value": 2545669.2983372216,
+      "coverage": 0.9988621842981362,
+      "matchedModels": 94,
+      "totalModels": 116,
+      "spendUsd": 73.41813872534425,
+      "tokens": 28.840407029027475
     },
     {
       "end": "2025-12-21",
-      "value": 3081459.807223879,
-      "coverage": 0.9979699720270201,
-      "matchedModels": 56,
-      "totalModels": 59,
-      "spendUsd": 57.339410413222915,
-      "tokens": 18.607872242500747
+      "value": 2489528.9608924137,
+      "coverage": 0.9988558992805574,
+      "matchedModels": 96,
+      "totalModels": 129,
+      "spendUsd": 72.33776723925867,
+      "tokens": 29.0568088885891
     },
     {
       "end": "2025-12-28",
-      "value": 2904095.008140614,
-      "coverage": 0.9974469061155707,
-      "matchedModels": 48,
-      "totalModels": 53,
-      "spendUsd": 37.80812535991324,
-      "tokens": 13.018900984276133
+      "value": 2406033.0998059874,
+      "coverage": 0.9985349223148702,
+      "matchedModels": 92,
+      "totalModels": 109,
+      "spendUsd": 48.5867324440117,
+      "tokens": 20.193709075710363
     },
     {
       "end": "2026-01-04",
-      "value": 2769469.110562752,
-      "coverage": 0.9973300857572548,
-      "matchedModels": 47,
-      "totalModels": 51,
-      "spendUsd": 36.223181443107386,
-      "tokens": 13.079467579166064
+      "value": 2324413.676108699,
+      "coverage": 0.9977474988751953,
+      "matchedModels": 87,
+      "totalModels": 109,
+      "spendUsd": 43.68387101351875,
+      "tokens": 18.793501114934895
     },
     {
       "end": "2026-01-11",
-      "value": 2991644.8833282785,
-      "coverage": 0.9982927604424302,
-      "matchedModels": 52,
-      "totalModels": 55,
-      "spendUsd": 58.61753932760724,
-      "tokens": 19.593749129206067
+      "value": 2474446.808669959,
+      "coverage": 0.9988999455203544,
+      "matchedModels": 92,
+      "totalModels": 109,
+      "spendUsd": 65.52992578020248,
+      "tokens": 26.482656871264687
     },
     {
       "end": "2026-01-18",
-      "value": 3007408.024089762,
-      "coverage": 0.9982751472426423,
-      "matchedModels": 51,
-      "totalModels": 55,
-      "spendUsd": 65.46651901818755,
-      "tokens": 21.76841934775445
+      "value": 2506841.5246885275,
+      "coverage": 0.998279388814896,
+      "matchedModels": 92,
+      "totalModels": 116,
+      "spendUsd": 72.13786609423505,
+      "tokens": 28.77639666639801
     },
     {
       "end": "2026-01-25",
-      "value": 3081853.3234430104,
-      "coverage": 0.9984699308435553,
-      "matchedModels": 53,
-      "totalModels": 56,
-      "spendUsd": 72.97321337109281,
-      "tokens": 23.67835380613377
+      "value": 2559238.098633433,
+      "coverage": 0.9985448300895733,
+      "matchedModels": 97,
+      "totalModels": 116,
+      "spendUsd": 79.65812410870127,
+      "tokens": 31.125718295314783
     },
     {
       "end": "2026-02-01",
-      "value": 3134529.1286729085,
-      "coverage": 0.9987038917409158,
-      "matchedModels": 56,
-      "totalModels": 58,
-      "spendUsd": 82.57760752485892,
-      "tokens": 26.34450156148987
+      "value": 2627020.069977809,
+      "coverage": 0.9980954428648136,
+      "matchedModels": 98,
+      "totalModels": 119,
+      "spendUsd": 87.45502141801465,
+      "tokens": 33.29057985413617
     },
     {
       "end": "2026-02-08",
-      "value": 3155161.483035826,
-      "coverage": 0.998371826880195,
-      "matchedModels": 55,
-      "totalModels": 61,
-      "spendUsd": 91.05169538607453,
-      "tokens": 28.85801436016093
+      "value": 2725995.8022014815,
+      "coverage": 0.9985443960905214,
+      "matchedModels": 107,
+      "totalModels": 134,
+      "spendUsd": 101.05065827972383,
+      "tokens": 37.06926408254794
     },
     {
       "end": "2026-02-15",
-      "value": 3397803.9400604693,
-      "coverage": 0.9981427325228717,
-      "matchedModels": 57,
-      "totalModels": 61,
-      "spendUsd": 104.32936028066086,
-      "tokens": 30.704938283991794
+      "value": 3188689.2768733115,
+      "coverage": 0.998676612233099,
+      "matchedModels": 102,
+      "totalModels": 127,
+      "spendUsd": 124.10662619142505,
+      "tokens": 38.9208905024194
     },
     {
       "end": "2026-02-22",
-      "value": 3483370.5457572127,
-      "coverage": 0.9988881392187363,
-      "matchedModels": 58,
-      "totalModels": 62,
-      "spendUsd": 108.8089633161676,
-      "tokens": 31.236689260262086
+      "value": 3210716.994240662,
+      "coverage": 0.9992157480752176,
+      "matchedModels": 103,
+      "totalModels": 124,
+      "spendUsd": 128.94191842276925,
+      "tokens": 40.159851725973795
     },
     {
       "end": "2026-03-01",
-      "value": 3519372.278918062,
-      "coverage": 0.9989311235297834,
-      "matchedModels": 58,
-      "totalModels": 63,
-      "spendUsd": 133.65998903449847,
-      "tokens": 37.97836046932458
+      "value": 3449606.788523598,
+      "coverage": 0.9991301556004136,
+      "matchedModels": 114,
+      "totalModels": 132,
+      "spendUsd": 159.39663349635055,
+      "tokens": 46.20718918650172
     },
     {
       "end": "2026-03-08",
-      "value": 3319488.1213521403,
-      "coverage": 0.9990275332400539,
-      "matchedModels": 61,
-      "totalModels": 64,
-      "spendUsd": 142.58572673897933,
-      "tokens": 42.95413073534341
+      "value": 3374194.772792616,
+      "coverage": 0.9992751555605749,
+      "matchedModels": 120,
+      "totalModels": 150,
+      "spendUsd": 159.94682989060524,
+      "tokens": 47.4029629766236
     },
     {
       "end": "2026-03-15",
-      "value": 3416277.6831262372,
-      "coverage": 0.9990482261711578,
-      "matchedModels": 61,
-      "totalModels": 64,
-      "spendUsd": 150.2996727662156,
-      "tokens": 43.99515692432715
+      "value": 3186896.9520075745,
+      "coverage": 0.9990700973437293,
+      "matchedModels": 117,
+      "totalModels": 145,
+      "spendUsd": 158.29123672197835,
+      "tokens": 49.669392862628754
     },
     {
       "end": "2026-03-22",
-      "value": 3131020.46127564,
-      "coverage": 0.998994041312145,
-      "matchedModels": 68,
-      "totalModels": 73,
-      "spendUsd": 137.11364102030254,
-      "tokens": 43.79199775795771
+      "value": 2822168.119841556,
+      "coverage": 0.9951494752836906,
+      "matchedModels": 133,
+      "totalModels": 562,
+      "spendUsd": 137.72295496337384,
+      "tokens": 48.8004077415154
     },
     {
       "end": "2026-03-29",
-      "value": 2857027.999161485,
-      "coverage": 0.999061089426712,
-      "matchedModels": 63,
-      "totalModels": 68,
-      "spendUsd": 134.97821593524452,
-      "tokens": 47.24427481104825
+      "value": 2598428.6419738787,
+      "coverage": 0.9917522817637118,
+      "matchedModels": 134,
+      "totalModels": 579,
+      "spendUsd": 131.84094000986917,
+      "tokens": 50.73871873183983
     },
     {
       "end": "2026-04-05",
-      "value": 2813350.066874207,
-      "coverage": 0.9990969751882982,
-      "matchedModels": 63,
-      "totalModels": 70,
-      "spendUsd": 135.89853138767995,
-      "tokens": 48.30487787062739
+      "value": 2552623.14456544,
+      "coverage": 0.9907623485497521,
+      "matchedModels": 134,
+      "totalModels": 358,
+      "spendUsd": 132.7397539381448,
+      "tokens": 52.00131254029763
     },
     {
       "end": "2026-04-12",
-      "value": 2691235.6595982932,
-      "coverage": 0.9987975506152438,
-      "matchedModels": 63,
-      "totalModels": 67,
-      "spendUsd": 138.6710309739316,
-      "tokens": 51.52690009860761
+      "value": 2462623.7088277675,
+      "coverage": 0.9940612174954362,
+      "matchedModels": 120,
+      "totalModels": 189,
+      "spendUsd": 136.24171821799072,
+      "tokens": 55.323806771454784
     },
     {
       "end": "2026-04-19",
-      "value": 2516874.4853711915,
-      "coverage": 0.9983929947806869,
-      "matchedModels": 64,
-      "totalModels": 69,
-      "spendUsd": 147.114157155496,
-      "tokens": 58.45112976851504
+      "value": 2339515.5518157533,
+      "coverage": 0.9985490753482653,
+      "matchedModels": 129,
+      "totalModels": 170,
+      "spendUsd": 143.03468374265162,
+      "tokens": 61.13859069311979
     },
     {
       "end": "2026-04-26",
-      "value": 2426425.3603969933,
-      "coverage": 0.9988761501932975,
-      "matchedModels": 65,
-      "totalModels": 70,
-      "spendUsd": 161.95178560248766,
-      "tokens": 66.74501027140202
+      "value": 2226795.271513949,
+      "coverage": 0.9990653048756579,
+      "matchedModels": 131,
+      "totalModels": 162,
+      "spendUsd": 155.83408833862472,
+      "tokens": 69.9813271260795
     },
     {
       "end": "2026-05-03",
-      "value": 2439535.7318133377,
-      "coverage": 0.9988510936364654,
-      "matchedModels": 68,
-      "totalModels": 72,
-      "spendUsd": 170.16575581551564,
-      "tokens": 69.75333609441715
+      "value": 2307019.227826369,
+      "coverage": 0.9990954788184923,
+      "matchedModels": 150,
+      "totalModels": 180,
+      "spendUsd": 165.3884452057705,
+      "tokens": 71.68923570766961
     },
     {
       "end": "2026-05-10",
-      "value": 2393740.803329315,
-      "coverage": 0.9987900364628516,
-      "matchedModels": 73,
-      "totalModels": 78,
-      "spendUsd": 174.86485211526758,
-      "tokens": 73.05087161987556
+      "value": 2382144.6769082034,
+      "coverage": 0.9988511214620315,
+      "matchedModels": 143,
+      "totalModels": 179,
+      "spendUsd": 174.83806136433705,
+      "tokens": 73.39523206090915
     },
     {
       "end": "2026-05-17",
-      "value": 2508361.627309417,
-      "coverage": 0.9982755601017513,
-      "matchedModels": 71,
-      "totalModels": 77,
-      "spendUsd": 194.86200155841132,
-      "tokens": 77.68497151163535
+      "value": 2501374.7191741364,
+      "coverage": 0.9971619802227777,
+      "matchedModels": 146,
+      "totalModels": 187,
+      "spendUsd": 191.07991320377425,
+      "tokens": 76.38995938475861
     },
     {
       "end": "2026-05-24",
-      "value": 2378803.1857958212,
-      "coverage": 0.9987106082715769,
-      "matchedModels": 76,
-      "totalModels": 81,
-      "spendUsd": 193.97884005357548,
-      "tokens": 81.54472013988011
+      "value": 2463308.942784417,
+      "coverage": 0.9974555335474159,
+      "matchedModels": 149,
+      "totalModels": 189,
+      "spendUsd": 190.12778081952288,
+      "tokens": 77.1838958229132
     },
     {
       "end": "2026-05-31",
-      "value": 2389785.81172465,
-      "coverage": 0.9985882939651043,
-      "matchedModels": 74,
-      "totalModels": 79,
-      "spendUsd": 187.90394232064992,
-      "tokens": 78.62794288875797
+      "value": 2462794.4206985296,
+      "coverage": 0.996671375856648,
+      "matchedModels": 132,
+      "totalModels": 165,
+      "spendUsd": 176.67077963833188,
+      "tokens": 71.73590217417426
     },
     {
       "end": "2026-06-07",
-      "value": 2364185.437163463,
-      "coverage": 0.9963454916305611,
-      "matchedModels": 73,
-      "totalModels": 79,
-      "spendUsd": 217.3471629426408,
-      "tokens": 91.93321282082373
+      "value": 2323031.1565029123,
+      "coverage": 0.994761984398656,
+      "matchedModels": 137,
+      "totalModels": 176,
+      "spendUsd": 177.5984666572548,
+      "tokens": 76.45117723027498
     },
     {
       "end": "2026-06-14",
-      "value": 2432991.5169617864,
-      "coverage": 0.9983326100160068,
-      "matchedModels": 73,
-      "totalModels": 81,
-      "spendUsd": 222.61426975606153,
-      "tokens": 91.49816931299969
+      "value": 2356983.1391278924,
+      "coverage": 0.9956129045725406,
+      "matchedModels": 132,
+      "totalModels": 169,
+      "spendUsd": 181.85444935246326,
+      "tokens": 77.15560045107122
     },
     {
       "end": "2026-06-21",
-      "value": 2324491.7756579467,
-      "coverage": 0.9983509438277772,
-      "matchedModels": 76,
-      "totalModels": 83,
-      "spendUsd": 211.7009633684161,
-      "tokens": 91.07408577881253
+      "value": 2351807.9244436002,
+      "coverage": 0.995772023658921,
+      "matchedModels": 132,
+      "totalModels": 169,
+      "spendUsd": 174.20129370010363,
+      "tokens": 74.07122490299324
     },
     {
       "end": "2026-06-28",
-      "value": 2204787.4543817034,
-      "coverage": 0.9986283014434973,
-      "matchedModels": 72,
-      "totalModels": 78,
-      "spendUsd": 229.8796440140819,
-      "tokens": 104.26385707031694
+      "value": 2425015.8420090745,
+      "coverage": 0.9946654438244925,
+      "matchedModels": 134,
+      "totalModels": 173,
+      "spendUsd": 186.78943058333746,
+      "tokens": 77.02606611781404
     },
     {
       "end": "2026-07-05",
-      "value": 2325376.522063178,
-      "coverage": 0.9983055457936578,
-      "matchedModels": 75,
-      "totalModels": 83,
-      "spendUsd": 214.73756618310978,
-      "tokens": 92.34528866429984
+      "value": 2272119.7892225897,
+      "coverage": 0.9985210750907684,
+      "matchedModels": 174,
+      "totalModels": 203,
+      "spendUsd": 176.94118262487152,
+      "tokens": 77.87493576006057
     },
     {
       "end": "2026-07-12",
-      "value": 2409685.44211173,
-      "coverage": 0.9984326626453146,
-      "matchedModels": 79,
-      "totalModels": 87,
-      "spendUsd": 289.39516141755865,
-      "tokens": 120.09665509036189
+      "value": 2310694.370732518,
+      "coverage": 0.998601753397398,
+      "matchedModels": 154,
+      "totalModels": 186,
+      "spendUsd": 233.76115866021084,
+      "tokens": 101.16489727981886
     },
     {
       "end": "2026-07-19",
-      "value": 2420913.6496566967,
-      "coverage": 0.9978994175327673,
-      "matchedModels": 84,
-      "totalModels": 94,
-      "spendUsd": 295.6105060717275,
-      "tokens": 122.10700126113431
+      "value": 2344592.9389325944,
+      "coverage": 0.9974052965630301,
+      "matchedModels": 168,
+      "totalModels": 204,
+      "spendUsd": 241.91367274228023,
+      "tokens": 103.17939149488971
     },
     {
       "end": "2026-07-26",
-      "value": 2527514.869806931,
-      "coverage": 0.9964801814693883,
-      "matchedModels": 98,
-      "totalModels": 107,
-      "spendUsd": 329.00242931082863,
-      "tokens": 130.16834569046873
+      "value": 2429822.14007122,
+      "coverage": 0.9970822926369288,
+      "matchedModels": 206,
+      "totalModels": 240,
+      "spendUsd": 265.78215333766684,
+      "tokens": 109.38337788373126
     },
     {
       "end": "2026-08-02",
-      "value": 2311698.54033374,
-      "coverage": 0.9969968183441271,
-      "matchedModels": 96,
-      "totalModels": 103,
-      "spendUsd": 346.5961593805769,
-      "tokens": 149.9313830645664
+      "value": 2235881.6905772053,
+      "coverage": 0.9973881764776501,
+      "matchedModels": 184,
+      "totalModels": 219,
+      "spendUsd": 278.5638917230222,
+      "tokens": 124.58793902065068
     },
     {
       "end": "2026-08-09",
-      "value": 2154918.26063245,
-      "coverage": 0.9967751014441022,
-      "matchedModels": 89,
-      "totalModels": 97,
-      "spendUsd": 336.0721522481547,
-      "tokens": 155.9558700614103
+      "value": 2026920.5647908528,
+      "coverage": 0.9972857493324653,
+      "matchedModels": 197,
+      "totalModels": 225,
+      "spendUsd": 269.4524119607776,
+      "tokens": 132.93683859218282
     },
     {
       "end": "2026-08-16",
-      "value": 2026542.3839021253,
-      "coverage": 0.996834167358059,
-      "matchedModels": 98,
-      "totalModels": 105,
-      "spendUsd": 323.28682712197775,
-      "tokens": 159.52630928916776
+      "value": 1899019.9166701068,
+      "coverage": 0.9972907068942821,
+      "matchedModels": 196,
+      "totalModels": 222,
+      "spendUsd": 260.8799378351017,
+      "tokens": 137.3760936075644
     },
     {
       "end": "2026-08-23",
-      "value": 1927586.6921513672,
-      "coverage": 0.9969777615642925,
-      "matchedModels": 105,
-      "totalModels": 110,
-      "spendUsd": 317.48144687050495,
-      "tokens": 164.7041080762837
+      "value": 1791231.2772546122,
+      "coverage": 0.99231947528921,
+      "matchedModels": 202,
+      "totalModels": 238,
+      "spendUsd": 258.2484703242281,
+      "tokens": 144.17371648402704
     },
     {
       "end": "2026-08-30",
-      "value": 1783514.099835156,
-      "coverage": 0.996236424908667,
-      "matchedModels": 100,
-      "totalModels": 107,
-      "spendUsd": 304.46015558642193,
-      "tokens": 170.7080171749481
+      "value": 1643015.5913355788,
+      "coverage": 0.9893861867583306,
+      "matchedModels": 199,
+      "totalModels": 233,
+      "spendUsd": 247.98604317870178,
+      "tokens": 150.9334692174882
     },
     {
       "end": "2026-09-06",
-      "value": 1764277.8557943734,
-      "coverage": 0.9971349563763573,
-      "matchedModels": 108,
-      "totalModels": 114,
-      "spendUsd": 310.26959819169605,
-      "tokens": 175.8620940418684
+      "value": 1621227.2811173573,
+      "coverage": 0.9907973359565002,
+      "matchedModels": 227,
+      "totalModels": 272,
+      "spendUsd": 256.6269488766193,
+      "tokens": 158.2917780039766
     },
     {
       "end": "2026-09-13",
-      "value": 1784208.657099128,
-      "coverage": 0.9973800986698083,
-      "matchedModels": 106,
-      "totalModels": 114,
-      "spendUsd": 292.4957657581234,
-      "tokens": 163.9358516697707
+      "value": 1649488.2589755754,
+      "coverage": 0.9969065029736097,
+      "matchedModels": 211,
+      "totalModels": 247,
+      "spendUsd": 247.61177007783067,
+      "tokens": 150.1142968011251
     },
     {
       "end": "2026-09-20",
-      "value": 1786238.6216983201,
-      "coverage": 0.997416065360553,
-      "matchedModels": 108,
-      "totalModels": 114,
-      "spendUsd": 341.8451207087801,
-      "tokens": 191.3770739005523
+      "value": 1656561.57912155,
+      "coverage": 0.9924943161533359,
+      "matchedModels": 214,
+      "totalModels": 257,
+      "spendUsd": 286.41089616632576,
+      "tokens": 172.89480800237152
     },
     {
       "end": "2026-09-27",
-      "value": 1634036.7192600402,
-      "coverage": 0.9964338865812178,
-      "matchedModels": 113,
-      "totalModels": 119,
-      "spendUsd": 332.2278600195384,
-      "tokens": 203.3172548105192
+      "value": 1489044.2272109264,
+      "coverage": 0.9932835819451742,
+      "matchedModels": 230,
+      "totalModels": 275,
+      "spendUsd": 269.85907978092496,
+      "tokens": 181.2297276665771
     },
     {
       "end": "2026-10-04",
-      "value": 1431580.2967245595,
-      "coverage": 0.9978897165165812,
-      "matchedModels": 108,
-      "totalModels": 114,
-      "spendUsd": 314.9603480181585,
-      "tokens": 220.008859257692
+      "value": 1312456.6540518156,
+      "coverage": 0.9876947443943722,
+      "matchedModels": 214,
+      "totalModels": 256,
+      "spendUsd": 256.00948703238157,
+      "tokens": 195.06128925631882
     },
     {
       "end": "2026-10-11",
-      "value": 1355612.7291970218,
-      "coverage": 0.9984133738303677,
-      "matchedModels": 112,
-      "totalModels": 118,
-      "spendUsd": 319.70454825757616,
-      "tokens": 235.8376705764254
+      "value": 1242921.9632415946,
+      "coverage": 0.9909451547750475,
+      "matchedModels": 225,
+      "totalModels": 260,
+      "spendUsd": 259.34213635036076,
+      "tokens": 208.65520444580864
     },
     {
       "end": "2026-10-18",
-      "value": 1263065.350616185,
-      "coverage": 0.9985996932676401,
-      "matchedModels": 111,
-      "totalModels": 115,
-      "spendUsd": 309.9573845765072,
-      "tokens": 245.40090853200493
+      "value": 1162446.5843132967,
+      "coverage": 0.9984040167048108,
+      "matchedModels": 209,
+      "totalModels": 247,
+      "spendUsd": 251.80266966716763,
+      "tokens": 216.61440023579016
     },
     {
       "end": "2026-10-25",
-      "value": 1185450.302792384,
-      "coverage": 0.9979983760453712,
-      "matchedModels": 109,
-      "totalModels": 116,
-      "spendUsd": 306.4745614974794,
-      "tokens": 258.53007989922827
+      "value": 1126374.9131664361,
+      "coverage": 0.9986671126679014,
+      "matchedModels": 218,
+      "totalModels": 253,
+      "spendUsd": 257.2340202754762,
+      "tokens": 228.37335710216283
     },
     {
       "end": "2026-11-01",
-      "value": 1224663.7275796651,
-      "coverage": 0.9992474532409447,
-      "matchedModels": 104,
-      "totalModels": 108,
-      "spendUsd": 348.1578531420917,
-      "tokens": 284.28853186512276
+      "value": 1194878.280304112,
+      "coverage": 0.9989579992845957,
+      "matchedModels": 212,
+      "totalModels": 247,
+      "spendUsd": 300.80096261724424,
+      "tokens": 251.74192850897455
+    },
+    {
+      "end": "2026-11-08",
+      "value": 1030269.5574083817,
+      "coverage": 0.9892064625229241,
+      "matchedModels": 223,
+      "totalModels": 256,
+      "spendUsd": 277.7617970736093,
+      "tokens": 269.6010913612864
+    },
+    {
+      "end": "2026-11-15",
+      "value": 1028829.3718275112,
+      "coverage": 0.9928872145095905,
+      "matchedModels": 225,
+      "totalModels": 263,
+      "spendUsd": 281.9000344817196,
+      "tokens": 274.00076455921953
     }
   ],
   "rampPublicChart": {
@@ -3618,3231 +3689,3307 @@ export const adoptionPriceSnapshot = {
     "weekly": [
       {
         "end": "2025-01-12",
-        "volume": 1.6354423685669632,
+        "volume": 3.2559909652082006,
         "volumeWow": null,
-        "spendingIndex": 5.294420318288201
+        "spendingIndex": 9.791888375385446
       },
       {
         "end": "2025-01-19",
-        "volume": 1.6853493953781027,
-        "volumeWow": 3.0515918977242817,
-        "spendingIndex": 5.783129236268922
+        "volume": 3.5606595409857467,
+        "volumeWow": 9.357168955106854,
+        "spendingIndex": 11.188734804867634
       },
       {
         "end": "2025-01-26",
-        "volume": 1.6251674812581358,
-        "volumeWow": -3.570886504899795,
-        "spendingIndex": 6.906483374497173
+        "volume": 3.6792594579216873,
+        "volumeWow": 3.330841254850969,
+        "spendingIndex": 11.954689539113629
       },
       {
         "end": "2025-02-02",
-        "volume": 1.8046086087797872,
-        "volumeWow": 11.041392938944107,
-        "spendingIndex": 7.306035717577291
+        "volume": 3.617585127816554,
+        "volumeWow": -1.6762702062868784,
+        "spendingIndex": 11.689549421574421
       },
       {
         "end": "2025-02-09",
-        "volume": 1.9512196532653026,
-        "volumeWow": 8.124257180876949,
-        "spendingIndex": 6.854295340398324
+        "volume": 3.5098603021404062,
+        "volumeWow": -2.9778103864874783,
+        "spendingIndex": 10.420848962627396
       },
       {
         "end": "2025-02-16",
-        "volume": 2.2537214758187147,
-        "volumeWow": 15.503217285003522,
-        "spendingIndex": 7.485970794970939
+        "volume": 3.7208356513081777,
+        "volumeWow": 6.010932943374225,
+        "spendingIndex": 11.413981047630378
       },
       {
         "end": "2025-02-23",
-        "volume": 2.2711386388727473,
-        "volumeWow": 0.7728179032284954,
-        "spendingIndex": 8.669237694401279
+        "volume": 3.7302701335472137,
+        "volumeWow": 0.25355815529555237,
+        "spendingIndex": 11.295276461242024
       },
       {
         "end": "2025-03-02",
-        "volume": 2.901858750369194,
-        "volumeWow": 27.771096871897583,
-        "spendingIndex": 9.734530942794565
+        "volume": 4.940072208523596,
+        "volumeWow": 32.432023195755775,
+        "spendingIndex": 14.130743987228023
       },
       {
         "end": "2025-03-09",
-        "volume": 2.6043402486285587,
-        "volumeWow": -10.252687237198677,
-        "spendingIndex": 10.333567169321302
+        "volume": 5.489325517942889,
+        "volumeWow": 11.118325527137252,
+        "spendingIndex": 18.664750535377067
       },
       {
         "end": "2025-03-16",
-        "volume": 2.5735784796485976,
-        "volumeWow": -1.1811731971719253,
-        "spendingIndex": 9.724646240872833
+        "volume": 6.0343615891117866,
+        "volumeWow": 9.929017133113094,
+        "spendingIndex": 20.70895870494361
       },
       {
         "end": "2025-03-23",
-        "volume": 2.6151180804816208,
-        "volumeWow": 1.6140794291493732,
-        "spendingIndex": 11.289708187756375
+        "volume": 5.78708782083581,
+        "volumeWow": -4.097761869659089,
+        "spendingIndex": 21.866348983197256
       },
       {
         "end": "2025-03-30",
-        "volume": 2.590390860155557,
-        "volumeWow": -0.9455489031497066,
-        "spendingIndex": 12.016389095696832
+        "volume": 5.388435419780619,
+        "volumeWow": -6.888653039269332,
+        "spendingIndex": 18.95532025962233
       },
       {
         "end": "2025-04-06",
-        "volume": 2.8752130455408538,
-        "volumeWow": 10.995336254706856,
-        "spendingIndex": 12.744478013499867
+        "volume": 5.374255937248325,
+        "volumeWow": -0.26314656162049754,
+        "spendingIndex": 16.72168747875713
       },
       {
         "end": "2025-04-13",
-        "volume": 2.6441139645173166,
-        "volumeWow": -8.03763329405962,
-        "spendingIndex": 12.239573305335933
+        "volume": 5.515829455507214,
+        "volumeWow": 2.6342905866775013,
+        "spendingIndex": 16.387579151731813
       },
       {
         "end": "2025-04-20",
-        "volume": 2.5778517995803085,
-        "volumeWow": -2.5060253009595357,
-        "spendingIndex": 11.733366048882713
+        "volume": 6.781755195228612,
+        "volumeWow": 22.95077739318878,
+        "spendingIndex": 21.187794929409872
       },
       {
         "end": "2025-04-27",
-        "volume": 3.3962078066282584,
-        "volumeWow": 31.74565765111803,
-        "spendingIndex": 14.382331546131457
+        "volume": 8.318544296123726,
+        "volumeWow": 22.660639563874852,
+        "spendingIndex": 26.147813263175642
       },
       {
         "end": "2025-05-04",
-        "volume": 3.286609007374632,
-        "volumeWow": -3.2270934375607574,
-        "spendingIndex": 14.078878020555369
+        "volume": 7.433299686469218,
+        "volumeWow": -10.641821190601986,
+        "spendingIndex": 22.80274381894343
       },
       {
         "end": "2025-05-11",
-        "volume": 3.4322242116982475,
-        "volumeWow": 4.430560617246471,
-        "spendingIndex": 13.980906162746676
+        "volume": 8.482508220366581,
+        "volumeWow": 14.114976903288712,
+        "spendingIndex": 23.407053467028195
       },
       {
         "end": "2025-05-18",
-        "volume": 3.6484432829284454,
-        "volumeWow": 6.299677931681913,
-        "spendingIndex": 14.742161063779456
+        "volume": 8.59046842972993,
+        "volumeWow": 1.2727392247511737,
+        "spendingIndex": 23.499980202636625
       },
       {
         "end": "2025-05-25",
-        "volume": 3.870106424699071,
-        "volumeWow": 6.075553998819627,
-        "spendingIndex": 14.816919991701571
+        "volume": 9.279536940241666,
+        "volumeWow": 8.021314741429064,
+        "spendingIndex": 24.02867116453615
       },
       {
         "end": "2025-06-01",
-        "volume": 3.7395666393320846,
-        "volumeWow": -3.3730283108981074,
-        "spendingIndex": 15.033975421726623
+        "volume": 8.1126859329092,
+        "volumeWow": -12.57445295866324,
+        "spendingIndex": 22.250895754007583
       },
       {
         "end": "2025-06-08",
-        "volume": 4.018557515357736,
-        "volumeWow": 7.460513555000636,
-        "spendingIndex": 16.20026912933837
+        "volume": 5.058046209868048,
+        "volumeWow": -37.652631302414555,
+        "spendingIndex": 17.235284698308668
       },
       {
         "end": "2025-06-15",
-        "volume": 4.034243725409078,
-        "volumeWow": 0.3903442962155834,
-        "spendingIndex": 16.991105347807018
+        "volume": 4.420848581655236,
+        "volumeWow": -12.597702784321442,
+        "spendingIndex": 16.436118680335294
       },
       {
         "end": "2025-06-22",
-        "volume": 4.594826762398952,
-        "volumeWow": 13.895616505743735,
-        "spendingIndex": 17.39893813365325
+        "volume": 4.933073711363286,
+        "volumeWow": 11.58657936925458,
+        "spendingIndex": 16.157594255550308
       },
       {
         "end": "2025-06-29",
-        "volume": 5.200733720026456,
-        "volumeWow": 13.186720391416017,
-        "spendingIndex": 18.35118543149206
+        "volume": 5.365471296506205,
+        "volumeWow": 8.765277197194422,
+        "spendingIndex": 16.631956379390466
       },
       {
         "end": "2025-07-06",
-        "volume": 5.095658046714204,
-        "volumeWow": -2.020400946651757,
-        "spendingIndex": 18.745517966794793
+        "volume": 5.239211380326891,
+        "volumeWow": -2.353193395359876,
+        "spendingIndex": 16.883413499178953
       },
       {
         "end": "2025-07-13",
-        "volume": 6.566029588981948,
-        "volumeWow": 28.85538096921305,
-        "spendingIndex": 21.549959820808393
+        "volume": 6.467327423271927,
+        "volumeWow": 23.44085691133939,
+        "spendingIndex": 19.243619367096617
       },
       {
         "end": "2025-07-20",
-        "volume": 6.981160530470541,
-        "volumeWow": 6.322404367248047,
-        "spendingIndex": 25.797288885592195
+        "volume": 7.746641554066367,
+        "volumeWow": 19.781186989095012,
+        "spendingIndex": 24.186560284192826
       },
       {
         "end": "2025-07-27",
-        "volume": 6.883358968682007,
-        "volumeWow": -1.4009355802901524,
-        "spendingIndex": 24.280483131859445
+        "volume": 9.277863281163285,
+        "volumeWow": 19.7662653733236,
+        "spendingIndex": 27.035635596398294
       },
       {
         "end": "2025-08-03",
-        "volume": 6.717158111869514,
-        "volumeWow": -2.4145313003240965,
-        "spendingIndex": 23.33560232873636
+        "volume": 8.468731783508963,
+        "volumeWow": -8.72109744597218,
+        "spendingIndex": 24.98253956341271
       },
       {
         "end": "2025-08-10",
-        "volume": 6.287735336821169,
-        "volumeWow": -6.39292343423532,
-        "spendingIndex": 26.58941046917103
+        "volume": 8.742671340654336,
+        "volumeWow": 3.2347175958366226,
+        "spendingIndex": 28.837031385095177
       },
       {
         "end": "2025-08-17",
-        "volume": 6.715702237940093,
-        "volumeWow": 6.8063758761081505,
-        "spendingIndex": 26.729716147459662
+        "volume": 9.944458576959859,
+        "volumeWow": 13.746224574599818,
+        "spendingIndex": 30.370963954969902
       },
       {
         "end": "2025-08-24",
-        "volume": 7.526195732197374,
-        "volumeWow": 12.068633562673913,
-        "spendingIndex": 27.05531258939104
+        "volume": 10.702787334289154,
+        "volumeWow": 7.625641471183298,
+        "spendingIndex": 30.856378433966007
       },
       {
         "end": "2025-08-31",
-        "volume": 8.987075845873866,
-        "volumeWow": 19.41060484816768,
-        "spendingIndex": 27.44058109133482
+        "volume": 11.574697899884667,
+        "volumeWow": 8.146574703975684,
+        "spendingIndex": 30.581357781544963
       },
       {
         "end": "2025-09-07",
-        "volume": 8.827198593155584,
-        "volumeWow": -1.7789685483925677,
-        "spendingIndex": 28.520431906874222
+        "volume": 10.703105703201244,
+        "volumeWow": -7.530150715139683,
+        "spendingIndex": 29.35741586288667
       },
       {
         "end": "2025-09-14",
-        "volume": 9.242224569474365,
-        "volumeWow": 4.701672585463101,
-        "spendingIndex": 29.37271819899584
+        "volume": 10.64111129668588,
+        "volumeWow": -0.5792188569792578,
+        "spendingIndex": 28.509107615346696
       },
       {
         "end": "2025-09-21",
-        "volume": 11.251780604613513,
-        "volumeWow": 21.74320716871996,
-        "spendingIndex": 35.254309529460464
+        "volume": 12.898254768832077,
+        "volumeWow": 21.211538994514356,
+        "spendingIndex": 33.17981307853494
       },
       {
         "end": "2025-09-28",
-        "volume": 11.009389592257378,
-        "volumeWow": -2.1542458111629803,
-        "spendingIndex": 36.24497184405744
+        "volume": 14.14039364533239,
+        "volumeWow": 9.630286412870937,
+        "spendingIndex": 34.668721702812626
       },
       {
         "end": "2025-10-05",
-        "volume": 13.598664172119577,
-        "volumeWow": 23.518784199290856,
-        "spendingIndex": 43.48127479872194
+        "volume": 17.445728323180024,
+        "volumeWow": 23.37512491343332,
+        "spendingIndex": 42.95539654085309
       },
       {
         "end": "2025-10-12",
-        "volume": 15.167110263534813,
-        "volumeWow": 11.533824731335862,
-        "spendingIndex": 50.88207955982108
+        "volume": 19.38724394094419,
+        "volumeWow": 11.128888297454953,
+        "spendingIndex": 49.67985111460723
       },
       {
         "end": "2025-10-19",
-        "volume": 15.377317522478132,
-        "volumeWow": 1.385941390883838,
-        "spendingIndex": 50.79565910883224
+        "volume": 21.28746872732909,
+        "volumeWow": 9.801417840375892,
+        "spendingIndex": 53.360130490987
       },
       {
         "end": "2025-10-26",
-        "volume": 15.154584655385596,
-        "volumeWow": -1.4484507246920741,
-        "spendingIndex": 49.613842748488736
+        "volume": 21.864474977644115,
+        "volumeWow": 2.7105442065747054,
+        "spendingIndex": 55.045142477227415
       },
       {
         "end": "2025-11-02",
-        "volume": 15.817684636798127,
-        "volumeWow": 4.375573441908087,
-        "spendingIndex": 51.31446172665771
+        "volume": 22.436640873393433,
+        "volumeWow": 2.616874616629694,
+        "spendingIndex": 56.13940721294568
       },
       {
         "end": "2025-11-09",
-        "volume": 17.03097193187261,
-        "volumeWow": 7.670448127736096,
-        "spendingIndex": 54.40267265224056
+        "volume": 23.81628634057843,
+        "volumeWow": 6.149073183326004,
+        "spendingIndex": 60.72565363836838
       },
       {
         "end": "2025-11-16",
-        "volume": 16.796473373284076,
-        "volumeWow": -1.3768947510839458,
-        "spendingIndex": 53.46299608833267
+        "volume": 24.777163984917255,
+        "volumeWow": 4.034540190683189,
+        "spendingIndex": 59.45268228755875
       },
       {
         "end": "2025-11-23",
-        "volume": 16.51249985396768,
-        "volumeWow": -1.6906734705874449,
-        "spendingIndex": 54.363630035685276
+        "volume": 25.755844557657294,
+        "volumeWow": 3.9499297552205714,
+        "spendingIndex": 61.13637285303844
       },
       {
         "end": "2025-11-30",
-        "volume": 15.488148382207669,
-        "volumeWow": -6.20349117831408,
-        "spendingIndex": 51.18656852296877
+        "volume": 24.77867831662136,
+        "volumeWow": -3.7939592268016686,
+        "spendingIndex": 60.545961084208145
       },
       {
         "end": "2025-12-07",
-        "volume": 19.61431975972282,
-        "volumeWow": 26.640830625403723,
-        "spendingIndex": 63.73504705703954
+        "volume": 28.566864015805397,
+        "volumeWow": 15.288086195634376,
+        "spendingIndex": 71.89228049645631
       },
       {
         "end": "2025-12-14",
-        "volume": 19.53313730884464,
-        "volumeWow": -0.413893787154862,
-        "spendingIndex": 63.465404647103135
+        "volume": 28.873259477024423,
+        "volumeWow": 1.0725554651343838,
+        "spendingIndex": 73.41814049392336
       },
       {
         "end": "2025-12-21",
-        "volume": 18.64572358295059,
-        "volumeWow": -4.543119273995099,
-        "spendingIndex": 57.339435406320334
+        "volume": 29.090090882496423,
+        "volumeWow": 0.7509765416147118,
+        "spendingIndex": 72.33776930260088
       },
       {
         "end": "2025-12-28",
-        "volume": 13.052224538924659,
-        "volumeWow": -29.998830665603972,
-        "spendingIndex": 37.80846712602772
+        "volume": 20.22333783669375,
+        "volumeWow": -30.480320881836153,
+        "spendingIndex": 48.5867324440117
       },
       {
         "end": "2026-01-04",
-        "volume": 13.114482121769209,
-        "volumeWow": 0.47698829160411904,
-        "spendingIndex": 36.22318144310739
+        "volume": 18.835929066343564,
+        "volumeWow": -6.860434125927705,
+        "spendingIndex": 43.68387101351874
       },
       {
         "end": "2026-01-11",
-        "volume": 19.627257559718625,
-        "volumeWow": 49.660942593673774,
-        "spendingIndex": 58.61782422915522
+        "volume": 26.511821319070297,
+        "volumeWow": 40.75133339954109,
+        "spendingIndex": 65.52992578020249
       },
       {
         "end": "2026-01-18",
-        "volume": 21.806031541385636,
-        "volumeWow": 11.100756053349748,
-        "spendingIndex": 65.46718840939585
+        "volume": 28.82599499580954,
+        "volumeWow": 8.728837030425485,
+        "spendingIndex": 72.13786609423504
       },
       {
         "end": "2026-01-25",
-        "volume": 23.71463884358457,
-        "volumeWow": 8.752657715717739,
-        "spendingIndex": 72.9732133710928
+        "volume": 31.17107750938201,
+        "volumeWow": 8.135304657873466,
+        "spendingIndex": 79.65812410870123
       },
       {
         "end": "2026-02-01",
-        "volume": 26.378691201019343,
-        "volumeWow": 11.233788441840309,
-        "spendingIndex": 82.5776075248589
+        "volume": 33.35410465213915,
+        "volumeWow": 7.003374015864816,
+        "spendingIndex": 87.45502141801471
       },
       {
         "end": "2026-02-08",
-        "volume": 28.905076829280247,
-        "volumeWow": 9.57737292198666,
-        "spendingIndex": 91.05169538607454
+        "volume": 37.12330090447724,
+        "volumeWow": 11.300546939119705,
+        "spendingIndex": 101.05065827972382
       },
       {
         "end": "2026-02-15",
-        "volume": 30.76207167925076,
-        "volumeWow": 6.424459138919891,
-        "spendingIndex": 104.32936028066086
+        "volume": 38.97246618741779,
+        "volumeWow": 4.9811445585043135,
+        "spendingIndex": 124.10662619142504
       },
       {
         "end": "2026-02-22",
-        "volume": 31.271458768840073,
-        "volumeWow": 1.6558933185663705,
-        "spendingIndex": 108.81026496713547
+        "volume": 40.19137188673559,
+        "volumeWow": 3.127607304747171,
+        "spendingIndex": 128.94191842276925
       },
       {
         "end": "2026-03-01",
-        "volume": 38.01899808179543,
-        "volumeWow": 21.57730908184825,
-        "spendingIndex": 133.6599890344984
+        "volume": 46.2474172433862,
+        "volumeWow": 15.068023489512438,
+        "spendingIndex": 159.39663349635055
       },
       {
         "end": "2026-03-08",
-        "volume": 42.99594286058787,
-        "volumeWow": 13.09067842367877,
-        "spendingIndex": 142.58572673897936
+        "volume": 47.4373476743064,
+        "volumeWow": 2.5729662364883055,
+        "spendingIndex": 159.94682989060527
       },
       {
         "end": "2026-03-15",
-        "volume": 44.037070255295035,
-        "volumeWow": 2.421454968630332,
-        "spendingIndex": 150.2996727662156
+        "volume": 49.71562355302887,
+        "volumeWow": 4.802705021293718,
+        "spendingIndex": 158.29123672197832
       },
       {
         "end": "2026-03-22",
-        "volume": 43.83609505862358,
-        "volumeWow": -0.45637731008523197,
-        "spendingIndex": 137.1138491779671
+        "volume": 49.03826907772192,
+        "volumeWow": -1.3624579697455674,
+        "spendingIndex": 137.7229638062693
       },
       {
         "end": "2026-03-29",
-        "volume": 47.28867464767171,
-        "volumeWow": 7.87611119200029,
-        "spendingIndex": 134.97821593524455
+        "volume": 51.16067758534131,
+        "volumeWow": 4.328065707734363,
+        "spendingIndex": 131.84094000986914
       },
       {
         "end": "2026-04-05",
-        "volume": 48.3485377998702,
-        "volumeWow": 2.241262120571341,
-        "spendingIndex": 135.89853138768004
+        "volume": 52.486161405321454,
+        "volumeWow": 2.5908253810147386,
+        "spendingIndex": 132.73975629625025
       },
       {
         "end": "2026-04-12",
-        "volume": 51.58893317956961,
-        "volumeWow": 6.702157970345302,
-        "spendingIndex": 138.67103097393164
+        "volume": 55.65432570726841,
+        "volumeWow": 6.03618976339495,
+        "spendingIndex": 136.24171821799075
       },
       {
         "end": "2026-04-19",
-        "volume": 58.54521223013465,
-        "volumeWow": 13.484052919551148,
-        "spendingIndex": 147.114157155496
+        "volume": 61.227427076427304,
+        "volumeWow": 10.013779339403705,
+        "spendingIndex": 143.03468374265162
       },
       {
         "end": "2026-04-26",
-        "volume": 66.82010603465291,
-        "volumeWow": 14.134193880774703,
-        "spendingIndex": 161.95373062450514
+        "volume": 70.0467995280741,
+        "volumeWow": 14.40428395045572,
+        "spendingIndex": 155.83408833862475
       },
       {
         "end": "2026-05-03",
-        "volume": 69.83356832545458,
-        "volumeWow": 4.509813691763509,
-        "spendingIndex": 170.16575581551558
+        "volume": 71.75413884611686,
+        "volumeWow": 2.437426591286962,
+        "spendingIndex": 165.38848709854852
       },
       {
         "end": "2026-05-10",
-        "volume": 73.13936758778686,
-        "volumeWow": 4.733825496251076,
-        "spendingIndex": 174.86535063693134
+        "volume": 73.47965125521367,
+        "volumeWow": 2.4047566270669396,
+        "spendingIndex": 174.8380675543638
       },
       {
         "end": "2026-05-17",
-        "volume": 77.81916598631061,
-        "volumeWow": 6.398467135919295,
-        "spendingIndex": 194.86200155841118
+        "volume": 76.60737262334463,
+        "volumeWow": 4.256581672206883,
+        "spendingIndex": 191.08974495093955
       },
       {
         "end": "2026-05-24",
-        "volume": 81.64999897318192,
-        "volumeWow": 4.922737141060085,
-        "spendingIndex": 193.97884005357548
+        "volume": 77.38078864369167,
+        "volumeWow": 1.0095843178824282,
+        "spendingIndex": 190.1391415016791
       },
       {
         "end": "2026-05-31",
-        "volume": 78.73909935049332,
-        "volumeWow": -3.5650945000558987,
-        "spendingIndex": 187.9039423206499
+        "volume": 71.97548149962324,
+        "volumeWow": -6.985334782458419,
+        "spendingIndex": 176.67818172378594
       },
       {
         "end": "2026-06-07",
-        "volume": 92.27041582771776,
-        "volumeWow": 17.185002862417996,
-        "spendingIndex": 217.34716294264086
+        "volume": 76.85373831056732,
+        "volumeWow": 6.777664712072284,
+        "spendingIndex": 177.60292002181725
       },
       {
         "end": "2026-06-14",
-        "volume": 91.6509872511653,
-        "volumeWow": -0.6713187222533112,
-        "spendingIndex": 222.6142697560615
+        "volume": 77.49558095994897,
+        "volumeWow": 0.8351482484663775,
+        "spendingIndex": 181.86076382521662
       },
       {
         "end": "2026-06-21",
-        "volume": 91.22452013680221,
-        "volumeWow": -0.4653164435581947,
-        "spendingIndex": 211.70096336841618
+        "volume": 74.38572599260391,
+        "volumeWow": -4.012944904500149,
+        "spendingIndex": 174.20708157638498
       },
       {
         "end": "2026-06-28",
-        "volume": 104.40707210040576,
-        "volumeWow": 14.450667368635873,
-        "spendingIndex": 229.87964401408195
+        "volume": 77.43916971886395,
+        "volumeWow": 4.104878571143655,
+        "spendingIndex": 186.79668634809508
       },
       {
         "end": "2026-07-05",
-        "volume": 92.50202911663175,
-        "volumeWow": -11.402525465253177,
-        "spendingIndex": 214.73756618310972
+        "volume": 77.99027752416897,
+        "volumeWow": 0.7116654366333908,
+        "spendingIndex": 176.94640308247165
       },
       {
         "end": "2026-07-12",
-        "volume": 120.28518255018798,
-        "volumeWow": 30.035182686128614,
-        "spendingIndex": 289.3951614175587
+        "volume": 101.30654881752426,
+        "volumeWow": 29.896382002397214,
+        "spendingIndex": 233.76747361130265
       },
       {
         "end": "2026-07-19",
-        "volume": 122.36403701190129,
-        "volumeWow": 1.7282714442786284,
-        "spendingIndex": 295.6155101057903
+        "volume": 103.44780787753656,
+        "volumeWow": 2.113643278747146,
+        "spendingIndex": 241.9174662721233
       },
       {
         "end": "2026-07-26",
-        "volume": 130.62813301366944,
-        "volumeWow": 6.753696758929562,
-        "spendingIndex": 329.0024293108287
+        "volume": 109.70346047812272,
+        "volumeWow": 6.047158203672831,
+        "spendingIndex": 265.78832819037615
       },
       {
         "end": "2026-08-02",
-        "volume": 150.38301056324482,
-        "volumeWow": 15.122988512365975,
-        "spendingIndex": 346.59615938057703
+        "volume": 124.91419284780596,
+        "volumeWow": 13.865316830836516,
+        "spendingIndex": 278.5673929193061
       },
       {
         "end": "2026-08-09",
-        "volume": 156.46043910553684,
-        "volumeWow": 4.041299957707722,
-        "spendingIndex": 336.0721522481549
+        "volume": 133.29864452707196,
+        "volumeWow": 6.712168960240983,
+        "spendingIndex": 269.45388818420764
       },
       {
         "end": "2026-08-16",
-        "volume": 160.03294681598388,
-        "volumeWow": 2.283329722753291,
-        "spendingIndex": 323.28682712197786
+        "volume": 137.7492968277774,
+        "volumeWow": 3.3388578829858684,
+        "spendingIndex": 260.881218220452
       },
       {
         "end": "2026-08-23",
-        "volume": 165.20339211765085,
-        "volumeWow": 3.230863021982766,
-        "spendingIndex": 317.48144687050495
+        "volume": 145.2896169774435,
+        "volumeWow": 5.473944566913791,
+        "spendingIndex": 258.2496402913782
       },
       {
         "end": "2026-08-30",
-        "volume": 171.35291674423402,
-        "volumeWow": 3.722396100803871,
-        "spendingIndex": 304.4601555864221
+        "volume": 152.55263438841158,
+        "volumeWow": 4.998992744330577,
+        "spendingIndex": 247.9880370698716
       },
       {
         "end": "2026-09-06",
-        "volume": 176.36739432038453,
-        "volumeWow": 2.926403396818311,
-        "spendingIndex": 310.27399065600724
+        "volume": 159.76201414708515,
+        "volumeWow": 4.725831046822759,
+        "spendingIndex": 256.63065123027894
       },
       {
         "end": "2026-09-13",
-        "volume": 164.36647561788095,
-        "volumeWow": -6.804499634837846,
-        "spendingIndex": 292.50340844226065
+        "volume": 150.58011594202532,
+        "volumeWow": -5.747234881882813,
+        "spendingIndex": 247.61292797585617
       },
       {
         "end": "2026-09-20",
-        "volume": 191.87286083202596,
-        "volumeWow": 16.734790419240863,
-        "spendingIndex": 341.84512070878
+        "volume": 174.20231550793096,
+        "volumeWow": 15.687462729143075,
+        "spendingIndex": 286.4138994280383
       },
       {
         "end": "2026-09-27",
-        "volume": 204.04490207383884,
-        "volumeWow": 6.343805574707528,
-        "spendingIndex": 332.22786001953824
+        "volume": 182.4551728839311,
+        "volumeWow": 4.73751301866272,
+        "spendingIndex": 269.8653409183305
       },
       {
         "end": "2026-10-04",
-        "volume": 220.47412215619946,
-        "volumeWow": 8.051766996077792,
-        "spendingIndex": 314.9603480181586
+        "volume": 197.49147230293826,
+        "volumeWow": 8.241092418120965,
+        "spendingIndex": 256.0123278263296
       },
       {
         "end": "2026-10-11",
-        "volume": 236.21245143346266,
-        "volumeWow": 7.138402059772386,
-        "spendingIndex": 319.70454825757616
+        "volume": 210.56180903692385,
+        "volumeWow": 6.618177778297474,
+        "spendingIndex": 259.3457442025605
       },
       {
         "end": "2026-10-18",
-        "volume": 245.74502694768375,
-        "volumeWow": 4.035593998695819,
-        "spendingIndex": 309.9573845765072
+        "volume": 216.96066583417456,
+        "volumeWow": 3.0389446341281268,
+        "spendingIndex": 251.80672515590865
       },
       {
         "end": "2026-10-25",
-        "volume": 259.0485977779537,
-        "volumeWow": 5.413566653009894,
-        "spendingIndex": 306.49439470410243
+        "volume": 228.67815932385332,
+        "volumeWow": 5.400745542804786,
+        "spendingIndex": 257.23850301723735
       },
       {
         "end": "2026-11-01",
-        "volume": 284.5026333998306,
-        "volumeWow": 9.825969273802082,
-        "spendingIndex": 348.1578531420918
+        "volume": 252.00451739638672,
+        "volumeWow": 10.2005185547688,
+        "spendingIndex": 300.80485821765757
+      },
+      {
+        "end": "2026-11-08",
+        "volume": 272.54279220303664,
+        "volumeWow": 8.149962952586499,
+        "spendingIndex": 277.7672540652087
+      },
+      {
+        "end": "2026-11-15",
+        "volume": 275.96363469596554,
+        "volumeWow": 1.2551579387872769,
+        "spendingIndex": 281.90293586590343
       }
     ],
     "blendedPriceDaily": [
       {
         "date": "2025-01-07",
-        "value": 0.8100836510335078
+        "value": 0.8894643108165136
       },
       {
         "date": "2025-01-08",
-        "value": 0.8834095055807178
+        "value": 0.9233009132216883
       },
       {
         "date": "2025-01-09",
-        "value": 0.9070661756674256
+        "value": 0.9412832513910521
       },
       {
         "date": "2025-01-10",
-        "value": 0.91868824087665
+        "value": 0.9553772767201804
       },
       {
         "date": "2025-01-11",
-        "value": 0.9281617216853657
+        "value": 0.9689429828384785
       },
       {
         "date": "2025-01-12",
-        "value": 0.94671423881862
+        "value": 0.9871938819938083
       },
       {
         "date": "2025-01-13",
-        "value": 0.9603451118724188
+        "value": 1.0023361383187275
       },
       {
         "date": "2025-01-14",
-        "value": 0.9718473958538332
+        "value": 1.0164257765339186
       },
       {
         "date": "2025-01-15",
-        "value": 0.9668396853892763
+        "value": 1.0147399479203294
       },
       {
         "date": "2025-01-16",
-        "value": 0.9650420950425909
+        "value": 1.016276995861528
       },
       {
         "date": "2025-01-17",
-        "value": 0.9616446916350203
+        "value": 1.0198064900301707
       },
       {
         "date": "2025-01-18",
-        "value": 0.9723724443255662
+        "value": 1.0276516420897224
       },
       {
         "date": "2025-01-19",
-        "value": 0.9880592298810601
+        "value": 1.0315046765228189
       },
       {
         "date": "2025-01-20",
-        "value": 1.030249225332146
+        "value": 1.046311543618844
       },
       {
         "date": "2025-01-21",
-        "value": 1.079760060005512
+        "value": 1.0641485233313697
       },
       {
         "date": "2025-01-22",
-        "value": 1.121544753127834
+        "value": 1.0713119011477887
       },
       {
         "date": "2025-01-23",
-        "value": 1.143296384902755
+        "value": 1.0691501778206345
       },
       {
         "date": "2025-01-24",
-        "value": 1.203615233218455
+        "value": 1.074630531581239
       },
       {
         "date": "2025-01-25",
-        "value": 1.218188000448887
+        "value": 1.065037098454977
       },
       {
         "date": "2025-01-26",
-        "value": 1.230884147450157
+        "value": 1.0666168957656406
       },
       {
         "date": "2025-01-27",
-        "value": 1.229398897318475
+        "value": 1.0646177123736618
       },
       {
         "date": "2025-01-28",
-        "value": 1.216497229366655
+        "value": 1.0552048034649266
       },
       {
         "date": "2025-01-29",
-        "value": 1.193946483843265
+        "value": 1.0545242390616447
       },
       {
         "date": "2025-01-30",
-        "value": 1.202840507842135
+        "value": 1.0572183262431327
       },
       {
         "date": "2025-01-31",
-        "value": 1.202363056210571
+        "value": 1.0577259505579673
       },
       {
         "date": "2025-02-01",
-        "value": 1.22132182468173
+        "value": 1.067673551163296
       },
       {
         "date": "2025-02-02",
-        "value": 1.198954119450093
+        "value": 1.0607440795573244
       },
       {
         "date": "2025-02-03",
-        "value": 1.171357119106008
+        "value": 1.0498115224609288
       },
       {
         "date": "2025-02-04",
-        "value": 1.142495092393701
+        "value": 1.0354117741237474
       },
       {
         "date": "2025-02-05",
-        "value": 1.142356306824795
+        "value": 1.0297301455820191
       },
       {
         "date": "2025-02-06",
-        "value": 1.147969650110637
+        "value": 1.0307567221339775
       },
       {
         "date": "2025-02-07",
-        "value": 1.109936900531143
+        "value": 1.0189900347335745
       },
       {
         "date": "2025-02-08",
-        "value": 1.075179739330246
+        "value": 0.9941053995236284
       },
       {
         "date": "2025-02-09",
-        "value": 1.067425738356119
+        "value": 0.9748655842180289
       },
       {
         "date": "2025-02-10",
-        "value": 1.06216444173938
+        "value": 0.9586442969878788
       },
       {
         "date": "2025-02-11",
-        "value": 1.050131313778928
+        "value": 0.9562527659546457
       },
       {
         "date": "2025-02-12",
-        "value": 1.023356119523081
+        "value": 0.9598645384883969
       },
       {
         "date": "2025-02-13",
-        "value": 0.9818604226446698
+        "value": 0.9593522409949425
       },
       {
         "date": "2025-02-14",
-        "value": 0.9703924027333518
+        "value": 0.9701402236829385
       },
       {
         "date": "2025-02-15",
-        "value": 0.9754173493001461
+        "value": 0.9880462169329363
       },
       {
         "date": "2025-02-16",
-        "value": 0.9922045996288185
+        "value": 1.0071666706450886
       },
       {
         "date": "2025-02-17",
-        "value": 1.018150442258819
+        "value": 1.0281124820749126
       },
       {
         "date": "2025-02-18",
-        "value": 1.047731534348988
+        "value": 1.0392337138225725
       },
       {
         "date": "2025-02-19",
-        "value": 1.087149603315617
+        "value": 1.0490031970796254
       },
       {
         "date": "2025-02-20",
-        "value": 1.110552214865376
+        "value": 1.0364933063566013
       },
       {
         "date": "2025-02-21",
-        "value": 1.138908048920476
+        "value": 1.021946445456432
       },
       {
         "date": "2025-02-22",
-        "value": 1.138895079291953
+        "value": 1.0080098718140706
       },
       {
         "date": "2025-02-23",
-        "value": 1.131960245952024
+        "value": 0.9940439136589764
       },
       {
         "date": "2025-02-24",
-        "value": 1.12314915894284
+        "value": 0.9780485081849936
       },
       {
         "date": "2025-02-25",
-        "value": 1.052275573468764
+        "value": 0.9343162626013913
       },
       {
         "date": "2025-02-26",
-        "value": 0.9864095164156492
+        "value": 0.8953740723388046
       },
       {
         "date": "2025-02-27",
-        "value": 0.9797582710830551
+        "value": 0.8977437083230666
       },
       {
         "date": "2025-02-28",
-        "value": 0.9842703062603938
+        "value": 0.9084427940792821
       },
       {
         "date": "2025-03-01",
-        "value": 0.9924513023252515
+        "value": 0.9228431578411546
       },
       {
         "date": "2025-03-02",
-        "value": 1.005927558847449
+        "value": 0.9390163467777678
       },
       {
         "date": "2025-03-03",
-        "value": 1.006911441836838
+        "value": 0.9500529913109695
       },
       {
         "date": "2025-03-04",
-        "value": 1.07634966566644
+        "value": 0.9912943600779762
       },
       {
         "date": "2025-03-05",
-        "value": 1.161894522016265
+        "value": 1.0347757540289801
       },
       {
         "date": "2025-03-06",
-        "value": 1.196215028444428
+        "value": 1.0649048351432011
       },
       {
         "date": "2025-03-07",
-        "value": 1.190452953924912
+        "value": 1.0800298753950697
       },
       {
         "date": "2025-03-08",
-        "value": 1.187849525969266
+        "value": 1.0977479508348023
       },
       {
         "date": "2025-03-09",
-        "value": 1.187507611581567
+        "value": 1.1161709941165894
       },
       {
         "date": "2025-03-10",
-        "value": 1.187624224075718
+        "value": 1.1275946923077835
       },
       {
         "date": "2025-03-11",
-        "value": 1.155481364052214
+        "value": 1.123730573419876
       },
       {
         "date": "2025-03-12",
-        "value": 1.130218628182807
+        "value": 1.1231057888835299
       },
       {
         "date": "2025-03-13",
-        "value": 1.1123680880184
+        "value": 1.118561385547653
       },
       {
         "date": "2025-03-14",
-        "value": 1.104770966488942
+        "value": 1.1178218677997538
       },
       {
         "date": "2025-03-15",
-        "value": 1.128944637822
+        "value": 1.1250474673605042
       },
       {
         "date": "2025-03-16",
-        "value": 1.135999941323966
+        "value": 1.126564188272777
       },
       {
         "date": "2025-03-17",
-        "value": 1.151462727311698
+        "value": 1.1339565295619705
       },
       {
         "date": "2025-03-18",
-        "value": 1.186734142300942
+        "value": 1.150398207020074
       },
       {
         "date": "2025-03-19",
-        "value": 1.218636285416211
+        "value": 1.1631842591038346
       },
       {
         "date": "2025-03-20",
-        "value": 1.263220138466332
+        "value": 1.1852238968552458
       },
       {
         "date": "2025-03-21",
-        "value": 1.304348162564877
+        "value": 1.2080031915437441
       },
       {
         "date": "2025-03-22",
-        "value": 1.297568343036375
+        "value": 1.2214862488090554
       },
       {
         "date": "2025-03-23",
-        "value": 1.301841570558166
+        "value": 1.240344124157564
       },
       {
         "date": "2025-03-24",
-        "value": 1.339802500110072
+        "value": 1.2690932147361418
       },
       {
         "date": "2025-03-25",
-        "value": 1.381206391345347
+        "value": 1.2873370560648052
       },
       {
         "date": "2025-03-26",
-        "value": 1.389992816374177
+        "value": 1.2943205235578745
       },
       {
         "date": "2025-03-27",
-        "value": 1.386527608651651
+        "value": 1.2675808222691047
       },
       {
         "date": "2025-03-28",
-        "value": 1.384940540250977
+        "value": 1.2307695021512801
       },
       {
         "date": "2025-03-29",
-        "value": 1.400101850135582
+        "value": 1.1908646323744496
       },
       {
         "date": "2025-03-30",
-        "value": 1.409832843312267
+        "value": 1.1548778574016654
       },
       {
         "date": "2025-03-31",
-        "value": 1.393889799050323
+        "value": 1.1201423546349074
       },
       {
         "date": "2025-04-01",
-        "value": 1.379867844016137
+        "value": 1.0868917842488226
       },
       {
         "date": "2025-04-02",
-        "value": 1.391093462475364
+        "value": 1.0532708010145957
       },
       {
         "date": "2025-04-03",
-        "value": 1.371777705751811
+        "value": 1.0371668916062735
       },
       {
         "date": "2025-04-04",
-        "value": 1.365469459112056
+        "value": 1.0311560065259653
       },
       {
         "date": "2025-04-05",
-        "value": 1.365872742001915
+        "value": 1.0309369394250767
       },
       {
         "date": "2025-04-06",
-        "value": 1.364490798546194
+        "value": 1.0219261296102644
       },
       {
         "date": "2025-04-07",
-        "value": 1.376302076860198
+        "value": 1.0088319891971962
       },
       {
         "date": "2025-04-08",
-        "value": 1.383828802170821
+        "value": 0.996450753344345
       },
       {
         "date": "2025-04-09",
-        "value": 1.376518914955441
+        "value": 0.9892128284352546
       },
       {
         "date": "2025-04-10",
-        "value": 1.398646402479455
+        "value": 0.9889713804541725
       },
       {
         "date": "2025-04-11",
-        "value": 1.426832857972863
+        "value": 0.9928966761314117
       },
       {
         "date": "2025-04-12",
-        "value": 1.435177041104327
+        "value": 0.9896563656803721
       },
       {
         "date": "2025-04-13",
-        "value": 1.439416228944961
+        "value": 0.9817058219858243
       },
       {
         "date": "2025-04-14",
-        "value": 1.436450529817129
+        "value": 0.9753712320747153
       },
       {
         "date": "2025-04-15",
-        "value": 1.437679200421583
+        "value": 0.9807314700987807
       },
       {
         "date": "2025-04-16",
-        "value": 1.457969207116423
+        "value": 0.9914359371223916
       },
       {
         "date": "2025-04-17",
-        "value": 1.471676493734149
+        "value": 1.0053678383643143
       },
       {
         "date": "2025-04-18",
-        "value": 1.447258820199019
+        "value": 1.0102023520417243
       },
       {
         "date": "2025-04-19",
-        "value": 1.443826719725465
+        "value": 1.0230031043532468
       },
       {
         "date": "2025-04-20",
-        "value": 1.424038402534408
+        "value": 1.029611752109922
       },
       {
         "date": "2025-04-21",
-        "value": 1.384028011363269
+        "value": 1.028506091489316
       },
       {
         "date": "2025-04-22",
-        "value": 1.369669684386979
+        "value": 1.0279380696398284
       },
       {
         "date": "2025-04-23",
-        "value": 1.350465245807931
+        "value": 1.0268693783699705
       },
       {
         "date": "2025-04-24",
-        "value": 1.333910612661276
+        "value": 1.0241741391714887
       },
       {
         "date": "2025-04-25",
-        "value": 1.351355224253805
+        "value": 1.032693981918729
       },
       {
         "date": "2025-04-26",
-        "value": 1.316253274188856
+        "value": 1.0260987394958347
       },
       {
         "date": "2025-04-27",
-        "value": 1.324267964467537
+        "value": 1.0318847002601506
       },
       {
         "date": "2025-04-28",
-        "value": 1.345529198509869
+        "value": 1.0497092334649962
       },
       {
         "date": "2025-04-29",
-        "value": 1.339879427040287
+        "value": 1.0521546061344969
       },
       {
         "date": "2025-04-30",
-        "value": 1.346064100161198
+        "value": 1.0520783320844656
       },
       {
         "date": "2025-05-01",
-        "value": 1.339265731251267
+        "value": 1.0493397527590098
       },
       {
         "date": "2025-05-02",
-        "value": 1.321737493720113
+        "value": 1.0320093160286066
       },
       {
         "date": "2025-05-03",
-        "value": 1.334310480331443
+        "value": 1.0226110346233368
       },
       {
         "date": "2025-05-04",
-        "value": 1.337537355541857
+        "value": 1.00703140740834
       },
       {
         "date": "2025-05-05",
-        "value": 1.342405755803667
+        "value": 0.9840564259844514
       },
       {
         "date": "2025-05-06",
-        "value": 1.329368357019977
+        "value": 0.9665847684033798
       },
       {
         "date": "2025-05-07",
-        "value": 1.30603417677553
+        "value": 0.9477920237732022
       },
       {
         "date": "2025-05-08",
-        "value": 1.311652222155846
+        "value": 0.9371125723116283
       },
       {
         "date": "2025-05-09",
-        "value": 1.298533817468438
+        "value": 0.9272623693991301
       },
       {
         "date": "2025-05-10",
-        "value": 1.291229331958667
+        "value": 0.9183177501727117
       },
       {
         "date": "2025-05-11",
-        "value": 1.272589912554207
+        "value": 0.9091651005422714
       },
       {
         "date": "2025-05-12",
-        "value": 1.25123104931811
+        "value": 0.8981247426566596
       },
       {
         "date": "2025-05-13",
-        "value": 1.250621285420311
+        "value": 0.8906417516583535
       },
       {
         "date": "2025-05-14",
-        "value": 1.233420732121072
+        "value": 0.8872792351045949
       },
       {
         "date": "2025-05-15",
-        "value": 1.236085835206739
+        "value": 0.8882183076246627
       },
       {
         "date": "2025-05-16",
-        "value": 1.253836038697489
+        "value": 0.8921541849359735
       },
       {
         "date": "2025-05-17",
-        "value": 1.258570371731244
+        "value": 0.8952174393869278
       },
       {
         "date": "2025-05-18",
-        "value": 1.267013203747158
+        "value": 0.8983051471020379
       },
       {
         "date": "2025-05-19",
-        "value": 1.262540208811121
+        "value": 0.8996673538591798
       },
       {
         "date": "2025-05-20",
-        "value": 1.264475952416073
+        "value": 0.8999797382425937
       },
       {
         "date": "2025-05-21",
-        "value": 1.248697489325461
+        "value": 0.8888157516136312
       },
       {
         "date": "2025-05-22",
-        "value": 1.216040405260928
+        "value": 0.8727439273626476
       },
       {
         "date": "2025-05-23",
-        "value": 1.196606029368169
+        "value": 0.86160592514795
       },
       {
         "date": "2025-05-24",
-        "value": 1.200946963727064
+        "value": 0.856061712023338
       },
       {
         "date": "2025-05-25",
-        "value": 1.201210916600729
+        "value": 0.8503864602491412
       },
       {
         "date": "2025-05-26",
-        "value": 1.202445858418657
+        "value": 0.8397605233584924
       },
       {
         "date": "2025-05-27",
-        "value": 1.19672343712519
+        "value": 0.8383023527710873
       },
       {
         "date": "2025-05-28",
-        "value": 1.21447169273333
+        "value": 0.8478070385821016
       },
       {
         "date": "2025-05-29",
-        "value": 1.232764253658364
+        "value": 0.8577186867253329
       },
       {
         "date": "2025-05-30",
-        "value": 1.261100689460725
+        "value": 0.8707583347313307
       },
       {
         "date": "2025-05-31",
-        "value": 1.248815428473422
+        "value": 0.8804669694447349
       },
       {
         "date": "2025-06-01",
-        "value": 1.25748155686209
+        "value": 0.9005411932615774
       },
       {
         "date": "2025-06-02",
-        "value": 1.279981965788996
+        "value": 0.9353025019460107
       },
       {
         "date": "2025-06-03",
-        "value": 1.299282544055854
+        "value": 0.9668220798127343
       },
       {
         "date": "2025-06-04",
-        "value": 1.282266796664441
+        "value": 0.9948836012187121
       },
       {
         "date": "2025-06-05",
-        "value": 1.285183300232995
+        "value": 1.0357287187900275
       },
       {
         "date": "2025-06-06",
-        "value": 1.271439622513097
+        "value": 1.0725067418269303
       },
       {
         "date": "2025-06-07",
-        "value": 1.275553705523238
+        "value": 1.1016046880987012
       },
       {
         "date": "2025-06-08",
-        "value": 1.261286924234754
+        "value": 1.1191224981414514
       },
       {
         "date": "2025-06-09",
-        "value": 1.241628402619791
+        "value": 1.141958719127539
       },
       {
         "date": "2025-06-10",
-        "value": 1.250212101097518
+        "value": 1.1963952490323306
       },
       {
         "date": "2025-06-11",
-        "value": 1.301319921594891
+        "value": 1.2293047901656218
       },
       {
         "date": "2025-06-12",
-        "value": 1.302444272805075
+        "value": 1.2302984783531514
       },
       {
         "date": "2025-06-13",
-        "value": 1.302841102001152
+        "value": 1.2280255059100835
       },
       {
         "date": "2025-06-14",
-        "value": 1.307788956075389
+        "value": 1.2242093564595566
       },
       {
         "date": "2025-06-15",
-        "value": 1.314347506717695
+        "value": 1.2214071635626857
       },
       {
         "date": "2025-06-16",
-        "value": 1.316121340429706
+        "value": 1.2155951888107899
       },
       {
         "date": "2025-06-17",
-        "value": 1.29896794457567
+        "value": 1.1845740957631101
       },
       {
         "date": "2025-06-18",
-        "value": 1.263680281893595
+        "value": 1.1580348430336052
       },
       {
         "date": "2025-06-19",
-        "value": 1.227863126621752
+        "value": 1.1212967044206552
       },
       {
         "date": "2025-06-20",
-        "value": 1.198604004006778
+        "value": 1.0912674317965527
       },
       {
         "date": "2025-06-21",
-        "value": 1.188652653654516
+        "value": 1.0828857717938398
       },
       {
         "date": "2025-06-22",
-        "value": 1.181829632042081
+        "value": 1.0758279900020133
       },
       {
         "date": "2025-06-23",
-        "value": 1.168440912174947
+        "value": 1.0630000607223224
       },
       {
         "date": "2025-06-24",
-        "value": 1.137558638306738
+        "value": 1.0382954189340938
       },
       {
         "date": "2025-06-25",
-        "value": 1.108020087878321
+        "value": 1.0138533259915514
       },
       {
         "date": "2025-06-26",
-        "value": 1.120057245192702
+        "value": 1.027767158757462
       },
       {
         "date": "2025-06-27",
-        "value": 1.11890458405705
+        "value": 1.0298858428211537
       },
       {
         "date": "2025-06-28",
-        "value": 1.099764363841374
+        "value": 1.018392216029555
       },
       {
         "date": "2025-06-29",
-        "value": 1.098571833992239
+        "value": 1.0187853540396978
       },
       {
         "date": "2025-06-30",
-        "value": 1.106611370061437
+        "value": 1.026644796662306
       },
       {
         "date": "2025-07-01",
-        "value": 1.106323930380446
+        "value": 1.0283938227513445
       },
       {
         "date": "2025-07-02",
-        "value": 1.128942384597862
+        "value": 1.04610666835107
       },
       {
         "date": "2025-07-03",
-        "value": 1.102458154538641
+        "value": 1.0278625603116562
       },
       {
         "date": "2025-07-04",
-        "value": 1.129433111219
+        "value": 1.0455322842628998
       },
       {
         "date": "2025-07-05",
-        "value": 1.153937727250619
+        "value": 1.0624353683990269
       },
       {
         "date": "2025-07-06",
-        "value": 1.147572893413166
+        "value": 1.0585101653747129
       },
       {
         "date": "2025-07-07",
-        "value": 1.134832480399186
+        "value": 1.0514172631067311
       },
       {
         "date": "2025-07-08",
-        "value": 1.139348569600455
+        "value": 1.0553322188858414
       },
       {
         "date": "2025-07-09",
-        "value": 1.098906509056026
+        "value": 1.027911763426066
       },
       {
         "date": "2025-07-10",
-        "value": 1.137721932993981
+        "value": 1.0544941951596702
       },
       {
         "date": "2025-07-11",
-        "value": 1.109420418560937
+        "value": 1.037508430896522
       },
       {
         "date": "2025-07-12",
-        "value": 1.033775979369648
+        "value": 0.9845589206859762
       },
       {
         "date": "2025-07-13",
-        "value": 1.023998764377868
+        "value": 0.9772826199594666
       },
       {
         "date": "2025-07-14",
-        "value": 1.025849095295989
+        "value": 0.9770133500455236
       },
       {
         "date": "2025-07-15",
-        "value": 1.036906108971555
+        "value": 0.9847537169049604
       },
       {
         "date": "2025-07-16",
-        "value": 1.060990363785643
+        "value": 1.003052282573554
       },
       {
         "date": "2025-07-17",
-        "value": 1.052441117089811
+        "value": 0.9939516773397632
       },
       {
         "date": "2025-07-18",
-        "value": 1.059314144742653
+        "value": 0.9927795080526606
       },
       {
         "date": "2025-07-19",
-        "value": 1.126832321280567
+        "value": 1.02770641966883
       },
       {
         "date": "2025-07-20",
-        "value": 1.143051447752265
+        "value": 1.0252522254781724
       },
       {
         "date": "2025-07-21",
-        "value": 1.151394624525142
+        "value": 1.01821780621104
       },
       {
         "date": "2025-07-22",
-        "value": 1.123984426622494
+        "value": 0.9904895150209932
       },
       {
         "date": "2025-07-23",
-        "value": 1.128878724792557
+        "value": 0.9810226073990156
       },
       {
         "date": "2025-07-24",
-        "value": 1.149114071599301
+        "value": 0.9812182414857267
       },
       {
         "date": "2025-07-25",
-        "value": 1.145004150062509
+        "value": 0.977815846740371
       },
       {
         "date": "2025-07-26",
-        "value": 1.123866016754052
+        "value": 0.9668376914901301
       },
       {
         "date": "2025-07-27",
-        "value": 1.097693100889368
+        "value": 0.9567602919122895
       },
       {
         "date": "2025-07-28",
-        "value": 1.074886619072122
+        "value": 0.9470691122872957
       },
       {
         "date": "2025-07-29",
-        "value": 1.096118916109609
+        "value": 0.9606727218081001
       },
       {
         "date": "2025-07-30",
-        "value": 1.072453969209769
+        "value": 0.9533204761203705
       },
       {
         "date": "2025-07-31",
-        "value": 1.031736719955973
+        "value": 0.939458021040597
       },
       {
         "date": "2025-08-01",
-        "value": 1.042581486406221
+        "value": 0.9445706455821654
       },
       {
         "date": "2025-08-02",
-        "value": 1.054963539725624
+        "value": 0.9529378717932517
       },
       {
         "date": "2025-08-03",
-        "value": 1.08233287007934
+        "value": 0.968679950314756
       },
       {
         "date": "2025-08-04",
-        "value": 1.117516857436199
+        "value": 0.9878761348428137
       },
       {
         "date": "2025-08-05",
-        "value": 1.150138117870035
+        "value": 1.0074437636512872
       },
       {
         "date": "2025-08-06",
-        "value": 1.211053874895705
+        "value": 1.0418969431136187
       },
       {
         "date": "2025-08-07",
-        "value": 1.24964745617145
+        "value": 1.0593210004842537
       },
       {
         "date": "2025-08-08",
-        "value": 1.279253938229259
+        "value": 1.0644900460748807
       },
       {
         "date": "2025-08-09",
-        "value": 1.303207273307359
+        "value": 1.076982409785264
       },
       {
         "date": "2025-08-10",
-        "value": 1.321408926342402
+        "value": 1.0879401356658782
       },
       {
         "date": "2025-08-11",
-        "value": 1.335590893825277
+        "value": 1.0991314211982832
       },
       {
         "date": "2025-08-12",
-        "value": 1.331984788697835
+        "value": 1.0877198745414451
       },
       {
         "date": "2025-08-13",
-        "value": 1.328341249732593
+        "value": 1.0750883538003018
       },
       {
         "date": "2025-08-14",
-        "value": 1.31588623464779
+        "value": 1.0585211563264556
       },
       {
         "date": "2025-08-15",
-        "value": 1.301622859722896
+        "value": 1.0500098187340126
       },
       {
         "date": "2025-08-16",
-        "value": 1.274228525560676
+        "value": 1.0260147667188806
       },
       {
         "date": "2025-08-17",
-        "value": 1.246546177046147
+        "value": 1.0030312163039012
       },
       {
         "date": "2025-08-18",
-        "value": 1.220869832311891
+        "value": 0.9823885778128811
       },
       {
         "date": "2025-08-19",
-        "value": 1.200236598209773
+        "value": 0.9709507555600513
       },
       {
         "date": "2025-08-20",
-        "value": 1.186900140527819
+        "value": 0.9648928517486087
       },
       {
         "date": "2025-08-21",
-        "value": 1.185224298946246
+        "value": 0.9695951917850063
       },
       {
         "date": "2025-08-22",
-        "value": 1.165078389640617
+        "value": 0.9614847139998025
       },
       {
         "date": "2025-08-23",
-        "value": 1.14379934488676
+        "value": 0.9534103607443436
       },
       {
         "date": "2025-08-24",
-        "value": 1.127311332642467
+        "value": 0.9463950769806093
       },
       {
         "date": "2025-08-25",
-        "value": 1.089695840518369
+        "value": 0.9253311146229869
       },
       {
         "date": "2025-08-26",
-        "value": 1.050494619891722
+        "value": 0.9072220503500794
       },
       {
         "date": "2025-08-27",
-        "value": 0.991039677862689
+        "value": 0.8774856593506606
       },
       {
         "date": "2025-08-28",
-        "value": 0.9690987967503367
+        "value": 0.8640775124030926
       },
       {
         "date": "2025-08-29",
-        "value": 0.9598931795169175
+        "value": 0.8620636609793018
       },
       {
         "date": "2025-08-30",
-        "value": 0.9624467635003554
+        "value": 0.866755248843628
       },
       {
         "date": "2025-08-31",
-        "value": 0.9564387490212143
+        "value": 0.8674139441131626
       },
       {
         "date": "2025-09-01",
-        "value": 0.9547236792935359
+        "value": 0.8692019072911269
       },
       {
         "date": "2025-09-02",
-        "value": 0.9621332503309843
+        "value": 0.8766957886221025
       },
       {
         "date": "2025-09-03",
-        "value": 0.9931009568917877
+        "value": 0.8959704118966613
       },
       {
         "date": "2025-09-04",
-        "value": 0.994681485722365
+        "value": 0.8989673179602765
       },
       {
         "date": "2025-09-05",
-        "value": 0.9961909868898395
+        "value": 0.8934664787850608
       },
       {
         "date": "2025-09-06",
-        "value": 0.9994788216962005
+        "value": 0.8936604782186116
       },
       {
         "date": "2025-09-07",
-        "value": 1.013676555697468
+        "value": 0.900571579157586
       },
       {
         "date": "2025-09-08",
-        "value": 1.023762214508712
+        "value": 0.9055841828297322
       },
       {
         "date": "2025-09-09",
-        "value": 1.025243729452209
+        "value": 0.9024637116042359
       },
       {
         "date": "2025-09-10",
-        "value": 1.024431177130842
+        "value": 0.8970653717034379
       },
       {
         "date": "2025-09-11",
-        "value": 1.030076691897352
+        "value": 0.8949271731293871
       },
       {
         "date": "2025-09-12",
-        "value": 1.022244208633684
+        "value": 0.8946591640820262
       },
       {
         "date": "2025-09-13",
-        "value": 1.010438265722518
+        "value": 0.889689389039228
       },
       {
         "date": "2025-09-14",
-        "value": 0.992366529620276
+        "value": 0.8796691552309455
       },
       {
         "date": "2025-09-15",
-        "value": 1.003125211669566
+        "value": 0.8898853364519327
       },
       {
         "date": "2025-09-16",
-        "value": 1.014523720065591
+        "value": 0.9011024032273001
       },
       {
         "date": "2025-09-17",
-        "value": 1.014121812314067
+        "value": 0.8971637869918171
       },
       {
         "date": "2025-09-18",
-        "value": 0.98165293491616
+        "value": 0.8698453207304198
       },
       {
         "date": "2025-09-19",
-        "value": 0.9655876747148024
+        "value": 0.85126626375327
       },
       {
         "date": "2025-09-20",
-        "value": 0.9684893860171186
+        "value": 0.8455712823570535
       },
       {
         "date": "2025-09-21",
-        "value": 0.9792845479868485
+        "value": 0.8444659300307521
       },
       {
         "date": "2025-09-22",
-        "value": 0.9643947271847128
+        "value": 0.8207839408082565
       },
       {
         "date": "2025-09-23",
-        "value": 0.9491004429490898
+        "value": 0.7965452330210129
       },
       {
         "date": "2025-09-24",
-        "value": 0.9430302351620772
+        "value": 0.7799915312676419
       },
       {
         "date": "2025-09-25",
-        "value": 0.9806107016354814
+        "value": 0.7916188954393261
       },
       {
         "date": "2025-09-26",
-        "value": 1.031033689468271
+        "value": 0.8128868285466371
       },
       {
         "date": "2025-09-27",
-        "value": 1.040451873108223
+        "value": 0.8128683730798492
       },
       {
         "date": "2025-09-28",
-        "value": 1.032843275936057
+        "value": 0.8049070372943393
       },
       {
         "date": "2025-09-29",
-        "value": 1.025738466870837
+        "value": 0.7969345559084977
       },
       {
         "date": "2025-09-30",
-        "value": 1.0195897131678
+        "value": 0.7909002756360185
       },
       {
         "date": "2025-10-01",
-        "value": 1.02559019003692
+        "value": 0.7996251709625188
       },
       {
         "date": "2025-10-02",
-        "value": 1.009120429654467
+        "value": 0.7980277591999174
       },
       {
         "date": "2025-10-03",
-        "value": 0.9805619313810207
+        "value": 0.7883443817828475
       },
       {
         "date": "2025-10-04",
-        "value": 0.98857313181485
+        "value": 0.7969872547209894
       },
       {
         "date": "2025-10-05",
-        "value": 1.001892633757386
+        "value": 0.808372691187594
       },
       {
         "date": "2025-10-06",
-        "value": 1.01808591611564
+        "value": 0.822067208079399
       },
       {
         "date": "2025-10-07",
-        "value": 1.029909916349756
+        "value": 0.8337848738539868
       },
       {
         "date": "2025-10-08",
-        "value": 1.025365613961133
+        "value": 0.830436933982673
       },
       {
         "date": "2025-10-09",
-        "value": 1.035744855982497
+        "value": 0.8340742884196961
       },
       {
         "date": "2025-10-10",
-        "value": 1.044933928156451
+        "value": 0.8364305318917464
       },
       {
         "date": "2025-10-11",
-        "value": 1.04210911616354
+        "value": 0.8353491085180803
       },
       {
         "date": "2025-10-12",
-        "value": 1.053259157928816
+        "value": 0.8413534994586642
       },
       {
         "date": "2025-10-13",
-        "value": 1.058354205939316
+        "value": 0.8416802343553725
       },
       {
         "date": "2025-10-14",
-        "value": 1.053675389716887
+        "value": 0.837462616028331
       },
       {
         "date": "2025-10-15",
-        "value": 1.068874783627449
+        "value": 0.8435962545427657
       },
       {
         "date": "2025-10-16",
-        "value": 1.073003916089301
+        "value": 0.8424038434991646
       },
       {
         "date": "2025-10-17",
-        "value": 1.068763673272364
+        "value": 0.8390523042858509
       },
       {
         "date": "2025-10-18",
-        "value": 1.055646359483047
+        "value": 0.8332935262454061
       },
       {
         "date": "2025-10-19",
-        "value": 1.035339482897192
+        "value": 0.8229612441954277
       },
       {
         "date": "2025-10-20",
-        "value": 1.029121281964114
+        "value": 0.8214988965284329
       },
       {
         "date": "2025-10-21",
-        "value": 1.038281569993539
+        "value": 0.8268280652369435
       },
       {
         "date": "2025-10-22",
-        "value": 1.024242348625317
+        "value": 0.8227171321389914
       },
       {
         "date": "2025-10-23",
-        "value": 1.01942468171686
+        "value": 0.8235450055104807
       },
       {
         "date": "2025-10-24",
-        "value": 1.019229753036866
+        "value": 0.8253492058974199
       },
       {
         "date": "2025-10-25",
-        "value": 1.023311587405815
+        "value": 0.8264005760634798
       },
       {
         "date": "2025-10-26",
-        "value": 1.025338915846293
+        "value": 0.826796389407842
       },
       {
         "date": "2025-10-27",
-        "value": 1.021797816696172
+        "value": 0.8245074171439256
       },
       {
         "date": "2025-10-28",
-        "value": 1.018133282281342
+        "value": 0.8207517593455211
       },
       {
         "date": "2025-10-29",
-        "value": 1.019295698878871
+        "value": 0.8206467145594556
       },
       {
         "date": "2025-10-30",
-        "value": 1.02426413422884
+        "value": 0.823045058952349
       },
       {
         "date": "2025-10-31",
-        "value": 1.023715488055074
+        "value": 0.8224515274787825
       },
       {
         "date": "2025-11-01",
-        "value": 1.021970881106716
+        "value": 0.8216856626321544
       },
       {
         "date": "2025-11-02",
-        "value": 1.02029284120173
+        "value": 0.8220741219978636
       },
       {
         "date": "2025-11-03",
-        "value": 1.020455312352099
+        "value": 0.8235110118565911
       },
       {
         "date": "2025-11-04",
-        "value": 1.029143470010109
+        "value": 0.8317919710979205
       },
       {
         "date": "2025-11-05",
-        "value": 1.028153308527121
+        "value": 0.8347590507093064
       },
       {
         "date": "2025-11-06",
-        "value": 1.026954724101594
+        "value": 0.8380492895029756
       },
       {
         "date": "2025-11-07",
-        "value": 1.015109894707512
+        "value": 0.83684559794126
       },
       {
         "date": "2025-11-08",
-        "value": 1.00577523561145
+        "value": 0.8357348273869074
       },
       {
         "date": "2025-11-09",
-        "value": 1.004881819292262
+        "value": 0.8384118065032574
       },
       {
         "date": "2025-11-10",
-        "value": 1.004557973375989
+        "value": 0.8437263988183172
       },
       {
         "date": "2025-11-11",
-        "value": 0.9844395809963405
+        "value": 0.8374159255554124
       },
       {
         "date": "2025-11-12",
-        "value": 0.993972544650265
+        "value": 0.8380044827995952
       },
       {
         "date": "2025-11-13",
-        "value": 0.9870342598134036
+        "value": 0.8189763442174054
       },
       {
         "date": "2025-11-14",
-        "value": 0.9991153397959852
+        "value": 0.808819896822593
       },
       {
         "date": "2025-11-15",
-        "value": 1.007780004337758
+        "value": 0.8022580761870796
       },
       {
         "date": "2025-11-16",
-        "value": 1.002218175701265
+        "value": 0.7898713615393712
       },
       {
         "date": "2025-11-17",
-        "value": 1.005070780284832
+        "value": 0.7763381046745328
       },
       {
         "date": "2025-11-18",
-        "value": 1.02091477583082
+        "value": 0.7690334690444393
       },
       {
         "date": "2025-11-19",
-        "value": 1.016015056489065
+        "value": 0.7614533996805396
       },
       {
         "date": "2025-11-20",
-        "value": 1.025206425420419
+        "value": 0.7680708820317793
       },
       {
         "date": "2025-11-21",
-        "value": 1.026904032897735
+        "value": 0.7716986720869182
       },
       {
         "date": "2025-11-22",
-        "value": 1.031631842801607
+        "value": 0.7763670395142306
       },
       {
         "date": "2025-11-23",
-        "value": 1.038782030160355
+        "value": 0.780735607235073
       },
       {
         "date": "2025-11-24",
-        "value": 1.042516808740444
+        "value": 0.7858359346594359
       },
       {
         "date": "2025-11-25",
-        "value": 1.045883952329627
+        "value": 0.792637240335073
       },
       {
         "date": "2025-11-26",
-        "value": 1.046699597816348
+        "value": 0.7947882471988227
       },
       {
         "date": "2025-11-27",
-        "value": 1.042039265778401
+        "value": 0.79404422457878
       },
       {
         "date": "2025-11-28",
-        "value": 1.043228090559703
+        "value": 0.7960015443928983
       },
       {
         "date": "2025-11-29",
-        "value": 1.043429854903073
+        "value": 0.7989228063595791
       },
       {
         "date": "2025-11-30",
-        "value": 1.043407419939652
+        "value": 0.8036482612409608
       },
       {
         "date": "2025-12-01",
-        "value": 1.038616997123152
+        "value": 0.805758932295553
       },
       {
         "date": "2025-12-02",
-        "value": 1.032385012917738
+        "value": 0.8075230875126385
       },
       {
         "date": "2025-12-03",
-        "value": 1.041673493552805
+        "value": 0.8180565865158015
       },
       {
         "date": "2025-12-04",
-        "value": 1.046083262770519
+        "value": 0.8271686868863011
       },
       {
         "date": "2025-12-05",
-        "value": 1.034061141232338
+        "value": 0.8283447545300688
       },
       {
         "date": "2025-12-06",
-        "value": 1.02656090124491
+        "value": 0.8278789949548848
       },
       {
         "date": "2025-12-07",
-        "value": 1.022970016723442
+        "value": 0.8278372282936752
       },
       {
         "date": "2025-12-08",
-        "value": 1.018019680446216
+        "value": 0.8282902151501758
       },
       {
         "date": "2025-12-09",
-        "value": 1.012705140129478
+        "value": 0.8272387062632909
       },
       {
         "date": "2025-12-10",
-        "value": 1.005936135726136
+        "value": 0.8264175690732567
       },
       {
         "date": "2025-12-11",
-        "value": 1.004489891591171
+        "value": 0.8265530972126007
       },
       {
         "date": "2025-12-12",
-        "value": 1.020193958881982
+        "value": 0.8351823703611404
       },
       {
         "date": "2025-12-13",
-        "value": 1.027489675603094
+        "value": 0.8387231232892931
       },
       {
         "date": "2025-12-14",
-        "value": 1.021480276010359
+        "value": 0.8362440647019029
       },
       {
         "date": "2025-12-15",
-        "value": 1.024232538042908
+        "value": 0.837823735776897
       },
       {
         "date": "2025-12-16",
-        "value": 1.022924030695374
+        "value": 0.8376822997521816
       },
       {
         "date": "2025-12-17",
-        "value": 1.015135118527011
+        "value": 0.8342784727502804
       },
       {
         "date": "2025-12-18",
-        "value": 0.9982408227770846
+        "value": 0.8294224934752961
       },
       {
         "date": "2025-12-19",
-        "value": 0.9738869072891708
+        "value": 0.8195517580542931
       },
       {
         "date": "2025-12-20",
-        "value": 0.9648223996921912
+        "value": 0.8156536538252273
       },
       {
         "date": "2025-12-21",
-        "value": 0.9688882904524184
+        "value": 0.8182133077326795
       },
       {
         "date": "2025-12-22",
-        "value": 0.9592989289002894
+        "value": 0.815298053990635
       },
       {
         "date": "2025-12-23",
-        "value": 0.9547833957232079
+        "value": 0.8118700208718609
       },
       {
         "date": "2025-12-24",
-        "value": 0.9516189946315222
+        "value": 0.8086783614566694
       },
       {
         "date": "2025-12-25",
-        "value": 0.9460515787811046
+        "value": 0.8045887759171277
       },
       {
         "date": "2025-12-26",
-        "value": 0.949123819807774
+        "value": 0.8040422924416469
       },
       {
         "date": "2025-12-27",
-        "value": 0.9315206573172845
+        "value": 0.7977652534953947
       },
       {
         "date": "2025-12-28",
-        "value": 0.9163393626868016
+        "value": 0.7907649097935494
       },
       {
         "date": "2025-12-29",
-        "value": 0.9043044165265978
+        "value": 0.7813120689099223
       },
       {
         "date": "2025-12-30",
-        "value": 0.8848912393210848
+        "value": 0.7725600672935744
       },
       {
         "date": "2025-12-31",
-        "value": 0.8568707925603677
+        "value": 0.7604729297674155
       },
       {
         "date": "2026-01-01",
-        "value": 0.8411457823414765
+        "value": 0.7528880407275139
       },
       {
         "date": "2026-01-02",
-        "value": 0.8439379246223955
+        "value": 0.7529310546708567
       },
       {
         "date": "2026-01-03",
-        "value": 0.8598444384366007
+        "value": 0.758750476595363
       },
       {
         "date": "2026-01-04",
-        "value": 0.8736530940777101
+        "value": 0.7646850397693199
       },
       {
         "date": "2026-01-05",
-        "value": 0.8935077936746373
+        "value": 0.7767411760708202
       },
       {
         "date": "2026-01-06",
-        "value": 0.9131688539262921
+        "value": 0.789843789865054
       },
       {
         "date": "2026-01-07",
-        "value": 0.9381165447508963
+        "value": 0.8038936316985731
       },
       {
         "date": "2026-01-08",
-        "value": 0.9547467996582456
+        "value": 0.8135028061298221
       },
       {
         "date": "2026-01-09",
-        "value": 0.9460334875835724
+        "value": 0.8140105983007956
       },
       {
         "date": "2026-01-10",
-        "value": 0.9419954773322055
+        "value": 0.813968663020741
       },
       {
         "date": "2026-01-11",
-        "value": 0.940896375633066
+        "value": 0.8149920501799972
       },
       {
         "date": "2026-01-12",
-        "value": 0.9401817817495423
+        "value": 0.8160124299541023
       },
       {
         "date": "2026-01-13",
-        "value": 0.9388167277977808
+        "value": 0.816483033099656
       },
       {
         "date": "2026-01-14",
-        "value": 0.935168935141526
+        "value": 0.8170292148782745
       },
       {
         "date": "2026-01-15",
-        "value": 0.9345291580357298
+        "value": 0.8187439175773397
       },
       {
         "date": "2026-01-16",
-        "value": 0.9454317693300504
+        "value": 0.8247530236333048
       },
       {
         "date": "2026-01-17",
-        "value": 0.9451518276842524
+        "value": 0.8255454425209133
       },
       {
         "date": "2026-01-18",
-        "value": 0.9456367875636719
+        "value": 0.8264365514675012
       },
       {
         "date": "2026-01-19",
-        "value": 0.940932150116285
+        "value": 0.8219692647500306
       },
       {
         "date": "2026-01-20",
-        "value": 0.9440328291549941
+        "value": 0.8241562505698663
       },
       {
         "date": "2026-01-21",
-        "value": 0.9480279685584576
+        "value": 0.8252766475069258
       },
       {
         "date": "2026-01-22",
-        "value": 0.9536871739712693
+        "value": 0.8288264797858232
       },
       {
         "date": "2026-01-23",
-        "value": 0.9656547167876592
+        "value": 0.838081063322756
       },
       {
         "date": "2026-01-24",
-        "value": 0.969762920003441
+        "value": 0.8419404662933233
       },
       {
         "date": "2026-01-25",
-        "value": 0.9688294130635164
+        "value": 0.8437302376035232
       },
       {
         "date": "2026-01-26",
-        "value": 0.9748519766228246
+        "value": 0.8536316213446661
       },
       {
         "date": "2026-01-27",
-        "value": 0.985596058099152
+        "value": 0.8620842039434111
       },
       {
         "date": "2026-01-28",
-        "value": 0.9956891043234949
+        "value": 0.869726981399388
       },
       {
         "date": "2026-01-29",
-        "value": 1.003052595732945
+        "value": 0.8739233886835437
       },
       {
         "date": "2026-01-30",
-        "value": 0.9962074721274723
+        "value": 0.8695679233890425
       },
       {
         "date": "2026-01-31",
-        "value": 1.000204382285868
+        "value": 0.8695860720901372
       },
       {
         "date": "2026-02-01",
-        "value": 0.9995093256642319
+        "value": 0.8680997336466547
       },
       {
         "date": "2026-02-02",
-        "value": 1.003533133040386
+        "value": 0.869742623722067
       },
       {
         "date": "2026-02-03",
-        "value": 1.004336440973981
+        "value": 0.8674555845906072
       },
       {
         "date": "2026-02-04",
-        "value": 0.9978522162611182
+        "value": 0.8647760993317324
       },
       {
         "date": "2026-02-05",
-        "value": 0.9944557576822056
+        "value": 0.865572967745342
       },
       {
         "date": "2026-02-06",
-        "value": 0.9964090887820555
+        "value": 0.8802492247240634
       },
       {
         "date": "2026-02-07",
-        "value": 0.9952624234703964
+        "value": 0.8896079954182946
       },
       {
         "date": "2026-02-08",
-        "value": 1.000152955781035
+        "value": 0.9029034000099813
       },
       {
         "date": "2026-02-09",
-        "value": 1.007665269592262
+        "value": 0.9199594125770456
       },
       {
         "date": "2026-02-10",
-        "value": 1.024226457992798
+        "value": 0.9486893737371672
       },
       {
         "date": "2026-02-11",
-        "value": 1.02495836329295
+        "value": 0.9660805189904362
       },
       {
         "date": "2026-02-12",
-        "value": 1.038894106112835
+        "value": 0.9929110703212262
       },
       {
         "date": "2026-02-13",
-        "value": 1.052556776677974
+        "value": 1.0191767086938335
       },
       {
         "date": "2026-02-14",
-        "value": 1.059282254936543
+        "value": 1.0393071111455805
       },
       {
         "date": "2026-02-15",
-        "value": 1.08152973316616
+        "value": 1.0601118806256031
       },
       {
         "date": "2026-02-16",
-        "value": 1.07690616967417
+        "value": 1.0701211657703111
       },
       {
         "date": "2026-02-17",
-        "value": 1.065282930955862
+        "value": 1.0754197099765774
       },
       {
         "date": "2026-02-18",
-        "value": 1.093425202158987
+        "value": 1.0856921780291866
       },
       {
         "date": "2026-02-19",
-        "value": 1.107238943807086
+        "value": 1.0875100089295417
       },
       {
         "date": "2026-02-20",
-        "value": 1.118846708126968
+        "value": 1.0794667741382962
       },
       {
         "date": "2026-02-21",
-        "value": 1.12318677226625
+        "value": 1.07364568931064
       },
       {
         "date": "2026-02-22",
-        "value": 1.117945287009084
+        "value": 1.0730188200287472
       },
       {
         "date": "2026-02-23",
-        "value": 1.13906135157292
+        "value": 1.0835125148198377
       },
       {
         "date": "2026-02-24",
-        "value": 1.148953419655215
+        "value": 1.090407803439734
       },
       {
         "date": "2026-02-25",
-        "value": 1.143555369743302
+        "value": 1.102383487873268
       },
       {
         "date": "2026-02-26",
-        "value": 1.139430505528414
+        "value": 1.1122783127375706
       },
       {
         "date": "2026-02-27",
-        "value": 1.135944975751476
+        "value": 1.1318139350665668
       },
       {
         "date": "2026-02-28",
-        "value": 1.136438203409419
+        "value": 1.1463994048638861
       },
       {
         "date": "2026-03-01",
-        "value": 1.13590862372413
+        "value": 1.1560966896469935
       },
       {
         "date": "2026-03-02",
-        "value": 1.126921268337479
+        "value": 1.1472856463150334
       },
       {
         "date": "2026-03-03",
-        "value": 1.122334431205917
+        "value": 1.149350153458735
       },
       {
         "date": "2026-03-04",
-        "value": 1.117007333630343
+        "value": 1.1543998590157734
       },
       {
         "date": "2026-03-05",
-        "value": 1.112684766340065
+        "value": 1.1557923471766909
       },
       {
         "date": "2026-03-06",
-        "value": 1.100123542373863
+        "value": 1.1432673149441865
       },
       {
         "date": "2026-03-07",
-        "value": 1.091367600925964
+        "value": 1.1400801432745826
       },
       {
         "date": "2026-03-08",
-        "value": 1.079102132341014
+        "value": 1.1365300207551459
       },
       {
         "date": "2026-03-09",
-        "value": 1.072780023572531
+        "value": 1.1432243966088607
       },
       {
         "date": "2026-03-10",
-        "value": 1.073585071543151
+        "value": 1.1318042644408923
       },
       {
         "date": "2026-03-11",
-        "value": 1.071773135199393
+        "value": 1.1155264471870578
       },
       {
         "date": "2026-03-12",
-        "value": 1.068597185077705
+        "value": 1.104581513431528
       },
       {
         "date": "2026-03-13",
-        "value": 1.079124184158513
+        "value": 1.097208551694322
       },
       {
         "date": "2026-03-14",
-        "value": 1.100381899874109
+        "value": 1.089621876027707
       },
       {
         "date": "2026-03-15",
-        "value": 1.120897349046205
+        "value": 1.079748530513151
       },
       {
         "date": "2026-03-16",
-        "value": 1.123970521348298
+        "value": 1.0608322635561547
       },
       {
         "date": "2026-03-17",
-        "value": 1.117232534253803
+        "value": 1.047575331484705
       },
       {
         "date": "2026-03-18",
-        "value": 1.111068615085675
+        "value": 1.0330634994637131
       },
       {
         "date": "2026-03-19",
-        "value": 1.093128438475393
+        "value": 1.0109350049665642
       },
       {
         "date": "2026-03-20",
-        "value": 1.080203968870069
+        "value": 0.9968747683711799
       },
       {
         "date": "2026-03-21",
-        "value": 1.058000057833845
+        "value": 0.9786980491713216
       },
       {
         "date": "2026-03-22",
-        "value": 1.037885212179848
+        "value": 0.959791465430041
       },
       {
         "date": "2026-03-23",
-        "value": 1.020313768385647
+        "value": 0.9425989248314754
       },
       {
         "date": "2026-03-24",
-        "value": 1.002638692188177
+        "value": 0.929259450176336
       },
       {
         "date": "2026-03-25",
-        "value": 0.98889945824039
+        "value": 0.9192938422968226
       },
       {
         "date": "2026-03-26",
-        "value": 0.9867966898595502
+        "value": 0.9130282984667311
       },
       {
         "date": "2026-03-27",
-        "value": 0.9726469128130683
+        "value": 0.900500880085834
       },
       {
         "date": "2026-03-28",
-        "value": 0.9717171539265742
+        "value": 0.8983851083062317
       },
       {
         "date": "2026-03-29",
-        "value": 0.9739807911669244
+        "value": 0.9003964466404514
       },
       {
         "date": "2026-03-30",
-        "value": 0.9776915979067928
+        "value": 0.902856246483467
       },
       {
         "date": "2026-03-31",
-        "value": 0.9777997921584615
+        "value": 0.8997276212978311
       },
       {
         "date": "2026-04-01",
-        "value": 0.9749902353155632
+        "value": 0.8977954510377655
       },
       {
         "date": "2026-04-02",
-        "value": 0.9746984851691551
+        "value": 0.8981260880438326
       },
       {
         "date": "2026-04-03",
-        "value": 0.9807187042911675
+        "value": 0.9032751652731514
       },
       {
         "date": "2026-04-04",
-        "value": 0.9851419892008361
+        "value": 0.9032816163509908
       },
       {
         "date": "2026-04-05",
-        "value": 0.9817539737133956
+        "value": 0.8990789706107916
       },
       {
         "date": "2026-04-06",
-        "value": 0.9803921621768419
+        "value": 0.8983181017255305
       },
       {
         "date": "2026-04-07",
-        "value": 0.9812360040070784
+        "value": 0.896790179128813
       },
       {
         "date": "2026-04-08",
-        "value": 0.9787573788682395
+        "value": 0.8934767583169333
       },
       {
         "date": "2026-04-09",
-        "value": 0.9767143071022529
+        "value": 0.8913929486395116
       },
       {
         "date": "2026-04-10",
-        "value": 0.969141018484721
+        "value": 0.8848537262405528
       },
       {
         "date": "2026-04-11",
-        "value": 0.9650192206036593
+        "value": 0.8872301080906393
       },
       {
         "date": "2026-04-12",
-        "value": 0.9624051520071724
+        "value": 0.8894128945298235
       },
       {
         "date": "2026-04-13",
-        "value": 0.9546641939462622
+        "value": 0.88689415033137
       },
       {
         "date": "2026-04-14",
-        "value": 0.9471759007865509
+        "value": 0.8857224437532045
       },
       {
         "date": "2026-04-15",
-        "value": 0.9468358549276772
+        "value": 0.8884637072845571
       },
       {
         "date": "2026-04-16",
-        "value": 0.9410952683587797
+        "value": 0.8853604630171995
       },
       {
         "date": "2026-04-17",
-        "value": 0.9334448218805833
+        "value": 0.8756794064537171
       },
       {
         "date": "2026-04-18",
-        "value": 0.9237026670806747
+        "value": 0.8652614021094063
       },
       {
         "date": "2026-04-19",
-        "value": 0.9135658784034816
+        "value": 0.8542244293974938
       },
       {
         "date": "2026-04-20",
-        "value": 0.900067029209449
+        "value": 0.8406282540702446
       },
       {
         "date": "2026-04-21",
-        "value": 0.8934570891611361
+        "value": 0.8335954674463782
       },
       {
         "date": "2026-04-22",
-        "value": 0.8834067683513537
+        "value": 0.8207212643853681
       },
       {
         "date": "2026-04-23",
-        "value": 0.878883455121306
+        "value": 0.8132863752464011
       },
       {
         "date": "2026-04-24",
-        "value": 0.8845351401955776
+        "value": 0.8166082708224028
       },
       {
         "date": "2026-04-25",
-        "value": 0.8940355034792757
+        "value": 0.8236175704146739
       },
       {
         "date": "2026-04-26",
-        "value": 0.8970903202931768
+        "value": 0.8240797120630725
       },
       {
         "date": "2026-04-27",
-        "value": 0.9062249537652893
+        "value": 0.8283690603302974
       },
       {
         "date": "2026-04-28",
-        "value": 0.9177622708639102
+        "value": 0.8369237983286154
       },
       {
         "date": "2026-04-29",
-        "value": 0.9316225834775189
+        "value": 0.8484266618951575
       },
       {
         "date": "2026-04-30",
-        "value": 0.9421174838711049
+        "value": 0.8576689236977462
       },
       {
         "date": "2026-05-01",
-        "value": 0.9487900807518868
+        "value": 0.8715641217124283
       },
       {
         "date": "2026-05-02",
-        "value": 0.9457618282569941
+        "value": 0.8752073826817525
       },
       {
         "date": "2026-05-03",
-        "value": 0.9491501978170411
+        "value": 0.8862144512209188
       },
       {
         "date": "2026-05-04",
-        "value": 0.9519971843443809
+        "value": 0.8989027834355281
       },
       {
         "date": "2026-05-05",
-        "value": 0.9437218892847454
+        "value": 0.9017474075406006
       },
       {
         "date": "2026-05-06",
-        "value": 0.9358814474194519
+        "value": 0.9050437856177681
       },
       {
         "date": "2026-05-07",
-        "value": 0.9307858109343521
+        "value": 0.9097234495686137
       },
       {
         "date": "2026-05-08",
-        "value": 0.930810020740992
+        "value": 0.9097212166895835
       },
       {
         "date": "2026-05-09",
-        "value": 0.9337147440951153
+        "value": 0.9159286799145464
       },
       {
         "date": "2026-05-10",
-        "value": 0.9378680879600917
+        "value": 0.9187564239436117
       },
       {
         "date": "2026-05-11",
-        "value": 0.9457746056507264
+        "value": 0.9282584537011817
       },
       {
         "date": "2026-05-12",
-        "value": 0.9582109631868866
+        "value": 0.9379092959215781
       },
       {
         "date": "2026-05-13",
-        "value": 0.9711238011540756
+        "value": 0.9491002482413561
       },
       {
         "date": "2026-05-14",
-        "value": 0.9850951308733458
+        "value": 0.9608553132587807
       },
       {
         "date": "2026-05-15",
-        "value": 0.9833699903136744
+        "value": 0.9632438632193149
       },
       {
         "date": "2026-05-16",
-        "value": 0.9873597896231484
+        "value": 0.9650772752708617
       },
       {
         "date": "2026-05-17",
-        "value": 0.9891480581239737
+        "value": 0.9684626347468308
       },
       {
         "date": "2026-05-18",
-        "value": 0.9809746019148609
+        "value": 0.9634150168594493
       },
       {
         "date": "2026-05-19",
-        "value": 0.9788182155751337
+        "value": 0.9663582871569805
       },
       {
         "date": "2026-05-20",
-        "value": 0.9758848405476797
+        "value": 0.9709293719128744
       },
       {
         "date": "2026-05-21",
-        "value": 0.965474273008573
+        "value": 0.9675930144423951
       },
       {
         "date": "2026-05-22",
-        "value": 0.9666904737936013
+        "value": 0.9702900820546991
       },
       {
         "date": "2026-05-23",
-        "value": 0.9598227975762834
+        "value": 0.9676710012734201
       },
       {
         "date": "2026-05-24",
-        "value": 0.9528735301919491
+        "value": 0.9656820908339386
       },
       {
         "date": "2026-05-25",
-        "value": 0.9474723054585675
+        "value": 0.9691538484412031
       },
       {
         "date": "2026-05-26",
-        "value": 0.9393830401004545
+        "value": 0.9684140143027361
       },
       {
         "date": "2026-05-27",
-        "value": 0.9331634061052584
+        "value": 0.96568046160416
       },
       {
         "date": "2026-05-28",
-        "value": 0.9432461540860955
+        "value": 0.9756370276365638
       },
       {
         "date": "2026-05-29",
-        "value": 0.9473980792594364
+        "value": 0.9734339782828708
       },
       {
         "date": "2026-05-30",
-        "value": 0.9495353617077115
+        "value": 0.9706988314658842
       },
       {
         "date": "2026-05-31",
-        "value": 0.9541471325576583
+        "value": 0.9688460175127634
       },
       {
         "date": "2026-06-01",
-        "value": 0.9666238266651305
+        "value": 0.9683312931628227
       },
       {
         "date": "2026-06-02",
-        "value": 0.9728581554999525
+        "value": 0.9640725570373894
       },
       {
         "date": "2026-06-03",
-        "value": 0.9721670249339465
+        "value": 0.9559441245247691
       },
       {
         "date": "2026-06-04",
-        "value": 0.9649974776989767
+        "value": 0.9437952442143708
       },
       {
         "date": "2026-06-05",
-        "value": 0.9519425940995716
+        "value": 0.939919215190022
       },
       {
         "date": "2026-06-06",
-        "value": 0.9575043359224374
+        "value": 0.9438222833873571
       },
       {
         "date": "2026-06-07",
-        "value": 0.9530546542848286
+        "value": 0.9433954320461522
       },
       {
         "date": "2026-06-08",
-        "value": 0.9433453123865767
+        "value": 0.9380984783838116
       },
       {
         "date": "2026-06-09",
-        "value": 0.9500867171377505
+        "value": 0.9420940875208701
       },
       {
         "date": "2026-06-10",
-        "value": 0.9671516852655621
+        "value": 0.9538010133618253
       },
       {
         "date": "2026-06-11",
-        "value": 0.9796865260214656
+        "value": 0.9629920073180811
       },
       {
         "date": "2026-06-12",
-        "value": 1.000879404744238
+        "value": 0.9742886700900105
       },
       {
         "date": "2026-06-13",
-        "value": 0.9951435089444522
+        "value": 0.9704727982505992
       },
       {
         "date": "2026-06-14",
-        "value": 0.9937863992350037
+        "value": 0.9698651764799016
       },
       {
         "date": "2026-06-15",
-        "value": 1.000018964338517
+        "value": 0.9724389119018064
       },
       {
         "date": "2026-06-16",
-        "value": 0.9925266287489521
+        "value": 0.9676501241507058
       },
       {
         "date": "2026-06-17",
-        "value": 0.9768066803315788
+        "value": 0.9584923772411164
       },
       {
         "date": "2026-06-18",
-        "value": 0.9313837248166503
+        "value": 0.9485035386303001
       },
       {
         "date": "2026-06-19",
-        "value": 0.9163987282913995
+        "value": 0.9416788130017367
       },
       {
         "date": "2026-06-20",
-        "value": 0.9201135417846695
+        "value": 0.9443134799818583
       },
       {
         "date": "2026-06-21",
-        "value": 0.9278738823709237
+        "value": 0.9494811897647142
       },
       {
         "date": "2026-06-22",
-        "value": 0.9162088833934199
+        "value": 0.9533798544713581
       },
       {
         "date": "2026-06-23",
-        "value": 0.9197348757758105
+        "value": 0.9697324886412225
       },
       {
         "date": "2026-06-24",
-        "value": 0.9193857750007286
+        "value": 0.9813910121069732
       },
       {
         "date": "2026-06-25",
-        "value": 0.9446974712464777
+        "value": 0.9900358848215983
       },
       {
         "date": "2026-06-26",
-        "value": 0.9253847337570573
+        "value": 0.986200453058095
       },
       {
         "date": "2026-06-27",
-        "value": 0.901585943095021
+        "value": 0.9846467645177959
       },
       {
         "date": "2026-06-28",
-        "value": 0.8810992280245147
+        "value": 0.9835735726156842
       },
       {
         "date": "2026-06-29",
-        "value": 0.8829345805299402
+        "value": 0.9840717961935134
       },
       {
         "date": "2026-06-30",
-        "value": 0.8808746754137339
+        "value": 0.9702048208937455
       },
       {
         "date": "2026-07-01",
-        "value": 0.8820976688916424
+        "value": 0.9548777610987255
       },
       {
         "date": "2026-07-02",
-        "value": 0.8939783255490691
+        "value": 0.9491492944568656
       },
       {
         "date": "2026-07-03",
-        "value": 0.9135916089944959
+        "value": 0.9466107681420913
       },
       {
         "date": "2026-07-04",
-        "value": 0.9389830153180245
+        "value": 0.9465986328099334
       },
       {
         "date": "2026-07-05",
-        "value": 0.9611003698634198
+        "value": 0.9460075400593129
       },
       {
         "date": "2026-07-06",
-        "value": 0.9671339715699238
+        "value": 0.9403820593283481
       },
       {
         "date": "2026-07-07",
-        "value": 0.9661810014045541
+        "value": 0.9372696484388789
       },
       {
         "date": "2026-07-08",
-        "value": 0.9763691929307549
+        "value": 0.947305290045832
       },
       {
         "date": "2026-07-09",
-        "value": 0.9795047066972523
+        "value": 0.9517583724395123
       },
       {
         "date": "2026-07-10",
-        "value": 0.9835224920123844
+        "value": 0.956593365351162
       },
       {
         "date": "2026-07-11",
-        "value": 0.9933708510140088
+        "value": 0.9665800344190764
       },
       {
         "date": "2026-07-12",
-        "value": 1.003416855168964
+        "value": 0.9733984799225738
       },
       {
         "date": "2026-07-13",
-        "value": 1.010998370355877
+        "value": 0.9761483747989308
       },
       {
         "date": "2026-07-14",
-        "value": 1.017810935672173
+        "value": 0.9834801158916667
       },
       {
         "date": "2026-07-15",
-        "value": 1.019303582831956
+        "value": 0.9876625072818297
       },
       {
         "date": "2026-07-16",
-        "value": 1.025116599223476
+        "value": 0.9952335402305642
       },
       {
         "date": "2026-07-17",
-        "value": 1.02670118935465
+        "value": 0.9987675735370543
       },
       {
         "date": "2026-07-18",
-        "value": 1.02394784988928
+        "value": 0.9966794831040726
       },
       {
         "date": "2026-07-19",
-        "value": 1.023478201931786
+        "value": 0.9973227798912377
       },
       {
         "date": "2026-07-20",
-        "value": 1.031823202203582
+        "value": 1.0075194267493073
       },
       {
         "date": "2026-07-21",
-        "value": 1.032766882351477
+        "value": 1.0094145341520124
       },
       {
         "date": "2026-07-22",
-        "value": 1.031714893468657
+        "value": 1.0082682647505066
       },
       {
         "date": "2026-07-23",
-        "value": 1.037960242473325
+        "value": 1.0130221023037629
       },
       {
         "date": "2026-07-24",
-        "value": 1.040449787689801
+        "value": 1.0145159594855055
       },
       {
         "date": "2026-07-25",
-        "value": 1.042468349248409
+        "value": 1.015608064186595
       },
       {
         "date": "2026-07-26",
-        "value": 1.047263037958649
+        "value": 1.0190183996709927
       },
       {
         "date": "2026-07-27",
-        "value": 1.038447582170585
+        "value": 1.0116860479632936
       },
       {
         "date": "2026-07-28",
-        "value": 1.029604022531821
+        "value": 1.0031364230377604
       },
       {
         "date": "2026-07-29",
-        "value": 1.024224188956216
+        "value": 0.9975862467126341
       },
       {
         "date": "2026-07-30",
-        "value": 1.006785052532692
+        "value": 0.9809248703261103
       },
       {
         "date": "2026-07-31",
-        "value": 0.9979982289577546
+        "value": 0.9709341303420965
       },
       {
         "date": "2026-08-01",
-        "value": 0.9905589038945112
+        "value": 0.9634166454439749
       },
       {
         "date": "2026-08-02",
-        "value": 0.9790393005564658
+        "value": 0.9508267817541864
       },
       {
         "date": "2026-08-03",
-        "value": 0.9628324726231745
+        "value": 0.9308444685400015
       },
       {
         "date": "2026-08-04",
-        "value": 0.947104804155521
+        "value": 0.9121558252195148
       },
       {
         "date": "2026-08-05",
-        "value": 0.9290191917606425
+        "value": 0.8915119988332623
       },
       {
         "date": "2026-08-06",
-        "value": 0.9134540812253842
+        "value": 0.8729233988082216
       },
       {
         "date": "2026-08-07",
-        "value": 0.9000289948742535
+        "value": 0.8573882169337056
       },
       {
         "date": "2026-08-08",
-        "value": 0.8990502644250563
+        "value": 0.8556895861221148
       },
       {
         "date": "2026-08-09",
-        "value": 0.9017153393083628
+        "value": 0.8580766091663241
       },
       {
         "date": "2026-08-10",
-        "value": 0.8966124150391716
+        "value": 0.8510882072785417
       },
       {
         "date": "2026-08-11",
-        "value": 0.8899582290228082
+        "value": 0.8431380196980206
       },
       {
         "date": "2026-08-12",
-        "value": 0.8825461858498377
+        "value": 0.8346980918451755
       },
       {
         "date": "2026-08-13",
-        "value": 0.8747166466898733
+        "value": 0.8268540320838097
       },
       {
         "date": "2026-08-14",
-        "value": 0.8708244977651537
+        "value": 0.822390834981803
       },
       {
         "date": "2026-08-15",
-        "value": 0.8689653004612181
+        "value": 0.8205791131261537
       },
       {
         "date": "2026-08-16",
-        "value": 0.8627569217448671
+        "value": 0.8150497189656617
       },
       {
         "date": "2026-08-17",
-        "value": 0.8599031840671628
+        "value": 0.8117089246844481
       },
       {
         "date": "2026-08-18",
-        "value": 0.8590922256162744
+        "value": 0.809688787812307
       },
       {
         "date": "2026-08-19",
-        "value": 0.8562976065741168
+        "value": 0.8044835953310232
       },
       {
         "date": "2026-08-20",
-        "value": 0.8518331591706882
+        "value": 0.7976822514559996
       },
       {
         "date": "2026-08-21",
-        "value": 0.8430995450998992
+        "value": 0.7876892544579028
       },
       {
         "date": "2026-08-22",
-        "value": 0.8330787601782736
+        "value": 0.7783875771220361
       },
       {
         "date": "2026-08-23",
-        "value": 0.8277990660543115
+        "value": 0.773007169787585
       },
       {
         "date": "2026-08-24",
-        "value": 0.813691780705401
+        "value": 0.7580728224037045
       },
       {
         "date": "2026-08-25",
-        "value": 0.7980936669313609
+        "value": 0.7417461440174885
       },
       {
         "date": "2026-08-26",
-        "value": 0.7859264771133211
+        "value": 0.7296474637441317
       },
       {
         "date": "2026-08-27",
-        "value": 0.773741015582065
+        "value": 0.717654821389502
       },
       {
         "date": "2026-08-28",
-        "value": 0.7679335796273893
+        "value": 0.7112407280484674
       },
       {
         "date": "2026-08-29",
-        "value": 0.7666835254397979
+        "value": 0.7092065790636155
       },
       {
         "date": "2026-08-30",
-        "value": 0.7627752355166821
+        "value": 0.7053523206746262
       },
       {
         "date": "2026-08-31",
-        "value": 0.7604377471331274
+        "value": 0.7016176871577837
       },
       {
         "date": "2026-09-01",
-        "value": 0.7585762673226941
+        "value": 0.6976398878950644
       },
       {
         "date": "2026-09-02",
-        "value": 0.7543972941525094
+        "value": 0.691959743917372
       },
       {
         "date": "2026-09-03",
-        "value": 0.7541715163937683
+        "value": 0.6894018264582724
       },
       {
         "date": "2026-09-04",
-        "value": 0.7579467650453225
+        "value": 0.6949569061983111
       },
       {
         "date": "2026-09-05",
-        "value": 0.7652322555482789
+        "value": 0.7011673871252909
       },
       {
         "date": "2026-09-06",
-        "value": 0.7722244680853442
+        "value": 0.7074270985412805
       },
       {
         "date": "2026-09-07",
-        "value": 0.78051202573886
+        "value": 0.7128742821136076
       },
       {
         "date": "2026-09-08",
-        "value": 0.7886927602336489
+        "value": 0.7200658413493424
       },
       {
         "date": "2026-09-09",
-        "value": 0.7986199998343495
+        "value": 0.7290031930693947
       },
       {
         "date": "2026-09-10",
-        "value": 0.8132560614741774
+        "value": 0.7414877175423388
       },
       {
         "date": "2026-09-11",
-        "value": 0.8162581215378373
+        "value": 0.7406731665140175
       },
       {
         "date": "2026-09-12",
-        "value": 0.8173596869944476
+        "value": 0.7430169374573242
       },
       {
         "date": "2026-09-13",
-        "value": 0.817341493599182
+        "value": 0.7435547466194066
       },
       {
         "date": "2026-09-14",
-        "value": 0.8173544111008999
+        "value": 0.7468293024437108
       },
       {
         "date": "2026-09-15",
-        "value": 0.8218622276725057
+        "value": 0.749753018936464
       },
       {
         "date": "2026-09-16",
-        "value": 0.8276118446342239
+        "value": 0.7550441856701169
       },
       {
         "date": "2026-09-17",
-        "value": 0.8282513865876229
+        "value": 0.756102330646637
       },
       {
         "date": "2026-09-18",
-        "value": 0.828909305289946
+        "value": 0.7571325531466087
       },
       {
         "date": "2026-09-19",
-        "value": 0.8282319838832302
+        "value": 0.7567658839882028
       },
       {
         "date": "2026-09-20",
-        "value": 0.8290220470127442
+        "value": 0.7569853971120492
       },
       {
         "date": "2026-09-21",
-        "value": 0.8243012338981671
+        "value": 0.7504823493278816
       },
       {
         "date": "2026-09-22",
-        "value": 0.8185652287447545
+        "value": 0.7452568311382812
       },
       {
         "date": "2026-09-23",
-        "value": 0.7996512034090615
+        "value": 0.7283750558592629
       },
       {
         "date": "2026-09-24",
-        "value": 0.7735936516303114
+        "value": 0.7054091806914683
       },
       {
         "date": "2026-09-25",
-        "value": 0.7520204157259861
+        "value": 0.6860610675332595
       },
       {
         "date": "2026-09-26",
-        "value": 0.7386206072749149
+        "value": 0.6742394201640654
       },
       {
         "date": "2026-09-27",
-        "value": 0.7301687649674609
+        "value": 0.6658170630237662
       },
       {
         "date": "2026-09-28",
-        "value": 0.7100299370651164
+        "value": 0.6475786286101526
       },
       {
         "date": "2026-09-29",
-        "value": 0.6804352298103068
+        "value": 0.6226796182715946
       },
       {
         "date": "2026-09-30",
-        "value": 0.662458482979826
+        "value": 0.6066699477868561
       },
       {
         "date": "2026-10-01",
-        "value": 0.6501951398540653
+        "value": 0.5962061599270697
       },
       {
         "date": "2026-10-02",
-        "value": 0.6368915624597157
+        "value": 0.5854854850323282
       },
       {
         "date": "2026-10-03",
-        "value": 0.630047024674959
+        "value": 0.5794692120155773
       },
       {
         "date": "2026-10-04",
-        "value": 0.6224720924969318
+        "value": 0.5735808408117178
       },
       {
         "date": "2026-10-05",
-        "value": 0.6117657498511311
+        "value": 0.5645538327724527
       },
       {
         "date": "2026-10-06",
-        "value": 0.6073604398610131
+        "value": 0.5598107001388494
       },
       {
         "date": "2026-10-07",
-        "value": 0.6003518224907244
+        "value": 0.5541560759200269
       },
       {
         "date": "2026-10-08",
-        "value": 0.5947473564071375
+        "value": 0.5494235565182533
       },
       {
         "date": "2026-10-09",
-        "value": 0.5907898996471872
+        "value": 0.5452371829629564
       },
       {
         "date": "2026-10-10",
-        "value": 0.5912635797624484
+        "value": 0.5448283770034967
       },
       {
         "date": "2026-10-11",
-        "value": 0.5898948663374326
+        "value": 0.5427090705263289
       },
       {
         "date": "2026-10-12",
-        "value": 0.5894737232674743
+        "value": 0.5417049018854383
       },
       {
         "date": "2026-10-13",
-        "value": 0.5835333672173082
+        "value": 0.5363569883255034
       },
       {
         "date": "2026-10-14",
-        "value": 0.5744826235471442
+        "value": 0.528545290797861
       },
       {
         "date": "2026-10-15",
-        "value": 0.5686571320497518
+        "value": 0.5236234964331768
       },
       {
         "date": "2026-10-16",
-        "value": 0.5625064349479261
+        "value": 0.5193414781101571
       },
       {
         "date": "2026-10-17",
-        "value": 0.5574785856785605
+        "value": 0.5146774981348343
       },
       {
         "date": "2026-10-18",
-        "value": 0.5518427128861764
+        "value": 0.5091579615458449
       },
       {
         "date": "2026-10-19",
-        "value": 0.5444219432644404
+        "value": 0.5037557917532505
       },
       {
         "date": "2026-10-20",
-        "value": 0.5385329820591463
+        "value": 0.5010718705985964
       },
       {
         "date": "2026-10-21",
-        "value": 0.536139712983141
+        "value": 0.5012110655837746
       },
       {
         "date": "2026-10-22",
-        "value": 0.5336300561076014
+        "value": 0.500580209711589
       },
       {
         "date": "2026-10-23",
-        "value": 0.5305377414045146
+        "value": 0.49814531313682153
       },
       {
         "date": "2026-10-24",
-        "value": 0.5285180043240318
+        "value": 0.49804480858971845
       },
       {
         "date": "2026-10-25",
-        "value": 0.5246366771653515
+        "value": 0.49653617139240575
       },
       {
         "date": "2026-10-26",
-        "value": 0.5214487885583707
+        "value": 0.4954314531422672
       },
       {
         "date": "2026-10-27",
-        "value": 0.5205711786260889
+        "value": 0.4946434242555249
       },
       {
         "date": "2026-10-28",
-        "value": 0.5199475520761031
+        "value": 0.49321311938728524
       },
       {
         "date": "2026-10-29",
-        "value": 0.515344959380429
+        "value": 0.4908523003108973
       },
       {
         "date": "2026-10-30",
-        "value": 0.5190636802572316
+        "value": 0.49742889016205716
       },
       {
         "date": "2026-10-31",
-        "value": 0.5229000275370456
+        "value": 0.5040994565511692
       },
       {
         "date": "2026-11-01",
-        "value": 0.5306243944688581
+        "value": 0.5138559585833294
+      },
+      {
+        "date": "2026-11-02",
+        "value": 0.5121711401537283
+      },
+      {
+        "date": "2026-11-03",
+        "value": 0.5050740678145841
+      },
+      {
+        "date": "2026-11-04",
+        "value": 0.4988400129246929
+      },
+      {
+        "date": "2026-11-05",
+        "value": 0.4915435898260831
+      },
+      {
+        "date": "2026-11-06",
+        "value": 0.47704268254046717
+      },
+      {
+        "date": "2026-11-07",
+        "value": 0.46299301845684043
+      },
+      {
+        "date": "2026-11-08",
+        "value": 0.4461012919332888
+      },
+      {
+        "date": "2026-11-09",
+        "value": 0.4362812226928763
+      },
+      {
+        "date": "2026-11-10",
+        "value": 0.4327413753378799
+      },
+      {
+        "date": "2026-11-11",
+        "value": 0.4284342532759011
+      },
+      {
+        "date": "2026-11-12",
+        "value": 0.4269662273699315
+      },
+      {
+        "date": "2026-11-13",
+        "value": 0.4290004648443744
+      },
+      {
+        "date": "2026-11-14",
+        "value": 0.43868323739540893
+      },
+      {
+        "date": "2026-11-15",
+        "value": 0.4522586860176018
+      },
+      {
+        "date": "2026-11-16",
+        "value": 0.4570941004667957
+      },
+      {
+        "date": "2026-11-17",
+        "value": 0.4571023326052948
       }
     ]
   },
@@ -7012,7 +7159,7 @@ export const adoptionPriceSnapshot = {
       "rampSpendUsd": null,
       "rampMatchedTokens": null,
       "rampWeeks": 3,
-      "rampCoverage": 0.9695948091158189,
+      "rampCoverage": 0.9881387102963984,
       "rampSpendingMom": null,
       "rampSpendingYoy": null
     },
@@ -7021,11 +7168,11 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-01-27",
       "windowEnd": "2025-02-23",
       "silicon": null,
-      "ramp": 3718594.1290427367,
-      "rampSpendUsd": 30.315539547347832,
-      "rampMatchedTokens": 8.152419569153636,
+      "ramp": 3096491.1900243084,
+      "rampSpendUsd": 44.81965589307422,
+      "rampMatchedTokens": 14.474336641895105,
       "rampWeeks": 4,
-      "rampCoverage": 0.9757292693295366,
+      "rampCoverage": 0.9906553213808263,
       "rampSpendingMom": null,
       "rampSpendingYoy": null
     },
@@ -7034,12 +7181,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-03-03",
       "windowEnd": "2025-03-30",
       "silicon": null,
-      "ramp": 4234552.280017895,
-      "rampSpendUsd": 43.36431069364734,
-      "rampMatchedTokens": 10.240589282195398,
+      "ramp": 3549706.7424889132,
+      "rampSpendUsd": 80.19537848314026,
+      "rampMatchedTokens": 22.59211374371463,
       "rampWeeks": 4,
-      "rampCoverage": 0.9852413577259306,
-      "rampSpendingMom": 43.043176341689374,
+      "rampCoverage": 0.9950388907212747,
+      "rampSpendingMom": 78.92903656927115,
       "rampSpendingYoy": null
     },
     {
@@ -7047,12 +7194,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-03-31",
       "windowEnd": "2025-04-27",
       "silicon": null,
-      "ramp": 4496005.362600539,
-      "rampSpendUsd": 51.099748913849965,
-      "rampMatchedTokens": 11.365588960128221,
+      "ramp": 3107232.03970185,
+      "rampSpendUsd": 80.44487482307446,
+      "rampMatchedTokens": 25.889561447362468,
       "rampWeeks": 4,
-      "rampCoverage": 0.9867744972853003,
-      "rampSpendingMom": 17.83825938073962,
+      "rampCoverage": 0.9954860262998291,
+      "rampSpendingMom": 0.31111062090274366,
       "rampSpendingYoy": null
     },
     {
@@ -7060,12 +7207,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-04-28",
       "windowEnd": "2025-05-25",
       "silicon": null,
-      "ramp": 4091789.8231432526,
-      "rampSpendUsd": 57.61886523878307,
-      "rampMatchedTokens": 14.081579878049824,
+      "ramp": 2783984.0606234623,
+      "rampSpendUsd": 93.73844865314439,
+      "rampMatchedTokens": 33.67061255090377,
       "rampWeeks": 4,
-      "rampCoverage": 0.9886828578466944,
-      "rampSpendingMom": 12.757628879789241,
+      "rampCoverage": 0.9964675725631919,
+      "rampSpendingMom": 16.525072429172162,
       "rampSpendingYoy": null
     },
     {
@@ -7073,12 +7220,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-06-02",
       "windowEnd": "2025-06-29",
       "silicon": null,
-      "ramp": 3899882.9380737506,
-      "rampSpendUsd": 68.94149804229069,
-      "rampMatchedTokens": 17.67783780616313,
+      "ramp": 3381890.9594265437,
+      "rampSpendUsd": 66.46095401358474,
+      "rampMatchedTokens": 19.6520097220563,
       "rampWeeks": 4,
-      "rampCoverage": 0.9896877930777189,
-      "rampSpendingMom": 19.650912520724884,
+      "rampCoverage": 0.9928924728439346,
+      "rampSpendingMom": -29.099579768482375,
       "rampSpendingYoy": null
     },
     {
@@ -7086,12 +7233,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-06-30",
       "windowEnd": "2025-07-27",
       "silicon": null,
-      "ramp": 3569292.6887092325,
-      "rampSpendUsd": 90.37324980505481,
-      "rampMatchedTokens": 25.31965229159635,
+      "ramp": 3056213.676247108,
+      "rampSpendUsd": 87.34922874686667,
+      "rampMatchedTokens": 28.58086442899751,
       "rampWeeks": 4,
-      "rampCoverage": 0.9903716953267716,
-      "rampSpendingMom": 31.08686693987599,
+      "rampCoverage": 0.993082458405082,
+      "rampSpendingMom": 31.429393458619813,
       "rampSpendingYoy": null
     },
     {
@@ -7099,12 +7246,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-08-04",
       "windowEnd": "2025-08-31",
       "silicon": null,
-      "ramp": 3667727.5307002985,
-      "rampSpendUsd": 107.81479022272359,
-      "rampMatchedTokens": 29.395528790040174,
+      "ramp": 2951748.8677463597,
+      "rampSpendUsd": 120.64545948915779,
+      "rampMatchedTokens": 40.87253519682716,
       "rampWeeks": 4,
-      "rampCoverage": 0.9956170858510034,
-      "rampSpendingMom": 19.29945028566764,
+      "rampCoverage": 0.9974104216122293,
+      "rampSpendingMom": 38.11851715231715,
       "rampSpendingYoy": null
     },
     {
@@ -7112,12 +7259,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-09-01",
       "windowEnd": "2025-09-28",
       "silicon": null,
-      "ramp": 3219103.136630841,
-      "rampSpendUsd": 129.3922631054879,
-      "rampMatchedTokens": 40.19512815016908,
+      "ramp": 2603899.9953119224,
+      "rampSpendUsd": 125.71478221385972,
+      "rampMatchedTokens": 48.27942026967141,
       "rampWeeks": 4,
-      "rampCoverage": 0.996173075896281,
-      "rampSpendingMom": 20.01346275236413,
+      "rampCoverage": 0.9974614919625275,
+      "rampSpendingMom": 4.201834653510117,
       "rampSpendingYoy": null
     },
     {
@@ -7125,12 +7272,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-09-29",
       "windowEnd": "2025-10-26",
       "silicon": null,
-      "ramp": 3292925.9536668435,
-      "rampSpendUsd": 194.77261527303307,
-      "rampMatchedTokens": 59.14879897500995,
+      "ramp": 2517086.3455399023,
+      "rampSpendUsd": 201.04050102192303,
+      "rampMatchedTokens": 79.87032362960153,
       "rampWeeks": 4,
-      "rampCoverage": 0.9970885288891811,
-      "rampSpendingMom": 50.52879561604344,
+      "rampCoverage": 0.9982340119485612,
+      "rampSpendingMom": 59.91794877385457,
       "rampSpendingYoy": null
     },
     {
@@ -7138,12 +7285,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-11-03",
       "windowEnd": "2025-11-30",
       "silicon": null,
-      "ramp": 3249526.958389263,
-      "rampSpendUsd": 213.41567948444742,
-      "rampMatchedTokens": 65.67592213182748,
+      "ramp": 2443110.0462103956,
+      "rampSpendUsd": 241.86065659883047,
+      "rampMatchedTokens": 98.99703739256039,
       "rampWeeks": 4,
-      "rampCoverage": 0.9975144034147679,
-      "rampSpendingMom": 9.571707082784942,
+      "rampCoverage": 0.9984507666652452,
+      "rampSpendingMom": 20.304443815754357,
       "rampSpendingYoy": null
     },
     {
@@ -7151,12 +7298,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-12-01",
       "windowEnd": "2025-12-28",
       "silicon": 1.0940451612903226,
-      "ramp": 3145209.820268285,
-      "rampSpendUsd": 222.34789887201703,
-      "rampMatchedTokens": 70.6941385719859,
+      "ramp": 2496946.0448528323,
+      "rampSpendUsd": 266.23491802078144,
+      "rampMatchedTokens": 106.62421743937726,
       "rampWeeks": 4,
-      "rampCoverage": 0.9974469061155707,
-      "rampSpendingMom": 4.185362298190709,
+      "rampCoverage": 0.9985349223148702,
+      "rampSpendingMom": 10.077811647712531,
       "rampSpendingYoy": null
     },
     {
@@ -7164,12 +7311,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-12-29",
       "windowEnd": "2026-01-25",
       "silicon": 1.548683870967742,
-      "ramp": 2986181.303547409,
-      "rampSpendUsd": 233.28045315999498,
-      "rampMatchedTokens": 78.11998986226035,
+      "ramp": 2481594.151350231,
+      "rampSpendUsd": 261.00978699665757,
+      "rampMatchedTokens": 105.17827294791238,
       "rampWeeks": 4,
-      "rampCoverage": 0.9973300857572548,
-      "rampSpendingMom": 4.916868719443435,
+      "rampCoverage": 0.9977474988751953,
+      "rampSpendingMom": -1.9626016988936068,
       "rampSpendingYoy": null
     },
     {
@@ -7177,117 +7324,117 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-01-26",
       "windowEnd": "2026-02-22",
       "silicon": 1.3752035714285713,
-      "ramp": 3301638.6057774397,
-      "rampSpendUsd": 386.7676265077619,
-      "rampMatchedTokens": 117.14414346590468,
+      "ramp": 2954714.2154821088,
+      "rampSpendUsd": 441.5542243119328,
+      "rampMatchedTokens": 149.4405861650773,
       "rampWeeks": 4,
-      "rampCoverage": 0.9981427325228717,
-      "rampSpendingMom": 65.7951282538439,
-      "rampSpendingYoy": 1175.8065080903316
+      "rampCoverage": 0.9980954428648136,
+      "rampSpendingMom": 69.17152011529255,
+      "rampSpendingYoy": 885.1798625258169
     },
     {
       "month": "2026-03",
       "windowStart": "2026-03-02",
       "windowEnd": "2026-03-29",
       "silicon": 1.488009677419355,
-      "ramp": 3174287.036177862,
-      "rampSpendUsd": 564.977256460742,
-      "rampMatchedTokens": 177.98556022867652,
+      "ramp": 2989662.4280123953,
+      "rampSpendUsd": 587.8019615858266,
+      "rampMatchedTokens": 196.6114823126076,
       "rampWeeks": 4,
-      "rampCoverage": 0.998994041312145,
-      "rampSpendingMom": 46.07666664402266,
-      "rampSpendingYoy": 1202.8623017948912
+      "rampCoverage": 0.9917522817637118,
+      "rampSpendingMom": 33.121127422524246,
+      "rampSpendingYoy": 632.9623884865163
     },
     {
       "month": "2026-04",
       "windowStart": "2026-03-30",
       "windowEnd": "2026-04-26",
       "silicon": 1.6781533333333334,
-      "ramp": 2593613.7626081505,
-      "rampSpendUsd": 583.6355051195952,
-      "rampMatchedTokens": 225.02791800915207,
+      "ramp": 2381472.2716394975,
+      "rampSpendUsd": 567.8502442374119,
+      "rampMatchedTokens": 238.4450371309517,
       "rampWeeks": 4,
-      "rampCoverage": 0.9983929947806869,
-      "rampSpendingMom": 3.302477833485984,
-      "rampSpendingYoy": 1042.14945772739
+      "rampCoverage": 0.9907623485497521,
+      "rampSpendingMom": -3.3942924066784563,
+      "rampSpendingYoy": 605.8874110828154
     },
     {
       "month": "2026-05",
       "windowStart": "2026-05-04",
       "windowEnd": "2026-05-31",
       "silicon": 1.9452967741935485,
-      "ramp": 2417462.4404156706,
-      "rampSpendUsd": 751.6096360479044,
-      "rampMatchedTokens": 310.908506160149,
+      "ramp": 2452977.221414597,
+      "rampSpendUsd": 732.7165350259661,
+      "rampMatchedTokens": 298.7049894427552,
       "rampWeeks": 4,
-      "rampCoverage": 0.9982755601017513,
-      "rampSpendingMom": 28.780656669249225,
-      "rampSpendingYoy": 1204.4506047335315
+      "rampCoverage": 0.996671375856648,
+      "rampSpendingMom": 29.0334102101091,
+      "rampSpendingYoy": 681.6606158452652
     },
     {
       "month": "2026-06",
       "windowStart": "2026-06-01",
       "windowEnd": "2026-06-28",
       "silicon": 1.7730133333333336,
-      "ramp": 2327384.9858904905,
-      "rampSpendUsd": 881.5420400812003,
-      "rampMatchedTokens": 378.76932498295287,
+      "ramp": 2364404.3985424717,
+      "rampSpendUsd": 720.4436402931592,
+      "rampMatchedTokens": 304.70406870215345,
       "rampWeeks": 4,
-      "rampCoverage": 0.9963454916305611,
-      "rampSpendingMom": 17.28721902988144,
-      "rampSpendingYoy": 1178.6812951764366
+      "rampCoverage": 0.9946654438244925,
+      "rampSpendingMom": -1.674985365571413,
+      "rampSpendingYoy": 984.0103802089559
     },
     {
       "month": "2026-07",
       "windowStart": "2026-06-29",
       "windowEnd": "2026-07-26",
       "silicon": 1.5534709677419356,
-      "ramp": 2428886.7351326384,
-      "rampSpendUsd": 1128.7456629832245,
-      "rampMatchedTokens": 464.71729070626475,
+      "ramp": 2345229.990028385,
+      "rampSpendUsd": 918.3981673650294,
+      "rampMatchedTokens": 391.6026024185004,
       "rampWeeks": 4,
-      "rampCoverage": 0.9964801814693883,
-      "rampSpendingMom": 28.04218195643329,
-      "rampSpendingYoy": 1148.9820443749172
+      "rampCoverage": 0.9970822926369288,
+      "rampSpendingMom": 27.476754044399577,
+      "rampSpendingYoy": 951.4095894612847
     },
     {
       "month": "2026-08",
       "windowStart": "2026-08-03",
       "windowEnd": "2026-08-30",
       "silicon": 1.1023290322580646,
-      "ramp": 1968523.2652495033,
-      "rampSpendUsd": 1281.3005818270594,
-      "rampMatchedTokens": 650.8943046018098,
+      "ramp": 1833268.4502743878,
+      "rampSpendUsd": 1036.5668632988093,
+      "rampMatchedTokens": 565.4201179012625,
       "rampWeeks": 4,
-      "rampCoverage": 0.996236424908667,
-      "rampSpendingMom": 13.515437874697046,
-      "rampSpendingYoy": 1088.4274682352495
+      "rampCoverage": 0.9893861867583306,
+      "rampSpendingMom": 12.866826190737823,
+      "rampSpendingYoy": 759.1843138464435
     },
     {
       "month": "2026-09",
       "windowStart": "2026-08-31",
       "windowEnd": "2026-09-27",
       "silicon": 0.9785299999999999,
-      "ramp": 1738395.8812660016,
-      "rampSpendUsd": 1276.838344678138,
-      "rampMatchedTokens": 734.4922744227106,
+      "ramp": 1600693.882117977,
+      "rampSpendUsd": 1060.5086949017007,
+      "rampMatchedTokens": 662.5306104740503,
       "rampWeeks": 4,
-      "rampCoverage": 0.9964338865812178,
-      "rampSpendingMom": -0.34825841900100185,
-      "rampSpendingYoy": 886.7965162933946
+      "rampCoverage": 0.9907973359565002,
+      "rampSpendingMom": 2.309723805630637,
+      "rampSpendingYoy": 743.5831301824285
     },
     {
       "month": "2026-10",
       "windowStart": "2026-09-28",
       "windowEnd": "2026-10-25",
       "silicon": 0.9514806451612903,
-      "ramp": 1303527.9724106116,
-      "rampSpendUsd": 1251.0968423497213,
-      "rampMatchedTokens": 959.7775182653506,
+      "ramp": 1207002.6891817807,
+      "rampSpendUsd": 1024.3883133253862,
+      "rampMatchedTokens": 848.7042510400804,
       "rampWeeks": 4,
-      "rampCoverage": 0.9978897165165812,
-      "rampSpendingMom": -2.016034561908886,
-      "rampSpendingYoy": 542.3371378958631
+      "rampCoverage": 0.9876947443943722,
+      "rampSpendingMom": -3.40594864992243,
+      "rampSpendingYoy": 409.5432552735624
     },
     {
       "month": "2026-11",
@@ -7297,8 +7444,8 @@ export const adoptionPriceSnapshot = {
       "ramp": null,
       "rampSpendUsd": null,
       "rampMatchedTokens": null,
-      "rampWeeks": 0,
-      "rampCoverage": 0,
+      "rampWeeks": 2,
+      "rampCoverage": 0.9892064625229241,
       "rampSpendingMom": null,
       "rampSpendingYoy": null
     }
@@ -7721,7 +7868,7 @@ export const adoptionPriceSnapshot = {
       "rampSpendUsd": null,
       "rampMatchedTokens": null,
       "rampWeeks": 3,
-      "rampCoverage": 0.9695948091158189,
+      "rampCoverage": 0.9881387102963984,
       "rampSpendingMom": null,
       "rampSpendingYoy": null,
       "openrouterVolume": null,
@@ -7751,11 +7898,11 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-01-27",
       "windowEnd": "2025-02-23",
       "silicon": null,
-      "ramp": 3718594.1290427367,
-      "rampSpendUsd": 30.315539547347832,
-      "rampMatchedTokens": 8.152419569153636,
+      "ramp": 3096491.1900243084,
+      "rampSpendUsd": 44.81965589307422,
+      "rampMatchedTokens": 14.474336641895105,
       "rampWeeks": 4,
-      "rampCoverage": 0.9757292693295366,
+      "rampCoverage": 0.9906553213808263,
       "rampSpendingMom": null,
       "rampSpendingYoy": null,
       "openrouterVolume": 3106295922144,
@@ -7771,8 +7918,8 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 8.152419569153636,
-      "rampPrice": 3718594.1290427367,
+      "rampVolume": 14.474336641895105,
+      "rampPrice": 3096491.1900243084,
       "rampVolumeGrowth": null,
       "rampPriceChange": null,
       "rampSpendingGrowth": null,
@@ -7787,12 +7934,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-03-03",
       "windowEnd": "2025-03-30",
       "silicon": null,
-      "ramp": 4234552.280017895,
-      "rampSpendUsd": 43.36431069364734,
-      "rampMatchedTokens": 10.240589282195398,
+      "ramp": 3549706.7424889132,
+      "rampSpendUsd": 80.19537848314026,
+      "rampMatchedTokens": 22.59211374371463,
       "rampWeeks": 4,
-      "rampCoverage": 0.9852413577259306,
-      "rampSpendingMom": 43.043176341689374,
+      "rampCoverage": 0.9950388907212747,
+      "rampSpendingMom": 78.92903656927115,
       "rampSpendingYoy": null,
       "openrouterVolume": 5790425193479,
       "openrouterTotalVolume": 5790425193479,
@@ -7807,12 +7954,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 10.240589282195398,
-      "rampPrice": 4234552.280017895,
-      "rampVolumeGrowth": 25.614109962431076,
-      "rampPriceChange": 13.8750864727466,
-      "rampSpendingGrowth": 43.043176341689396,
-      "rampInteraction": 3.5539799065117137,
+      "rampVolume": 22.59211374371463,
+      "rampPrice": 3549706.7424889132,
+      "rampVolumeGrowth": 56.08393187652623,
+      "rampPriceChange": 14.636423120617593,
+      "rampSpendingGrowth": 78.92903656927113,
+      "rampInteraction": 8.208681572127306,
       "openrouterVolumeGrowth": 86.40932282724643,
       "openrouterPriceChange": -4.625489764210466,
       "openrouterSpendingGrowth": 77.78697868033811,
@@ -7823,12 +7970,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-03-31",
       "windowEnd": "2025-04-27",
       "silicon": null,
-      "ramp": 4496005.362600539,
-      "rampSpendUsd": 51.099748913849965,
-      "rampMatchedTokens": 11.365588960128221,
+      "ramp": 3107232.03970185,
+      "rampSpendUsd": 80.44487482307446,
+      "rampMatchedTokens": 25.889561447362468,
       "rampWeeks": 4,
-      "rampCoverage": 0.9867744972853003,
-      "rampSpendingMom": 17.83825938073962,
+      "rampCoverage": 0.9954860262998291,
+      "rampSpendingMom": 0.31111062090274366,
       "rampSpendingYoy": null,
       "openrouterVolume": 7760137033269,
       "openrouterTotalVolume": 7760137033269,
@@ -7843,12 +7990,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 11.365588960128221,
-      "rampPrice": 4496005.362600539,
-      "rampVolumeGrowth": 10.985692785167966,
-      "rampPriceChange": 6.174279245916869,
-      "rampSpendingGrowth": 17.83825938073964,
-      "rampInteraction": 0.6782873496548126,
+      "rampVolume": 25.889561447362468,
+      "rampPrice": 3107232.03970185,
+      "rampVolumeGrowth": 14.595569679996068,
+      "rampPriceChange": -12.465105849189595,
+      "rampSpendingGrowth": 0.31111062090274366,
+      "rampInteraction": -1.8193532099037326,
       "openrouterVolumeGrowth": 34.01670471467673,
       "openrouterPriceChange": 11.967853320248611,
       "openrouterSpendingGrowth": 50.05562735955995,
@@ -7859,12 +8006,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-04-28",
       "windowEnd": "2025-05-25",
       "silicon": null,
-      "ramp": 4091789.8231432526,
-      "rampSpendUsd": 57.61886523878307,
-      "rampMatchedTokens": 14.081579878049824,
+      "ramp": 2783984.0606234623,
+      "rampSpendUsd": 93.73844865314439,
+      "rampMatchedTokens": 33.67061255090377,
       "rampWeeks": 4,
-      "rampCoverage": 0.9886828578466944,
-      "rampSpendingMom": 12.757628879789241,
+      "rampCoverage": 0.9964675725631919,
+      "rampSpendingMom": 16.525072429172162,
       "rampSpendingYoy": null,
       "openrouterVolume": 8456197502974,
       "openrouterTotalVolume": 8456197502974,
@@ -7879,12 +8026,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 14.081579878049824,
-      "rampPrice": 4091789.8231432526,
-      "rampVolumeGrowth": 23.89661395858682,
-      "rampPriceChange": -8.990548428160317,
-      "rampSpendingGrowth": 12.757628879789241,
-      "rampInteraction": -2.148436650637266,
+      "rampVolume": 33.67061255090377,
+      "rampPrice": 2783984.0606234623,
+      "rampVolumeGrowth": 30.054781419767963,
+      "rampPriceChange": -10.403084640869132,
+      "rampSpendingGrowth": 16.525072429172162,
+      "rampInteraction": -3.1266243497266704,
       "openrouterVolumeGrowth": 8.96969301857522,
       "openrouterPriceChange": 4.006861976106735,
       "openrouterSpendingGrowth": 13.335958213616749,
@@ -7895,12 +8042,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-06-02",
       "windowEnd": "2025-06-29",
       "silicon": null,
-      "ramp": 3899882.9380737506,
-      "rampSpendUsd": 68.94149804229069,
-      "rampMatchedTokens": 17.67783780616313,
+      "ramp": 3381890.9594265437,
+      "rampSpendUsd": 66.46095401358474,
+      "rampMatchedTokens": 19.6520097220563,
       "rampWeeks": 4,
-      "rampCoverage": 0.9896877930777189,
-      "rampSpendingMom": 19.650912520724884,
+      "rampCoverage": 0.9928924728439346,
+      "rampSpendingMom": -29.099579768482375,
       "rampSpendingYoy": null,
       "openrouterVolume": null,
       "openrouterTotalVolume": null,
@@ -7913,12 +8060,12 @@ export const adoptionPriceSnapshot = {
       "openrouterUnmatchedShare": null,
       "openrouterPriceVintages": [],
       "openrouterRepricedHistory": false,
-      "rampVolume": 17.67783780616313,
-      "rampPrice": 3899882.9380737506,
-      "rampVolumeGrowth": 25.538738971463726,
-      "rampPriceChange": -4.690047469791159,
-      "rampSpendingGrowth": 19.650912520724862,
-      "rampInteraction": -1.197778980947703,
+      "rampVolume": 19.6520097220563,
+      "rampPrice": 3381890.9594265437,
+      "rampVolumeGrowth": -41.6345345890394,
+      "rampPriceChange": 21.47666386671705,
+      "rampSpendingGrowth": -29.099579768482386,
+      "rampInteraction": -8.941709046160037,
       "openrouterVolumeGrowth": null,
       "openrouterPriceChange": null,
       "openrouterSpendingGrowth": null,
@@ -7929,12 +8076,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-06-30",
       "windowEnd": "2025-07-27",
       "silicon": null,
-      "ramp": 3569292.6887092325,
-      "rampSpendUsd": 90.37324980505481,
-      "rampMatchedTokens": 25.31965229159635,
+      "ramp": 3056213.676247108,
+      "rampSpendUsd": 87.34922874686667,
+      "rampMatchedTokens": 28.58086442899751,
       "rampWeeks": 4,
-      "rampCoverage": 0.9903716953267716,
-      "rampSpendingMom": 31.08686693987599,
+      "rampCoverage": 0.993082458405082,
+      "rampSpendingMom": 31.429393458619813,
       "rampSpendingYoy": null,
       "openrouterVolume": null,
       "openrouterTotalVolume": null,
@@ -7947,12 +8094,12 @@ export const adoptionPriceSnapshot = {
       "openrouterUnmatchedShare": null,
       "openrouterPriceVintages": [],
       "openrouterRepricedHistory": false,
-      "rampVolume": 25.31965229159635,
-      "rampPrice": 3569292.6887092325,
-      "rampVolumeGrowth": 43.22821924957931,
-      "rampPriceChange": -8.476927503054865,
-      "rampSpendingGrowth": 31.08686693987601,
-      "rampInteraction": -3.664424806648446,
+      "rampVolume": 28.58086442899751,
+      "rampPrice": 3056213.676247108,
+      "rampVolumeGrowth": 45.43481726919754,
+      "rampPriceChange": -9.630035003690951,
+      "rampSpendingGrowth": 31.429393458619835,
+      "rampInteraction": -4.375388806886744,
       "openrouterVolumeGrowth": null,
       "openrouterPriceChange": null,
       "openrouterSpendingGrowth": null,
@@ -7963,12 +8110,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-08-04",
       "windowEnd": "2025-08-31",
       "silicon": null,
-      "ramp": 3667727.5307002985,
-      "rampSpendUsd": 107.81479022272359,
-      "rampMatchedTokens": 29.395528790040174,
+      "ramp": 2951748.8677463597,
+      "rampSpendUsd": 120.64545948915779,
+      "rampMatchedTokens": 40.87253519682716,
       "rampWeeks": 4,
-      "rampCoverage": 0.9956170858510034,
-      "rampSpendingMom": 19.29945028566764,
+      "rampCoverage": 0.9974104216122293,
+      "rampSpendingMom": 38.11851715231715,
       "rampSpendingYoy": null,
       "openrouterVolume": 13567542724594,
       "openrouterTotalVolume": 13567542724594,
@@ -7983,12 +8130,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 29.395528790040174,
-      "rampPrice": 3667727.5307002985,
-      "rampVolumeGrowth": 16.09767958700057,
-      "rampPriceChange": 2.7578248850940623,
-      "rampSpendingGrowth": 19.29945028566764,
-      "rampInteraction": 0.4439458135730088,
+      "rampVolume": 40.87253519682716,
+      "rampPrice": 2951748.8677463597,
+      "rampVolumeGrowth": 43.006644527374014,
+      "rampPriceChange": -3.4181120682970745,
+      "rampSpendingGrowth": 38.11851715231715,
+      "rampInteraction": -1.4700153067597943,
       "openrouterVolumeGrowth": null,
       "openrouterPriceChange": null,
       "openrouterSpendingGrowth": null,
@@ -7999,12 +8146,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-09-01",
       "windowEnd": "2025-09-28",
       "silicon": null,
-      "ramp": 3219103.136630841,
-      "rampSpendUsd": 129.3922631054879,
-      "rampMatchedTokens": 40.19512815016908,
+      "ramp": 2603899.9953119224,
+      "rampSpendUsd": 125.71478221385972,
+      "rampMatchedTokens": 48.27942026967141,
       "rampWeeks": 4,
-      "rampCoverage": 0.996173075896281,
-      "rampSpendingMom": 20.01346275236413,
+      "rampCoverage": 0.9974614919625275,
+      "rampSpendingMom": 4.201834653510117,
       "rampSpendingYoy": null,
       "openrouterVolume": 19672552788000,
       "openrouterTotalVolume": 19672552788000,
@@ -8019,12 +8166,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 40.19512815016908,
-      "rampPrice": 3219103.136630841,
-      "rampVolumeGrowth": 36.73891848405204,
-      "rampPriceChange": -12.231671799889654,
-      "rampSpendingGrowth": 20.013462752364152,
-      "rampInteraction": -4.493783931798241,
+      "rampVolume": 48.27942026967141,
+      "rampPrice": 2603899.9953119224,
+      "rampVolumeGrowth": 18.12191251943489,
+      "rampPriceChange": -11.784500918603468,
+      "rampSpendingGrowth": 4.201834653510095,
+      "rampInteraction": -2.1355769473213213,
       "openrouterVolumeGrowth": 44.997168517032904,
       "openrouterPriceChange": -7.120344839049741,
       "openrouterSpendingGrowth": 34.6728701117621,
@@ -8035,12 +8182,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-09-29",
       "windowEnd": "2025-10-26",
       "silicon": null,
-      "ramp": 3292925.9536668435,
-      "rampSpendUsd": 194.77261527303307,
-      "rampMatchedTokens": 59.14879897500995,
+      "ramp": 2517086.3455399023,
+      "rampSpendUsd": 201.04050102192303,
+      "rampMatchedTokens": 79.87032362960153,
       "rampWeeks": 4,
-      "rampCoverage": 0.9970885288891811,
-      "rampSpendingMom": 50.52879561604344,
+      "rampCoverage": 0.9982340119485612,
+      "rampSpendingMom": 59.91794877385457,
       "rampSpendingYoy": null,
       "openrouterVolume": 19930844524077,
       "openrouterTotalVolume": 19930844524077,
@@ -8055,12 +8202,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 59.14879897500995,
-      "rampPrice": 3292925.9536668435,
-      "rampVolumeGrowth": 47.15414951292085,
-      "rampPriceChange": 2.2932728124165136,
-      "rampSpendingGrowth": 50.52879561604342,
-      "rampInteraction": 1.0813732907060478,
+      "rampVolume": 79.87032362960153,
+      "rampPrice": 2517086.3455399023,
+      "rampVolumeGrowth": 65.43347700422817,
+      "rampPriceChange": -3.3339855573685573,
+      "rampSpendingGrowth": 59.91794877385457,
+      "rampInteraction": -2.181542673005043,
       "openrouterVolumeGrowth": 1.3129548506513933,
       "openrouterPriceChange": 48.7795050192936,
       "openrouterSpendingGrowth": 50.73291274721954,
@@ -8071,12 +8218,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-11-03",
       "windowEnd": "2025-11-30",
       "silicon": null,
-      "ramp": 3249526.958389263,
-      "rampSpendUsd": 213.41567948444742,
-      "rampMatchedTokens": 65.67592213182748,
+      "ramp": 2443110.0462103956,
+      "rampSpendUsd": 241.86065659883047,
+      "rampMatchedTokens": 98.99703739256039,
       "rampWeeks": 4,
-      "rampCoverage": 0.9975144034147679,
-      "rampSpendingMom": 9.571707082784942,
+      "rampCoverage": 0.9984507666652452,
+      "rampSpendingMom": 20.304443815754357,
       "rampSpendingYoy": null,
       "openrouterVolume": 25212639718120,
       "openrouterTotalVolume": 25212639718120,
@@ -8091,12 +8238,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 65.67592213182748,
-      "rampPrice": 3249526.958389263,
-      "rampVolumeGrowth": 11.035089925621655,
-      "rampPriceChange": -1.3179462851040769,
-      "rampSpendingGrowth": 9.571707082784965,
-      "rampInteraction": -0.14543655773262484,
+      "rampVolume": 98.99703739256039,
+      "rampPrice": 2443110.0462103956,
+      "rampVolumeGrowth": 23.94720954388385,
+      "rampPriceChange": -2.9389655011472837,
+      "rampSpendingGrowth": 20.304443815754382,
+      "rampInteraction": -0.7038002269821962,
       "openrouterVolumeGrowth": 26.500609081880345,
       "openrouterPriceChange": 5.303599220333388,
       "openrouterSpendingGrowth": 33.209694398863945,
@@ -8107,12 +8254,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-12-01",
       "windowEnd": "2025-12-28",
       "silicon": 1.0940451612903226,
-      "ramp": 3145209.820268285,
-      "rampSpendUsd": 222.34789887201703,
-      "rampMatchedTokens": 70.6941385719859,
+      "ramp": 2496946.0448528323,
+      "rampSpendUsd": 266.23491802078144,
+      "rampMatchedTokens": 106.62421743937726,
       "rampWeeks": 4,
-      "rampCoverage": 0.9974469061155707,
-      "rampSpendingMom": 4.185362298190709,
+      "rampCoverage": 0.9985349223148702,
+      "rampSpendingMom": 10.077811647712531,
       "rampSpendingYoy": null,
       "openrouterVolume": 23461885537668,
       "openrouterTotalVolume": 23461885537668,
@@ -8127,12 +8274,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 70.6941385719859,
-      "rampPrice": 3145209.820268285,
-      "rampVolumeGrowth": 7.640877017433656,
-      "rampPriceChange": -3.2102253483899834,
-      "rampSpendingGrowth": 4.185362298190709,
-      "rampInteraction": -0.24528937085295976,
+      "rampVolume": 106.62421743937726,
+      "rampPrice": 2496946.0448528323,
+      "rampVolumeGrowth": 7.7044528277874,
+      "rampPriceChange": 2.2035846778962753,
+      "rampSpendingGrowth": 10.077811647712554,
+      "rampInteraction": 0.16977414202886948,
       "openrouterVolumeGrowth": -6.943954302388078,
       "openrouterPriceChange": 6.21547874256736,
       "openrouterSpendingGrowth": -1.160075563379237,
@@ -8143,12 +8290,12 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2025-12-29",
       "windowEnd": "2026-01-25",
       "silicon": 1.548683870967742,
-      "ramp": 2986181.303547409,
-      "rampSpendUsd": 233.28045315999498,
-      "rampMatchedTokens": 78.11998986226035,
+      "ramp": 2481594.151350231,
+      "rampSpendUsd": 261.00978699665757,
+      "rampMatchedTokens": 105.17827294791238,
       "rampWeeks": 4,
-      "rampCoverage": 0.9973300857572548,
-      "rampSpendingMom": 4.916868719443435,
+      "rampCoverage": 0.9977474988751953,
+      "rampSpendingMom": -1.9626016988936068,
       "rampSpendingYoy": null,
       "openrouterVolume": 27123177250475,
       "openrouterTotalVolume": 27123177250475,
@@ -8163,12 +8310,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 78.11998986226035,
-      "rampPrice": 2986181.303547409,
-      "rampVolumeGrowth": 10.50419658584978,
-      "rampPriceChange": -5.056213283325917,
-      "rampSpendingGrowth": 4.916868719443457,
-      "rampInteraction": -0.531114583080404,
+      "rampVolume": 105.17827294791238,
+      "rampPrice": 2481594.151350231,
+      "rampVolumeGrowth": -1.356112641377183,
+      "rampPriceChange": -0.6148268014940728,
+      "rampSpendingGrowth": -1.962601698893618,
+      "rampInteraction": 0.00833774397763612,
       "openrouterVolumeGrowth": 15.605274805934943,
       "openrouterPriceChange": 12.470655419360654,
       "openrouterSpendingGrowth": 30.02201027358804,
@@ -8179,13 +8326,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-01-26",
       "windowEnd": "2026-02-22",
       "silicon": 1.3752035714285713,
-      "ramp": 3301638.6057774397,
-      "rampSpendUsd": 386.7676265077619,
-      "rampMatchedTokens": 117.14414346590468,
+      "ramp": 2954714.2154821088,
+      "rampSpendUsd": 441.5542243119328,
+      "rampMatchedTokens": 149.4405861650773,
       "rampWeeks": 4,
-      "rampCoverage": 0.9981427325228717,
-      "rampSpendingMom": 65.7951282538439,
-      "rampSpendingYoy": 1175.8065080903316,
+      "rampCoverage": 0.9980954428648136,
+      "rampSpendingMom": 69.17152011529255,
+      "rampSpendingYoy": 885.1798625258169,
       "openrouterVolume": 45016619210492,
       "openrouterTotalVolume": 45016619210492,
       "openrouterPrice": 1.7597292282936652,
@@ -8199,12 +8346,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 117.14414346590468,
-      "rampPrice": 3301638.6057774397,
-      "rampVolumeGrowth": 49.95412015855474,
-      "rampPriceChange": 10.56390319821794,
-      "rampSpendingGrowth": 65.79512825384388,
-      "rampInteraction": 5.2771048970711965,
+      "rampVolume": 149.4405861650773,
+      "rampPrice": 2954714.2154821088,
+      "rampVolumeGrowth": 42.08313368967849,
+      "rampPriceChange": 19.06516679508026,
+      "rampSpendingGrowth": 69.17152011529255,
+      "rampInteraction": 8.023219630533818,
       "openrouterVolumeGrowth": 65.97103943529933,
       "openrouterPriceChange": -12.92080649392765,
       "openrouterSpendingGrowth": 44.526242593903966,
@@ -8215,13 +8362,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-03-02",
       "windowEnd": "2026-03-29",
       "silicon": 1.488009677419355,
-      "ramp": 3174287.036177862,
-      "rampSpendUsd": 564.977256460742,
-      "rampMatchedTokens": 177.98556022867652,
+      "ramp": 2989662.4280123953,
+      "rampSpendUsd": 587.8019615858266,
+      "rampMatchedTokens": 196.6114823126076,
       "rampWeeks": 4,
-      "rampCoverage": 0.998994041312145,
-      "rampSpendingMom": 46.07666664402266,
-      "rampSpendingYoy": 1202.8623017948912,
+      "rampCoverage": 0.9917522817637118,
+      "rampSpendingMom": 33.121127422524246,
+      "rampSpendingYoy": 632.9623884865163,
       "openrouterVolume": 74600104311721,
       "openrouterTotalVolume": 74600104311721,
       "openrouterPrice": 1.8833545984504971,
@@ -8235,12 +8382,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 177.98556022867652,
-      "rampPrice": 3174287.036177862,
-      "rampVolumeGrowth": 51.93722448487576,
-      "rampPriceChange": -3.8572231793246203,
-      "rampSpendingGrowth": 46.07666664402266,
-      "rampInteraction": -2.00333466152849,
+      "rampVolume": 196.6114823126076,
+      "rampPrice": 2989662.4280123953,
+      "rampVolumeGrowth": 31.564983354270094,
+      "rampPriceChange": 1.182795017777516,
+      "rampSpendingGrowth": 33.121127422524225,
+      "rampInteraction": 0.3733490504766089,
       "openrouterVolumeGrowth": 65.71680774804607,
       "openrouterPriceChange": 7.025249576419568,
       "openrouterSpendingGrowth": 77.3588270824217,
@@ -8251,13 +8398,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-03-30",
       "windowEnd": "2026-04-26",
       "silicon": 1.6781533333333334,
-      "ramp": 2593613.7626081505,
-      "rampSpendUsd": 583.6355051195952,
-      "rampMatchedTokens": 225.02791800915207,
+      "ramp": 2381472.2716394975,
+      "rampSpendUsd": 567.8502442374119,
+      "rampMatchedTokens": 238.4450371309517,
       "rampWeeks": 4,
-      "rampCoverage": 0.9983929947806869,
-      "rampSpendingMom": 3.302477833485984,
-      "rampSpendingYoy": 1042.14945772739,
+      "rampCoverage": 0.9907623485497521,
+      "rampSpendingMom": -3.3942924066784563,
+      "rampSpendingYoy": 605.8874110828154,
       "openrouterVolume": 90348944984078,
       "openrouterTotalVolume": 90348944984078,
       "openrouterPrice": 1.9467332404756927,
@@ -8271,12 +8418,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 225.02791800915207,
-      "rampPrice": 2593613.7626081505,
-      "rampVolumeGrowth": 26.430434985869276,
-      "rampPriceChange": -18.293029803281314,
-      "rampSpendingGrowth": 3.302477833486006,
-      "rampInteraction": -4.8349273491019575,
+      "rampVolume": 238.4450371309517,
+      "rampPrice": 2381472.2716394975,
+      "rampVolumeGrowth": 21.27726942815564,
+      "rampPriceChange": -20.3431046486823,
+      "rampSpendingGrowth": -3.3942924066784452,
+      "rampInteraction": -4.3284571861517875,
       "openrouterVolumeGrowth": 21.111016958568207,
       "openrouterPriceChange": 3.365199632471727,
       "openrouterSpendingGrowth": 25.186644456140716,
@@ -8287,13 +8434,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-05-04",
       "windowEnd": "2026-05-31",
       "silicon": 1.9452967741935485,
-      "ramp": 2417462.4404156706,
-      "rampSpendUsd": 751.6096360479044,
-      "rampMatchedTokens": 310.908506160149,
+      "ramp": 2452977.221414597,
+      "rampSpendUsd": 732.7165350259661,
+      "rampMatchedTokens": 298.7049894427552,
       "rampWeeks": 4,
-      "rampCoverage": 0.9982755601017513,
-      "rampSpendingMom": 28.780656669249225,
-      "rampSpendingYoy": 1204.4506047335315,
+      "rampCoverage": 0.996671375856648,
+      "rampSpendingMom": 29.0334102101091,
+      "rampSpendingYoy": 681.6606158452652,
       "openrouterVolume": 113365423650400,
       "openrouterTotalVolume": 113365423650400,
       "openrouterPrice": 2.0802170177208312,
@@ -8307,12 +8454,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 310.908506160149,
-      "rampPrice": 2417462.4404156706,
-      "rampVolumeGrowth": 38.164414847185355,
-      "rampPriceChange": -6.79173301483954,
-      "rampSpendingGrowth": 28.780656669249204,
-      "rampInteraction": -2.5920251630966114,
+      "rampVolume": 298.7049894427552,
+      "rampPrice": 2452977.221414597,
+      "rampVolumeGrowth": 25.27205138629467,
+      "rampPriceChange": 3.0025522709896,
+      "rampSpendingGrowth": 29.033410210109125,
+      "rampInteraction": 0.7588065528248493,
       "openrouterVolumeGrowth": 25.475094004006515,
       "openrouterPriceChange": 6.856808856488272,
       "openrouterSpendingGrowth": 34.07868136236023,
@@ -8323,13 +8470,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-06-01",
       "windowEnd": "2026-06-28",
       "silicon": 1.7730133333333336,
-      "ramp": 2327384.9858904905,
-      "rampSpendUsd": 881.5420400812003,
-      "rampMatchedTokens": 378.76932498295287,
+      "ramp": 2364404.3985424717,
+      "rampSpendUsd": 720.4436402931592,
+      "rampMatchedTokens": 304.70406870215345,
       "rampWeeks": 4,
-      "rampCoverage": 0.9963454916305611,
-      "rampSpendingMom": 17.28721902988144,
-      "rampSpendingYoy": 1178.6812951764366,
+      "rampCoverage": 0.9946654438244925,
+      "rampSpendingMom": -1.674985365571413,
+      "rampSpendingYoy": 984.0103802089559,
       "openrouterVolume": 174100171044427,
       "openrouterTotalVolume": 174100171044427,
       "openrouterPrice": 1.9775732840185398,
@@ -8343,12 +8490,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 378.76932498295287,
-      "rampPrice": 2327384.9858904905,
-      "rampVolumeGrowth": 21.826620204417544,
-      "rampPriceChange": -3.72611598919782,
-      "rampSpendingGrowth": 17.28721902988144,
-      "rampInteraction": -0.813285185338284,
+      "rampVolume": 304.70406870215345,
+      "rampPrice": 2364404.3985424717,
+      "rampVolumeGrowth": 2.008362588984447,
+      "rampPriceChange": -3.6108294075819614,
+      "rampSpendingGrowth": -1.6749853655714353,
+      "rampInteraction": -0.07251854697392485,
       "openrouterVolumeGrowth": 53.574313435569906,
       "openrouterPriceChange": -4.934280069237773,
       "openrouterSpendingGrowth": 45.99652669624983,
@@ -8359,13 +8506,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-06-29",
       "windowEnd": "2026-07-26",
       "silicon": 1.5534709677419356,
-      "ramp": 2428886.7351326384,
-      "rampSpendUsd": 1128.7456629832245,
-      "rampMatchedTokens": 464.71729070626475,
+      "ramp": 2345229.990028385,
+      "rampSpendUsd": 918.3981673650294,
+      "rampMatchedTokens": 391.6026024185004,
       "rampWeeks": 4,
-      "rampCoverage": 0.9964801814693883,
-      "rampSpendingMom": 28.04218195643329,
-      "rampSpendingYoy": 1148.9820443749172,
+      "rampCoverage": 0.9970822926369288,
+      "rampSpendingMom": 27.476754044399577,
+      "rampSpendingYoy": 951.4095894612847,
       "openrouterVolume": 220154848718944,
       "openrouterTotalVolume": 220154848718944,
       "openrouterPrice": 1.7450902454399253,
@@ -8379,12 +8526,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 464.71729070626475,
-      "rampPrice": 2428886.7351326384,
-      "rampVolumeGrowth": 22.69137442087743,
-      "rampPriceChange": 4.36119292070245,
-      "rampSpendingGrowth": 28.042181956433264,
-      "rampInteraction": 0.9896146148533931,
+      "rampVolume": 391.6026024185004,
+      "rampPrice": 2345229.990028385,
+      "rampVolumeGrowth": 28.51899355544536,
+      "rampPriceChange": -0.8109614635257278,
+      "rampSpendingGrowth": 27.476754044399577,
+      "rampInteraction": -0.2312780475200477,
       "openrouterVolumeGrowth": 26.452976696251906,
       "openrouterPriceChange": -11.755975895173698,
       "openrouterSpendingGrowth": 11.587195237110915,
@@ -8395,13 +8542,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-08-03",
       "windowEnd": "2026-08-30",
       "silicon": 1.1023290322580646,
-      "ramp": 1968523.2652495033,
-      "rampSpendUsd": 1281.3005818270594,
-      "rampMatchedTokens": 650.8943046018098,
+      "ramp": 1833268.4502743878,
+      "rampSpendUsd": 1036.5668632988093,
+      "rampMatchedTokens": 565.4201179012625,
       "rampWeeks": 4,
-      "rampCoverage": 0.996236424908667,
-      "rampSpendingMom": 13.515437874697046,
-      "rampSpendingYoy": 1088.4274682352495,
+      "rampCoverage": 0.9893861867583306,
+      "rampSpendingMom": 12.866826190737823,
+      "rampSpendingYoy": 759.1843138464435,
       "openrouterVolume": 350761520275156,
       "openrouterTotalVolume": 350761520275156,
       "openrouterPrice": 1.1232624605184707,
@@ -8415,12 +8562,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 650.8943046018098,
-      "rampPrice": 1968523.2652495033,
-      "rampVolumeGrowth": 40.06242453612998,
-      "rampPriceChange": -18.953682080938826,
-      "rampSpendingGrowth": 13.515437874697046,
-      "rampInteraction": -7.593304580494109,
+      "rampVolume": 565.4201179012625,
+      "rampPrice": 1833268.4502743878,
+      "rampVolumeGrowth": 44.38620029828242,
+      "rampPriceChange": -21.829907596730024,
+      "rampSpendingGrowth": 12.866826190737847,
+      "rampInteraction": -9.689466510814558,
       "openrouterVolumeGrowth": 59.324912585935465,
       "openrouterPriceChange": -35.63298726506239,
       "openrouterSpendingGrowth": 2.5526867741173076,
@@ -8431,13 +8578,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-08-31",
       "windowEnd": "2026-09-27",
       "silicon": 0.9785299999999999,
-      "ramp": 1738395.8812660016,
-      "rampSpendUsd": 1276.838344678138,
-      "rampMatchedTokens": 734.4922744227106,
+      "ramp": 1600693.882117977,
+      "rampSpendUsd": 1060.5086949017007,
+      "rampMatchedTokens": 662.5306104740503,
       "rampWeeks": 4,
-      "rampCoverage": 0.9964338865812178,
-      "rampSpendingMom": -0.34825841900100185,
-      "rampSpendingYoy": 886.7965162933946,
+      "rampCoverage": 0.9907973359565002,
+      "rampSpendingMom": 2.309723805630637,
+      "rampSpendingYoy": 743.5831301824285,
       "openrouterVolume": 516966701064470,
       "openrouterTotalVolume": 516966701064470,
       "openrouterPrice": 0.9761013558405396,
@@ -8451,12 +8598,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 734.4922744227106,
-      "rampPrice": 1738395.8812660016,
-      "rampVolumeGrowth": 12.843555279231179,
-      "rampPriceChange": -11.690356321713768,
-      "rampSpendingGrowth": -0.34825841900099075,
-      "rampInteraction": -1.5014573765184045,
+      "rampVolume": 662.5306104740503,
+      "rampPrice": 1600693.882117977,
+      "rampVolumeGrowth": 17.174927014136742,
+      "rampPriceChange": -12.686334514817032,
+      "rampSpendingGrowth": 2.309723805630637,
+      "rampInteraction": -2.178868693689064,
       "openrouterVolumeGrowth": 47.38409750845356,
       "openrouterPriceChange": -13.101221651260841,
       "openrouterSpendingGrowth": 28.07498021516066,
@@ -8467,13 +8614,13 @@ export const adoptionPriceSnapshot = {
       "windowStart": "2026-09-28",
       "windowEnd": "2026-10-25",
       "silicon": 0.9514806451612903,
-      "ramp": 1303527.9724106116,
-      "rampSpendUsd": 1251.0968423497213,
-      "rampMatchedTokens": 959.7775182653506,
+      "ramp": 1207002.6891817807,
+      "rampSpendUsd": 1024.3883133253862,
+      "rampMatchedTokens": 848.7042510400804,
       "rampWeeks": 4,
-      "rampCoverage": 0.9978897165165812,
-      "rampSpendingMom": -2.016034561908886,
-      "rampSpendingYoy": 542.3371378958631,
+      "rampCoverage": 0.9876947443943722,
+      "rampSpendingMom": -3.40594864992243,
+      "rampSpendingYoy": 409.5432552735624,
       "openrouterVolume": 689529444468996,
       "openrouterTotalVolume": 689529444468996,
       "openrouterPrice": 0.893331781954726,
@@ -8487,12 +8634,12 @@ export const adoptionPriceSnapshot = {
         "2026-11-17"
       ],
       "openrouterRepricedHistory": true,
-      "rampVolume": 959.7775182653506,
-      "rampPrice": 1303527.9724106116,
-      "rampVolumeGrowth": 30.672241450014926,
-      "rampPriceChange": -25.015470500234606,
-      "rampSpendingGrowth": -2.016034561908897,
-      "rampInteraction": -7.672805511689216,
+      "rampVolume": 848.7042510400804,
+      "rampPrice": 1207002.6891817807,
+      "rampVolumeGrowth": 28.100383231020864,
+      "rampPriceChange": -24.595033274899446,
+      "rampSpendingGrowth": -3.40594864992243,
+      "rampInteraction": -6.911298606043846,
       "openrouterVolumeGrowth": 33.379856584419734,
       "openrouterPriceChange": -8.479608535584827,
       "openrouterSpendingGrowth": 22.069766880736474,
@@ -8506,8 +8653,8 @@ export const adoptionPriceSnapshot = {
       "ramp": null,
       "rampSpendUsd": null,
       "rampMatchedTokens": null,
-      "rampWeeks": 0,
-      "rampCoverage": 0,
+      "rampWeeks": 2,
+      "rampCoverage": 0.9892064625229241,
       "rampSpendingMom": null,
       "rampSpendingYoy": null,
       "openrouterVolume": null,
@@ -16038,13 +16185,79 @@ export const adoptionPriceSnapshot = {
     },
     {
       "date": "2026-11-16",
-      "totalTokens": 32129264536539,
+      "totalTokens": 32129831960458,
       "catalogMatchedTokens": 29066944718731,
       "knownFreeTokens": 0,
-      "unmatchedTokens": 3062319817808,
+      "unmatchedTokens": 3062887241727,
       "matchedSpendUsd": 25671322.0707001,
-      "imputedSpendUsd": 2704577.281415387,
-      "estimatedSpendUsd": 28375899.35211549,
+      "imputedSpendUsd": 2705078.418439461,
+      "estimatedSpendUsd": 28376400.489139564,
+      "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-17",
+      "totalTokens": 53556078307435,
+      "catalogMatchedTokens": 50255786251960,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 3300292055475,
+      "matchedSpendUsd": 26350999.18107049,
+      "imputedSpendUsd": 1730467.270278225,
+      "estimatedSpendUsd": 28081466.45134872,
+      "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-18",
+      "totalTokens": 56246144317233,
+      "catalogMatchedTokens": 52924621498130,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 3321522819103,
+      "matchedSpendUsd": 23438238.1746466,
+      "imputedSpendUsd": 1470972.124749356,
+      "estimatedSpendUsd": 24909210.299395956,
+      "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-19",
+      "totalTokens": 53852750499539,
+      "catalogMatchedTokens": 50356034505127,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 3496715994412,
+      "matchedSpendUsd": 22690162.840798818,
+      "imputedSpendUsd": 1575601.7347465265,
+      "estimatedSpendUsd": 24265764.575545345,
+      "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-20",
+      "totalTokens": 51953000018364,
+      "catalogMatchedTokens": 48790476530379,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 3162523487985,
+      "matchedSpendUsd": 20698693.68732935,
+      "imputedSpendUsd": 1341657.4219361786,
+      "estimatedSpendUsd": 22040351.10926553,
+      "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-21",
+      "totalTokens": 35306425217477,
+      "catalogMatchedTokens": 32863360018553,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 2443065198924,
+      "matchedSpendUsd": 14228522.633801071,
+      "imputedSpendUsd": 1057749.6780340604,
+      "estimatedSpendUsd": 15286272.31183513,
+      "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-22",
+      "totalTokens": 31831612134088,
+      "catalogMatchedTokens": 29295626458736,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 2535985675352,
+      "matchedSpendUsd": 14511371.287415259,
+      "imputedSpendUsd": 1256181.6954634674,
+      "estimatedSpendUsd": 15767552.982878726,
       "catalogDate": "2026-11-17"
     }
   ]

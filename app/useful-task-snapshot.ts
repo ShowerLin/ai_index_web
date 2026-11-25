@@ -29,7 +29,7 @@ export const usefulTaskSnapshot = {
       "successAgent": "",
       "successAttempts": "",
       "workbookSuccessRate": 0.02,
-      "eci": 121.87,
+      "eci": 121.61,
       "eciGap": null,
       "evidenceTier": "C",
       "classification": "Frontier anchor"
@@ -53,8 +53,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.04,
       "successReasoningEffort": "",
       "successModelVersion": "GPT-4 (1106)",
-      "eci": 124.85,
-      "eciGap": -2.9799999999999898,
+      "eci": 124.77,
+      "eciGap": -3.1599999999999966,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
     },
@@ -77,7 +77,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.13,
       "successReasoningEffort": "",
       "successModelVersion": "Claude 3 Opus",
-      "eci": 125.57,
+      "eci": 125.59,
       "eciGap": 0.0,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
@@ -101,8 +101,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.18,
       "successReasoningEffort": "",
       "successModelVersion": "GPT-4o",
-      "eci": 128.2,
-      "eciGap": -2.329999999999984,
+      "eci": 128.13,
+      "eciGap": -2.3100000000000023,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
     },
@@ -123,8 +123,8 @@ export const usefulTaskSnapshot = {
       "successAgent": "Epoch Inspect harness",
       "successAttempts": "1",
       "workbookSuccessRate": 0.30991735537190085,
-      "eci": 128.95,
-      "eciGap": 6.430000000000007,
+      "eci": 128.78,
+      "eciGap": 6.490000000000009,
       "evidenceTier": "B",
       "classification": "Frontier anchor"
     },
@@ -145,8 +145,8 @@ export const usefulTaskSnapshot = {
       "successAgent": "",
       "successAttempts": "",
       "workbookSuccessRate": 0.49,
-      "eci": 138.65,
-      "eciGap": 2.509999999999991,
+      "eci": 138.62,
+      "eciGap": 2.539999999999992,
       "evidenceTier": "C",
       "classification": "Frontier anchor"
     },
@@ -169,8 +169,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.55,
       "successReasoningEffort": "",
       "successModelVersion": "gpt-4.1-2025-04-14",
-      "eci": 136.17,
-      "eciGap": 7.740000000000009,
+      "eci": 136.14,
+      "eciGap": 7.840000000000003,
       "evidenceTier": "B",
       "classification": "Comparator"
     },
@@ -244,8 +244,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "DeepSeek V3.2 Reasoner",
       "successVerification": "verified",
       "workbookSuccessRate": 0.6,
-      "eci": 146.24,
-      "eciGap": 6.649999999999977,
+      "eci": 146.26,
+      "eciGap": 6.780000000000001,
       "evidenceTier": "A",
       "classification": "Best-value anchor"
     },
@@ -319,8 +319,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "GLM 5",
       "successVerification": "not stated",
       "workbookSuccessRate": 0.728,
-      "eci": 146.47,
-      "eciGap": 10.740000000000009,
+      "eci": 146.53,
+      "eciGap": 10.819999999999993,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -344,8 +344,8 @@ export const usefulTaskSnapshot = {
       "successModelVersion": "DeepSeek V3.2",
       "successVerification": "not stated",
       "workbookSuccessRate": 0.7,
-      "eci": 146.24,
-      "eciGap": 10.969999999999999,
+      "eci": 146.26,
+      "eciGap": 11.090000000000003,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -368,8 +368,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.8,
       "successReasoningEffort": "high",
       "successModelVersion": "claude-sonnet-4-6_high",
-      "eci": 152.84,
-      "eciGap": 4.3700000000000045,
+      "eci": 152.85,
+      "eciGap": 4.5,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -392,8 +392,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.8,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-5.4-2026-03-05_xhigh",
-      "eci": 157.81,
-      "eciGap": 2.359999999999985,
+      "eci": 157.89,
+      "eciGap": 2.420000000000016,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -416,8 +416,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.94,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-5.5_xhigh",
-      "eci": 160.06,
-      "eciGap": 2.6899999999999977,
+      "eci": 160.19,
+      "eciGap": 2.5900000000000034,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -440,7 +440,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.94,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "claude-fable-5_xhigh",
-      "eci": 164.25,
+      "eci": 164.18,
       "eciGap": 0.0,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
@@ -464,8 +464,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.62,
       "successReasoningEffort": "high",
       "successModelVersion": "grok-4.5_high",
-      "eci": 155.08,
-      "eciGap": 9.169999999999987,
+      "eci": 154.98,
+      "eciGap": 9.200000000000017,
       "evidenceTier": "A",
       "classification": "Comparator"
     },
@@ -489,7 +489,7 @@ export const usefulTaskSnapshot = {
       "successReasoningEffort": "max",
       "successModelVersion": "gpt-5.6-sol_max",
       "eci": 163.02,
-      "eciGap": 1.2299999999999898,
+      "eciGap": 1.1599999999999966,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
     },
@@ -510,8 +510,8 @@ export const usefulTaskSnapshot = {
       "successAgent": "",
       "successAttempts": "",
       "workbookSuccessRate": 0.35,
-      "eci": 154.39,
-      "eciGap": 10.090000000000003,
+      "eci": 154.43,
+      "eciGap": 10.289999999999992,
       "evidenceTier": "C",
       "classification": "Comparator"
     },
@@ -534,8 +534,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.57,
       "successReasoningEffort": "max",
       "successModelVersion": "glm-5.3-flash_max",
-      "eci": 153.6,
-      "eciGap": 10.879999999999995,
+      "eci": 153.77,
+      "eciGap": 10.949999999999989,
       "evidenceTier": "A",
       "classification": "Best-value anchor"
     },
@@ -558,7 +558,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.741,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-6-astra_xhigh",
-      "eci": 169.16,
+      "eci": 169.21,
       "eciGap": 0.0,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
@@ -680,7 +680,7 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.741,
       "successReasoningEffort": "xhigh",
       "successModelVersion": "gpt-6-astra_xhigh",
-      "eci": 169.16,
+      "eci": 169.21,
       "eciGap": 0.0,
       "evidenceTier": "A",
       "classification": "Frontier anchor"
@@ -704,8 +704,8 @@ export const usefulTaskSnapshot = {
       "workbookSuccessRate": 0.57,
       "successReasoningEffort": "max",
       "successModelVersion": "glm-5.3-flash_max",
-      "eci": 153.6,
-      "eciGap": 10.879999999999995,
+      "eci": 153.77,
+      "eciGap": 10.949999999999989,
       "evidenceTier": "A",
       "classification": "Best-value anchor"
     }

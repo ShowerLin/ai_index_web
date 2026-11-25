@@ -2,8 +2,8 @@ export const indexPriceSnapshot = {
   "metadata": {
     "source": "Indexlist.xlsx",
     "sheet": "Index Price Value",
-    "workbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
-    "inspectionSha256": "e67942f33b29c1fbd6da0479778534589ada3191d22f90e33901d0fc63f23c56",
+    "workbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
+    "inspectionSha256": "f47c2265cd938406b409d627da254c338e928c339f22e009590de61193b1e2ad",
     "infrastructureSha256": "4a1ac70022d0da7b55b07ecbdfeb6c7d376c8bce23dd86ce54f62ea98802e755",
     "reviewedAt": "2026-10-20",
     "completedMonthThrough": "2026-09",
@@ -1052,7 +1052,7 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-11",
-          "level": 0.8028,
+          "level": 0.632,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": true

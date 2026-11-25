@@ -4,7 +4,7 @@ export const projectedBuildoutSnapshot = {
     "capacityAsOf": "2026-10-20",
     "capexActualThrough": "2026-06-30",
     "capexEstimateThrough": "2027-12-31",
-    "capexWorkbookSha256": "41315ddc7bfa62de0c18d65b3b2288582ad8073d61b103a3157b295a59ce2ef4",
+    "capexWorkbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
     "source": "https://epoch.ai/data/ai-data-centers",
     "methodology": "https://epoch.ai/data/data-centers-documentation/methodology",
     "sourceHashes": {
@@ -317,15 +317,15 @@ export const projectedBuildoutSnapshot = {
         "Oracle": 493.0
       },
       "additionMw": null,
-      "capex": 230.13982803518732,
+      "capex": 230.60187930265104,
       "capexOwners": {
-        "Microsoft": 51.90035193564605,
-        "Alphabet": 55.7105,
-        "Amazon": 59.143490999315766,
-        "Meta": 42.27689726592529,
-        "Oracle": 21.108587834300206
+        "Microsoft": 45.0825931512206,
+        "Alphabet": 51.355,
+        "Amazon": 78.06140586260331,
+        "Meta": 35.02621450391818,
+        "Oracle": 21.076665784908958
       },
-      "rawCapex": 226.41346892550038
+      "rawCapex": 227.76264513988426
     },
     {
       "quarter": "2026Q4",
@@ -340,15 +340,15 @@ export const projectedBuildoutSnapshot = {
         "Oracle": 915.0
       },
       "additionMw": 1385.0,
-      "capex": 252.58906502403786,
+      "capex": 246.007240571303,
       "capexOwners": {
-        "Microsoft": 53.225028396923825,
-        "Alphabet": 65.44748571428572,
-        "Amazon": 65.4926861427939,
-        "Meta": 51.36046742293435,
-        "Oracle": 17.063397347100075
+        "Microsoft": 53.00836370873135,
+        "Alphabet": 68.96068421052632,
+        "Amazon": 49.09667266824085,
+        "Meta": 57.95872298094427,
+        "Oracle": 16.9827970028602
       },
-      "rawCapex": 247.43417573153343
+      "rawCapex": 240.82589820452372
     },
     {
       "quarter": "2027Q1",
@@ -363,15 +363,15 @@ export const projectedBuildoutSnapshot = {
         "Oracle": 915.0
       },
       "additionMw": 1196.0,
-      "capex": 254.62866395287074,
+      "capex": 266.21370039232613,
       "capexOwners": {
-        "Microsoft": 55.94439044373685,
-        "Alphabet": 69.33652,
-        "Amazon": 64.16172882600354,
-        "Meta": 47.512173830237366,
-        "Oracle": 17.673850852892983
+        "Microsoft": 58.57204206468912,
+        "Alphabet": 71.573,
+        "Amazon": 68.21045402183043,
+        "Meta": 50.20193492976583,
+        "Oracle": 17.656269376040783
       },
-      "rawCapex": 249.39976769336943
+      "rawCapex": 260.5228186828001
     },
     {
       "quarter": "2027Q2",
@@ -386,15 +386,15 @@ export const projectedBuildoutSnapshot = {
         "Oracle": 915.0
       },
       "additionMw": 470.0,
-      "capex": 278.7438213791134,
+      "capex": 294.1049218469045,
       "capexOwners": {
-        "Microsoft": 58.38509021842355,
-        "Alphabet": 76.46652,
-        "Amazon": 71.93218835517162,
-        "Meta": 52.855575477202436,
-        "Oracle": 19.104447328315775
+        "Microsoft": 62.371165542427796,
+        "Alphabet": 78.57967741935484,
+        "Amazon": 77.76889913850354,
+        "Meta": 56.11493361301816,
+        "Oracle": 19.27024613360018
       },
-      "rawCapex": 273.2835077926421
+      "rawCapex": 288.0158316012116
     },
     {
       "quarter": "2027Q3",
@@ -409,15 +409,15 @@ export const projectedBuildoutSnapshot = {
         "Oracle": 1055.0
       },
       "additionMw": 1083.0,
-      "capex": 296.82076502746145,
+      "capex": 312.464169808424,
       "capexOwners": {
-        "Microsoft": 60.088403813567204,
-        "Alphabet": 83.26648,
-        "Amazon": 74.77144496331591,
-        "Meta": 57.91932052966624,
-        "Oracle": 20.775115720912098
+        "Microsoft": 62.04232258905461,
+        "Alphabet": 85.04248387096774,
+        "Amazon": 85.70775391547373,
+        "Meta": 58.56439556571731,
+        "Oracle": 21.10721386721061
       },
-      "rawCapex": 291.33611782290177
+      "rawCapex": 306.6744685518944
     },
     {
       "quarter": "2027Q4",
@@ -432,15 +432,15 @@ export const projectedBuildoutSnapshot = {
         "Oracle": 1335.0
       },
       "additionMw": 1558.0,
-      "capex": 320.0972482318516,
+      "capex": 335.84586863951813,
       "capexOwners": {
-        "Microsoft": 61.95097480587677,
-        "Alphabet": 90.36132,
-        "Amazon": 82.40909648022432,
-        "Meta": 64.33211012418647,
-        "Oracle": 21.043746821564014
+        "Microsoft": 64.79348267322123,
+        "Alphabet": 94.26616129032259,
+        "Amazon": 88.52252069344009,
+        "Meta": 67.63064270297706,
+        "Oracle": 20.633061279557193
       },
-      "rawCapex": 314.16015703296705
+      "rawCapex": 329.2906498504804
     }
   ],
   "milestones": [
