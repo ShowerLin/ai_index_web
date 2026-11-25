@@ -41,7 +41,7 @@ export default function CoreHeatmapChart({ title, points: historicalPoints, core
   const coverage = projection.quarters.find(q => q.quarter === displayQuarter)?.availableEstimate;
   const projectionEnd = displayedProjection.at(-1);
   const pillarDescriptions: Record<string, string> = {
-    Adoption: "Adoption splits its weight equally between three adoption-rate levels and two token-growth signals. OpenRouter and Ramp each use percentile ranks of month-over-month growth in their trailing three-month average.",
+    Adoption: "Adoption splits its weight equally between three adoption-rate levels and two token-growth signals. OpenRouter and Ramp use monthly growth in their trailing three-month average. Both use the same scoring curve, with zero growth scoring 50.",
     Monetization: "Monetization combines business paid demand, consumer card spending and absolute annualized lab revenue levels. Business paid demand covers Ramp spending intensity, Ramp matched spending growth and OpenRouter estimated routed-spending growth. Source dates identify latest available observations.",
     Infrastructure: "Infrastructure combines supplier sales, equipment orders and imports, construction, industrial activity, and independently calibrated DDR5 and H100 price momentum.",
     Hyperscalers: "Hyperscalers tracks trailing-four-quarter CapEx growth across the five covered companies. Quarterly scores are held across the months of each quarter.",
@@ -78,7 +78,7 @@ export default function CoreHeatmapChart({ title, points: historicalPoints, core
     {month:"2025-05",date:"16 May 2025",label:"Codex agent preview",url:"https://openai.com/index/introducing-codex/",note:"OpenAI launched the cloud software-engineering agent Codex in research preview, allowing delegated tasks to run in separate environments. This marks the agent product launch, not the earlier Codex model."},
     {month:"2026-01",date:"29 Jan 2026",label:"OpenClaw announcement",url:"https://openclaw.ai/blog/introducing-openclaw",note:"The project announced the OpenClaw name after starting as Clawd in November 2025. It reported more than 100,000 GitHub stars and 2 million visitors in a week. This is a distribution milestone for general-purpose agents, not its first release or a measure of paid usage."},
     {month:"2026-11",date:"11 Nov 2026",label:"NVIDIA CEO resignation",url:"https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm",note:"NVIDIA’s board accepted Jensen Huang’s resignation effective November 11 and named Colette Kress interim CEO. NVIDIA announced the transition on November 12.",color:"#315d87"},
-    {month:"2026-11",date:"19 Nov 2026",label:"Anthropic IPO debut (expected)",url:"https://www.anthropic.com/news/anthropic-prices-initial-public-offering",note:"Anthropic priced its IPO at $83 a share on November 18 and said ANT was expected to begin trading on Nasdaq on November 19.",color:"#237d67"},
+    {month:"2026-11",date:"19 Nov 2026",label:"Anthropic IPO debut",url:"https://www.anthropic.com/news/ipo-close",note:"Anthropic began trading on Nasdaq as ANT on November 19 at an IPO price of $83. The offering and concurrent private placement closed on November 20.",color:"#237d67"},
   ].filter(event => points.some(point => point.month === event.month));
   const eventMonths = [...new Set(events.map(event => event.month))];
   const eventMarkers = eventMonths.flatMap(month => {

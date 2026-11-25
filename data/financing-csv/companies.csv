@@ -4,8 +4,15 @@ amazon,Amazon / AWS,cloud,Hyperscale cloud / custom chips,supplier,330,company,c
 ms,Microsoft / Azure,cloud,Hyperscale cloud / applications,supplier,540,company,cloud,MSFT
 amd,AMD,hardware,Accelerators / processors,supplier,750,company,hardware,AMD
 oai,OpenAI,lab,Frontier models / applications,customer,80,company,lab,
-anth,Anthropic,lab,Frontier models / applications,customer,260,company,lab,
+anth,Anthropic,lab,Frontier models / applications,customer,260,company,lab,ANT
 cw,CoreWeave,cloud,Specialist GPU cloud,customer,440,company,cloud,CRWV
 aggregate,AI-cloud customers,cloud,Aggregate · may include CoreWeave,customer,620,aggregate_group,cloud,
 sbe,SB Energy / OpenAI,project,Project developer / tenant,customer,800,composite_group,project,
 meta,Meta,platform,Applications / owned infrastructure,customer,980,company,platform,META
+google,Google,cloud,Cloud hosting / TPUs,supplier,0,company,cloud,GOOGL
+avgo,Broadcom,hardware,TPU systems / lease financing,supplier,0,company,hardware,AVGO
+spacexai,SpaceXAI,cloud,GPU cloud capacity,supplier,0,company,cloud,
+nscale,Nscale,cloud,GPU cloud capacity,supplier,0,company,cloud,
+lambda,Lambda,cloud,GPU cloud capacity,supplier,0,company,cloud,
+mu,Micron,hardware,Memory and storage,supplier,0,company,hardware,MU
+tsm,TSMC,hardware,Foundry / advanced packaging,supplier,0,company,hardware,TSM

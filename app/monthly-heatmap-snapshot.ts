@@ -4,12 +4,11 @@ export const monthlyHeatmapSnapshot = {
     "sourceSha256": "f47c2265cd938406b409d627da254c338e928c339f22e009590de61193b1e2ad",
     "sourceWorkbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
     "method": "Equal-weight mean of constituent month-over-month percentage changes; incomplete pillars withheld. Token price excluded from Demand.",
-    "reviewedAt": "2026-10-20",
-    "completedMonthThrough": "2026-09",
-    "window": "2025-10 through 2026-09"
+    "reviewedAt": "2026-11-25",
+    "completedMonthThrough": "2026-10",
+    "window": "2025-11 through 2026-10"
   },
   "months": [
-    "2025-10",
     "2025-11",
     "2025-12",
     "2026-01",
@@ -20,18 +19,13 @@ export const monthlyHeatmapSnapshot = {
     "2026-06",
     "2026-07",
     "2026-08",
-    "2026-09"
+    "2026-09",
+    "2026-10"
   ],
   "rows": [
     {
       "pillar": "Adoption",
       "cells": [
-        {
-          "month": "2025-10",
-          "value": 0.5,
-          "breadth": "1/2",
-          "coverage": "2/2"
-        },
         {
           "month": "2025-11",
           "value": 61.9,
@@ -97,18 +91,18 @@ export const monthlyHeatmapSnapshot = {
           "value": 6.4,
           "breadth": "2/2",
           "coverage": "2/2"
+        },
+        {
+          "month": "2026-10",
+          "value": 3.5,
+          "breadth": "2/2",
+          "coverage": "2/2"
         }
       ],
       "constituents": [
         {
           "ticker": "BTOS0700",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 1.0,
-              "level": 10.0,
-              "priorLevel": 9.9
-            },
             {
               "month": "2025-11",
               "value": 73.0,
@@ -174,18 +168,18 @@ export const monthlyHeatmapSnapshot = {
               "value": 6.2,
               "level": 23.8,
               "priorLevel": 22.4
+            },
+            {
+              "month": "2026-10",
+              "value": 3.4,
+              "level": 24.6,
+              "priorLevel": 23.8
             }
           ]
         },
         {
           "ticker": "BTOS2400",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 0.0,
-              "level": 14.0,
-              "priorLevel": 14.0
-            },
             {
               "month": "2025-11",
               "value": 50.7,
@@ -251,6 +245,12 @@ export const monthlyHeatmapSnapshot = {
               "value": 6.6,
               "level": 27.6,
               "priorLevel": 25.9
+            },
+            {
+              "month": "2026-10",
+              "value": 3.6,
+              "level": 28.6,
+              "priorLevel": 27.6
             }
           ]
         }
@@ -259,12 +259,6 @@ export const monthlyHeatmapSnapshot = {
     {
       "pillar": "Demand",
       "cells": [
-        {
-          "month": "2025-10",
-          "value": -4.8,
-          "breadth": "0/1",
-          "coverage": "1/1"
-        },
         {
           "month": "2025-11",
           "value": 28.1,
@@ -330,18 +324,18 @@ export const monthlyHeatmapSnapshot = {
           "value": 41.1,
           "breadth": "1/1",
           "coverage": "1/1"
+        },
+        {
+          "month": "2026-10",
+          "value": 1.5,
+          "breadth": "1/1",
+          "coverage": "1/1"
         }
       ],
       "constituents": [
         {
           "ticker": "KOTCDRAM",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": -4.8,
-              "level": 48.5717739,
-              "priorLevel": 50.99441696
-            },
             {
               "month": "2025-11",
               "value": 28.1,
@@ -407,6 +401,12 @@ export const monthlyHeatmapSnapshot = {
               "value": 41.1,
               "level": 332.60491507,
               "priorLevel": 235.6930511
+            },
+            {
+              "month": "2026-10",
+              "value": 1.5,
+              "level": 337.72256941,
+              "priorLevel": 332.60491507
             }
           ]
         }
@@ -416,12 +416,6 @@ export const monthlyHeatmapSnapshot = {
       "pillar": "Investment",
       "cells": [
         {
-          "month": "2025-10",
-          "value": -3.2,
-          "breadth": "3/5",
-          "coverage": "5/5"
-        },
-        {
           "month": "2025-11",
           "value": -2.0,
           "breadth": "2/5",
@@ -429,7 +423,7 @@ export const monthlyHeatmapSnapshot = {
         },
         {
           "month": "2025-12",
-          "value": 20.1,
+          "value": 20.2,
           "breadth": "5/5",
           "coverage": "5/5"
         },
@@ -441,19 +435,19 @@ export const monthlyHeatmapSnapshot = {
         },
         {
           "month": "2026-02",
-          "value": 0.4,
-          "breadth": "4/5",
+          "value": 0.3,
+          "breadth": "3/5",
           "coverage": "5/5"
         },
         {
           "month": "2026-03",
-          "value": 19.8,
+          "value": 19.7,
           "breadth": "4/5",
           "coverage": "5/5"
         },
         {
           "month": "2026-04",
-          "value": -6.9,
+          "value": -7.0,
           "breadth": "2/5",
           "coverage": "5/5"
         },
@@ -465,13 +459,13 @@ export const monthlyHeatmapSnapshot = {
         },
         {
           "month": "2026-06",
-          "value": 14.0,
+          "value": 14.1,
           "breadth": "5/5",
           "coverage": "5/5"
         },
         {
           "month": "2026-07",
-          "value": -6.0,
+          "value": -5.8,
           "breadth": "2/5",
           "coverage": "5/5"
         },
@@ -483,21 +477,21 @@ export const monthlyHeatmapSnapshot = {
         },
         {
           "month": "2026-09",
-          "value": 10.0,
-          "breadth": "4/5",
+          "value": 9.7,
+          "breadth": "3/5",
           "coverage": "5/5"
+        },
+        {
+          "month": "2026-10",
+          "value": null,
+          "breadth": "1/5",
+          "coverage": "1/5"
         }
       ],
       "constituents": [
         {
           "ticker": "DGNOCOEQ",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": -25.4,
-              "level": 3654.0,
-              "priorLevel": 4900.0
-            },
             {
               "month": "2025-11",
               "value": 1.9,
@@ -563,18 +557,18 @@ export const monthlyHeatmapSnapshot = {
               "value": 24.9,
               "level": 6161.0,
               "priorLevel": 4932.0
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 6161.0
             }
           ]
         },
         {
           "ticker": "DGNOITIN",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": -12.0,
-              "level": 26446.0,
-              "priorLevel": 30049.0
-            },
             {
               "month": "2025-11",
               "value": -3.8,
@@ -640,18 +634,18 @@ export const monthlyHeatmapSnapshot = {
               "value": 16.7,
               "level": 34160.0,
               "priorLevel": 29273.0
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 34160.0
             }
           ]
         },
         {
           "ticker": "DGNOTGOP",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 12.3,
-              "level": 5149.0,
-              "priorLevel": 4586.0
-            },
             {
               "month": "2025-11",
               "value": -6.5,
@@ -717,18 +711,18 @@ export const monthlyHeatmapSnapshot = {
               "value": -1.6,
               "level": 5624.0,
               "priorLevel": 5715.0
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 5624.0
             }
           ]
         },
         {
           "ticker": "CNSTPRDA",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 7.0,
-              "level": 54260.0,
-              "priorLevel": 50700.0
-            },
             {
               "month": "2025-11",
               "value": -2.2,
@@ -794,6 +788,12 @@ export const monthlyHeatmapSnapshot = {
               "value": 8.6,
               "level": 96462.0,
               "priorLevel": 88815.0
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 96462.0
             }
           ]
         },
@@ -801,76 +801,76 @@ export const monthlyHeatmapSnapshot = {
           "ticker": "IPNEHITC",
           "cells": [
             {
-              "month": "2025-10",
-              "value": 2.2,
-              "level": 177.9722,
-              "priorLevel": 174.2107
-            },
-            {
               "month": "2025-11",
-              "value": 0.7,
-              "level": 179.2343,
-              "priorLevel": 177.9722
+              "value": 0.9,
+              "level": 124.0897,
+              "priorLevel": 122.9608
             },
             {
               "month": "2025-12",
-              "value": 0.7,
-              "level": 180.4053,
-              "priorLevel": 179.2343
+              "value": 1.0,
+              "level": 125.3496,
+              "priorLevel": 124.0897
             },
             {
               "month": "2026-01",
-              "value": 3.1,
-              "level": 185.9844,
-              "priorLevel": 180.4053
+              "value": 3.3,
+              "level": 129.4582,
+              "priorLevel": 125.3496
             },
             {
               "month": "2026-02",
-              "value": 0.1,
-              "level": 186.0875,
-              "priorLevel": 185.9844
+              "value": -0.4,
+              "level": 128.9636,
+              "priorLevel": 129.4582
             },
             {
               "month": "2026-03",
-              "value": -0.7,
-              "level": 184.7883,
-              "priorLevel": 186.0875
+              "value": -1.3,
+              "level": 127.3323,
+              "priorLevel": 128.9636
             },
             {
               "month": "2026-04",
-              "value": 1.6,
-              "level": 187.656,
-              "priorLevel": 184.7883
+              "value": 1.4,
+              "level": 129.1298,
+              "priorLevel": 127.3323
             },
             {
               "month": "2026-05",
               "value": 3.0,
-              "level": 193.3319,
-              "priorLevel": 187.656
+              "level": 133.0215,
+              "priorLevel": 129.1298
             },
             {
               "month": "2026-06",
-              "value": 1.6,
-              "level": 196.3398,
-              "priorLevel": 193.3319
+              "value": 1.9,
+              "level": 135.5804,
+              "priorLevel": 133.0215
             },
             {
               "month": "2026-07",
-              "value": 1.7,
-              "level": 199.655,
-              "priorLevel": 196.3398
+              "value": 2.7,
+              "level": 139.2996,
+              "priorLevel": 135.5804
             },
             {
               "month": "2026-08",
-              "value": 1.1,
-              "level": 201.7968,
-              "priorLevel": 199.655
+              "value": 0.8,
+              "level": 140.4084,
+              "priorLevel": 139.2996
             },
             {
               "month": "2026-09",
-              "value": 1.5,
-              "level": 204.776,
-              "priorLevel": 201.7968
+              "value": -0.2,
+              "level": 140.1245,
+              "priorLevel": 140.4084
+            },
+            {
+              "month": "2026-10",
+              "value": 3.0,
+              "level": 144.3671,
+              "priorLevel": 140.1245
             }
           ]
         }
@@ -879,12 +879,6 @@ export const monthlyHeatmapSnapshot = {
     {
       "pillar": "Imports",
       "cells": [
-        {
-          "month": "2025-10",
-          "value": 17.8,
-          "breadth": "3/3",
-          "coverage": "3/3"
-        },
         {
           "month": "2025-11",
           "value": 2.8,
@@ -950,18 +944,18 @@ export const monthlyHeatmapSnapshot = {
           "value": 5.4,
           "breadth": "2/3",
           "coverage": "3/3"
+        },
+        {
+          "month": "2026-10",
+          "value": null,
+          "breadth": "0/3",
+          "coverage": "0/3"
         }
       ],
       "constituents": [
         {
           "ticker": "USIMTELE",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 17.5,
-              "level": 10.79508,
-              "priorLevel": 9.18647
-            },
             {
               "month": "2025-11",
               "value": -3.2,
@@ -1027,18 +1021,18 @@ export const monthlyHeatmapSnapshot = {
               "value": 0.9,
               "level": 16.134,
               "priorLevel": 15.986
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 16.134
             }
           ]
         },
         {
           "ticker": "USIMSEMI",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 1.6,
-              "level": 5.72878,
-              "priorLevel": 5.63838
-            },
             {
               "month": "2025-11",
               "value": 33.1,
@@ -1104,18 +1098,18 @@ export const monthlyHeatmapSnapshot = {
               "value": -7.5,
               "level": 14.268,
               "priorLevel": 15.429
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 14.268
             }
           ]
         },
         {
           "ticker": "USIMCOMP",
           "cells": [
-            {
-              "month": "2025-10",
-              "value": 34.3,
-              "level": 14.93942,
-              "priorLevel": 11.12551
-            },
             {
               "month": "2025-11",
               "value": -21.4,
@@ -1181,6 +1175,12 @@ export const monthlyHeatmapSnapshot = {
               "value": 22.7,
               "level": 30.911,
               "priorLevel": 25.197
+            },
+            {
+              "month": "2026-10",
+              "value": null,
+              "level": null,
+              "priorLevel": 30.911
             }
           ]
         }

@@ -4,15 +4,15 @@ export const indexPriceSnapshot = {
     "sheet": "Index Price Value",
     "workbookSha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
     "inspectionSha256": "f47c2265cd938406b409d627da254c338e928c339f22e009590de61193b1e2ad",
-    "infrastructureSha256": "4a1ac70022d0da7b55b07ecbdfeb6c7d376c8bce23dd86ce54f62ea98802e755",
-    "reviewedAt": "2026-10-20",
-    "completedMonthThrough": "2026-09",
+    "infrastructureSha256": "ce5fc9e681a63514c6f2c0b5fd24fd7267027a4ba6ab784f7996b9189e0c7735",
+    "reviewedAt": "2026-11-25",
+    "completedMonthThrough": "2026-10",
     "gridThrough": "2026-11",
     "headerAliases": {
       "TSMC Revenue": "TSMC Monthly Revenue"
     },
     "labelsSource": "Saved Indexlist descriptions; field units require independent verification",
-    "limitations": "Completed calendar rows are eligible inputs, not independently verified release dates. Bloomberg fill=PREV can repeat prior observations. October is partial and excluded from monthly scoring; source rows remain available as context. Preserve calibrated baseline parameters when refreshing observations.",
+    "limitations": "Completed months are eligible when the individual inputs are available. Checked series suppress repeated workbook values after the last verified month. The Federal Reserve revised high-tech production to a 2022 base on November 24, 2026. Use the matching revised monthly history and preserve the frozen scoring calibration.",
     "sourceRetrievedAt": null
   },
   "series": [
@@ -352,7 +352,7 @@ export const indexPriceSnapshot = {
           "level": 24.6,
           "yoy": 146.0,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -700,7 +700,7 @@ export const indexPriceSnapshot = {
           "level": 28.6,
           "yoy": 104.28571428571432,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -1048,7 +1048,7 @@ export const indexPriceSnapshot = {
           "level": 0.8856,
           "yoy": null,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -1396,12 +1396,12 @@ export const indexPriceSnapshot = {
           "level": 53.12,
           "yoy": 233.2496863237139,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 52.91999816894531,
-          "yoy": 83.36797702337253,
+          "level": 52.54,
+          "yoy": 82.05128205128204,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -4425,7 +4425,31 @@ export const indexPriceSnapshot = {
         },
         {
           "date": "2026-11-16",
-          "value": 52.91999816894531
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-17",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-18",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-19",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-20",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-23",
+          "value": 52.72
+        },
+        {
+          "date": "2026-11-24",
+          "value": 52.54
         }
       ]
     },
@@ -4765,12 +4789,12 @@ export const indexPriceSnapshot = {
           "level": 18.96,
           "yoy": 280.72289156626505,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 17.079999923706055,
-          "yoy": 90.62499914850505,
+          "level": 14.91,
+          "yoy": 66.40624999999997,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -8514,7 +8538,31 @@ export const indexPriceSnapshot = {
         },
         {
           "date": "2026-11-16",
-          "value": 17.079999923706055
+          "value": 17.08
+        },
+        {
+          "date": "2026-11-17",
+          "value": 17.08
+        },
+        {
+          "date": "2026-11-18",
+          "value": 16.57
+        },
+        {
+          "date": "2026-11-19",
+          "value": 16.32
+        },
+        {
+          "date": "2026-11-20",
+          "value": 16.17
+        },
+        {
+          "date": "2026-11-23",
+          "value": 14.91
+        },
+        {
+          "date": "2026-11-24",
+          "value": 14.91
         }
       ]
     },
@@ -8854,7 +8902,7 @@ export const indexPriceSnapshot = {
           "level": 2.92,
           "yoy": 46.73366834170854,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -12056,6 +12104,42 @@ export const indexPriceSnapshot = {
         {
           "date": "2026-11-15",
           "value": 3.1
+        },
+        {
+          "date": "2026-11-16",
+          "value": 3.08
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.07
+        },
+        {
+          "date": "2026-11-18",
+          "value": 3.01
+        },
+        {
+          "date": "2026-11-19",
+          "value": 3.11
+        },
+        {
+          "date": "2026-11-20",
+          "value": 3.08
+        },
+        {
+          "date": "2026-11-21",
+          "value": 3.09
+        },
+        {
+          "date": "2026-11-22",
+          "value": 3.1
+        },
+        {
+          "date": "2026-11-23",
+          "value": 3.09
+        },
+        {
+          "date": "2026-11-24",
+          "value": 3.1
         }
       ]
     },
@@ -12395,12 +12479,12 @@ export const indexPriceSnapshot = {
           "level": 6.64,
           "yoy": 39.20335429769393,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 6.87,
-          "yoy": 49.34782608695654,
+          "level": 6.94,
+          "yoy": 50.86956521739132,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -14273,6 +14357,42 @@ export const indexPriceSnapshot = {
         {
           "date": "2026-11-15",
           "value": 6.87
+        },
+        {
+          "date": "2026-11-16",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-17",
+          "value": 7.1
+        },
+        {
+          "date": "2026-11-18",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-19",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-20",
+          "value": 7.1
+        },
+        {
+          "date": "2026-11-21",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-22",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-23",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-24",
+          "value": 6.94
         }
       ]
     },
@@ -14609,10 +14729,10 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 337.7,
-          "yoy": 595.2597627899278,
+          "level": 337.72256941,
+          "yoy": 595.3062288919203,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -14957,10 +15077,10 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 29.7,
-          "yoy": 341.3551066419001,
+          "level": 29.70753697,
+          "yoy": 341.4671093421731,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -15308,7 +15428,7 @@ export const indexPriceSnapshot = {
           "level": 263.03,
           "yoy": 159.83404129210706,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -15656,7 +15776,7 @@ export const indexPriceSnapshot = {
           "level": null,
           "yoy": null,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -16004,7 +16124,7 @@ export const indexPriceSnapshot = {
           "level": null,
           "yoy": null,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -16349,16 +16469,16 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 5624.0,
-          "yoy": 9.225092250922518,
-          "unchangedFromPrevious": true,
-          "partial": true
+          "level": null,
+          "yoy": null,
+          "unchangedFromPrevious": false,
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 5624.0,
-          "yoy": 16.850197382090172,
-          "unchangedFromPrevious": true,
+          "level": null,
+          "yoy": null,
+          "unchangedFromPrevious": false,
           "partial": true
         }
       ],
@@ -16697,358 +16817,358 @@ export const indexPriceSnapshot = {
         },
         {
           "month": "2026-10",
-          "level": 96462.0,
-          "yoy": 77.77736822705492,
-          "unchangedFromPrevious": true,
-          "partial": true
+          "level": null,
+          "yoy": null,
+          "unchangedFromPrevious": false,
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 96462.0,
-          "yoy": 81.85622985125276,
-          "unchangedFromPrevious": true,
+          "level": null,
+          "yoy": null,
+          "unchangedFromPrevious": false,
           "partial": true
         }
       ],
       "daily": []
     },
     {
-      "source": "AI_Infra.xlsx",
-      "sheet": "Monthly Data Value",
+      "source": "Federal Reserve G.17 via FRED",
+      "sheet": "IPHITEK2S",
       "field": "IPNEHITC Index",
       "name": "High-tech industry activity",
       "pillar": "Investment",
       "coreWeight": 0.04,
-      "unit": "Source-native; verify Bloomberg field units before cross-series comparisons",
+      "unit": "Seasonally adjusted index (2022 = 100)",
       "cells": [
         {
           "month": "2022-12",
-          "level": 141.8317,
+          "level": 99.1846,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-01",
-          "level": 140.7748,
+          "level": 97.4275,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-02",
-          "level": 142.9203,
+          "level": 97.4582,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-03",
-          "level": 143.0404,
+          "level": 98.8561,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-04",
-          "level": 145.4632,
+          "level": 101.4022,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-05",
-          "level": 145.9301,
+          "level": 102.558,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-06",
-          "level": 146.0502,
+          "level": 102.899,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-07",
-          "level": 147.0968,
+          "level": 105.8313,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-08",
-          "level": 146.8145,
+          "level": 105.9075,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-09",
-          "level": 146.5066,
+          "level": 105.9999,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-10",
-          "level": 148.6301,
+          "level": 107.4444,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-11",
-          "level": 150.266,
+          "level": 108.2598,
           "yoy": null,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2023-12",
-          "level": 150.9093,
-          "yoy": 6.400261718642586,
+          "level": 108.9904,
+          "yoy": 9.886413818274198,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-01",
-          "level": 150.7342,
-          "yoy": 7.074703711175578,
+          "level": 108.594,
+          "yoy": 11.461343049960227,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-02",
-          "level": 149.4712,
-          "yoy": 4.583603588853369,
+          "level": 108.2887,
+          "yoy": 11.112969457675192,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-03",
-          "level": 149.8491,
-          "yoy": 4.759983892662478,
+          "level": 108.7561,
+          "yoy": 10.014556511940098,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-04",
-          "level": 154.1052,
-          "yoy": 5.941021509220201,
+          "level": 112.6074,
+          "yoy": 11.050253347560513,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-05",
-          "level": 155.0573,
-          "yoy": 6.254501298909543,
+          "level": 111.9861,
+          "yoy": 9.192944480196562,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-06",
-          "level": 154.9794,
-          "yoy": 6.113788272799359,
+          "level": 112.8228,
+          "yoy": 9.644214229487158,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-07",
-          "level": 155.6892,
-          "yoy": 5.84132353660991,
+          "level": 113.5213,
+          "yoy": 7.266281336428815,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-08",
-          "level": 160.5182,
-          "yoy": 9.334023546720527,
+          "level": 117.1246,
+          "yoy": 10.591412317352411,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-09",
-          "level": 159.8005,
-          "yoy": 9.073925679798723,
+          "level": 114.9115,
+          "yoy": 8.407177742620519,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-10",
-          "level": 161.3975,
-          "yoy": 8.590050063883425,
+          "level": 116.5753,
+          "yoy": 8.49825584209134,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-11",
-          "level": 160.9703,
-          "yoy": 7.12356754022867,
+          "level": 115.962,
+          "yoy": 7.114552216058034,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2024-12",
-          "level": 163.3446,
-          "yoy": 8.240247618934028,
+          "level": 116.5014,
+          "yoy": 6.891432639938944,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-01",
-          "level": 169.6334,
-          "yoy": 12.538096861893333,
+          "level": 120.5977,
+          "yoy": 11.053741459012478,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-02",
-          "level": 171.3223,
-          "yoy": 14.618936624580513,
+          "level": 121.4216,
+          "yoy": 12.127673524569026,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-03",
-          "level": 171.2601,
-          "yoy": 14.288374104348978,
+          "level": 120.1354,
+          "yoy": 10.463137240118026,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-04",
-          "level": 172.8078,
-          "yoy": 12.136254973874983,
+          "level": 121.7541,
+          "yoy": 8.12264558101865,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-05",
-          "level": 174.1713,
-          "yoy": 12.327055869023894,
+          "level": 121.4205,
+          "yoy": 8.42461698371495,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-06",
-          "level": 172.6464,
-          "yoy": 11.399579557024996,
+          "level": 118.1205,
+          "yoy": 4.695593443878376,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-07",
-          "level": 178.6265,
-          "yoy": 14.732749606266848,
+          "level": 122.8655,
+          "yoy": 8.231230614871388,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-08",
-          "level": 176.1928,
-          "yoy": 9.764998610749442,
+          "level": 121.5933,
+          "yoy": 3.8153385369085635,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-09",
-          "level": 174.2107,
-          "yoy": 9.017618843495478,
+          "level": 119.9621,
+          "yoy": 4.395208486530944,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-10",
-          "level": 177.9722,
-          "yoy": 10.269489923945518,
+          "level": 122.9608,
+          "yoy": 5.477575438364735,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-11",
-          "level": 179.2343,
-          "yoy": 11.346192434256498,
+          "level": 124.0897,
+          "yoy": 7.0089339611251855,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2025-12",
-          "level": 180.4053,
-          "yoy": 10.444606065948925,
+          "level": 125.3496,
+          "yoy": 7.594930189680116,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-01",
-          "level": 185.9844,
-          "yoy": 9.63902156061247,
+          "level": 129.4582,
+          "yoy": 7.347155045245479,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-02",
-          "level": 186.0875,
-          "yoy": 8.618376008260453,
+          "level": 128.9636,
+          "yoy": 6.2114154318506865,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-03",
-          "level": 184.7883,
-          "yoy": 7.899212951528112,
+          "level": 127.3323,
+          "yoy": 5.990657208449801,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-04",
-          "level": 187.656,
-          "yoy": 8.592320485533644,
+          "level": 129.1298,
+          "yoy": 6.0578658131430485,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-05",
-          "level": 193.3319,
-          "yoy": 11.001008776991373,
+          "level": 133.0215,
+          "yoy": 9.554399792456802,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-06",
-          "level": 196.3398,
-          "yoy": 13.723657139679712,
+          "level": 135.5804,
+          "yoy": 14.781430826994457,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-07",
-          "level": 199.655,
-          "yoy": 11.77232941360884,
+          "level": 139.2996,
+          "yoy": 13.375683165738138,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-08",
-          "level": 201.7968,
-          "yoy": 14.53180833723058,
+          "level": 140.4084,
+          "yoy": 15.473796664783347,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-09",
-          "level": 204.776,
-          "yoy": 17.545018761763775,
+          "level": 140.1245,
+          "yoy": 16.807308308207336,
           "unchangedFromPrevious": false,
           "partial": false
         },
         {
           "month": "2026-10",
-          "level": null,
-          "yoy": null,
+          "level": 144.3671,
+          "yoy": 17.40904418318683,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -17058,7 +17178,8 @@ export const indexPriceSnapshot = {
           "partial": true
         }
       ],
-      "daily": []
+      "daily": [],
+      "sourceUrl": "https://fred.stlouisfed.org/series/IPHITEK2S"
     },
     {
       "source": "AI_Infra.xlsx",
@@ -17396,7 +17517,7 @@ export const indexPriceSnapshot = {
           "level": null,
           "yoy": null,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -17744,7 +17865,7 @@ export const indexPriceSnapshot = {
           "level": null,
           "yoy": null,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -18092,7 +18213,7 @@ export const indexPriceSnapshot = {
           "level": null,
           "yoy": null,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -18440,7 +18561,7 @@ export const indexPriceSnapshot = {
           "level": 586890.319,
           "yoy": 59.70975760070092,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",

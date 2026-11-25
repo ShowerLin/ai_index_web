@@ -33,7 +33,7 @@ const columns = [0, 1, 2].map(column => graph.nodes.filter(node => {
   const roleColumn = node.role === "cloud" ? 2 : node.role === "lab" || node.role === "platform" ? 1 : 0;
   return roleColumn === column;
 }));
-const height = Math.max(404, 100 * Math.max(...columns.map(column => column.length)));
+const height = Math.max(404, 74 * Math.max(...columns.map(column => column.length)));
 const nodes = columns.flatMap((column, index) => column.map((node, row) => ({
   ...node,
   x: 24 + 260 * index,
@@ -43,11 +43,15 @@ const nodeById = new Map(nodes.map(node => [node.id, node]));
 
 function amountLabel(flow: Flow) {
   if (flow.amount.value === null) return flow.kind === "incentive" ? flow.label.split(" · ")[0] : "Undisclosed";
+  const range = flow.label.match(/^\$[\d.]+B–\$[\d.]+B/);
+  if (range) return range[0];
+  if (flow.label.startsWith("At least ")) return `≥$${flow.amount.value}B`;
   const prefix = flow.amount.bound === "upper_bound" ? "Up to " : flow.amount.bound === "lower_bound" ? ">" : "";
   return `${prefix}$${flow.amount.value}B`;
 }
 
 function termLabel(flow: Flow) {
+  if ((flow.from === "anth" && flow.kind === "purchase") || flow.time.basis === "remaining_facility") return flow.time.label;
   if (flow.time.durationYears) {
     const prefix = flow.kind === "guarantee"
       ? flow.amount.bound === "upper_bound" ? "Up to " : "Typically "
@@ -174,6 +178,6 @@ export default function FinancingCommitments() {
       <p>{active.flow.time.label}. {active.flow.newsBrief}</p>
       {source && <a href={source.url} target="_blank" rel="noreferrer">Read the original disclosure ↗</a>}
     </aside>}
-    <p className="cf-commitment-scope">Select an arrow or its table number for the dated disclosure. The map shows future obligations, including contingent support. NVIDIA’s aggregate backstop may overlap CoreWeave’s. Funding, contract values, guarantees and warrants measure different obligations.</p>
+    <p className="cf-commitment-scope">Select an arrow or its table number for the dated disclosure. Contract amounts include minimums, caps and contingent obligations. NVIDIA’s aggregate backstop may overlap CoreWeave’s.</p>
   </>;
 }

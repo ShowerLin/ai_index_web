@@ -37,6 +37,16 @@ body { font-family: var(--font-body); }
 #top :is(.reader-guide, .heatmap-overview, .snapshot, .heatmap-drilldown) { border-color: var(--line); }
 #top .snapshot { background: var(--line); }
 #top :is(.guide-intro, .guide-path li) { border-color: var(--line); }
+#top .summary-metric {
+  color: #176264;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+#top .summary-metric:hover { color: var(--ink); }
+#top .gauge { display: block; text-align: center; }
+#top .gauge :is(span, small) { padding-inline: 6px; text-transform: uppercase; }
+#top .gauge small { letter-spacing: .04em; }
 #top :is(.snapshot small, .guide-path small) { font: 400 var(--text-small)/1.5 var(--font-body); }
 #top .snapshot article > span { font: 700 var(--text-label)/1.5 var(--font-body); letter-spacing: .06em; }
 #top .snapshot strong { font: 400 clamp(30px, 3vw, 40px)/1.2 var(--font-heading); }

@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 FIXTURE_ROOT=Path(os.environ.get('AI_INDEX_DATA_ROOT',ROOT))
 sys.path.insert(0,str(ROOT/'pipeline/builders'))
 import spending as s
-from openrouter_pricing import catalog_rates, daily_spending, load_prices, window_spending
+from openrouter_pricing import catalog_rates, daily_spending, latest_complete_spending_window, load_prices, window_spending
 
 def read(p):return json.JSONDecoder().raw_decode(p.read_text(encoding='utf-8').split(' = ',1)[1].lstrip())[0]
 class SpendingTests(unittest.TestCase):
@@ -64,6 +64,20 @@ class SpendingTests(unittest.TestCase):
   self.assertEqual(before['metadata']['spendingBaseline'],after['metadata']['spendingBaseline'])
 
 class OpenRouterPricingTests(unittest.TestCase):
+ def test_latest_rolling_window_requires_28_priced_days(self):
+  dates=[(dt.date(2026,9,1)+dt.timedelta(days=day)).isoformat() for day in range(57)]
+  daily={date:dict(total=10, priced=10, known_free=0, unmatched=0, matched_spend=amount,
+                   imputed_spend=0, spend=amount, vintage=dates[0])
+         for day,date in enumerate(dates) for amount in [10 if day<28 else 15]}
+  daily[dates[-1]]['spend']=None
+  row=latest_complete_spending_window(daily)
+  self.assertEqual(row['windowEnd'],dates[-2])
+  self.assertEqual(row['windowStart'],dates[28])
+  self.assertEqual(row['openrouterSpendProxy'],420)
+  self.assertAlmostEqual(row['openrouterSpendingGrowth'],50)
+  del daily[dates[20]]
+  self.assertIsNone(latest_complete_spending_window(daily)['openrouterSpendingGrowth'])
+
  def test_catalog_preserves_route_variants_and_zero_prices(self):
   rates=catalog_rates([
    dict(id='lab/model',canonical_slug='lab/model-2026',pricing=dict(prompt='0.000001',completion='0.000004')),

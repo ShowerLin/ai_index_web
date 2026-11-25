@@ -3,6 +3,9 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { edgeRoutes, mapHeight, mapWidth, mapX, nodeHeight, nodePositions, nodeWidth } from "../app/chain-map-layout.ts";
 import { chainEdges } from "../app/industry-chain-data.ts";
+import { executiveCommentary, executiveConclusion } from "../app/research-commentary.ts";
+import { coreContributionSnapshot } from "../app/core-contribution-snapshot.ts";
+import { coreProjectionSnapshot } from "../app/core-projection-snapshot.ts";
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -14,6 +17,39 @@ async function render() {
     { waitUntil() {}, passThroughOnException() {} },
   );
 }
+
+test("headline gauge shows the latest available monthly composite and coverage", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const hero = html.match(/<section class="hero">[\s\S]*?<\/section>/)?.[0];
+  assert.ok(hero);
+  const latest = coreContributionSnapshot.months.findLast(month =>
+    month.month <= coreContributionSnapshot.metadata.heatmapThrough && month.score !== null);
+  assert.ok(latest);
+  const monthLabel = new Date(`${latest.month}-01T00:00:00Z`)
+    .toLocaleDateString("en-US", {month: "long", year: "numeric", timeZone: "UTC"});
+  const status = latest.month > coreProjectionSnapshot.metadata.anchorMonth ? "Provisional" : "Approved";
+  assert.match(hero, /class="gauge" href="#heatmap"/);
+  assert.ok(hero.includes(`<span>${monthLabel}</span>`));
+  assert.ok(hero.includes(`<strong>${latest.score.toFixed(1)}</strong>`));
+  assert.ok(hero.includes(`<small>${status} · ${latest.availablePillars}/4 pillars</small>`));
+  assert.doesNotMatch(hero, /Satellite-adjusted|atmosphere-switch/i);
+});
+
+test("executive summary metrics link to unique dashboard destinations", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const targets = [...html.matchAll(/<a\b[^>]*\bclass="summary-metric"[^>]*\bhref="#([a-z][a-z0-9-]*)"/g)]
+    .map(link => link[1]);
+  const authored = [...executiveCommentary, executiveConclusion].join("\n").match(/\]\(#/g) ?? [];
+  assert.equal(targets.length, authored.length);
+  assert.ok(targets.includes("weekly-pulse"));
+  for (const target of new Set(targets)) {
+    assert.equal([...html.matchAll(new RegExp(`\\sid="${target}"`, "g"))].length, 1, `Summary link #${target}`);
+  }
+});
 
 test("server-renders the AI Investment Atmosphere dashboard", async () => {
   const response = await render();
@@ -40,10 +76,7 @@ test("server-renders the AI Investment Atmosphere dashboard", async () => {
   assert.match(html, /id="useful-task-economics" class="evidence-card"/);
   assert.ok(html.indexOf('id="adoption-usage"') > stagePositions[0] && html.indexOf('id="adoption-usage"') < stagePositions[1]);
   assert.ok(html.indexOf('id="infrastructure"') > stagePositions[2] && html.indexOf('id="infrastructure"') < stagePositions[3]);
-  assert.match(html, /View supplementary financial and credit adjustment/);
   assert.match(html, /core uncertainty/);
-  assert.match(html, /Satellite-adjusted/);
-  assert.match(html, /Satellite-adjusted/);
   assert.match(html, /69\.3/);
   assert.match(html, /MONTHLY CONSTITUENT SCORE HEATMAP/);
   assert.match(html, /id="heatmap-demand-evidence"/);
@@ -185,10 +218,6 @@ test("keeps production metadata and methodology in source", async () => {
   assert.doesNotMatch(page, /capexMetric|metric-toggle/);
   assert.match(page, /const fundamentalSnapshot/);
   assert.match(page, /80% resilience \+ 20% CapEx momentum/);
-  assert.match(page, /const satelliteOverlay/);
-  assert.match(page, /fundamentalOverlayDelta=0\.10/);
-  assert.match(page, /normalizedCreditScore=clampScore\(50\+2\.5\*cdsSnapshot\.composite\)/);
-  assert.match(page, /SUPPLEMENTARY ADJUSTMENT FORMULA/);
   assert.match(page, /weights are not renormalized/);
   assert.match(page, /const bondHistory/);
   assert.match(page, /<RoicAnalysis compact\/>/);

@@ -24,6 +24,8 @@ html = html
   .replace(/<link[^>]+rel=["']icon["'][^>]*>/gi, "")
   .replace(/<link[^>]+rel=["']modulepreload["'][^>]*>/gi, "")
   .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+  // The offline snapshot has no tab switching, so keep the weekly link destination visible.
+  .replace(/(<div\b[^>]*\sid="pulse-panel-weekly"[^>]*?)\s+hidden(?:="")?(?=[\s>])/i, "$1")
   .replace(
     /href=["']\/ai-industry-chain-price-template\.csv["']/g,
     `href="data:text/csv;charset=utf-8,${encodeURIComponent(csv)}"`,

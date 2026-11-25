@@ -100,6 +100,24 @@ def load(source=None, inspection=None):
     if infra.exists():
         observations = overlay_infrastructure(observations, infra)
         config['infrastructureSha256'] = hashlib.sha256(infra.read_bytes()).hexdigest()
+    for field, release in config.get('officialMonthlySeries', {}).items():
+        if field not in headers:
+            raise ValueError(f'Unknown official series field: {field}')
+        for month, value in release['values'].items():
+            if number(value) is None or value <= 0:
+                raise ValueError(f'Invalid official observation for {field}: {month}')
+            if month in observations:
+                observations[month][field] = value
+    for field, through in config.get('checkForCarryForwardAfter', {}).items():
+        if field not in headers:
+            raise ValueError(f'Unknown carry-forward field: {field}')
+        previous = None
+        for month, row in observations.items():
+            value = row[field]
+            if month > through and previous is not None and value == previous:
+                row[field] = None
+            if value is not None:
+                previous = value
     return config, headers, observations, workbook_hash, hashlib.sha256(inspection.read_bytes()).hexdigest()
 
 

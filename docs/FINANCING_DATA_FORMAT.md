@@ -6,9 +6,10 @@
 - `data/circular-financing.schema.json`: JSON Schema (draft 2020-12), including required fields, enums and types.
 - `scripts/validate-financing-data.mjs`: validates IDs, endpoints, sources, units, bounds and basic timing/status constraints.
 - `scripts/reconcile-financing-data.mjs`: read-only baseline/candidate comparison with added, changed and removed records, their before/after values, and baseline SHA-256.
-- `app/circular-financing-data.ts`: legacy detailed loop diagrams and revenue/sensitivity references. Those are separately maintained and have not been automatically rewritten from this graph JSON. After accepting a change, reconcile affected detailed-loop records, headline cutoff, source exports and sensitivity inputs too. The old CSV is a loop-description export, not the canonical network exchange dataset.
+- `app/circular-financing-data.ts` supplies the detailed loop diagrams and revenue and sensitivity references. The Anthropic loops use selected canonical flows. Reconcile separately maintained loops and sensitivity inputs when their source data changes.
+- `public/financing-edge-ledger.csv` exports the canonical flows with status and review labels. `data/financing-csv` is the editable exchange format.
 
-Current graph: 10 nodes, 19 flows, 14 sources. Information cutoff is 2026-10-05; the format was organized on 2026-10-06. This reorganization introduces no new market research.
+The 2026-11-25 update has 17 nodes, 38 flows including historical records, and 16 sources. The Anthropic public offering proceeds and company-wide spending total appear in the IPO disclosure panel. The graph records individual counterparty relationships.
 
 ## How another agent should submit research
 

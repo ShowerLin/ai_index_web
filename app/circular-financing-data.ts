@@ -1,18 +1,24 @@
+import graph from '../data/circular-financing.json' with {type:'json'};
+
 export type FlowKind = 'paid'|'commitment'|'purchase'|'guarantee'|'incentive';
 export type FinancingFlow = {from:number;to:number;kind:FlowKind;label:string;date:string;note:string;url:string};
 export type FinancingLoop = {id:string;title:string;nodes:string[];tickers:string[];flows:FinancingFlow[];boundary:string};
 const amazon='https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm';
 const nvCloud='https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm';
 const msAnthropic='https://blogs.microsoft.com/blog/2025/11/18/microsoft-nvidia-and-anthropic-announce-strategic-partnerships/';
-export const financingAsOf='5 October 2026';
+export const financingAsOf=new Date(`${graph.informationCutoff}T00:00:00Z`).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+function disclosedFlow(id:string,from:number,to:number):FinancingFlow{
+ const flow=graph.flows.find(item=>item.id===id)!;
+ return {from,to,kind:flow.kind as FlowKind,label:flow.label,date:flow.time.label,note:flow.newsBrief,url:graph.sources.find(source=>source.id===flow.sourceIds[0])!.url};
+}
 export const financingLoops:FinancingLoop[]=[
  {id:'amazon-openai',title:'Amazon × OpenAI',nodes:['Amazon / AWS','OpenAI'],tickers:['AMZN'],flows:[
  {from:0,to:1,kind:'paid',label:'$50B equity investment paid',date:'Q1–after June 2026 · disclosed 30 Jul',note:'All installments completed by the Q2 filing; final payment day is unspecified.',url:amazon},
  {from:1,to:0,kind:'purchase',label:'$100B incremental AWS contract · 8 years',date:'27 Feb 2026 · future consumption',note:'Additional to an earlier $38B contract. Spending schedule and financing attribution are undisclosed.',url:'https://openai.com/index/amazon-partnership/'}],boundary:'Funding and cloud purchases form a commercial loop. The investment is not evidence that all contract revenue depends on that funding.'},
  {id:'amazon-anthropic',title:'Amazon × Anthropic',nodes:['Amazon / AWS','Anthropic'],tickers:['AMZN'],flows:[
  {from:0,to:1,kind:'paid',label:'$18B cumulative investment paid',date:'Paid through 30 Jun 2026',note:'$18B paid cumulatively; remaining $15B is conditional and is excluded from the paid-only model.',url:amazon},
- {from:1,to:0,kind:'purchase',label:'>$100B incremental AWS contract · 10 years',date:'20 Apr 2026 · delivery milestones apply',note:'Existing commitments are excluded from this incremental amount.',url:'https://www.anthropic.com/news/anthropic-amazon-compute'},
- {from:0,to:1,kind:'commitment',label:'$15B remaining contingent facility',date:'As of 30 Jun 2026',note:'Draws depend on delivery milestones; excluded from completed funding.',url:amazon}],boundary:'Paid capital and future chip-dependent obligations have different timing. The $15B facility is not another completed payment.'},
+ disclosedFlow('anth-amazon-purchase-2026-prospectus',1,0),
+ disclosedFlow('amazon-anthropic-commitment-amazon-anth',0,1)],boundary:'Paid capital, take-or-pay compute and the remaining contingent facility have different timing.'},
  {id:'nvidia-coreweave',title:'NVIDIA × CoreWeave',nodes:['NVIDIA','CoreWeave'],tickers:['NVDA'],flows:[
  {from:0,to:1,kind:'paid',label:'$2B equity investment closed',date:'23 Jan 2026',note:'Cash investment in CoreWeave Class A shares.',url:'https://www.sec.gov/Archives/edgar/data/1769628/000176962826000044/crwv-20260123.htm'},
  {from:1,to:0,kind:'purchase',label:'NVIDIA hardware purchases · $ undisclosed',date:'AI factory buildout through 2030',note:'The portion purchased with this equity cannot be traced from public disclosures.',url:'https://nvidianews.nvidia.com/news/nvidia-and-coreweave-strengthen-collaboration-to-accelerate-buildout-of-ai-factories'},
@@ -22,9 +28,10 @@ export const financingLoops:FinancingLoop[]=[
  {from:1,to:2,kind:'purchase',label:'Cloud contracts / compute purchases',date:'2025–2026 contracts · multi-year delivery',note:'Azure $250B incremental, AWS $100B incremental and CoreWeave $22.4B aggregate are separate contracts. Do not sum these as NVIDIA sales.',url:'https://www.coreweave.com/news/coreweave-expands-agreement-with-openai-by-up-to-6-5b'},
  {from:2,to:0,kind:'purchase',label:'GPU procurement · financed portion unknown',date:'Deployment timing varies',note:'Cloud procurement also includes non-NVIDIA hardware, facilities and power. No disclosed $30B-to-GPU cash tracing.',url:'https://openai.com/index/scaling-ai-for-everyone/'}],boundary:'This is a routed financing loop, with two distinct revenue layers. Contract value is not recognized revenue or a GPU purchase amount.'},
  {id:'nvidia-anthropic',title:'NVIDIA → Anthropic → Microsoft Azure',nodes:['NVIDIA','Anthropic','Microsoft Azure'],tickers:['NVDA','MSFT'],flows:[
- {from:0,to:1,kind:'commitment',label:'Up to $10B NVIDIA investment',date:'18 Nov 2025 · payment unverified',note:'Microsoft separately announced up to $5B. Both are investment commitments, not verified cash in this dataset.',url:msAnthropic},
- {from:1,to:2,kind:'purchase',label:'$30B Azure compute commitment',date:'18 Nov 2025 · term undisclosed',note:'Plus infrastructure of up to 1GW; do not treat 1GW as an additional cash amount.',url:msAnthropic},
- {from:2,to:0,kind:'purchase',label:'NVIDIA systems · $ undisclosed',date:'Future deployments · timing undisclosed',note:'Azure purchases systems; NVIDIA’s share of the $30B services contract is unknown.',url:msAnthropic}],boundary:'Microsoft’s additional financing is in the ledger above; the triangle shows NVIDIA’s routed loop without converting Azure revenue into NVIDIA revenue.'},
+ disclosedFlow('nv-anth-ipo-private-placement-2026',0,1),
+ disclosedFlow('anth-ms-purchase-2026-prospectus',1,2),
+ {from:2,to:0,kind:'purchase',label:'NVIDIA systems · $ undisclosed',date:'Future deployments · timing undisclosed',note:'Azure purchases NVIDIA systems. The filing does not quantify the NVIDIA share of the Azure contract.',url:msAnthropic},
+ disclosedFlow('ms-anth-ipo-private-placement-2026',2,1)],boundary:'The completed NVIDIA and Microsoft purchases are part of the $26B placement. NVIDIA hardware revenue and the amount of funded cash returned as purchases remain unquantified.'},
  {id:'microsoft-openai',title:'Microsoft × OpenAI',nodes:['Microsoft / Azure','OpenAI'],tickers:['MSFT'],flows:[
  {from:0,to:1,kind:'paid',label:'$11.9B cumulative funding paid',date:'As of 30 Jun 2026',note:'Funded portion of a cumulative $13B commitment; this is not a new annual investment.',url:'https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm'},
  {from:1,to:0,kind:'purchase',label:'$250B incremental Azure contract',date:'28 Oct 2025 · duration undisclosed',note:'April 2026 amendment permits other clouds. OpenAI-to-Microsoft revenue share continues through 2030 with an undisclosed cap.',url:'https://blogs.microsoft.com/blog/2026/04/27/the-next-phase-of-the-microsoft-openai-partnership/'},
@@ -48,8 +55,8 @@ export const revenueReferences=[
 export function financingSensitivity(returnShare:number,disruption:number,nvidiaYears:number){
  const nvidiaRevenue=302.970,awsRevenue=148.404;
  return [
- {name:'NVIDIA · confirmed equity only',basis:'$2B CoreWeave paid; funding-to-sales path untraced',pace:2/nvidiaYears*returnShare,revenue:nvidiaRevenue},
- {name:'NVIDIA · broader commitment scenario',basis:'$42B = CoreWeave 2 + OpenAI 30 + Anthropic up to 10; includes unverified payments',pace:42/nvidiaYears*returnShare,revenue:nvidiaRevenue},
+ {name:'NVIDIA · confirmed equity only',basis:'$12B = $2B CoreWeave + $10B Anthropic closed; funding-to-sales path untraced',pace:12/nvidiaYears*returnShare,revenue:nvidiaRevenue},
+ {name:'NVIDIA · broader commitment scenario',basis:'$42B = $12B confirmed + $30B OpenAI investment with payment timing unverified',pace:42/nvidiaYears*returnShare,revenue:nvidiaRevenue},
  {name:'AWS · completed lab funding',basis:'$50B OpenAI / 8 years + $18B Anthropic / 10 years; excludes contingent $15B',pace:(50/8+18/10)*returnShare,revenue:awsRevenue}
  ].map(r=>({...r,stress:r.pace*disruption,percent:r.pace*disruption/r.revenue*100}));
 }

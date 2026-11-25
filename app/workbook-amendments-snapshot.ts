@@ -2,8 +2,8 @@ export const workbookAmendments = {
   "metadata": {
     "source": "Indexlist.xlsx",
     "sha256": "f60e92129d05c5ca01c414ed069cacdd3bb350ebe2ef124e189c7bc240664539",
-    "indexPriceCompletedThrough": "2026-09",
-    "indexPriceReviewedAt": "2026-10-20",
+    "indexPriceCompletedThrough": "2026-10",
+    "indexPriceReviewedAt": "2026-11-25",
     "creditAsOf": "2026-11-24",
     "creditBaseline": "2025-12-31",
     "ratingAsOf": "2026-09-30",
@@ -295,9 +295,9 @@ export const workbookAmendments = {
         },
         {
           "month": "2026-10",
-          "level": 337.7,
-          "yoy": 595.2597627899278,
-          "ttmYoy": 344.89070321788324
+          "level": 337.72256941,
+          "yoy": 595.3062288919203,
+          "ttmYoy": 344.89532326456833
         },
         {
           "month": "2026-11",
@@ -590,9 +590,9 @@ export const workbookAmendments = {
         },
         {
           "month": "2026-10",
-          "level": 29.7,
-          "yoy": 341.3551066419001,
-          "ttmYoy": 288.5759242296274
+          "level": 29.70753697,
+          "yoy": 341.4671093421731,
+          "ttmYoy": 288.58785184563004
         },
         {
           "month": "2026-11",

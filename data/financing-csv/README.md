@@ -58,4 +58,4 @@ To regenerate the CSVs from a newer accepted baseline:
 python3 scripts/financing-csv.py export
 ```
 
-Export overwrites these four CSVs: preserve your manual edits before exporting again. Current evidence cutoff remains 2026-10-05. Full JSON field definitions and reconciliation policy: docs/FINANCING_DATA_FORMAT.md.
+Export replaces these four CSVs. The `information_cutoff` in `dataset.csv` records the evidence review date. See `docs/FINANCING_DATA_FORMAT.md` for field definitions and reconciliation policy.

@@ -1,7 +1,7 @@
 """Apply spending methodology v2.7 after the v2.6 intermediate."""
 import json
 from paths import BUILD_ROOT, OPENROUTER, OPENROUTER_PRICES
-from openrouter_pricing import MODELS_URL, OUTPUT_SHARE, daily_spending, load_prices
+from openrouter_pricing import MODELS_URL, OUTPUT_SHARE, daily_spending, latest_complete_spending_window, load_prices
 from spending import integrate
 
 def read(name):return json.JSONDecoder().raw_decode((BUILD_ROOT/'app'/name).read_text(encoding='utf-8').split(' = ',1)[1].lstrip())[0]
@@ -19,6 +19,7 @@ def main():
     prices['metadata']['openrouterPricing']=dict(source=MODELS_URL, outputShare=OUTPUT_SHARE,
                                                 firstVintage=min(catalog), latestVintage=max(catalog))
     prices['spendingMonthly']=monthly
+    prices['openrouterLatestWindow']=latest_complete_spending_window(daily)
     prices['openrouterSpendingDaily']=[
         dict(date=date, totalTokens=row['total'], catalogMatchedTokens=row['priced'],
              knownFreeTokens=row['known_free'], unmatchedTokens=row['unmatched'],

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
   "datasetId": "ai-circular-financing-network",
-  "informationCutoff": "2026-10-05",
-  "updatedAt": "2026-10-06",
+  "informationCutoff": "2026-11-25",
+  "updatedAt": "2026-11-25",
   "currency": "USD",
   "amountUnit": "billion",
   "nodes": [
@@ -82,7 +82,7 @@
       "roles": [
         "lab"
       ],
-      "ticker": null
+      "ticker": "ANT"
     },
     {
       "id": "cw",
@@ -101,7 +101,7 @@
       "id": "aggregate",
       "name": "AI-cloud customers",
       "role": "cloud",
-      "label": "Aggregate \u00b7 may include CoreWeave",
+      "label": "Aggregate · may include CoreWeave",
       "x": 850,
       "y": 620,
       "entityType": "aggregate_group",
@@ -135,6 +135,97 @@
         "platform"
       ],
       "ticker": "META"
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "role": "cloud",
+      "label": "Cloud hosting / TPUs",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": "GOOGL"
+    },
+    {
+      "id": "avgo",
+      "name": "Broadcom",
+      "role": "hardware",
+      "label": "TPU systems / lease financing",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "hardware"
+      ],
+      "ticker": "AVGO"
+    },
+    {
+      "id": "spacexai",
+      "name": "SpaceXAI",
+      "role": "cloud",
+      "label": "GPU cloud capacity",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "nscale",
+      "name": "Nscale",
+      "role": "cloud",
+      "label": "GPU cloud capacity",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "lambda",
+      "name": "Lambda",
+      "role": "cloud",
+      "label": "GPU cloud capacity",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "cloud"
+      ],
+      "ticker": null
+    },
+    {
+      "id": "mu",
+      "name": "Micron",
+      "role": "hardware",
+      "label": "Memory and storage",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "hardware"
+      ],
+      "ticker": "MU"
+    },
+    {
+      "id": "tsm",
+      "name": "TSMC",
+      "role": "hardware",
+      "label": "Foundry / advanced packaging",
+      "x": 50,
+      "y": 0,
+      "entityType": "company",
+      "roles": [
+        "hardware"
+      ],
+      "ticker": "TSM"
     }
   ],
   "flows": [
@@ -153,7 +244,7 @@
       },
       "status": "completed",
       "time": {
-        "label": "Q1\u2013after June 2026 \u00b7 disclosed 30 Jul",
+        "label": "Q1–after June 2026 · disclosed 30 Jul",
         "asOf": "2026-07-30",
         "announcedAt": null,
         "effectiveAt": null,
@@ -218,17 +309,17 @@
       "from": "amazon",
       "to": "anth",
       "kind": "commitment",
-      "label": "$15B remaining contingent facility",
+      "label": "Up to $15B remaining Amazon facility",
       "amount": {
         "value": 15,
         "currency": "USD",
         "unit": "billion",
-        "bound": "exact"
+        "bound": "upper_bound"
       },
-      "status": "announced_payment_unverified",
+      "status": "conditional",
       "time": {
-        "label": "As of 30 Jun 2026",
-        "asOf": "2026-06-30",
+        "label": "Undrawn as of 30 Sep 2026",
+        "asOf": "2026-09-30",
         "announcedAt": null,
         "effectiveAt": null,
         "periodStart": null,
@@ -237,12 +328,13 @@
         "basis": "remaining_facility",
         "durationBasis": null
       },
-      "newsBrief": "Draws depend on delivery milestones; excluded from completed funding.",
+      "newsBrief": "After Amazon funded $5B in Series H, up to $15B remained under its 2026 note purchase agreement. Availability is conditional and ends 30 months after the IPO or earlier upon termination of certain commercial agreements.",
       "sourceIds": [
+        "source-anthropic-ipo-prospectus",
         "source-3a0573943336"
       ],
       "reconciliation": {
-        "status": "baseline",
+        "status": "verified",
         "supersedes": [],
         "overlapGroup": null,
         "overlapStatus": "not_assessed",
@@ -301,7 +393,7 @@
       },
       "status": "conditional",
       "time": {
-        "label": "9 Sep 2025 \u2192 13 Apr 2032",
+        "label": "9 Sep 2025 → 13 Apr 2032",
         "asOf": null,
         "announcedAt": null,
         "effectiveAt": "2025-09-09",
@@ -375,7 +467,7 @@
       },
       "status": "announced_payment_unverified",
       "time": {
-        "label": "18 Nov 2025 \u00b7 payment unverified",
+        "label": "18 Nov 2025 · payment unverified",
         "asOf": null,
         "announcedAt": "2025-11-18",
         "effectiveAt": null,
@@ -385,16 +477,18 @@
         "basis": "announced_investment",
         "durationBasis": null
       },
-      "newsBrief": "Microsoft separately announced up to $5B. Both are investment commitments, not verified cash in this dataset.",
+      "newsBrief": "Historical announced ceiling. The IPO close confirms a $10B NVIDIA purchase. The final prospectus does not reconcile the two, so the chart counts only the completed amount.",
       "sourceIds": [
-        "source-a79282823a85"
+        "source-a79282823a85",
+        "source-anthropic-ipo-prospectus",
+        "source-anthropic-ipo-closing"
       ],
       "reconciliation": {
-        "status": "baseline",
+        "status": "disputed",
         "supersedes": [],
         "overlapGroup": null,
-        "overlapStatus": "not_assessed",
-        "notes": null
+        "overlapStatus": "unresolved",
+        "notes": "Historical announced ceiling. The IPO close confirms a $10B NVIDIA purchase. The final prospectus does not reconcile the two, so the chart counts only the completed amount."
       }
     },
     {
@@ -486,7 +580,7 @@
       },
       "status": "conditional",
       "time": {
-        "label": "As of 26 Jul 2026 \u00b7 typically 6 years",
+        "label": "As of 26 Jul 2026 · typically 6 years",
         "asOf": "2026-07-26",
         "announcedAt": null,
         "effectiveAt": null,
@@ -523,7 +617,7 @@
       },
       "status": "conditional",
       "time": {
-        "label": "17 Aug 2026 \u00b7 starts ~2028 / FY2029",
+        "label": "17 Aug 2026 · starts ~2028 / FY2029",
         "asOf": null,
         "announcedAt": "2026-08-17",
         "effectiveAt": null,
@@ -551,7 +645,7 @@
       "from": "amd",
       "to": "oai",
       "kind": "incentive",
-      "label": "Up to 160M warrant shares \u00b7 $0.01 exercise",
+      "label": "Up to 160M warrant shares · $0.01 exercise",
       "amount": {
         "value": null,
         "currency": "USD",
@@ -588,7 +682,7 @@
       "from": "amd",
       "to": "meta",
       "kind": "incentive",
-      "label": "Up to 160M warrant shares \u00b7 $0.01 exercise",
+      "label": "Up to 160M warrant shares · $0.01 exercise",
       "amount": {
         "value": null,
         "currency": "USD",
@@ -625,7 +719,7 @@
       "from": "oai",
       "to": "amazon",
       "kind": "purchase",
-      "label": "$100B incremental AWS contract \u00b7 8 years",
+      "label": "$100B incremental AWS contract · 8 years",
       "amount": {
         "value": 100,
         "currency": "USD",
@@ -634,7 +728,7 @@
       },
       "status": "contracted",
       "time": {
-        "label": "27 Feb 2026 \u00b7 future consumption",
+        "label": "27 Feb 2026 · future consumption",
         "asOf": null,
         "announcedAt": "2026-02-27",
         "effectiveAt": null,
@@ -662,16 +756,16 @@
       "from": "anth",
       "to": "amazon",
       "kind": "purchase",
-      "label": ">$100B incremental AWS contract \u00b7 10 years",
+      "label": ">$100B incremental AWS contract · 10 years",
       "amount": {
         "value": 100,
         "currency": "USD",
         "unit": "billion",
         "bound": "lower_bound"
       },
-      "status": "contracted",
+      "status": "superseded",
       "time": {
-        "label": "20 Apr 2026 \u00b7 delivery milestones apply",
+        "label": "20 Apr 2026 · delivery milestones apply",
         "asOf": null,
         "announcedAt": "2026-04-20",
         "effectiveAt": null,
@@ -686,11 +780,11 @@
         "source-53ae5204e445"
       ],
       "reconciliation": {
-        "status": "baseline",
+        "status": "superseded",
         "supersedes": [],
         "overlapGroup": null,
         "overlapStatus": "not_assessed",
-        "notes": null
+        "notes": "Historical announcement. Current chart uses the latest terms in anth-amazon-purchase-2026-prospectus."
       }
     },
     {
@@ -708,7 +802,7 @@
       },
       "status": "contracted",
       "time": {
-        "label": "28 Oct 2025 \u00b7 duration undisclosed",
+        "label": "28 Oct 2025 · duration undisclosed",
         "asOf": null,
         "announcedAt": "2025-10-28",
         "effectiveAt": null,
@@ -743,9 +837,9 @@
         "unit": "billion",
         "bound": "exact"
       },
-      "status": "contracted",
+      "status": "superseded",
       "time": {
-        "label": "18 Nov 2025 \u00b7 term undisclosed",
+        "label": "18 Nov 2025 · term undisclosed",
         "asOf": null,
         "announcedAt": "2025-11-18",
         "effectiveAt": null,
@@ -760,11 +854,11 @@
         "source-a79282823a85"
       ],
       "reconciliation": {
-        "status": "baseline",
+        "status": "superseded",
         "supersedes": [],
         "overlapGroup": null,
         "overlapStatus": "not_assessed",
-        "notes": null
+        "notes": "Historical announcement. Current chart uses the latest terms in anth-ms-purchase-2026-prospectus."
       }
     },
     {
@@ -773,7 +867,7 @@
       "from": "cw",
       "to": "nv",
       "kind": "purchase",
-      "label": "NVIDIA hardware purchases \u00b7 $ undisclosed",
+      "label": "NVIDIA hardware purchases · $ undisclosed",
       "amount": {
         "value": null,
         "currency": "USD",
@@ -819,7 +913,7 @@
       },
       "status": "announced_payment_unverified",
       "time": {
-        "label": "18 Nov 2025 \u00b7 payment unverified",
+        "label": "18 Nov 2025 · payment unverified",
         "asOf": null,
         "announcedAt": "2025-11-18",
         "effectiveAt": null,
@@ -829,12 +923,728 @@
         "basis": "announced_investment",
         "durationBasis": null
       },
-      "newsBrief": "Announced alongside NVIDIA\u2019s investment; Microsoft-specific payment timing is unverified.",
+      "newsBrief": "Historical announced ceiling. The IPO close confirms a $1B Microsoft purchase. No separate payable balance under the old announcement is quantified in the final prospectus.",
       "sourceIds": [
-        "source-a79282823a85"
+        "source-a79282823a85",
+        "source-anthropic-ipo-prospectus",
+        "source-anthropic-ipo-closing"
       ],
       "reconciliation": {
-        "status": "baseline",
+        "status": "disputed",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "unresolved",
+        "notes": "Historical announced ceiling. The IPO close confirms a $1B Microsoft purchase. No separate payable balance under the old announcement is quantified in the final prospectus."
+      }
+    },
+    {
+      "id": "anth-amazon-purchase-2026-prospectus",
+      "loopId": "amazon-anthropic",
+      "from": "anth",
+      "to": "amazon",
+      "kind": "purchase",
+      "label": "At least $110B AWS compute",
+      "amount": {
+        "value": 110,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "lower_bound"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "May 2026–Apr 2036 · minimum spend",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": 10,
+        "basis": "multi_year_contract",
+        "durationBasis": "contract_term"
+      },
+      "newsBrief": "Take-or-pay with a true-up subject to adjustments and exceptions. The prospectus gives the minimum for the April 2026 agreement. The prior more-than-$100B announcement is retained in history.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [
+          "amazon-anthropic-purchase-anth-amazon"
+        ],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-ms-purchase-2026-prospectus",
+      "loopId": "nvidia-anthropic",
+      "from": "anth",
+      "to": "ms",
+      "kind": "purchase",
+      "label": "$47.2B–$49.2B · Azure compute",
+      "amount": {
+        "value": 47.2,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "lower_bound"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "Nov 2026–Jun 2033 · amended agreement",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "Minimum of $47.2B and maximum of $49.2B after amendments through November 2026. Spend is due regardless of usage, with uncured breach and certain undelivered-tranche exceptions.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [
+          "nvidia-anthropic-purchase-anth-ms"
+        ],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-google-purchase-2026-prospectus",
+      "loopId": "anth-google",
+      "from": "anth",
+      "to": "google",
+      "kind": "purchase",
+      "label": "At least $121.3B Google Cloud hosting",
+      "amount": {
+        "value": 121.3,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "lower_bound"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "Apr 2026–Jul 2033 · minimum spend",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "Minimum spending regardless of use, with true-up subject to certain exceptions. The separately estimated $125B–$150B of additional TPU capacity has no fixed dollar commitment and may be hosted by Google or sourced through third parties.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-avgo-purchase-2026-prospectus",
+      "loopId": "anth-avgo",
+      "from": "anth",
+      "to": "avgo",
+      "kind": "purchase",
+      "label": "$161.2B TPU equipment leases",
+      "amount": {
+        "value": 161.2,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "contracted",
+      "time": {
+        "label": "Five-year equipment leases · excluding interest",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": 5,
+        "basis": "equipment_lease",
+        "durationBasis": "contract_term"
+      },
+      "newsBrief": "Approximate life-of-lease rent excluding interest. Broadcom originated the leases and assigned some to financing entities. Payments usually begin when equipment is ready.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-spacexai-purchase-2026-prospectus",
+      "loopId": "anth-spacexai",
+      "from": "anth",
+      "to": "spacexai",
+      "kind": "purchase",
+      "label": "Up to $120.5B SpaceXAI GPU compute",
+      "amount": {
+        "value": 120.5,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "Into 2029 · cancellation rights",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "After lock-in periods ending in January or March 2027, either party can cancel the respective arrangements on 90 days’ notice.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-nscale-purchase-2026-prospectus",
+      "loopId": "anth-nscale",
+      "from": "anth",
+      "to": "nscale",
+      "kind": "purchase",
+      "label": "Up to $44.6B Nscale GPU services",
+      "amount": {
+        "value": 44.6,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "Into 2033 · delivery and financing conditions",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "Fees accrue as capacity is accepted. The terms include qualifying financing efforts and limited cancellation rights.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-lambda-purchase-2026-prospectus",
+      "loopId": "anth-lambda",
+      "from": "anth",
+      "to": "lambda",
+      "kind": "purchase",
+      "label": "$41.3B Lambda GPU services",
+      "amount": {
+        "value": 41.3,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "Into 2034 · $34.9B terminable",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "Approximately $34.9B relates to an agreement either party may terminate because Lambda missed a facility-lease milestone. Neither had given notice at the prospectus date.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "anth-amd-purchase-2026-prospectus",
+      "loopId": "anth-amd",
+      "from": "anth",
+      "to": "amd",
+      "kind": "purchase",
+      "label": "AMD Helios procurement · price unfixed",
+      "amount": {
+        "value": null,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "unknown"
+      },
+      "status": "procurement_relationship",
+      "time": {
+        "label": "Initial capacity expected in 2027",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "multi_year_contract",
+        "durationBasis": null
+      },
+      "newsBrief": "Anthropic expects spending above $20B if it procures the entire initial tranche. Pricing, financing and other deployment conditions apply. The agreement has no fixed dollar value and capacity can be arranged through approved third parties.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "google-anth-npa-remaining-2026",
+      "loopId": "google-anth",
+      "from": "google",
+      "to": "anth",
+      "kind": "commitment",
+      "label": "Up to $10B remaining Google facility",
+      "amount": {
+        "value": 10,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "Post-close · through Dec 2030",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "remaining_facility",
+        "durationBasis": null
+      },
+      "newsBrief": "The IPO placement used $10B of the $20B capacity available before closing. A separate $10B Series H investment had already reduced the original $30B facility.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "avgo-anth-npa-2026",
+      "loopId": "avgo-anth",
+      "from": "avgo",
+      "to": "anth",
+      "kind": "commitment",
+      "label": "Up to $42B Broadcom rent financing",
+      "amount": {
+        "value": 42,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "Conditional convertible notes",
+        "asOf": "2026-09-30",
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "remaining_facility",
+        "durationBasis": null
+      },
+      "newsBrief": "Restricted to specified rent obligations under the 2026 equipment lease. Broadcom may assign the agreement to a financing partner. No notes were issued under this facility as of September 30.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amd-anth-equity-remaining-2026",
+      "loopId": "amd-anth",
+      "from": "amd",
+      "to": "anth",
+      "kind": "commitment",
+      "label": "Up to $2.5B AMD equity remaining",
+      "amount": {
+        "value": 2.5,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "upper_bound"
+      },
+      "status": "conditional",
+      "time": {
+        "label": "Post-close · milestone-dependent",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "remaining_facility",
+        "durationBasis": null
+      },
+      "newsBrief": "The original up-to-$5B purchase-linked commitment was reduced by AMD’s $2.5B private placement purchase. Remaining funding depends on delivery and acceptance milestones.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "google-anth-series-h-2026",
+      "loopId": "google-anth",
+      "from": "google",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$10B Google Series H investment",
+      "amount": {
+        "value": 10,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "May 2026 · Series H",
+        "asOf": null,
+        "announcedAt": "2026-11-19",
+        "effectiveAt": null,
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "individual_transaction",
+        "durationBasis": null
+      },
+      "newsBrief": "Separate from Google’s $10B purchase at the November 20 close. Both draw on the original $30B Google agreement.",
+      "sourceIds": [
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "google-anth-ipo-private-placement-2026",
+      "loopId": "google-anth",
+      "from": "google",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$10B Google private placement",
+      "amount": {
+        "value": 10,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "The $10B closed purchase draws on its existing note purchase agreement, leaving up to $10B available.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "nv-anth-ipo-private-placement-2026",
+      "loopId": "nvidia-anthropic",
+      "from": "nv",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$10B NVIDIA private placement",
+      "amount": {
+        "value": 10,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "The $10B closed purchase is the NVIDIA amount counted in sensitivity calculations. The older announced ceiling is excluded from the funding total because overlap is unresolved.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "amd-anth-ipo-private-placement-2026",
+      "loopId": "amd-anth",
+      "from": "amd",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$2.5B AMD private placement",
+      "amount": {
+        "value": 2.5,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "The $2.5B closed purchase reduces its original up-to-$5B milestone-linked equity commitment.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "avgo-anth-ipo-private-placement-2026",
+      "loopId": "avgo-anth",
+      "from": "avgo",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$1B Broadcom private placement",
+      "amount": {
+        "value": 1,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "Completed equity purchase. The conditional $42B rent-financing facility is a separate instrument.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "mu-anth-ipo-private-placement-2026",
+      "loopId": "mu-anth",
+      "from": "mu",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$1B Micron private placement",
+      "amount": {
+        "value": 1,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "Completed Class N equity purchase at the $83 IPO price.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "ms-anth-ipo-private-placement-2026",
+      "loopId": "ms-anth",
+      "from": "ms",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$1B Microsoft private placement",
+      "amount": {
+        "value": 1,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "Completed Class N equity purchase. The older up-to-$5B announcement is retained for historical reference and omitted from current funding totals.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
+        "supersedes": [],
+        "overlapGroup": null,
+        "overlapStatus": "not_assessed",
+        "notes": null
+      }
+    },
+    {
+      "id": "tsm-anth-ipo-private-placement-2026",
+      "loopId": "tsm-anth",
+      "from": "tsm",
+      "to": "anth",
+      "kind": "paid",
+      "label": "$0.5B TSMC private placement",
+      "amount": {
+        "value": 0.5,
+        "currency": "USD",
+        "unit": "billion",
+        "bound": "exact"
+      },
+      "status": "completed",
+      "time": {
+        "label": "20 Nov 2026 · closed alongside IPO",
+        "asOf": null,
+        "announcedAt": "2026-11-20",
+        "effectiveAt": "2026-11-20",
+        "periodStart": null,
+        "periodEnd": null,
+        "durationYears": null,
+        "basis": "ipo_private_placement",
+        "durationBasis": null
+      },
+      "newsBrief": "Completed Class N equity purchase at the $83 IPO price.",
+      "sourceIds": [
+        "source-anthropic-ipo-closing",
+        "source-anthropic-ipo-prospectus"
+      ],
+      "reconciliation": {
+        "status": "verified",
         "supersedes": [],
         "overlapGroup": null,
         "overlapStatus": "not_assessed",
@@ -980,6 +1790,26 @@
       "title": null,
       "publishedAt": null,
       "reviewedThrough": "2026-10-05",
+      "sourceType": "company_announcement",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-anthropic-ipo-prospectus",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "publisher": "SEC EDGAR",
+      "title": "Anthropic final IPO prospectus (Form 424B4)",
+      "publishedAt": "2026-11-19",
+      "reviewedThrough": "2026-11-25",
+      "sourceType": "regulatory_filing",
+      "archivedFullText": false
+    },
+    {
+      "id": "source-anthropic-ipo-closing",
+      "url": "https://www.anthropic.com/news/ipo-close",
+      "publisher": "Anthropic",
+      "title": "Closing of IPO and concurrent private placement",
+      "publishedAt": "2026-11-20",
+      "reviewedThrough": "2026-11-25",
       "sourceType": "company_announcement",
       "archivedFullText": false
     }

@@ -2,7 +2,11 @@
 import json
 import os
 from pathlib import Path
+import sys
 import unittest
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'builders'))
+from pillar_structure import token_growth_score
 
 ROOT = Path(os.environ.get('AI_INDEX_DATA_ROOT', Path(__file__).resolve().parents[1]))
 
@@ -51,16 +55,12 @@ class PillarStructureTests(unittest.TestCase):
                 self.assertAlmostEqual(row['score'], expected)
                 self.assertLessEqual(row['observationDate'][:7], month['month'])
 
-    def test_token_scores_rank_three_month_average_growth(self):
+    def test_token_scores_use_three_month_average_growth(self):
         monthly = read('token-activity-snapshot.ts')['monthly']
         windows = {entry['month']: entry for entry in monthly}
         sources = {'OPENROUTER_TOKEN_VOLUME': 'openrouter', 'RAMP_TOKEN_VOLUME': 'ramp'}
+        scale = self.core['metadata']['tokenGrowthScalePct']
         for ticker, source in sources.items():
-            calibration = self.core['metadata']['tokenGrowthCalibration'][source]
-            reference = calibration['growthPct']
-            self.assertTrue(reference)
-            self.assertEqual(calibration['end'], self.core['metadata']['baselineEnd'])
-            observed_scores = []
             for month in self.core['months']:
                 row = next(item for item in month['rows'] if item['ticker'] == ticker)
                 if row['score'] is None:
@@ -73,12 +73,16 @@ class PillarStructureTests(unittest.TestCase):
                           for offset in offsets]
                 growth = 100 * (sum(values[:3]) / sum(values[1:]) - 1)
                 self.assertAlmostEqual(row['growth'], growth)
-                ranks = [1 if value < row['growth'] else .5 if value == row['growth'] else 0
-                         for value in reference]
-                self.assertAlmostEqual(row['score'], 100 * sum(ranks) / len(reference))
-                if source_month <= calibration['end'] and not row['carriedForward']:
-                    observed_scores.append(row['growth'])
-            self.assertEqual(sorted(observed_scores), reference)
+                self.assertAlmostEqual(row['score'], 50 + 50 * growth / (scale + abs(growth)))
+                self.assertLessEqual(source_month, month['month'])
+
+    def test_token_growth_above_fifty_retains_score_differences(self):
+        self.assertEqual(token_growth_score(-50), 25)
+        self.assertEqual(token_growth_score(0), 50)
+        self.assertEqual(token_growth_score(50), 75)
+        self.assertAlmostEqual(token_growth_score(100), 83 + 1 / 3)
+        self.assertLess(token_growth_score(100), token_growth_score(200))
+        self.assertLess(token_growth_score(200), 100)
 
     def test_latest_sources_carry_and_score_reconciles(self):
         month = self.core['months'][-1]

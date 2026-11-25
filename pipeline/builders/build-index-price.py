@@ -27,6 +27,7 @@ daily = read_infrastructure(DATA_ROOT / 'AI_Infra.xlsx') if infra_sources else {
 series = []
 for field in headers:
     pillar, name, weight = core.get(field, ('Context', context.get(field, field), 0))
+    official = config.get('officialMonthlySeries', {}).get(field)
     cells = []
     for month, row in obs.items():
         value = row[field]
@@ -38,6 +39,8 @@ for field in headers:
     series.append(dict(source='AI_Infra.xlsx' if field in infra_sources else 'Indexlist.xlsx', sheet=infra_sources.get(field, 'Index Price Value'), field=field, name=name, pillar=pillar, coreWeight=weight, unit='Source-native; verify Bloomberg field units before cross-series comparisons', cells=cells,
                        daily=[dict(date=day.isoformat(), value=value) for day, value in daily.get(field, {}).items()]
                        if infra_sources.get(field) == INFRA_SHEETS[1] else []))
+    if official:
+        series[-1].update(source=official['source'], sheet=official['series'], unit=official['unit'], sourceUrl=official['url'])
 payload = dict(metadata=dict(source='Indexlist.xlsx', sheet='Index Price Value', workbookSha256=workbook_hash, inspectionSha256=inspection_hash, infrastructureSha256=config.get('infrastructureSha256'),
     reviewedAt=config['reviewedAt'], completedMonthThrough=config['completedMonthThrough'], gridThrough=max(obs),
     headerAliases=config['headerAliases'], labelsSource='Saved Indexlist descriptions; field units require independent verification', limitations=config['note'], sourceRetrievedAt=None), series=series)

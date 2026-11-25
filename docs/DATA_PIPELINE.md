@@ -1,18 +1,18 @@
 # Shared data pipeline and research changes
 
-Last reviewed: 19 November 2026. The current dashboard uses methodology v3.5. Dated October sections below describe earlier versions; the current section takes precedence.
+Last reviewed: 25 November 2026. The current dashboard uses methodology v3.6. Dated October sections below describe earlier versions; the current section takes precedence.
 
-## Current dashboard — 19 November 2026
+## Current dashboard — 25 November 2026
 
 The application renders accepted, versioned TypeScript snapshots. Its normal build and page refresh do not require MySQL or company-network access. The optional `build:mysql` command exports one complete database run at build time; refreshing database rows does not change an already-built website. Rebuild and restart/deploy to install a new accepted data run. Source collection, saved-input builds, local synchronization, GitHub pushes and hosted publication remain separate actions.
 
-Methodology v3.5 has four pillars with 25% nominal weight each.
+Methodology v3.6 has four pillars with 25% nominal weight each.
 
-- Adoption uses three breadth rates (BTOS current use, BTOS expected use and Ramp paid adoption), sharing 12.5% nominal core weight, and separate OpenRouter and Ramp token-volume signals at 6.25% each. The token signals rank month-over-month growth in the trailing three-month average against each source’s own history through June 2026. Each growth comparison requires four consecutive monthly inputs.
+- Adoption uses three breadth rates (BTOS current use, BTOS expected use and Ramp paid adoption), sharing 12.5% nominal core weight, and separate OpenRouter and Ramp token-volume signals at 6.25% each. The constituent heatmap shows month-over-month growth in the trailing three-month average. Each growth comparison requires four consecutive monthly inputs. Both sources use the same score curve, `50 + 50 * g / (50 + abs(g))`, with `g` expressed as a percentage. Zero growth gives 50, 50% growth gives 75 and 100% growth gives 83.3.
 - Monetization uses business paid demand (Ramp median spending, Ramp matched spending growth and OpenRouter estimated spending growth, each 5%), consumer card spending (5%) and absolute annualized OpenAI/Anthropic revenue levels (sharing 5%). Lab news dates and revenue definitions are retained; available observations carry forward with provenance. Lab calibration is provisional.
 - Hyperscalers uses the company-aligned trailing-four-quarter CapEx signal. Infrastructure retains its physical-demand and equipment constituents. DDR5 and H100 each use their own frozen hardware-price calibration.
 
-The headline remains the latest approved four-pillar month, June 2026. Later available-pillar composites are provisional and identify their coverage. The conditional CapEx composite holds Adoption, Monetization and Infrastructure at their June scores: June core + 0.25 × (conditional Hyperscalers score − June Hyperscalers score). It is a separate scenario, not an actual refreshed reading for all four pillars. The Hyperscalers row and its constituent history mark CapEx scenario scores with E. The weekly pulse keeps its own four-week scoring windows and equal weight per available signal.
+The headline shows the latest available scored month. Readings after the approved four-pillar month are provisional and display their pillar coverage. The conditional CapEx composite holds Adoption, Monetization and Infrastructure at their June scores: June core + 0.25 × (conditional Hyperscalers score − June Hyperscalers score). It is a separate scenario, not an actual refreshed reading for all four pillars. The Hyperscalers row and its constituent history mark CapEx scenario scores with E. The weekly pulse keeps its own four-week scoring windows and equal weight per available signal.
 
 Adoption places the Ramp token-volume index beside OpenRouter model volumes. OpenRouter uses stacked bars, absolute/percentage views, daily or complete-week ranges and model rankings. The daily feed names its top 50 models and supplies an aggregate Other row. Unnamed activity remains in Other; missing source days stay gaps, and incomplete weeks are withheld. Model-level allocations reconcile to the existing aggregate token signal without creating an extra score weight. Run `build --group core` or `build --group tokens` to regenerate `openrouter-model-snapshot.ts`, then sync the accepted output.
 
@@ -20,7 +20,7 @@ Monetization contains the spending and token-pricing panels. Nominal spending us
 
 The frozen configuration files are mirrored under `pipeline/config/`; source collectors/builders and UI installation adapters are mirrored under `pipeline/`. Raw workbooks, downloaded source archives, credentials and dependencies remain outside Git. The offline dashboard export is `index.html`; the interactive application is under `app/`.
 
-Synchronizing on November 19 does not refresh observation dates. The accepted OpenRouter model dataset currently ends on November 16 and Ramp's published token week ends November 1. Read each panel's own source date for other datasets.
+The accepted OpenRouter model dataset runs through November 24, and Ramp’s published token series runs through the week ending November 15. The monthly Adoption token scores carry forward the complete window ending October 25 into November. Each panel shows the source dates for its own inputs.
 
 ## Storage and ownership
 

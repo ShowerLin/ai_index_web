@@ -55,7 +55,7 @@
 .cf-commitment-card table { font-size: 11px; line-height: 1.45; min-width: 435px; }
 .cf-commitment-card :is(th,td) { padding: 4px 6px; }
 .cf-commitment-card th[scope="row"] { color: var(--ink); font-weight: 500; }
-.cf-commitment-card :is(td:nth-child(3), td:nth-child(4)) { white-space: nowrap; }
+.cf-commitment-card td:nth-child(3) { white-space: nowrap; }
 .cf-commitment-card tr[data-selected="true"] { background: #e8eef4; }
 .cf-commitment-pick { min-width: 21px; border: 0; background: transparent; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 .cf-commitment-inspector {
@@ -73,11 +73,25 @@
 .cf-disclosure > summary { width: fit-content; }
 .cf-disclosure .cf-estimate { margin-top: 14px; }
 .cf-commitment-scroll-hint { display: none; }
+.cf-ipo { margin: 16px 0; padding: 15px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+#top .cf-ipo h5 { margin: 0 0 10px; font: 600 14px/1.35 var(--font-body); }
+.cf-ipo-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cf-ipo-metrics > div { padding: 8px 12px; border-inline-start: 2px solid var(--teal); }
+.cf-ipo-metrics span, .cf-ipo-metrics small { display: block; font-size: var(--text-small); }
+.cf-ipo-metrics strong { display: block; font-size: 26px; color: var(--ink); }
+#top .cf-ipo p { margin: 8px 0 0; font-size: var(--text-small); }
+.cf-ipo details { margin: 8px 0; }
+.cf-ipo-placements { list-style: none; margin: 10px 0; padding: 0; max-width: 460px; }
+.cf-ipo-placements li { display: grid; grid-template-columns: 105px minmax(0, 1fr) 54px; gap: 8px; align-items: center; margin: 4px 0; }
+.cf-ipo-track { height: 8px; background: #e8eef4; }
+.cf-ipo-track i { display: block; height: 100%; background: var(--teal); }
+.cf-ipo-sources { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 @media (max-width: 1120px) {
   .cf-commitments { grid-template-columns: 1fr; }
   .cf-commitment-map svg { max-width: 790px; margin: auto; }
 }
 @media (max-width: 600px) {
+  .cf-ipo-metrics { grid-template-columns: 1fr; gap: 7px; }
   .cf-commitment-card { padding: 10px; }
   #top .cf-commitment-map > svg { min-width: 560px !important; }
   #top .cf-commitment-scroll-hint {

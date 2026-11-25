@@ -35,7 +35,7 @@ export const adoptionPriceSnapshot = {
       "source": "https://openrouter.ai/api/v1/models",
       "outputShare": 0.2,
       "firstVintage": "2026-11-17",
-      "latestVintage": "2026-11-23"
+      "latestVintage": "2026-11-25"
     },
     "spendingCorePillar": "Monetization"
   },
@@ -8680,6 +8680,13 @@ export const adoptionPriceSnapshot = {
       "openrouterInteraction": null
     }
   ],
+  "openrouterLatestWindow": {
+    "windowStart": "2026-10-28",
+    "windowEnd": "2026-11-24",
+    "openrouterSpendProxy": 658070163.8285849,
+    "openrouterPriceCoverage": 0.915694862092663,
+    "openrouterSpendingGrowth": 5.361083516740384
+  },
   "openrouterSpendingDaily": [
     {
       "date": "2025-01-01",
@@ -16251,14 +16258,36 @@ export const adoptionPriceSnapshot = {
     },
     {
       "date": "2026-11-22",
-      "totalTokens": 31831612134088,
-      "catalogMatchedTokens": 29295626458736,
+      "totalTokens": 31831725601833,
+      "catalogMatchedTokens": 29295626568572,
       "knownFreeTokens": 0,
-      "unmatchedTokens": 2535985675352,
-      "matchedSpendUsd": 14511371.287415259,
-      "imputedSpendUsd": 1256181.6954634674,
-      "estimatedSpendUsd": 15767552.982878726,
+      "unmatchedTokens": 2536099033261,
+      "matchedSpendUsd": 14511371.296641484,
+      "imputedSpendUsd": 1256237.8425517255,
+      "estimatedSpendUsd": 15767609.139193209,
       "catalogDate": "2026-11-17"
+    },
+    {
+      "date": "2026-11-23",
+      "totalTokens": 36624768788846,
+      "catalogMatchedTokens": 33536852636368,
+      "knownFreeTokens": 81010844798,
+      "unmatchedTokens": 3006905307680,
+      "matchedSpendUsd": 24767974.344025448,
+      "imputedSpendUsd": 2220690.006991596,
+      "estimatedSpendUsd": 26988664.351017043,
+      "catalogDate": "2026-11-23"
+    },
+    {
+      "date": "2026-11-24",
+      "totalTokens": 38829214743789,
+      "catalogMatchedTokens": 35572598677686,
+      "knownFreeTokens": 0,
+      "unmatchedTokens": 3256616066103,
+      "matchedSpendUsd": 28069115.767669138,
+      "imputedSpendUsd": 2569683.8793966514,
+      "estimatedSpendUsd": 30638799.64706579,
+      "catalogDate": "2026-11-23"
     }
   ]
 } as const;

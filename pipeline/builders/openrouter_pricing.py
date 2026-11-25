@@ -97,3 +97,21 @@ def window_spending(daily, end):
         openrouterPriceVintages=vintages,
         openrouterRepricedHistory=bool(vintages and days[-1] < vintages[0]),
     )
+
+
+def latest_complete_spending_window(daily):
+    for date in sorted(daily, reverse=True):
+        end = dt.date.fromisoformat(date)
+        current = window_spending(daily, end)
+        amount = current['openrouterSpendProxy']
+        if amount is None:
+            continue
+        previous = window_spending(daily, end - dt.timedelta(days=28))['openrouterSpendProxy']
+        return dict(
+            windowStart=(end - dt.timedelta(days=27)).isoformat(),
+            windowEnd=date,
+            openrouterSpendProxy=amount,
+            openrouterPriceCoverage=current['openrouterPriceCoverage'],
+            openrouterSpendingGrowth=(amount / previous - 1) * 100 if previous is not None and previous > 0 else None,
+        )
+    return None

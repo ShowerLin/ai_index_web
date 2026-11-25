@@ -1,6 +1,6 @@
 export const tokenActivitySnapshot = {
   "metadata": {
-    "openrouterThrough": "2026-11-22",
+    "openrouterThrough": "2026-11-24",
     "rampThrough": "2026-11-15",
     "openrouterSource": "https://openrouter.ai/api/v1/datasets/rankings-daily",
     "rampSource": "https://ramp.com/data/ai-index",
@@ -12,10 +12,10 @@ export const tokenActivitySnapshot = {
     "dailyRampLimit": "Ramp tokenPrices daily fields are overlapping 7-day totals for a narrower provider sample. They are neither summed nor treated as actual daily volumes.",
     "rampMatchedThrough": "2026-11-15",
     "rampMatchedSha256": "d2f41797bff2acc549c84da2cd10db673669c7770cea03fcd84cdcb9fabf9271",
-    "openrouterSha256": "ae77e5848aed5c4ce2eeefece35bdb5b2d619a51f28af37e68f1dd342efa54d5",
+    "openrouterSha256": "ef1151f76ec4aae1a97514dbf799c60c46c0dabda63fd3f7d1a809c53f734e65",
     "rampSha256": "d2f41797bff2acc549c84da2cd10db673669c7770cea03fcd84cdcb9fabf9271",
     "rampRetrieved": "2026-11-23",
-    "openrouterAsOf": "2026-11-23T02:10:49.451Z",
+    "openrouterAsOf": "2026-11-25T06:36:14.760Z",
     "tokenCoreWeight": 0.125,
     "corePillar": "Adoption",
     "spendingCoreWeight": 0.1
@@ -365,7 +365,7 @@ export const tokenActivitySnapshot = {
       "month": "2026-11",
       "start": "2026-11-02",
       "end": "2026-11-29",
-      "openrouterDays": 21,
+      "openrouterDays": 23,
       "rampWeeks": 2,
       "complete": false,
       "openrouter": null,
@@ -1454,12 +1454,12 @@ export const tokenActivitySnapshot = {
     {
       "start": "2026-11-16",
       "end": "2026-11-22",
-      "openrouter": 44.98226320779914,
+      "openrouter": 44.982279417477,
       "ramp": null,
       "openrouterDays": 7,
-      "openrouterObservedTotal": 314.875842454594,
+      "openrouterObservedTotal": 314.875955922339,
       "rampComplete": false,
-      "openrouterWow": 49.03238833480423,
+      "openrouterWow": 49.03244203968331,
       "rampWow": null
     }
   ],
@@ -6296,13 +6296,37 @@ export const tokenActivitySnapshot = {
     },
     {
       "date": "2026-11-22",
-      "openrouter": 31.831612134088,
-      "average7d": 44.98226320779914,
-      "dayChange": -9.841871732935836,
-      "weekChange": 49.03238833480423
+      "openrouter": 31.831725601833,
+      "average7d": 44.982279417477,
+      "dayChange": -9.84155035306149,
+      "weekChange": 49.03244203968331
+    },
+    {
+      "date": "2026-11-23",
+      "openrouter": 36.624768788846,
+      "average7d": 45.624413250103856,
+      "dayChange": 15.05744063946377,
+      "weekChange": 49.37690621186561
+    },
+    {
+      "date": "2026-11-24",
+      "openrouter": 38.829214743789,
+      "average7d": 43.52057559815443,
+      "dayChange": 6.019003062251049,
+      "weekChange": 29.160089134782407
     }
   ],
-  "partialWeeks": [],
+  "partialWeeks": [
+    {
+      "start": "2026-11-23",
+      "end": "2026-11-29",
+      "openrouter": null,
+      "ramp": null,
+      "openrouterDays": 2,
+      "openrouterObservedTotal": 75.453983532635,
+      "rampComplete": false
+    }
+  ],
   "rampPublishedWeekly": [
     {
       "end": "2025-01-12",

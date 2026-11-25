@@ -4,7 +4,7 @@ export const cloudReferenceSnapshot = {
     "sheet": "Cloud FA Value",
     "formulaSheet": "Cloud FA Formula",
     "workbookSha256": "2257605b89d67b560bd1c5ee25d42442add23af5ab77ba81af3940e1b78c4b03",
-    "extractedAtUtc": "2026-11-24T09:51:41.102984+00:00",
+    "extractedAtUtc": "2026-11-25T07:29:49.857590+00:00",
     "sourceRetrievedAt": null,
     "role": "Core index reference; no scoring weight",
     "periodBasis": "Issuer period ends from Cloud FA Value",

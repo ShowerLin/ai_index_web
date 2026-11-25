@@ -32,13 +32,16 @@ function GroupChart({group}:{group:Group}){
  return <article className="evidence-card"><div style={{display:'flex',justifyContent:'space-between',gap:16,flexWrap:'wrap'}}><h4>{group.title}</h4><label>Compare <select value={mode} onChange={e=>setMode(e.target.value as typeof mode)} aria-label={`${group.title} comparison basis`}>{hasDaily&&<option value="daily">Daily saved prices</option>}<option value="yoy">YoY growth (%)</option><option value="indexed">Indexed levels (100)</option></select></label></div>
  <p>{daily?'Daily saved prices in source units. Dates follow the workbook.':mode==='yoy'?'Common axis: year-over-year change (%)':`Common axis: ${base??'unavailable'} = 100 for every series`}{!daily&&". Completed monthly observations · gaps remain visible."}</p>
  {group.scoringNote&&<p>{group.scoringNote}</p>}
- <div style={{display:'flex',gap:18,flexWrap:'wrap'}}>{observations.map((s,j)=><span key={s.field} style={{color:colors[j],fontSize:12}}>━ {s.name}</span>)}</div>
+ <div style={{display:'flex',gap:18,flexWrap:'wrap'}}>{observations.map((s,j)=>{
+  const latest=s.points.findLast(p=>p.value!==null)?.month;
+  return <span key={s.field} style={{color:colors[j],fontSize:12}}>━ {s.name}{latest&&` · through ${latest}`}</span>;
+ })}</div>
  <svg viewBox="0 0 820 235" role="img" aria-label={`${group.title}, ${daily?'daily prices':mode==='yoy'?'year-over-year growth':'indexed levels'} on a common scale`} style={{width:'100%',maxHeight:300}}>
  {[0,.25,.5,.75,1].map(f=><g key={f}><line x1="70" x2="760" y1={y(min+(max-min)*f)} y2={y(min+(max-min)*f)} stroke="#d6d7ce"/><text x="60" y={y(min+(max-min)*f)+4} textAnchor="end" fontSize="11">{(min+(max-min)*f).toFixed(1)}{mode==='yoy'?'%':''}</text></g>)}
  {observations.map((s,j)=><g key={s.field}><path d={s.points.map((p,i)=>p.value===null?'':`${i&&s.points[i-1].value!==null?'L':'M'}${x(p.month)},${y(p.value)}`).join(' ')} fill="none" stroke={colors[j]} strokeWidth="2.5"/>{s.points.map((p,i)=>p.value===null?null:<circle key={p.month} cx={x(p.month)} cy={y(p.value)} r={daily?1.5:2.5} fill={colors[j]}><title>{`${s.name} · ${p.month}: ${p.value.toFixed(2)}${mode==='yoy'?'%':''}`}</title></circle>)}</g>)}
  {dates.map((m,i)=>i%Math.ceil(dates.length/5)===0||i===dates.length-1?<text key={m} x={x(m)} y="220" textAnchor="middle" fontSize="11">{m}</text>:null)}</svg>
  {!values.length&&<p>No comparable observations for this basis.</p>}
- <p>Source: {[...new Set(series.map(s => s.source + ' / ' + s.sheet))].join(', ')}. Growth and rebasing compare trends, not dollar amounts or equivalent capacity. Unchanged quotes may be carried values.</p>
+ <p>Source: {[...new Map(series.map(s=>[s.source+' / '+s.sheet,'sourceUrl' in s?s.sourceUrl:undefined]))].map(([label,url],i)=><span key={label}>{i>0&&', '}{url?<a href={url} target="_blank" rel="noreferrer">{label}</a>:label}</span>)}. Growth and rebasing compare trends. Unchanged quotes may be carried values.</p>
  <details><summary>{daily?"Daily source values":"Source levels and monthly comparisons"}</summary><div style={{overflowX:'auto'}}><table><thead><tr><th>Series</th><th>{daily?"Date":"Month"}</th><th>Native level</th><th>{daily?'Daily price':mode==='yoy'?'YoY (%)':'Index'}</th><th>Unchanged</th></tr></thead><tbody>{observations.flatMap(s=>s.points.map(p=><tr key={s.field+p.month}><th>{s.name} · {s.field}</th><td>{p.month}</td><td>{p.level?.toFixed(2)??'Unavailable'}</td><td>{p.value?.toFixed(2)??'Unavailable'}</td><td>{daily?'—':p.unchanged?'Yes':'No'}</td></tr>))}</tbody></table></div></details></article>;
 }
 export default function InfrastructureSignals({stage}:{stage:keyof typeof groups}){return <div className="infrastructure-stage-signals">{groups[stage].map(group=><GroupChart key={group.title} group={group}/>)}</div>;}

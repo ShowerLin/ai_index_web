@@ -860,12 +860,12 @@ export const supplySnapshot = {
           "level": 53.12,
           "yoy": 233.2496863237139,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 52.91999816894531,
-          "yoy": 83.36797702337253,
+          "level": 52.54,
+          "yoy": 82.05128205128204,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -3889,7 +3889,31 @@ export const supplySnapshot = {
         },
         {
           "date": "2026-11-16",
-          "value": 52.91999816894531
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-17",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-18",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-19",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-20",
+          "value": 52.92
+        },
+        {
+          "date": "2026-11-23",
+          "value": 52.72
+        },
+        {
+          "date": "2026-11-24",
+          "value": 52.54
         }
       ]
     },
@@ -4229,7 +4253,7 @@ export const supplySnapshot = {
           "level": 2.92,
           "yoy": 46.73366834170854,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
@@ -7431,6 +7455,42 @@ export const supplySnapshot = {
         {
           "date": "2026-11-15",
           "value": 3.1
+        },
+        {
+          "date": "2026-11-16",
+          "value": 3.08
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.07
+        },
+        {
+          "date": "2026-11-18",
+          "value": 3.01
+        },
+        {
+          "date": "2026-11-19",
+          "value": 3.11
+        },
+        {
+          "date": "2026-11-20",
+          "value": 3.08
+        },
+        {
+          "date": "2026-11-21",
+          "value": 3.09
+        },
+        {
+          "date": "2026-11-22",
+          "value": 3.1
+        },
+        {
+          "date": "2026-11-23",
+          "value": 3.09
+        },
+        {
+          "date": "2026-11-24",
+          "value": 3.1
         }
       ]
     },
@@ -7770,12 +7830,12 @@ export const supplySnapshot = {
           "level": 6.64,
           "yoy": 39.20335429769393,
           "unchangedFromPrevious": false,
-          "partial": true
+          "partial": false
         },
         {
           "month": "2026-11",
-          "level": 6.87,
-          "yoy": 49.34782608695654,
+          "level": 6.94,
+          "yoy": 50.86956521739132,
           "unchangedFromPrevious": false,
           "partial": true
         }
@@ -9648,6 +9708,42 @@ export const supplySnapshot = {
         {
           "date": "2026-11-15",
           "value": 6.87
+        },
+        {
+          "date": "2026-11-16",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-17",
+          "value": 7.1
+        },
+        {
+          "date": "2026-11-18",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-19",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-20",
+          "value": 7.1
+        },
+        {
+          "date": "2026-11-21",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-22",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-23",
+          "value": 6.94
+        },
+        {
+          "date": "2026-11-24",
+          "value": 6.94
         }
       ]
     }

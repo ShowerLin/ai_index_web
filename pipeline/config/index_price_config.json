@@ -1,11 +1,11 @@
 {
-  "reviewedAt": "2026-10-20",
-  "completedMonthThrough": "2026-09",
+  "reviewedAt": "2026-11-25",
+  "completedMonthThrough": "2026-10",
   "baselineEnd": "2026-06",
   "headerAliases": {
     "TSMC Revenue": "TSMC Monthly Revenue"
   },
-  "note": "Completed calendar rows are eligible inputs, not independently verified release dates. Bloomberg fill=PREV can repeat prior observations. October is partial and excluded from monthly scoring; source rows remain available as context. Preserve calibrated baseline parameters when refreshing observations.",
+  "note": "Completed months are eligible when the individual inputs are available. Checked series suppress repeated workbook values after the last verified month. The Federal Reserve revised high-tech production to a 2022 base on November 24, 2026. Use the matching revised monthly history and preserve the frozen scoring calibration.",
   "requiredCoreFields": [
     "BTOS0700 Index",
     "BTOS2400 Index",
@@ -20,5 +20,68 @@
     "USIMTELE Index",
     "USIMSEMI Index",
     "USIMCOMP Index"
-  ]
+  ],
+  "checkForCarryForwardAfter": {
+    "DGNOTGOP Index": "2026-09",
+    "CNSTPRDA Index": "2026-09"
+  },
+  "officialMonthlySeries": {
+    "IPNEHITC Index": {
+      "source": "Federal Reserve G.17 via FRED",
+      "series": "IPHITEK2S",
+      "unit": "Seasonally adjusted index (2022 = 100)",
+      "url": "https://fred.stlouisfed.org/series/IPHITEK2S",
+      "releaseDate": "2026-11-24",
+      "values": {
+        "2022-11": 101.4743,
+        "2022-12": 99.1846,
+        "2023-01": 97.4275,
+        "2023-02": 97.4582,
+        "2023-03": 98.8561,
+        "2023-04": 101.4022,
+        "2023-05": 102.558,
+        "2023-06": 102.899,
+        "2023-07": 105.8313,
+        "2023-08": 105.9075,
+        "2023-09": 105.9999,
+        "2023-10": 107.4444,
+        "2023-11": 108.2598,
+        "2023-12": 108.9904,
+        "2024-01": 108.594,
+        "2024-02": 108.2887,
+        "2024-03": 108.7561,
+        "2024-04": 112.6074,
+        "2024-05": 111.9861,
+        "2024-06": 112.8228,
+        "2024-07": 113.5213,
+        "2024-08": 117.1246,
+        "2024-09": 114.9115,
+        "2024-10": 116.5753,
+        "2024-11": 115.962,
+        "2024-12": 116.5014,
+        "2025-01": 120.5977,
+        "2025-02": 121.4216,
+        "2025-03": 120.1354,
+        "2025-04": 121.7541,
+        "2025-05": 121.4205,
+        "2025-06": 118.1205,
+        "2025-07": 122.8655,
+        "2025-08": 121.5933,
+        "2025-09": 119.9621,
+        "2025-10": 122.9608,
+        "2025-11": 124.0897,
+        "2025-12": 125.3496,
+        "2026-01": 129.4582,
+        "2026-02": 128.9636,
+        "2026-03": 127.3323,
+        "2026-04": 129.1298,
+        "2026-05": 133.0215,
+        "2026-06": 135.5804,
+        "2026-07": 139.2996,
+        "2026-08": 140.4084,
+        "2026-09": 140.1245,
+        "2026-10": 144.3671
+      }
+    }
+  }
 }
